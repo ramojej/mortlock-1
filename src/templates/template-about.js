@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { graphql } from "gatsby";
 
-import Banner from '../components/homepage-banner';
+import Banner from '../components/global/banner';
 import SubMenu from '../components/global-subnav';
 import Layout from '../components/layout';
 
@@ -14,11 +14,9 @@ class Page extends Component {
       banner_description: this.props.data.allWordpressPage.edges[0].node.acf.banner_description,
       banner_buttons: this.props.data.allWordpressPage.edges[0].node.acf.banner_buttons
     }
-
-    console.log(aboutContent);
     return (
       <Layout>
-        <Banner />
+        <Banner data={aboutContent} type="homepag" />
         <SubMenu />
       </Layout>
     )
