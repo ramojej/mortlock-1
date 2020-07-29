@@ -57,7 +57,9 @@ const Banner = ({ ...props }) =>  {
               <span className="inner__bannertext" dangerouslySetInnerHTML={{ __html: bannerContent.banner_description }} />
               <div className="inner__bannerbuttons">
                 {bannerContent.banner_buttons.map((button, index) => (
-                  <Button key={index} />
+                  (index === 1) ? 
+                  <Button type="external" link={button.button_link} text={button.button_text} key={index} /> : 
+                  <Button link={button.button_link} text={button.button_text} key={index} /> 
                 ))}
               </div>
             </div>

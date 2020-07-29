@@ -78,7 +78,7 @@ exports.createPages = async ({ graphql, actions }) => {
           },
         })
         break;
-      case "page-about.php":
+      case "template-about.php":
         createPage({
           path: edge.node.path,
           component: slash(aboutPageTemplate),

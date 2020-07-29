@@ -12,7 +12,7 @@ const Banner = ({ ...props }) =>  {
     slidesToScroll: 1
   };
 
-  if(bannerContent != undefined && bannerContent.length >= 1) {
+  if(bannerContent !== undefined && bannerContent.length >= 1) {
     return (
       <div className="banner">
         <Slider className="banner__slider" {...sliderSettings}>
