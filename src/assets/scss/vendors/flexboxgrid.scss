@@ -22,6 +22,7 @@ $flexboxgrid-breakpoints:
 
 $flexboxgrid-max-width: 92.9375rem + 2.1875rem * 2 !default; 
 $flexboxgrid-large-max-width: 111.25rem + 2.1875rem * 2 !default;
+$flexboxgrid-small-max-width: 73.125rem + 2.1875rem * 2 !default
 
 //
 // -- Stop editing -- //
@@ -38,6 +39,10 @@ $half-gutter-width: $flexboxgrid-gutter-width * .5;
 
   &.container__big {
     max-width: $flexboxgrid-large-max-width;
+  }
+
+  &.container__small {
+    max-width: $flexboxgrid-small-max-width;
   }
 
   &:after {

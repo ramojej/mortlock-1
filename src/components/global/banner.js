@@ -11,8 +11,6 @@ const Banner = ({ ...props }) =>  {
   if(props.type === "homepage") {
     bannerType = 'homepage';
   }
-
-  console.log(bannerType);
   
   const sliderSettings = {
     infinite: true,
@@ -45,22 +43,24 @@ const Banner = ({ ...props }) =>  {
         </Slider>
       </div>
     )
-  } else if(bannerContent != undefined) {
+  } else if(bannerContent !== undefined) {
       return (
         <div className="inner__banner">
-          <div className="bg__image">
+          <div className="bg__image has-overlay">
             <Img fluid={bannerContent.banner_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
           </div>
           <div className="container">
             <div className="inner__bannerbox">
-              <h1 dangerouslySetInnerHTML={{ __html: bannerContent.banner_heading }} />
-              <span className="inner__bannertext" dangerouslySetInnerHTML={{ __html: bannerContent.banner_description }} />
-              <div className="inner__bannerbuttons">
-                {bannerContent.banner_buttons.map((button, index) => (
-                  (index === 1) ? 
-                  <Button type="external" link={button.button_link} text={button.button_text} key={index} /> : 
-                  <Button link={button.button_link} text={button.button_text} key={index} /> 
-                ))}
+              <div className="box">
+                <h1 dangerouslySetInnerHTML={{ __html: bannerContent.banner_heading }} />
+                <span className="inner__bannertext" dangerouslySetInnerHTML={{ __html: bannerContent.banner_description }} />
+                <div className="inner__bannerbuttons">
+                  {bannerContent.banner_buttons.map((button, index) => (
+                    (index === 1) ? 
+                    <Button type="external" link={button.button_link} text={button.button_text} style={button.button_style} key={index} /> : 
+                    <Button link={button.button_link} text={button.button_text} style={button.button_style} key={index} /> 
+                  ))}
+                </div>
               </div>
             </div>
           </div>

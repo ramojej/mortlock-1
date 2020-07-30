@@ -6,6 +6,7 @@ import SubMenu from '../components/global-subnav';
 import Layout from '../components/layout';
 
 import AboutHistory from "../components/about/block-history";
+import AboutMission from "../components/about/block-value";
 import AboutSustainability from "../components/about/block-sustainability";
 import AboutArchitects from "../components/about/block-architects";
 
@@ -28,8 +29,19 @@ class Page extends Component {
       history_second_heading: this.props.data.allWordpressPage.edges[0].node.acf.history_second_heading,
       history_text_block: this.props.data.allWordpressPage.edges[0].node.acf.history_text_block
     }
-    
+
+    const aboutMission = {
+      our_mission_text: this.props.data.allWordpressPage.edges[0].node.acf.our_mission_text,
+      our_mission_image: this.props.data.allWordpressPage.edges[0].node.acf.our_mission_image,
+      mission_aside_text: this.props.data.allWordpressPage.edges[0].node.acf.mission_aside_text,
+      our_vision_content: this.props.data.allWordpressPage.edges[0].node.acf.our_vision_content,
+      our_vision_image: this.props.data.allWordpressPage.edges[0].node.acf.our_vision_image,
+      our_value_boxes: this.props.data.allWordpressPage.edges[0].node.acf.our_value_boxes,
+      our_value_heading: this.props.data.allWordpressPage.edges[0].node.acf.our_value_heading
+    }
+
     const aboutSustainability = {
+      section_main_heading: this.props.data.allWordpressPage.edges[0].node.acf.section_main_heading,
       sustainability_aside_heading: this.props.data.allWordpressPage.edges[0].node.acf.sustainability_aside_heading,
       sustainability_main_content: this.props.data.allWordpressPage.edges[0].node.acf.sustainability_main_content,
       sustainability_button_text: this.props.data.allWordpressPage.edges[0].node.acf.sustainability_button_text,
@@ -52,6 +64,7 @@ class Page extends Component {
         <Banner data={bannerContent} type="homepag" />
         <SubMenu />
         <AboutHistory data={aboutHistory} />
+        <AboutMission data={aboutMission} />
         <AboutSustainability data={aboutSustainability} />
         <AboutArchitects data={aboutArchitect} />
       </Layout>
@@ -100,6 +113,7 @@ export const pageQuery = graphql`
             history_second_heading
             history_text_block {
               history_text_box
+              history_image_alignment
               history_sub_image {
                 localFile {
                   childImageSharp {
@@ -139,6 +153,33 @@ export const pageQuery = graphql`
             architect_button_text
             architech_button_link
             architect_button_style
+            our_mission_text
+            our_mission_image {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 1500) {
+                    ...GatsbyImageSharpFluid_withWebp
+                  }
+                }
+              }
+            }       
+            mission_aside_text
+            our_vision_content
+            our_vision_image {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 930) {
+                    ...GatsbyImageSharpFluid_withWebp
+                  }
+                }
+              }
+            }
+            our_value_heading
+            our_value_boxes {
+              icon_svg_code
+              article_title
+              article_content
+            }
           }
         }
       }
