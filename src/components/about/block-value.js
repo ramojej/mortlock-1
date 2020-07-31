@@ -1,13 +1,10 @@
 import React from 'react';
-import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 
 
 const AboutMission = ({ ...props }) =>  {
   const content = props.data;
-
-  console.log(content);
-
+  
   return (
     <div className="about__contentblock">
       <div className="aside__text" dangerouslySetInnerHTML={{ __html: content.mission_aside_text }} />

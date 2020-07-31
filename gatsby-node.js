@@ -59,6 +59,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const defaultPageTemplate = path.resolve(`./src/templates/defaultPageTemplate.js`)
   const contactTemplate = path.resolve(`./src/templates/template-contact.js`)
   const aboutPageTemplate = path.resolve(`./src/templates/template-about.js`)
+  const productParentTemplate = path.resolve(`./src/templates/template-product-parent.js`)
   // We want to create a detailed page for each page node.
   // The path field contains the relative original WordPress link
   // and we use it for the slug to preserve url structure.
@@ -82,6 +83,15 @@ exports.createPages = async ({ graphql, actions }) => {
         createPage({
           path: edge.node.path,
           component: slash(aboutPageTemplate),
+          context: {
+            id: edge.node.id,
+          },
+        })
+        break;
+      case "template-product-parent.php":
+        createPage({
+          path: edge.node.path,
+          component: slash(productParentTemplate),
           context: {
             id: edge.node.id,
           },
