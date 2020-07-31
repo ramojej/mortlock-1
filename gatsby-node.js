@@ -57,8 +57,10 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // Create Page pages.
   const defaultPageTemplate = path.resolve(`./src/templates/defaultPageTemplate.js`)
+  const homepageTemplate = path.resolve(`./src/templates/template-homepage.js`)
   const contactTemplate = path.resolve(`./src/templates/template-contact.js`)
   const aboutPageTemplate = path.resolve(`./src/templates/template-about.js`)
+  const productSingleTemplate = path.resolve(`./src/templates/template-productsingle.js`)
   const productParentTemplate = path.resolve(`./src/templates/template-product-parent.js`)
   // We want to create a detailed page for each page node.
   // The path field contains the relative original WordPress link
@@ -66,12 +68,21 @@ exports.createPages = async ({ graphql, actions }) => {
   // The Page ID is prefixed with 'PAGE_'
   allWordpressPage.edges.forEach(edge => {
     switch(edge.node.template) {
-      case "template-contact.php":
+      case "template-homepage.php":
         createPage({
           // Each page is required to have a `path` as well
           // as a template component. The `context` is
           // optional but is often necessary so the template
           // can query data specific to each page.
+          path: edge.node.path,
+          component: slash(homepageTemplate),
+          context: {
+            id: edge.node.id,
+          },
+        })
+        break;
+      case "template-contact.php":
+        createPage({
           path: edge.node.path,
           component: slash(contactTemplate),
           context: {
@@ -92,6 +103,15 @@ exports.createPages = async ({ graphql, actions }) => {
         createPage({
           path: edge.node.path,
           component: slash(productParentTemplate),
+          context: {
+            id: edge.node.id,
+          },
+        })
+        break;
+      case "template-product-single.php":
+        createPage({
+          path: edge.node.path,
+          component: slash(productSingleTemplate),
           context: {
             id: edge.node.id,
           },

@@ -87,7 +87,7 @@ img {
 }
 
 p {
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 }
 
 article > * + * {
@@ -1026,10 +1026,6 @@ p {
   }
 }
 
-.sustainability__block {
-  position: relative;
-}
-
 .architect__block {
   position: relative;
 }
@@ -1121,7 +1117,8 @@ p {
 }
 
 .sustainability__block {
-  padding: 143px 0;
+  position: relative;
+  padding: 143px 0 92px;
   
   h2 {
     text-transform: uppercase;
@@ -1143,4 +1140,34 @@ p {
   >div {
     padding-bottom: 60px;
   }
+}
+
+.architect__block {
+  padding: 100px 0 120px;
+}
+
+.architect__contentbox {
+  max-width: 970px;
+  margin: -386px auto 0;
+  background: #efefef;
+  padding: 95px 100px;
+  position: relative;
+
+  >div {
+    padding-bottom: 47px;
+  }
+
+  h2 {
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 0 0 44px;
+  }
+
+  .button {
+    width: 100%;
+  }
+}
+
+.product__singlewrap {
+  padding: 100px 0;
 }
