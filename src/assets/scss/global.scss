@@ -878,6 +878,11 @@ p {
   flex-wrap: wrap;
   align-items: flex-end;
 
+  .banner__small & {
+    height: 538px;
+    padding: 90px 0 155px;
+  }
+
   .button {
     margin-right: 30px;
     min-width: 228px;
@@ -1170,4 +1175,78 @@ p {
 
 .product__singlewrap {
   padding: 100px 0;
+}
+
+.product__wrapper {
+  padding: 133px 0 72px;
+
+  h2 {
+    color: $primary-color;
+    margin-bottom: 17px;
+
+    span {
+      color: #312f30;
+    }
+  }
+}
+
+.product__box {
+  max-width: 389px;
+  margin-bottom: 35px;
+
+  .product__desc {
+    >div {
+      padding-bottom: 46px;
+    }
+  }
+
+  .button {
+    display: block;
+  }
+}
+
+.product__box-image {
+  position: relative;
+  margin: 0 0 40px;
+  
+  .image__text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    color: #ece3db;
+    background: rgba($primary-color, 0.8);
+    font-size: 16px;
+    line-height: 1.56;
+    padding: 39px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+
+  &:hover {
+    .image__text {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+
+.expand__content {
+  padding: 40px 0 159px;
+  text-align: center;
+
+  .addedBox {
+    display: none;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .btn__wrap {
+    padding-top: 40px;
+  }
 }

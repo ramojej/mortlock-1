@@ -45,7 +45,7 @@ const Banner = ({ ...props }) =>  {
     )
   } else if(bannerContent !== undefined) {
       return (
-        <div className="inner__banner">
+        <div className="inner__banner banner__small">
           <div className="bg__image has-overlay">
             <Img fluid={bannerContent.banner_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
           </div>

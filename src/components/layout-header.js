@@ -56,7 +56,7 @@ const Header = ({ data }) => (
         <nav className="header__top">
           <div className="container container__big">
             <ul className="headertop__nav">
-              {data.allWordpressMenusMenusItems.edges[0].node.items.map((menu) => (
+              {data.allWordpressMenusMenusItems.edges[1].node.items.map((menu) => (
               <li key={menu.wordpress_id}><Link to={"/" + menu.slug}>{menu.title}</Link></li>
               ))}
             </ul>
@@ -72,7 +72,7 @@ const Header = ({ data }) => (
               </div>
               <nav className="header__nav">
                 <ul className="main__nav">
-                  {data.allWordpressMenusMenusItems.edges[1].node.items.map((menu) => (
+                  {data.allWordpressMenusMenusItems.edges[0].node.items.map((menu) => (
                     <li key={menu.wordpress_id} className={(menu.classes !== '') ? menu.classes : null}>
                       <Link to={"/" + menu.slug}>{menu.title} {(() => {if(menu.child_items != null) return ( <svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m49.938 55.984-37.711-36.293-12.227 12.742 49.938 47.875 50.062-47.875-12.227-12.742z" /></svg> )})()}</Link>
                       {(() => {
@@ -86,14 +86,16 @@ const Header = ({ data }) => (
                                     {menu.child_items.map((submenu) => (
                                         <div className="col-sm-4" key={submenu.wordpress_id}>
                                           <div className="menubox">
-                                            <span className="menuTitle">{submenu.title}</span>
-                                            <p>Durable Timber Decking Profile</p>
-                                            <div className="imagebox">
-                                              <Img fluid={data.allWordpressAcfOptions.edges[0].node.options.main_header_logo.localFile.childImageSharp.fluid} alt="Alternative Text" />
-                                            </div>
-                                            <div className="more">
-                                              <Link to={"/" + submenu.slug}>Learn more</Link>
-                                            </div>
+                                            <Link to={"/" + menu.slug + "/" + submenu.slug}>
+                                              <span className="menuTitle">{submenu.title}</span>
+                                              <p>Durable Timber Decking Profile</p>
+                                              <div className="imagebox">
+                                                <Img fluid={data.allWordpressAcfOptions.edges[0].node.options.main_header_logo.localFile.childImageSharp.fluid} alt="Alternative Text" />
+                                              </div>
+                                              <div className="more">
+                                                <span>Learn more</span>
+                                              </div>
+                                            </Link>
                                           </div>
                                         </div>
                                     ))}
