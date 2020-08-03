@@ -2,6 +2,7 @@ import React from "react";
 import { StaticQuery, graphql, Link } from "gatsby";
 import Img from "gatsby-image";
 
+
 const Header = ({ data }) => (
   <StaticQuery
     query={graphql`
@@ -10,6 +11,7 @@ const Header = ({ data }) => (
           edges {
             node {
               count
+              name
               items {
                 title
                 url
@@ -43,6 +45,21 @@ const Header = ({ data }) => (
                 header_phone_number
                 header_button_text
                 header_button_link
+                header_mega_menu {
+                  menu_title
+                  menu_category
+                  menu_link
+                  menu_description
+                  menu_image {
+                    localFile {
+                      childImageSharp {
+                        fluid(maxWidth: 370) {
+                          ...GatsbyImageSharpFluid_withWebp
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
           }
@@ -56,9 +73,17 @@ const Header = ({ data }) => (
         <nav className="header__top">
           <div className="container container__big">
             <ul className="headertop__nav">
-              {data.allWordpressMenusMenusItems.edges[1].node.items.map((menu) => (
-              <li key={menu.wordpress_id}><Link to={"/" + menu.slug}>{menu.title}</Link></li>
-              ))}
+              {(() => {
+                var slug = data.allWordpressMenusMenusItems;
+                var num = (slug.edges[0].node.name === 'Header Top') ? 0 : 1;
+                return (
+                  <>
+                  {slug.edges[num].node.items.map((menu) => (
+                    <li key={menu.wordpress_id}><Link to={"/" + menu.slug}>{menu.title}</Link></li>
+                  ))}
+                  </>
+                )
+              })()}
             </ul>
           </div>
         </nav>
@@ -72,52 +97,130 @@ const Header = ({ data }) => (
               </div>
               <nav className="header__nav">
                 <ul className="main__nav">
-                  {data.allWordpressMenusMenusItems.edges[0].node.items.map((menu) => (
-                    <li key={menu.wordpress_id} className={(menu.classes !== '') ? menu.classes : null}>
-                      <Link to={"/" + menu.slug}>{menu.title} {(() => {if(menu.child_items != null) return ( <svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m49.938 55.984-37.711-36.293-12.227 12.742 49.938 47.875 50.062-47.875-12.227-12.742z" /></svg> )})()}</Link>
-                      {(() => {
-                        if(menu.child_items != null) return (
-                          <>
+                    {(() => {
+                    var slug1 = data.allWordpressMenusMenusItems;
+                    var num1 = (slug1.edges[0].node.name === 'Main Navigation') ? 0 : 1;
+                    return (
+                      <>
+                      {slug1.edges[num1].node.items.map((menu) => (
+                        <li key={menu.wordpress_id} className={(menu.classes !== '') ? menu.classes : null}>
+                          <Link to={"/" + menu.slug}>{menu.title} {(() => {if(menu.child_items != null || menu.classes.includes('megamenu')) return ( <svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m49.938 55.984-37.711-36.293-12.227 12.742 49.938 47.875 50.062-47.875-12.227-12.742z" /></svg> )})()}</Link>
                           {(() => {
-                            if(menu.classes.includes('megamenu')) return(
-                              <div className="dropdown">
-                                <div className="container">
-                                  <div className="row">
-                                    {menu.child_items.map((submenu) => (
-                                        <div className="col-sm-4" key={submenu.wordpress_id}>
-                                          <div className="menubox">
-                                            <Link to={"/" + menu.slug + "/" + submenu.slug}>
-                                              <span className="menuTitle">{submenu.title}</span>
-                                              <p>Durable Timber Decking Profile</p>
-                                              <div className="imagebox">
-                                                <Img fluid={data.allWordpressAcfOptions.edges[0].node.options.main_header_logo.localFile.childImageSharp.fluid} alt="Alternative Text" />
+                            console.log(data.allWordpressAcfOptions.edges[0].node.options.header_mega_menu)
+                            if(menu.classes.includes('megamenu')) {
+                              if(menu.title.toLowerCase() === 'timber decking') {
+                                return (
+                                  <div className="dropdown">
+                                    <div className="container">
+                                      <div className="row">
+                                        {data.allWordpressAcfOptions.edges[0].node.options.header_mega_menu.map((dropmenu, index) => (
+                                          <>
+                                          {(dropmenu.menu_category === "timberdecking") ?
+                                            <div className="col-sm-4" key="index">
+                                              <div className="menubox">
+                                                <Link to={dropmenu.menu_link}>
+                                                  <span className="menuTitle">{dropmenu.menu_title}</span>
+                                                  <p>{dropmenu.menu_description}</p>
+                                                  <div className="imagebox">
+                                                    <Img fluid={dropmenu.menu_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
+                                                  </div>
+                                                  <div className="more">
+                                                    <span>Learn more</span>
+                                                  </div>
+                                                </Link>
                                               </div>
-                                              <div className="more">
-                                                <span>Learn more</span>
-                                              </div>
-                                            </Link>
-                                          </div>
-                                        </div>
-                                    ))}
+                                            </div>
+                                          : null }
+                                          </>
+                                        ))}
+                                        
+                                      </div>
+                                    </div>
                                   </div>
-                                </div>
-                              </div>
-                            )
-                            return (
-                              <div className="dropdown">
-                                <ul>
-                                  {menu.child_items.map((submenu) => (
-                                    <li key={submenu.wordpress_id} className={(menu.classes !== '') ? menu.classes : null}><Link to={"/" + submenu.slug}>{submenu.title}</Link></li>
-                                  ))}
-                                </ul>
-                              </div>
+                                )
+                              } else if(menu.title.toLowerCase() === 'timber ceilings') {
+                                return (
+                                  <div className="dropdown">
+                                    <div className="container">
+                                      <div className="row">
+                                        {data.allWordpressAcfOptions.edges[0].node.options.header_mega_menu.map((dropmenu, index) => (
+                                          <>
+                                          {(dropmenu.menu_category === "timberceilings") ?
+                                            <div className="col-sm-4" key="index">
+                                              <div className="menubox">
+                                                <Link to={dropmenu.menu_link}>
+                                                  <span className="menuTitle">{dropmenu.menu_title}</span>
+                                                  <p>{dropmenu.menu_description}</p>
+                                                  <div className="imagebox">
+                                                    <Img fluid={dropmenu.menu_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
+                                                  </div>
+                                                  <div className="more">
+                                                    <span>Learn more</span>
+                                                  </div>
+                                                </Link>
+                                              </div>
+                                            </div>
+                                          : null }
+                                          </>
+                                        ))}
+                                        
+                                      </div>
+                                    </div>
+                                  </div>
+                                )
+                              } else if(menu.title.toLowerCase() === 'timber walls') {
+                                return (
+                                  <div className="dropdown">
+                                    <div className="container">
+                                      <div className="row">
+                                        {data.allWordpressAcfOptions.edges[0].node.options.header_mega_menu.map((dropmenu, index) => (
+                                          <>
+                                          {(dropmenu.menu_category === "timberwalls") ?
+                                            <div className="col-sm-3" key="index">
+                                              <div className="menubox">
+                                                <Link to={dropmenu.menu_link}>
+                                                  <span className="menuTitle">{dropmenu.menu_title}</span>
+                                                  <p>{dropmenu.menu_description}</p>
+                                                  <div className="imagebox">
+                                                    <Img fluid={dropmenu.menu_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
+                                                  </div>
+                                                  <div className="more">
+                                                    <span>Learn more</span>
+                                                  </div>
+                                                </Link>
+                                              </div>
+                                            </div>
+                                          : null }
+                                          </>
+                                        ))}
+                                        
+                                      </div>
+                                    </div>
+                                  </div>
+                                )
+                              }
+                            }
+                            if(menu.child_items != null) return (
+                              <>
+                              {(() => {
+                                return (
+                                  <div className="dropdown">
+                                    <ul>
+                                      {menu.child_items.map((submenu) => (
+                                        <li key={submenu.wordpress_id} className={(menu.classes !== '') ? menu.classes : null}><Link to={"/" + submenu.slug}>{submenu.title}</Link></li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                )
+                              })()}
+                              </>
                             )
                           })()}
-                          </>
-                        )
-                      })()}
-                    </li>
-                  ))}
+                        </li>
+                      ))}
+                      </>
+                    )
+                  })()}
                 </ul>
               </nav>
               <div className="header__meta">

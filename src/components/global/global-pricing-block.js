@@ -1,7 +1,6 @@
 import React from 'react';
 
 const PricingBlock = ({ ...props }) =>  {
-  const content = props.data;
   return (
     <div className="pricing__block">
       <div className="container">

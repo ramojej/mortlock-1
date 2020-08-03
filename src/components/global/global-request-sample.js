@@ -1,7 +1,6 @@
 import React from 'react';
 
 const RequestSample = ({ ...props }) =>  {
-  const content = props.data;
   return (
     <div className="request__block">
       <div className="container">

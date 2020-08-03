@@ -6,7 +6,8 @@ import SubMenu from '../components/global-subnav';
 import Layout from '../components/layout';
 
 import ProductOverview from "../components/productsingle/product-overview";
-
+import ProductBenefit from "../components/productsingle/product-benefit";
+import ProductApplication from "../components/productsingle/product-application";
 import ProductFaq from "../components/productsingle/product-faq";
 
 import RequestSample from "../components/global/global-request-sample";
@@ -25,15 +26,35 @@ class Page extends Component {
     }
 
     const productOverview = {
-      
+      product_title: this.props.data.allWordpressPage.edges[0].node.acf.product_title,
+      product_overview_aside_title: this.props.data.allWordpressPage.edges[0].node.acf.product_overview_aside_title,
+      product_aside_image: this.props.data.allWordpressPage.edges[0].node.acf.product_aside_image,
+      product_description: this.props.data.allWordpressPage.edges[0].node.acf.product_description
+    }
+
+    const productBenefit = {
+      product_benefit_image: this.props.data.allWordpressPage.edges[0].node.acf.product_benefit_image,
+      product_benefit_title: this.props.data.allWordpressPage.edges[0].node.acf.product_benefit_title,
+      product_benefit_columns: this.props.data.allWordpressPage.edges[0].node.acf.product_benefit_columns
+    }
+
+    const prouctApplication = {
+      application_content: this.props.data.allWordpressPage.edges[0].node.acf.application_content,
+      structural_svg: this.props.data.allWordpressPage.edges[0].node.acf.structural_svg,
+      interior_svg: this.props.data.allWordpressPage.edges[0].node.acf.interior_svg,
+      exterior_svg: this.props.data.allWordpressPage.edges[0].node.acf.exterior_svg,
+      application_gallery_image: this.props.data.allWordpressPage.edges[0].node.acf.application_gallery_image
     }
 
     return (
       <Layout>
         <Banner data={bannerContent} type="homepag" />
         <SubMenu />
-        <ProductOverview />
-        
+        <div className="product__singlewrap">
+          <ProductOverview data={productOverview} />
+          <ProductBenefit data={productBenefit} />
+          <ProductApplication data={prouctApplication} />
+        </div>
         <div className="product__description">
           <div className="container">
             <div className="product-species">
@@ -141,6 +162,134 @@ export const pageQuery = graphql`
               button_style
               button_text
             }
+            product_title
+            product_overview_aside_title
+            product_aside_image {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 800) {
+                    ...GatsbyImageSharpFluid_withWebp
+                  }
+                }
+              }
+            }
+            product_description
+            product_benefit_image {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 600) {
+                    ...GatsbyImageSharpFluid_withWebp
+                  }
+                }
+              }
+            }
+            product_benefit_title
+            product_benefit_columns {
+              benefit_or_button
+              button_text
+              button_link
+              icon_svg
+              benefit_title
+              benefit_description
+            }
+            structural_svg
+            interior_svg
+            exterior_svg
+            application_content
+            application_gallery_image {
+              gallery_image {
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 1200) {
+                      ...GatsbyImageSharpFluid_withWebp
+                    }
+                  }
+                }
+              }
+              image_title
+              image_application_tag
+            }
+            timber_species {
+              timber_small_thumbnail {
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 250) {
+                      ...GatsbyImageSharpFluid_withWebp
+                    }
+                  }
+                }
+              }
+              timber_title
+              timber_finishes_download_text
+              timber_finishes_button_style
+              timber_finishes {
+                finishes_image_thumbnail {
+                  localFile {
+                    childImageSharp {
+                      fluid(maxWidth: 500) {
+                        ...GatsbyImageSharpFluid_withWebp
+                      }
+                    }
+                  }
+                }
+                finishes_title
+              }
+            }
+            shape_and_size_title
+            batten_shapes {
+              shape_and_size_title
+              shape_icons {
+                shape_svg
+                shape_title
+              }
+            }
+            installation_image {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 950) {
+                    ...GatsbyImageSharpFluid_withWebp
+                  }
+                }
+              }
+            }
+            installation_title
+            installation_description
+            installation_button_text
+            installation_button_link
+            installation_button_style
+            useful_info {
+              useful_icon
+              userful_info_heading
+              useful_info_text
+              useful_info_link_text
+            }
+            faq_title
+            faqs {
+              faq_title
+              faq_content
+            }
+            pricing_title
+            pricing_image {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 650) {
+                    ...GatsbyImageSharpFluid_withWebp
+                  }
+                }
+              }
+            }
+            pricing_description
+            request_block_heading
+            request_sample_image {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 600) {
+                    ...GatsbyImageSharpFluid_withWebp
+                  }
+                }
+              }
+            }
+            request_sample_description
           }
         }
       }

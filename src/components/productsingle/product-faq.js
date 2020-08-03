@@ -1,8 +1,6 @@
 import React from 'react';
-import Button from '@src/components/global/button';
 
 const ProductFaq = ({ ...props }) =>  {
-  const content = props.data;
   return (
     <div className="faq__block">
       <div className="general-heading">
