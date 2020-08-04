@@ -2,6 +2,8 @@ import React from 'react';
 import Img from 'gatsby-image';
 import Slider from "react-slick";
 
+import BackgroundImage from 'gatsby-background-image';
+
 import Button from './button';
 
 const Banner = ({ ...props }) =>  {

@@ -12,8 +12,6 @@ const ProductApplication = ({ ...props }) =>  {
     slidesToScroll: 1
   };
 
-  console.log(content)
-
   return (
     <div className="application__wrapper">
       <div className="container">

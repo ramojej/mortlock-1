@@ -4,6 +4,28 @@
 
 @import "./_flex";
 
+$breakpoints: (
+  'small':  767px,
+  'medium': 992px,
+  'large':  1200px
+) !default;
+
+@mixin breakpoint($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media only screen and (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+ 
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
 // default 1px = 0.0625rem
 
 // Set the number of columns you want to use on your layout.
@@ -32,10 +54,15 @@ $gutter-compensation: $flexboxgrid-gutter-width * .5 * -1;
 $half-gutter-width: $flexboxgrid-gutter-width * .5;
 
 .container {
-  padding-left: $flexboxgrid-outer-margin;
-  padding-right: $flexboxgrid-outer-margin;
+  padding-left: 15px;
+  padding-right: 15px;
   max-width: $flexboxgrid-max-width;
   margin: 0 auto;
+
+  @include breakpoint('small') {
+    padding-left: $flexboxgrid-outer-margin;
+    padding-right: $flexboxgrid-outer-margin;
+  }
 
   &.container__big {
     max-width: $flexboxgrid-large-max-width;
@@ -88,6 +115,13 @@ $half-gutter-width: $flexboxgrid-gutter-width * .5;
 
   padding-right: $half-gutter-width;
   padding-left: $half-gutter-width;
+}
+
+[class^="col-"],
+[class*=" col-"] {
+  @include flexboxgrid-sass-col-common;
+  @include flex-basis(auto);
+  max-width: 100%;
 }
 
 $name: xs;

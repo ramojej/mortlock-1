@@ -96,6 +96,7 @@ const Header = ({ data }) => (
                 </Link>
               </div>
               <nav className="header__nav">
+                <span className="nav__hamburger"><span>Opener</span></span>
                 <ul className="main__nav">
                     {(() => {
                     var slug1 = data.allWordpressMenusMenusItems;
@@ -106,7 +107,6 @@ const Header = ({ data }) => (
                         <li key={menu.wordpress_id} className={(menu.classes !== '') ? menu.classes : null}>
                           <Link to={"/" + menu.slug}>{menu.title} {(() => {if(menu.child_items != null || menu.classes.includes('megamenu')) return ( <svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m49.938 55.984-37.711-36.293-12.227 12.742 49.938 47.875 50.062-47.875-12.227-12.742z" /></svg> )})()}</Link>
                           {(() => {
-                            console.log(data.allWordpressAcfOptions.edges[0].node.options.header_mega_menu)
                             if(menu.classes.includes('megamenu')) {
                               if(menu.title.toLowerCase() === 'timber decking') {
                                 return (
@@ -118,7 +118,7 @@ const Header = ({ data }) => (
                                           {(dropmenu.menu_category === "timberdecking") ?
                                             <div className="col-sm-4" key="index">
                                               <div className="menubox">
-                                                <Link to={dropmenu.menu_link}>
+                                                <Link to={"/" + dropmenu.menu_link}>
                                                   <span className="menuTitle">{dropmenu.menu_title}</span>
                                                   <p>{dropmenu.menu_description}</p>
                                                   <div className="imagebox">
@@ -148,7 +148,7 @@ const Header = ({ data }) => (
                                           {(dropmenu.menu_category === "timberceilings") ?
                                             <div className="col-sm-4" key="index">
                                               <div className="menubox">
-                                                <Link to={dropmenu.menu_link}>
+                                                <Link to={"/" + dropmenu.menu_link}>
                                                   <span className="menuTitle">{dropmenu.menu_title}</span>
                                                   <p>{dropmenu.menu_description}</p>
                                                   <div className="imagebox">
@@ -178,7 +178,7 @@ const Header = ({ data }) => (
                                           {(dropmenu.menu_category === "timberwalls") ?
                                             <div className="col-sm-3" key="index">
                                               <div className="menubox">
-                                                <Link to={dropmenu.menu_link}>
+                                                <Link to={"/" + dropmenu.menu_link}>
                                                   <span className="menuTitle">{dropmenu.menu_title}</span>
                                                   <p>{dropmenu.menu_description}</p>
                                                   <div className="imagebox">

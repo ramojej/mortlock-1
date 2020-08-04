@@ -24,9 +24,7 @@ const GlobalNewsSlider = ({ ...props }) =>  {
               <div className="article">
                 <span className="article__date">{article.node.date}</span>
                 <div className="news_image">
-                  <Link to={article.node.path}>
-                    <Img fluid={article.node.featured_media.localFile.childImageSharp.fluid} alt="Alternative Text" />
-                  </Link>
+                  <Img fluid={article.node.featured_media.localFile.childImageSharp.fluid} alt="Alternative Text" />
                 </div>
                 <div className="article_text">
                   <h3><Link to={article.node.path}>{article.node.title}</Link></h3>

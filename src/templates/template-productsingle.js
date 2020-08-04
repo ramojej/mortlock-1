@@ -46,6 +46,12 @@ class Page extends Component {
       application_gallery_image: this.props.data.allWordpressPage.edges[0].node.acf.application_gallery_image
     }
 
+    const requestSample = {
+      request_block_heading: this.props.data.allWordpressPage.edges[0].node.acf.request_block_heading,
+      request_sample_image: this.props.data.allWordpressPage.edges[0].node.acf.request_sample_image,
+      request_sample_description: this.props.data.allWordpressPage.edges[0].node.acf.request_sample_description
+    }
+
     return (
       <Layout>
         <Banner data={bannerContent} type="homepag" />
@@ -131,7 +137,7 @@ class Page extends Component {
           </div>
         </div>
         <PricingBlock />
-        <RequestSample />
+        <RequestSample data={requestSample} />
       </Layout>
     )
   }
