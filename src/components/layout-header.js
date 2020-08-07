@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { StaticQuery, graphql, Link } from "gatsby";
 import Img from "gatsby-image";
 
+const toggleMenuAccordion = (event) => {
+  var clickedIcon = event.currentTarget;
+  var menuElements = document.querySelectorAll(".main__nav>li");
+  [].forEach.call(menuElements, function(el) {
+    el.className = el.className.replace(/\bactive\b/, "");
+  });
+  clickedIcon.parentNode.parentNode.className += " active";
+}
+
+const toggleMenuDropdown = () => {
+  document.body.classList.toggle('nav__active');
+}
 
 const Header = ({ data }) => (
   <StaticQuery
@@ -96,132 +108,154 @@ const Header = ({ data }) => (
                 </Link>
               </div>
               <nav className="header__nav">
-                <span className="nav__hamburger"><span>Opener</span></span>
-                <ul className="main__nav">
-                    {(() => {
-                    var slug1 = data.allWordpressMenusMenusItems;
-                    var num1 = (slug1.edges[0].node.name === 'Main Navigation') ? 0 : 1;
-                    return (
-                      <>
-                      {slug1.edges[num1].node.items.map((menu) => (
-                        <li key={menu.wordpress_id} className={(menu.classes !== '') ? menu.classes : null}>
-                          <Link to={"/" + menu.slug}>{menu.title} {(() => {if(menu.child_items != null || menu.classes.includes('megamenu')) return ( <svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m49.938 55.984-37.711-36.293-12.227 12.742 49.938 47.875 50.062-47.875-12.227-12.742z" /></svg> )})()}</Link>
-                          {(() => {
-                            if(menu.classes.includes('megamenu')) {
-                              if(menu.title.toLowerCase() === 'timber decking') {
+                <span className="nav__hamburger" onClick={() => toggleMenuDropdown() }><span>Opener</span></span>
+                <div className="menu__wrapper">
+                  <ul className="main__nav">
+                      {(() => {
+                      var slug1 = data.allWordpressMenusMenusItems;
+                      var num1 = (slug1.edges[0].node.name === 'Main Navigation') ? 0 : 1;
+                      return (
+                        <>
+                        {slug1.edges[num1].node.items.map((menu) => (
+                          <li key={menu.wordpress_id} className={(menu.classes !== '') ? menu.classes : null}>
+                            {(() => {
+                              if(menu.child_items != null || menu.classes.includes('megamenu')) {
                                 return (
-                                  <div className="dropdown">
-                                    <div className="container">
-                                      <div className="row">
-                                        {data.allWordpressAcfOptions.edges[0].node.options.header_mega_menu.map((dropmenu, index) => (
-                                          <>
-                                          {(dropmenu.menu_category === "timberdecking") ?
-                                            <div className="col-sm-4" key="index">
-                                              <div className="menubox">
-                                                <Link to={"/" + dropmenu.menu_link}>
-                                                  <span className="menuTitle">{dropmenu.menu_title}</span>
-                                                  <p>{dropmenu.menu_description}</p>
-                                                  <div className="imagebox">
-                                                    <Img fluid={dropmenu.menu_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
-                                                  </div>
-                                                  <div className="more">
-                                                    <span>Learn more</span>
-                                                  </div>
-                                                </Link>
+                                  <>
+                                    <div className="menu__linkwrap">
+                                      <Link to={"/" + menu.slug}>{menu.title}</Link>
+                                      <span className="drop__control" onClick={ e => toggleMenuAccordion(e) }>
+                                        <svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m49.938 55.984-37.711-36.293-12.227 12.742 49.938 47.875 50.062-47.875-12.227-12.742z" /></svg>
+                                      </span>
+                                    </div>
+                                    {(() => {
+                                      if(menu.classes.includes('megamenu')) {
+                                        if(menu.title.toLowerCase() === 'timber decking') {
+                                          return (
+                                            <div className="dropdown">
+                                              <div className="container">
+                                                <div className="row">
+                                                  {data.allWordpressAcfOptions.edges[0].node.options.header_mega_menu.map((dropmenu, index) => {
+                                                    if(dropmenu.menu_category === "timberdecking") {
+                                                      return (
+                                                        <div className="col-sm-4" key={index}>
+                                                          <div className="menubox">
+                                                            <Link to={"/" + dropmenu.menu_link}>
+                                                              <span className="menuTitle">{dropmenu.menu_title}</span>
+                                                              <p>{dropmenu.menu_description}</p>
+                                                              <div className="imagebox">
+                                                                <Img fluid={dropmenu.menu_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
+                                                              </div>
+                                                              <div className="more">
+                                                                <span>Learn more</span>
+                                                              </div>
+                                                            </Link>
+                                                          </div>
+                                                        </div>
+                                                      )
+                                                    } else {
+                                                      return null;
+                                                    }
+                                                  })}
+                                                </div>
                                               </div>
                                             </div>
-                                          : null }
-                                          </>
-                                        ))}
-                                        
-                                      </div>
-                                    </div>
-                                  </div>
+                                          )
+                                        } else if(menu.title.toLowerCase() === 'timber ceilings') {
+                                          return (
+                                            <div className="dropdown">
+                                              <div className="container">
+                                                <div className="row">
+                                                  {data.allWordpressAcfOptions.edges[0].node.options.header_mega_menu.map((dropmenu, index) => {
+                                                    if(dropmenu.menu_category === "timberceilings") {
+                                                      return (
+                                                        <div className="col-sm-4" key={index}>
+                                                          <div className="menubox">
+                                                            <Link to={"/" + dropmenu.menu_link}>
+                                                              <span className="menuTitle">{dropmenu.menu_title}</span>
+                                                              <p>{dropmenu.menu_description}</p>
+                                                              <div className="imagebox">
+                                                                <Img fluid={dropmenu.menu_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
+                                                              </div>
+                                                              <div className="more">
+                                                                <span>Learn more</span>
+                                                              </div>
+                                                            </Link>
+                                                          </div>
+                                                        </div>
+                                                      )
+                                                    } else {
+                                                      return null;
+                                                    }
+                                                  })}
+                                                </div>
+                                              </div>
+                                            </div>
+                                          )
+                                        } else if(menu.title.toLowerCase() === 'timber walls') {
+                                          return (
+                                            <div className="dropdown">
+                                              <div className="container">
+                                                <div className="row">
+                                                  {data.allWordpressAcfOptions.edges[0].node.options.header_mega_menu.map((dropmenu, index) => {
+                                                    if(dropmenu.menu_category === "timberwalls") {
+                                                      return (
+                                                        <div className="col-sm-3" key={index}>
+                                                          <div className="menubox">
+                                                            <Link to={"/" + dropmenu.menu_link}>
+                                                              <span className="menuTitle">{dropmenu.menu_title}</span>
+                                                              <p>{dropmenu.menu_description}</p>
+                                                              <div className="imagebox">
+                                                                <Img fluid={dropmenu.menu_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
+                                                              </div>
+                                                              <div className="more">
+                                                                <span>Learn more</span>
+                                                              </div>
+                                                            </Link>
+                                                          </div>
+                                                        </div>
+                                                      )
+                                                    } else {
+                                                      return null;
+                                                    }
+                                                  })}
+                                                </div>
+                                              </div>
+                                            </div>
+                                          )
+                                        }
+                                      }
+                                      if(menu.child_items != null) return (
+                                        <>
+                                        {(() => {
+                                          return (
+                                            <div className="dropdown">
+                                              <ul>
+                                                {menu.child_items.map((submenu) => (
+                                                  <li key={submenu.wordpress_id} className={(menu.classes !== '') ? menu.classes : null}><Link to={"/" + submenu.slug}>{submenu.title}</Link></li>
+                                                ))}
+                                              </ul>
+                                            </div>
+                                          )
+                                        })()}
+                                        </>
+                                      )
+                                    })()}
+                                  </>
                                 )
-                              } else if(menu.title.toLowerCase() === 'timber ceilings') {
+                              } else {
                                 return (
-                                  <div className="dropdown">
-                                    <div className="container">
-                                      <div className="row">
-                                        {data.allWordpressAcfOptions.edges[0].node.options.header_mega_menu.map((dropmenu, index) => (
-                                          <>
-                                          {(dropmenu.menu_category === "timberceilings") ?
-                                            <div className="col-sm-4" key="index">
-                                              <div className="menubox">
-                                                <Link to={"/" + dropmenu.menu_link}>
-                                                  <span className="menuTitle">{dropmenu.menu_title}</span>
-                                                  <p>{dropmenu.menu_description}</p>
-                                                  <div className="imagebox">
-                                                    <Img fluid={dropmenu.menu_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
-                                                  </div>
-                                                  <div className="more">
-                                                    <span>Learn more</span>
-                                                  </div>
-                                                </Link>
-                                              </div>
-                                            </div>
-                                          : null }
-                                          </>
-                                        ))}
-                                        
-                                      </div>
-                                    </div>
-                                  </div>
-                                )
-                              } else if(menu.title.toLowerCase() === 'timber walls') {
-                                return (
-                                  <div className="dropdown">
-                                    <div className="container">
-                                      <div className="row">
-                                        {data.allWordpressAcfOptions.edges[0].node.options.header_mega_menu.map((dropmenu, index) => (
-                                          <>
-                                          {(dropmenu.menu_category === "timberwalls") ?
-                                            <div className="col-sm-3" key="index">
-                                              <div className="menubox">
-                                                <Link to={"/" + dropmenu.menu_link}>
-                                                  <span className="menuTitle">{dropmenu.menu_title}</span>
-                                                  <p>{dropmenu.menu_description}</p>
-                                                  <div className="imagebox">
-                                                    <Img fluid={dropmenu.menu_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
-                                                  </div>
-                                                  <div className="more">
-                                                    <span>Learn more</span>
-                                                  </div>
-                                                </Link>
-                                              </div>
-                                            </div>
-                                          : null }
-                                          </>
-                                        ))}
-                                        
-                                      </div>
-                                    </div>
-                                  </div>
+                                  <Link to={"/" + menu.slug}>{menu.title}</Link>
                                 )
                               }
-                            }
-                            if(menu.child_items != null) return (
-                              <>
-                              {(() => {
-                                return (
-                                  <div className="dropdown">
-                                    <ul>
-                                      {menu.child_items.map((submenu) => (
-                                        <li key={submenu.wordpress_id} className={(menu.classes !== '') ? menu.classes : null}><Link to={"/" + submenu.slug}>{submenu.title}</Link></li>
-                                      ))}
-                                    </ul>
-                                  </div>
-                                )
-                              })()}
-                              </>
-                            )
-                          })()}
-                        </li>
-                      ))}
-                      </>
-                    )
-                  })()}
-                </ul>
+                            })()}
+                          </li>
+                        ))}
+                        </>
+                      )
+                    })()}
+                  </ul>
+                </div>
               </nav>
               <div className="header__meta">
               <div className="header__phone">

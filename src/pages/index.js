@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
-import Banner from "../components/homepage-banner";
+import Banner from "../components/global/banner";
 import GeneralText from "../components/general-text";
 import GlobalNewsSlider from "../components/global-news-slider";
 import GlobalTestimonialSlider from "../components/global-testimonial-slider";
@@ -74,18 +74,25 @@ class IndexPage extends Component {
 
     const latestArticles = this.props.data.allWordpressPost.edges;
     const latestProjects = this.props.data.allWordpressWpProjects.edges;
-    const latestSuccessStories = this.props.data.allWordpressAcfOptions.edges[0].node.options.success_stories;
-    const latestTestomonial = this.props.data.allWordpressAcfOptions.edges[0].node.options.client_testimonials;
+
+    const latestSuccessStories = {
+      successTitle: this.props.data.allWordpressAcfOptions.edges[0].node.options.success_stories_heading,
+      successStories: this.props.data.allWordpressAcfOptions.edges[0].node.options.success_stories,
+    }
+    const latestTestomonial = {
+      testimonialHeading: this.props.data.allWordpressAcfOptions.edges[0].node.options.client_testimonials_heading,
+      allTestimonials: this.props.data.allWordpressAcfOptions.edges[0].node.options.client_testimonials,
+    }
 
     return (
       <Layout>
-        <Banner bannerData={ bannerContent } />
+        <Banner data={ bannerContent } type="homepage" />
         <GeneralText contentData={ aboutContent } col1="7" col2="5" />
-        <GeneralText contentData={ imageBlock } col1="5" col2="7" />
-        <GeneralText contentData={ pricingBlock } col1="7" col2="5" />
-        <GeneralText contentData={ timberDecking } col1="8" col2="4" />
-        <GeneralText contentData={ timberWalls } col1="5" col2="7" />
-        <GeneralText contentData={ timberCeilings } col1="5" col2="7" />
+        <GeneralText contentData={ imageBlock } col1="5" col2="7" addClass="range" />
+        <GeneralText contentData={ pricingBlock } col1="7" col2="5" addClass="pricing" />
+        <GeneralText contentData={ timberDecking } col1="8" col2="4" addClass="decking" />
+        <GeneralText contentData={ timberWalls } col1="5" col2="7" addClass="walls" />
+        <GeneralText contentData={ timberCeilings } col1="6" col2="6" addClass="ceilings" />
         {(() => {
           if(generalContent.latestProject) return (
             <GlobalProjectSlider contentData={ latestProjects } />
@@ -120,6 +127,9 @@ export const pageQuery = graphql`
         node {
           acf {
             banner_slider {
+              banner_button_text
+              banner_button_link
+              banner_button_style
               banner_heading
               banner_sub_heading
               banner_image {
@@ -226,11 +236,13 @@ export const pageQuery = graphql`
       edges {
         node {
           options {
+            client_testimonials_heading
             client_testimonials {
               client_name
               client_quote
               client_titleposition
             }
+            success_stories_heading
             success_stories {
               video_link
               success_client_quote
@@ -273,7 +285,7 @@ export const pageQuery = graphql`
           featured_media {
             localFile {
               childImageSharp {
-                fluid(maxWidth: 500) {
+                fluid(maxWidth: 1200) {
                   ...GatsbyImageSharpFluid_withWebp
                 }
               }

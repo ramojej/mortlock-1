@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Img from 'gatsby-image';
 import Slider from "react-slick";
 
@@ -6,9 +6,25 @@ import BackgroundImage from 'gatsby-background-image';
 
 import Button from './button';
 
+function SampleNextArrow(props) {
+  const { className, onClick } = props;
+  return (
+    <button className={className} onClick={onClick}><span className="text">Next</span><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100"><path d="m12.5 45.832h64.582v8.332h-64.582z"/><path d="m59.168 77.918l-5.8359-5.8359 22.086-22.082-22.086-22.082 5.8359-5.8359 27.914 27.918z"/></svg></button>
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, onClick } = props;
+  return (
+    <button className={className} onClick={onClick}><span className="text">Prev</span><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100"><path d="m87.5 45.832h-58.75l17.918-17.914-5.8359-5.8359-27.914 27.918 27.914 27.918 5.8359-5.8359-17.918-17.914h58.75z"/></svg></button>
+  );
+}
+
 const Banner = ({ ...props }) =>  {
   const bannerContent = props.data;
   var bannerType = '';
+
+  const [count, setCount] = useState(1);
   
   if(props.type === "homepage") {
     bannerType = 'homepage';
@@ -18,7 +34,12 @@ const Banner = ({ ...props }) =>  {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    afterChange: (current, next) => {
+      setCount(current + 1);
+    }
   };
 
   if(bannerContent !== undefined && bannerType === "homepage") {
@@ -27,16 +48,20 @@ const Banner = ({ ...props }) =>  {
         <Slider className="banner__slider" {...sliderSettings}>
         {bannerContent.map((slide, index) => (
           <div className="slide" key={index}>
-            <div className="bg__image">
+            <div className="bg__image has-overlay">
               <Img fluid={slide.banner_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
             </div>
             <div className="container container__big">
               <div className="banner__text">
                 <div className="bottomtext__top">
                   <h1 dangerouslySetInnerHTML={{ __html: slide.banner_heading }} />
+                  <span className="bannerCounter"><span className="activeNum">0{count}</span><span className="bar">/</span>0{bannerContent.length}</span>
                 </div>
                 <div className="bottomtext__bottom">
                   <span className="banner__smalltext" dangerouslySetInnerHTML={{ __html: slide.banner_sub_heading }} />
+                </div>
+                <div className="mobile__button">
+                  <Button link={slide.banner_button_link} text={slide.banner_button_text} style={slide.banner_button_style} /> 
                 </div>
               </div>
             </div>
@@ -49,7 +74,7 @@ const Banner = ({ ...props }) =>  {
       return (
         <div className="inner__banner banner__small">
           <div className="bg__image has-overlay">
-            <Img fluid={bannerContent.banner_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
+            <BackgroundImage fluid={bannerContent.banner_image.localFile.childImageSharp.fluid} />
           </div>
           <div className="container">
             <div className="inner__bannerbox">

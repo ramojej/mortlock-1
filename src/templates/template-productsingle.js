@@ -108,7 +108,7 @@ class Page extends Component {
                   <div className="installation__text">
                     <h2>Installation</h2>
                     <p>Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem in dui. Cras ultricies mi eu turpis hendrerit fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia. </p>
-                    <a href="#" className="learn-more">View Installation Guide</a>
+                    <a href="https://dilate.com.au" className="learn-more">View Installation Guide</a>
                   </div>
                 </div>
                 <div className="col-sm-6">
@@ -128,7 +128,7 @@ class Page extends Component {
                     </div>
                     <h4>warranty</h4>
                     <p>High degree of natural durability and strength</p>
-                    <a href="#" className="link">Download PDF</a>
+                    <a href="https://dilate.com.au" className="link">Download PDF</a>
                   </div>
                 </div>
               </div>

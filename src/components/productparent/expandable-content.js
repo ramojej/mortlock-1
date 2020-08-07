@@ -11,7 +11,6 @@ const ExpandableContent = ({ ...props }) =>  {
         <div className="btn__wrap">
           <Button
             text={content.description_button_text}
-            style="learn-more"
           />
         </div>
       </div>

@@ -54,8 +54,8 @@ $gutter-compensation: $flexboxgrid-gutter-width * .5 * -1;
 $half-gutter-width: $flexboxgrid-gutter-width * .5;
 
 .container {
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
   max-width: $flexboxgrid-max-width;
   margin: 0 auto;
 
@@ -100,6 +100,12 @@ $half-gutter-width: $flexboxgrid-gutter-width * .5;
   @include flex-direction(row-reverse);
 }
 
+.row.reverse-col-sm {
+  @media only screen and (max-width: 767px) {
+    @include flex-direction(column-reverse);
+  }
+}
+
 .col.reverse {
   @include flex-direction(column-reverse);
 }
@@ -122,6 +128,7 @@ $half-gutter-width: $flexboxgrid-gutter-width * .5;
   @include flexboxgrid-sass-col-common;
   @include flex-basis(auto);
   max-width: 100%;
+  width: 100%;
 }
 
 $name: xs;

@@ -113,9 +113,56 @@ select {
 body {
   background: #efefef;
   color: #434343;
-  font: 500 20px/1.5 'Maison Neue', Arial, Helvetica, sans-serif;
+  font: 500 18px/1.44 'Maison Neue', Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  @include breakpoint('small') {
+    font-size: 20px;
+    line-height: 1.5;
+  }
+}
+
+.slick-list {
+  transition: height 0.3s;
+}
+
+.slick-slider,
+.control_wrapper {
+  .slide {
+    outline: none !important;
+  }
+
+  .slick-arrow {
+    width: 48px;
+    height: 48px;
+    border: 1px solid #312f30;
+    background: transparent;
+    border-radius: 0;
+    z-index: 5;
+    outline: none !important;
+    cursor: pointer;
+    transition: all 0.3s;
+    padding: 0;
+
+    .text {
+      display: none;
+    }
+  }
+
+
+
+  .slick-arrow {
+
+    &:hover {
+      border-color: $primary-color;
+      color: $primary-color;
+    }
+
+    &:focus {
+      outline: none !important;
+    }
+  }
 }
 
 #wrapper {
@@ -133,8 +180,12 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 h2 {
-  font-size: 40px;
+  font-size: 30px;
   line-height: 1.75;
+
+  @include breakpoint('small') {
+    font-size: 40px;
+  }
 }
 
 a {
@@ -206,9 +257,13 @@ p {
   outline: none;
   padding: 13px 30px;
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: 14px;
   text-align: center;
   letter-spacing: 0.1em;
+
+  @include breakpoint('small') {
+    font-size: 16px;
+  }
 
   &:hover {
     color: #fff;
@@ -241,18 +296,38 @@ p {
 }
 
 .header__top {
-  display: none;
+  height: 0;
 
   @include breakpoint('small') {
+    height: auto;
     background: #312f30;
     display: block;
   }
 }
 
-.headertop__nav {
+ul.headertop__nav {
   text-align: right;
-  font-size: 14px;
-  line-height: 20px;
+  position: fixed;
+  font-size: 16px;
+  font-weight: 700;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  z-index: 999;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s, visibility 0.4s;
+
+  @include breakpoint('small') {
+    text-align: right;
+    position: static;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: normal;
+    visibility: visible;
+    opacity: 1;
+  }
 
   li {
     display: inline-block;
@@ -260,18 +335,27 @@ p {
     text-transform: uppercase;
     position: relative;
     letter-spacing: 0.1em;
-    padding-left: 20px;
-    margin-left: 20px;
+    padding: 0 16px;
+
+    @include breakpoint('small') {
+      padding: 0 0 0 25px;
+      margin-left: 20px;
+    }
 
     &:before {
       content: '';
       position: absolute;
       left: 0;
-      height: 16px;
+      height: 12px;
       top: 50%;
       width: 1px;
-      background: #3c3b3b;
+      background: #3c3c3c;
       transform: translateY(-50%);
+
+      @include breakpoint('small') {
+        background: #3c3b3b;
+        height: 12px;
+      }
     }
 
     &:first-child {
@@ -282,13 +366,21 @@ p {
   }
 
   a {
-    color: #bebebe;
+    color: $primary-color;
     text-decoration: none;
     display: block;
     padding: 10px 0;
 
+    @include breakpoint('small') {
+      color: #bebebe;
+    }
+
     &:hover {
-      color: #fff;
+      color: $primary-color;
+
+      @include breakpoint('small') {
+        color: #fff;
+      }
     }
   }
 }
@@ -315,9 +407,10 @@ p {
 .header__logo {
   width: 150px;
   float: left;
+  margin-left: -10px;
 
   @include breakpoint('small') {
-    margin-top: 4px;
+    margin: 4px 0 0;
     float: none;
     width: 257px;
   }
@@ -329,7 +422,7 @@ p {
 
 .header__meta {
   float: right;
-  margin-right: 40px;
+  margin-right: 25px;
 
   @include breakpoint('small') {
     float: none;
@@ -337,26 +430,77 @@ p {
   }
 }
 
-.main__nav {
-  font-size: 16px;
-  display: none;
+.menu__wrapper {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 0;
+  background: #312f30;
+  overflow: hidden;
+  transition: height 0.3s;
 
   @include breakpoint('small') {
+    position: static;
+    overflow: initial;
+    height: auto;
+    background: transparent;
+  }
+}
+
+ul.main__nav {
+  font-size: 16px;
+  padding: 90px 0 160px;
+
+  @include breakpoint('small') {
+    padding: 0;
     display: block;
   }
 
   >li {
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0 33px;
+    display: block;
     position: relative;
-    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: 700;
     letter-spacing: 0.06em;
+    padding: 0 0 10px;
+
+    @include breakpoint('small') {
+      display: inline-block;
+      text-transform: uppercase;
+      margin: 0 34px;
+      padding: 0;
+      font-size: 16px;
+      font-weight: normal;
+    }
+
+    &.active {
+      .dropdown {
+        max-height: 500px;
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .drop__control {
+        .icon {
+          transform: rotate(-180deg);
+        }
+      }
+    }
 
     .icon {
-      width: 10px;
-      height: 10px;
-      margin-left: 5px;
+      width: 16px;
+      height: 16px;
+      display: block;
+      transition: color 0.3s;
+      color: $primary-color;
+      transition: transform 0.3s, color 0.3s;
+
+      @include breakpoint('small') {
+        width: 10px;
+        height: 10px;
+        color: #121212;
+      }
     }
 
     &:hover {
@@ -364,15 +508,20 @@ p {
         opacity: 1;
         visibility: visible;
         top: 100%;
-
       }
     }
   }
 
-  >li>a {
-    color: #121212;
+  >li>a,
+  .menu__linkwrap a {
+    color: #fff;
     display: block;
-    padding: 33px 0;
+    padding: 10px 25px;
+
+    @include breakpoint('small') {
+      padding: 34px 0;
+      color: #121212;
+    }
 
     &:hover {
       color: $primary-color;
@@ -380,34 +529,52 @@ p {
   }
 
   .dropdown {
-    font-size: 95%;
-    position: absolute;
-    background: #fff;
-    z-index: 5;
-    width: 220px;
-    left: -20px;
-    top: 110%;
-    box-shadow: 2px 5px 3px rgba(97,97,97,0.4);
     overflow: hidden;
     visibility: hidden;
+    max-height: 0;
     opacity: 0;
     transition: all 0.3s;
-    border-top: 1px solid #121212;
-    color: #312f30;
+    font-size: 16px;
+    font-weight: normal;
 
+    @include breakpoint('small') {
+      max-height: none;
+      font-size: 95%;
+      position: absolute;
+      background: #fff;
+      z-index: 5;
+      width: 220px;
+      left: -20px;
+      top: 110%;
+      box-shadow: 2px 5px 3px rgba(97,97,97,0.4);
+      border-top: 1px solid #121212;
+      color: #312f30;
+    }
+
+    .row {
+      padding: 10px 0 0;
+
+      @include breakpoint('small') {
+        padding: 0;
+      }
+    }
 
     [class^="col-"],
     [class*=" col-"] {
-      position: relative;
+      @include breakpoint('small') {
+        position: relative;
+      }
 
       &:before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 30%;
-        bottom: 30%;
-        width: 2px;
-        background: $primary-color;
+        @include breakpoint('small') {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 32%;
+          bottom: 30%;
+          width: 2px;
+          background: $primary-color;
+        }
       }
 
       &:first-child:before {
@@ -416,7 +583,11 @@ p {
     }
 
     ul {
-      padding: 0;
+      padding: 5px 0 0 25px;
+
+      @include breakpoint('small') {
+        padding: 0;
+      }
     }
 
     li {
@@ -426,9 +597,13 @@ p {
 
     a {
       display: block;
+      color: #fff;
       padding: 12px 20px;
-      color: #312f30; 
       transition: background 0.3s, color 0.3s;
+
+      @include breakpoint('small') {
+        color: #312f30; 
+      }
 
       &:hover {
         background: $primary-color;
@@ -437,15 +612,55 @@ p {
     }
 
     .menuTitle {
-      font-size: 30px;
-      font-weight: 700;
-      color: #312f30;
+      color: #fff;
+      font-size: 16px;
       text-transform: none;
+
+      @include breakpoint('small') {
+        font-weight: 700;
+        font-size: 30px;
+        font-weight: 700;
+        color: #312f30;
+      }
+    }
+  }
+
+  .menu__linkwrap {
+    position: relative;
+
+    &:hover {
+      .icon {
+        color: $primary-color;
+      }
+    }
+  }
+
+  .drop__control {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 65px;
+    width: 51px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    @include breakpoint('small') {
+      right: -16px;
+      width: auto;
+      top: 50%;
+      bottom: auto;
+      margin-top: -7px;
     }
   }
 
   .megamenu {
     position: static;
+
+    @include breakpoint('small') {
+      position: static;
+    }
 
     .dropdown {
       left: 0;
@@ -455,15 +670,26 @@ p {
   }
 
   .menubox {
-    max-width: 370px;
-    margin: 0 auto;
-    padding: 72px 0 105px;
-    text-transform: none;
-    font-size: 18px;
+    font-size: 16px;
+    position: relative;
+
+    @include breakpoint('small') {
+      max-width: 370px;
+      margin: 0 auto;
+      padding: 72px 0 105px;
+      text-transform: none;
+      font-size: 18px;
+    }
   
     a {
       padding: 0;
-      color: #434343;
+      color: #fff;
+      display: block;
+      padding: 12px 20px;
+
+      @include breakpoint('small') {
+        color: #434343;
+      }
 
       &:hover {
         background: transparent;
@@ -471,17 +697,87 @@ p {
       }
     }
 
+    p {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      margin-bottom: 5px;
+      display: none;
+
+      @include breakpoint('small') {
+        display: block;
+        margin-bottom: 30px;
+      }
+    }
+
     .imagebox {
-      margin-bottom: 26px;
+      display: none;
+
+      @include breakpoint('small') {
+        display: block;
+        margin-bottom: 26px;
+      }
     }
 
     .more {
+      display: none;
+
+      @include breakpoint('small') {
+        display: block;
+      }
+
       span {
-        font-size: 20px;
+        font-size: 15px;
         display: inline-block;
         font-weight: 700;
         border-bottom: 2px solid #312f30;
+
+        @include breakpoint('small') {
+          font-size: 20px;
+        }
       }
+    }
+  }
+}
+
+.nav__active {
+  overflow: hidden;
+
+  .menu__wrapper {
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    @include breakpoint('small') {
+      height: auto;
+      overflow: initial;
+    }
+  }
+
+  .header__button,
+  ul.headertop__nav {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav__hamburger {
+    z-index: 999;
+
+    span {
+      opacity: 0;
+    }
+
+    &:before,
+    &:after {
+      background: #fff;
+      transform: rotate(45deg);
+      top: 50%;
+      bottom: auto;
+      margin-top: -2px;
+    }
+
+    &:before {
+      transform: rotate(-45deg);
     }
   }
 }
@@ -493,19 +789,41 @@ p {
 }
 
 .header__button {
-  margin-left: 26px;
-  display: none;
+  position: fixed;
+  left: 50%;
+  bottom: 90px;
+  transform: translateX(-50%);
+  z-index: 99;
+  margin: 0;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s, visibility 0.4s;
 
   @include breakpoint('small') {
+    position: static;
+    left: 0;
+    transform: none;
+    margin: 0 0 0 26px;
     display: inline-block;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .button {
+    @media only screen and (max-width: 767px) {
+      background: $primary-color;
+      color: #fff;
+    }
   }
 }
 
 .header__phone {
-  margin-top: -4px;
+  margin-top: -2px;
 
   @include breakpoint('small') {
     letter-spacing: 0.06em;
+    font-weight: 700;
   }
 
   a {
@@ -530,11 +848,21 @@ p {
 .banner {
   position: relative;
   color: #fff;
-  margin: 0 0 64px;
+
+  @include breakpoint('small') {
+    margin: 0 0 54px;
+  }
+
+  .mobile__button {
+    @include breakpoint('small') {
+      display: none;
+    }
+  }
 
   .slide {
     position: relative;
-    height: 600px;
+    height: 550px;
+    overflow: hidden;
 
     @include breakpoint('small') {
       min-height: 600px;
@@ -544,16 +872,18 @@ p {
   }
 
   h1 {
-    font-size: 40px;
+    font-size: 35px;
     line-height: 1.06;
     position: relative;
     margin: 0;
-    padding-bottom: 42px;
     color: #fff;
-    letter-spacing: -2px;
+    letter-spacing: -1px;
+    padding-bottom: 20px;
 
     @include breakpoint('small') {
       font-size: 90px;
+      letter-spacing: -2px;
+      padding-bottom: 42px;
     }
 
     &:before {
@@ -568,68 +898,309 @@ p {
   }
 }
 
-.banner__slider {
-  .slick-arrow {
-    display: none !important;
+.bannerCounter {
+  position: absolute;
+  font-size: 15px;
+  font-weight: 700;
+  left: 25px;
+  bottom: 34px;
+
+  @include breakpoint('small') {
+    left: auto;
+    right: -224px;
+    bottom: 22px;
   }
 
+  .bar {
+    margin: 0 10px;
+
+    @include breakpoint('small') {
+      margin: 0 14px;
+    }
+  }
+
+  .activeNum {
+    color: $primary-color;
+  }
+}
+
+.banner__slider {
   .container {
     height: 100%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
   }
-}
 
-.slick-slide {
-  .slide {
-    outline: none !important;
+  .slick-arrow {
+    position: absolute;
+    border-color: #949494;
+    color: #949494;
+    height: 41px;
+    width: 41px;
+    right: 25px;
+    bottom: 35px;
+
+    @include breakpoint('small') {
+      right: 69px;
+      bottom: 97px;
+    }
+
+    &.slick-prev {
+      right: 79px;
+
+      @include breakpoint('small') {
+        right: 124px;
+      }
+    }
   }
 }
 
 .banner__text {
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
 
   @include breakpoint('small') {
-    padding: 0 240px 81px 0;
+    padding: 0 240px 0 0;
+    margin-bottom: -18px;
+  }
+}
+
+.bottomtext__top {
+  width: 100%;
+
+  @include breakpoint('small') {
+    position: relative;
   }
 }
 
 .bottomtext__bottom {
-  font-size: 25px;
+  font-size: 18px;
   line-height: 1.4;
   font-weight: 700;
-  padding-top: 100px;
-  margin: 0 0 -99px;
+  padding: 15px 0 35px;
+
+  @include breakpoint('small') {
+    font-size: 25px;
+    float: right;
+    padding: 28px 0 0;
+  }
 }
 
 .generaltext {
-  padding: 100px 0;
+  padding: 40px 0 20px;
+
+  @include breakpoint('small') {
+    padding: 100px 0 50px;
+  }
+
+  &.range {
+    @include breakpoint('small') {
+      padding: 63px 0 75px;
+    }
+
+    .textBox {
+      padding-left: 0;
+      max-width: 610px;
+    }
+
+    h3 {
+      @include breakpoint('small') {
+        margin: 0;
+      }
+    }
+
+    .image__wrap {
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: -167px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: $primary-color;
+      }
+    }
+  }
+
+  &.pricing {
+    @include breakpoint('small') {
+      padding-bottom: 108px;
+    }
+
+    .image__wrap {
+      max-width: 768px;
+      margin-top: 24px;
+    }
+  }
 
   .textBox {
-    padding-left: 51px;
+    @include breakpoint('small') {
+      padding-left: 51px;
+    }
+  }
+
+  &.decking {
+    @include breakpoint('small') {
+      padding-bottom: 97px;
+    }
+
+    .image__wrap {
+      @include breakpoint('small') {
+        padding-left: 37px;
+        position: relative;
+        z-index: 99;
+      }
+    }
+    
+    .textBox {
+      @include breakpoint('small') {
+        padding: 0 0 28px;
+      }
+    }
+
+    h2 {
+      position: relative;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+
+      @include breakpoint('small') {
+        padding-bottom: 42px;
+        margin-bottom: 54px;
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        right: -130px;
+        bottom: 0;
+        left: -9999px;
+        height: 2px;
+        background: $primary-color;
+      }
+    }
+  }
+
+  &.walls {
+    @include breakpoint('small') {
+      padding-bottom: 53px;
+    }
+    
+    .image__wrap {
+      position: relative;
+      z-index: 4;
+
+      @include breakpoint('small') {
+        padding-right: 21px;
+      }
+    }
+
+    .textBox {
+      padding-left: 0;
+      max-width: 529px;
+      float: right;
+    }
+
+    h2 {
+      position: relative;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+
+      @include breakpoint('small') {
+        padding-bottom: 42px;
+        margin-bottom: 54px;
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        right: -9999px;
+        bottom: 0;
+        left: -400px;
+        height: 2px;
+        background: $primary-color;
+      }
+    }
+  }
+
+  &.ceilings {
+    padding-bottom: 50px;
+
+    @include breakpoint('small') {
+      padding-bottom: 200px;
+    }
+
+    .row {
+      justify-content: flex-end;
+    }
+
+    .image__wrap {
+      position: relative;
+      z-index: 4;
+      
+      @include breakpoint('small') {
+        max-width: 607px;
+        padding-left: 48px;
+      }
+    }
+
+    .textBox {
+      padding: 0;
+
+      @include breakpoint('small') {
+        max-width: 483px;
+        margin-left: 155px;
+      }
+    }
+
+    h2 {
+      position: relative;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+
+      @include breakpoint('small') {
+        padding-bottom: 42px;
+        margin-bottom: 54px;
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        right: -500px;
+        bottom: 0;
+        left: -9999px;
+        height: 2px;
+        background: $primary-color;
+      }
+    }
   }
 
   h2,
   h3 {
-    font-size: 30px;
+    font-size: 26px;
     line-height: 1.25;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    margin: 0 0 61px;
+    margin: 0 0 25px;
+    letter-spacing: 2px;
 
     @include breakpoint('small') {
       font-size: 40px;
+      margin: 0 0 61px;
       line-height: 1.75;
+      text-transform: uppercase;
+      letter-spacing: 4px;
     }
   }
 
   .btnWrap {
-    padding: 36px 0 0;
+    padding: 0 0 30px;
+
+    @include breakpoint('small') {
+      padding: 23px 0 0;
+    }
   }
 }
 
@@ -650,6 +1221,7 @@ p {
   text-transform: uppercase;
   font-size: 16px;
   line-height: 1.3125;
+  font-weight: 700;
   color: $primary-color;
   padding: 18px 73px 18px 20px;
   position: relative;
@@ -689,20 +1261,36 @@ p {
   background: #312f30;
   color: #fff;
   font-size: 16px;
-  padding: 140px 0 60px;
+  padding: 40px 0 0;
+
+  @include breakpoint('small') {
+    padding: 140px 0 60px;
+  }
   
   .container {
     max-width: 1688px;
   }
 
   .footer_logo {
-    width: 259px;
-    margin: 0 0 105px;
+    width: 200px;
+    margin: 0 auto 50px;
+
+    @include breakpoint('small') {
+      width: 259px;
+      margin: 0 0 105px;
+    }
   }
 
   h4 {
     color: $primary-color;
     font-size: 22px;
+    text-align: center;
+    margin-bottom: 20px;
+
+    @include breakpoint('small') {
+      text-align: left;
+      margin-bottom: 30px;
+    }
   }
 
   a {
@@ -715,20 +1303,40 @@ p {
 }
 
 .splitMenu {
-  column-count: 2;
+  @include breakpoint('small') {
+    column-count: 2;
+  }
 }
 
-.footer_menu {
+ul.footer_menu {
+  text-align: center;
+  padding-bottom: 50px;
+
+  @include breakpoint('small') {
+    text-align: left;
+  }
+
   li {
     margin-bottom: 10px;
   }
 }
 
 .footer__top {
-  padding-bottom: 80px;
+  padding-bottom: 10px;
+
+  @include breakpoint('small') {
+    padding-bottom: 80px;
+  }
 }
 
 .socials {
+  text-align: center;
+  padding-bottom: 50px;
+
+  @include breakpoint('small') {
+    text-align: left;
+  }
+
   .title {
     display: block;
     margin-bottom: 19px;
@@ -753,13 +1361,19 @@ p {
 }
 
 .footer__bottom {
-  padding-top: 59px;
-  border-top: 1px solid $primary-color;
   color: #7f7f7f;
+  border-top: 2px solid $primary-color;
+  padding: 30px 0;
+  
+  @include breakpoint('small') {
+    padding-top: 59px;
+    border-width: 1px;
+  }
 
   a {
     color: #fff;
     text-decoration: underline;
+    display: inline-block;
 
     &:hover {
       color: $primary-color;
@@ -770,12 +1384,23 @@ p {
 .copyright {
   display: block;
   font-weight: normal;
+  text-align: center;
+  margin-bottom: 30px;
+
+  @include breakpoint('small') {
+    text-align: left;
+    margin-bottom: 0;
+  }
 }
 
 .websiteby {
   display: block;
   font-weight: normal;
-  text-align: right;
+  text-align: center;
+
+  @include breakpoint('small') {
+    text-align: right;
+  }
 
 
   .icon {
@@ -793,25 +1418,40 @@ p {
   .news_image {
     max-height: 357px;
     overflow: hidden;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
+
+    @include breakpoint('small') {
+      margin-bottom: 56px;
+    }
   }
 
   .article__date {
-    position: absolute;
-    left: -49px;
-    top: 344px;
-    text-transform: uppercase;
-    color: $primary-color;
-    letter-spacing: 1px;
-    transform: rotate(-90deg);
-    transform-origin: 0 50%;
+    display: block;
     font-size: 14px;
     font-weight: 700;
+    color: $primary-color;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    @include breakpoint('small') {
+      margin: 0;
+      position: absolute;
+      left: -49px;
+      top: 344px;
+      transform: rotate(-90deg);
+      transform-origin: 0 50%;
+    }
   }
 
   h3 {
-    font-size: 30px;
-    margin-bottom: 14px;
+    font-size: 25px;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+
+    @include breakpoint('small') {
+      font-size: 30px;
+    }
 
     a {
       color: #121212;
@@ -840,45 +1480,145 @@ p {
 }
 
 .news__slider {
-  padding: 78px 70px 0 70px;
+  @include breakpoint('small') {
+    padding: 78px 70px 0 70px;
+  }
 }
 
 .news__block {
   position: relative;
-  padding: 137px 0 171px;
+  padding: 30px 0;
+
+  @include breakpoint('small') {
+    padding: 142px 0 171px;
+  }
+
+  .container {
+    position: relative;
+  }
 
   &:before {
-    content: '';
-    position: absolute;
-    top: 43.5%;
-    left: 0;
-    right: 0;
-    height: 2px;
-    z-index: -1;
-    background: $primary-color;
+    @include breakpoint('small') {
+      content: '';
+      position: absolute;
+      top: 480px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      z-index: -1;
+      background: $primary-color;
+    }
+  }
+
+  .bottom-control {
+    text-align: center;
+
+    @include breakpoint('small') {
+      position: absolute;
+      top: 52.5%;
+      right: -80px;
+    }
+  }
+
+  .slick-arrow {
+    margin: 0 7px;
+  }
+
+  .link {
+    padding-top: 10px;
+    display: block;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 14px;
+
+    @include breakpoint('small') {
+      padding-top: 39px;
+    }
   }
 
   h2 {
     text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 4px;
+    text-transform: capitalize;
+
+    @include breakpoint('small') {
+      text-transform: uppercase;
+      letter-spacing: 4px;
+    }
   }
 }
 
 .project__block {
   background: #312f30;
-  padding: 120px 0;
+  padding: 40px 0;
+  @include breakpoint('small') {
+    padding: 120px 0;
+  }
 
   h2 {
     text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 4px;
+    letter-spacing: 2px;
     color: #fff;
+    text-transform: capitalize;
+
+    @include breakpoint('small') {
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
   }
 }
 
 .project__slider {
-  padding-top: 36px;
+  position: relative;
+
+  @include breakpoint('small') {
+    padding-top: 36px;
+  }
+
+  &:before {
+    @include breakpoint('small') {
+      content: '';
+      position: absolute;
+      left: -9999px;
+      right: -9999px;
+      top: 466px;
+      height: 2px;
+      background: $primary-color;
+    }
+  }
+
+  .control_wrapper {
+    text-align: center;
+
+    @include breakpoint('small') {
+      position: absolute;
+      left: -170px;
+      bottom: 53px;
+    }
+
+    .icon {
+      height: 30px;
+      width: 30px;
+    }
+
+    .slick-arrow {
+      border: none;
+      color: #515151;
+      margin-right: 18px;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+
+  
+}
+  
+.control_wrapper {
+  .text {
+    display: none;
+  }
 }
 
 .project__box {
@@ -900,36 +1640,59 @@ p {
     bottom: 0;
     top: 0;
     z-index: 2;
-    box-shadow: inset 0 -450px 150px -250px rgba(49, 47, 48, 0.9);
+    box-shadow: inset 0 -450px 150px -250px rgba(49, 47, 48, 0.5);
   }
 }
 
 .project_title {
-  font-size: 90px;
+  font-size: 25px;
   font-weight: 700;
   color: #fff;
   letter-spacing: 1px;
+  padding-top: 15px;
+  text-align: center;
+  display: block;
+
+  @include breakpoint('small') {
+    padding-top: 0;
+    font-size: 90px;
+  }
 }
 
 .project_text {
-  position: absolute;
-  bottom: 85px;
-  left: -156px;
-  z-index: 3;
+  @include breakpoint('small') {
+    position: absolute;
+    bottom: 85px;
+    left: -156px;
+    right: 0;
+    z-index: 3;
+  }
 }
 
 .button_wrapper {
   text-align: center;
-  padding: 61px 0 46px;
+  padding: 25px 0;
+
+  @include breakpoint('small') {
+    padding: 61px 0 46px;
+  }
 }
 
 .testimonial__block {
-  padding: 140px 0 100px;
+  padding: 40px 0;
+
+  @include breakpoint('small') {
+    padding: 140px 0 100px;
+  }
 }
 
 .general__heading {
   position: relative;
-  padding: 0 0 42px;
+  padding-bottom: 20px;
+
+  @include breakpoint('small') {
+    padding: 0 0 42px;
+  }
 
   &:after {
     clear: both;
@@ -948,23 +1711,84 @@ p {
   }
 
   h2 {
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    float: left;
+    letter-spacing: 2px;
+    text-align: center;
+
+    @media only screen and (max-width: 767px) {
+      margin-bottom: 0;
+    }
+
+    @include breakpoint('small') {
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      float: left;
+    }
+  }
+
+  .control_wrapper {
+    float: right;
+    margin: 10px 0 0;
+    display: none;
+
+    @include breakpoint('small') {
+      display: block;
+    }
+    
+    .slick-prev {
+      margin-right: 16px;
+    }
   }
 }
 
 .testimonial__slider {
-  padding: 100px 0 0;
+  padding: 40px 0 0;
+
+  @include breakpoint('small') {
+    padding: 100px 0 0;
+  }
+
+  .slick-current + .slick-active {
+    .quote {
+      padding: 0 0 0 158px;
+
+      &:before {
+        left: 50px;
+      }
+    }
+  }
 }
 
 .quote {
-  padding: 0 40px 0 107px;
+  padding: 0 0 0 34px;
   quotes: none;
+  position: relative;
+
+  @include breakpoint('small') {
+    padding: 0 40px 0 104px;
+  }
+
+  &:before {
+    content: '“';
+    font-size: 30px;
+    line-height: 1;
+    color: $primary-color;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 700;
+
+    @include breakpoint('small') {
+      font-size: 80px;
+    }
+  }
 
   q {
     display: block;
-    margin-bottom: 66px;
+    margin-bottom: 30px;
+
+    @include breakpoint('small') {
+      margin-bottom: 66px;
+    }
   }
 
   cite {
@@ -976,12 +1800,86 @@ p {
 }
 
 .success__block {
-  padding: 90px 0;
+  padding: 40px 0;
+
+  @include breakpoint('small') {
+    padding: 90px 0;
+  }
+}
+
+.success__slider {
+  .slide {
+    overflow: hidden;
+  }
+
+  .control_wrapper {
+    text-align: center;
+    margin-top: 30px;
+
+    @include breakpoint('small') {
+      margin: 78px 0 0 105px;
+    }
+  }
+
+  .slick-arrow {
+    margin-right: 15px;
+  }
+}
+
+.embedWrapper { 
+  position: relative; 
+  padding-bottom: 56.25%; 
+  height: 0; 
+  overflow: hidden; 
+  max-width: 100%; 
+}
+
+.embedWrapper iframe, 
+.embedWrapper object, 
+.embedWrapper embed { 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%;
+}
+
+.successText {
+  @include breakpoint('small') {
+    padding: 23px 0 0 15px;
+  }
+
+  h2 {
+    letter-spacing: 2px;
+    position: relative;
+    padding-bottom: 20px;
+
+    @include breakpoint('small') {
+      margin: 0 0 58px 105px;
+      padding: 0 0 43px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: -300px;
+      right: -9999px;
+      bottom: 0;
+      height: 2px;
+      background: $primary-color;
+    }
+  }
 }
 
 .videoWrapper {
-  >div {
-    height: 563px;
+  position: relative;
+  z-index: 4;
+  margin-bottom: 30px;
+
+  @include breakpoint('small') {
+    margin-right: -18px;
   }
 }
 
@@ -1446,7 +2344,7 @@ p {
 .nav__hamburger {
   position: absolute;
   right: 15px;
-  top: 21px;
+  top: 19px;
   height: 17px;
   width: 21px;
   text-indent: -9999px;
@@ -1466,6 +2364,7 @@ p {
     background: $primary-color;
     top: 50%;
     margin-top: -1px;
+    transition: all 0.3s;
   }
 
   &:before,

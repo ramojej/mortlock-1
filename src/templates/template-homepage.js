@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
-import Banner from "../components/homepage-banner";
+import Banner from "../components/global/banner";
 import GeneralText from "../components/general-text";
 import GlobalNewsSlider from "../components/global-news-slider";
 import GlobalTestimonialSlider from "../components/global-testimonial-slider";
@@ -79,7 +79,7 @@ class IndexPage extends Component {
 
     return (
       <Layout>
-        <Banner bannerData={ bannerContent } />
+        <Banner data={ bannerContent } type="homepage" />
         <GeneralText contentData={ aboutContent } col1="7" col2="5" />
         <GeneralText contentData={ imageBlock } col1="5" col2="7" />
         <GeneralText contentData={ pricingBlock } col1="7" col2="5" />

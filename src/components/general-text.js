@@ -6,12 +6,9 @@ const GeneralText = ({ ...props }) =>  {
   const content = props.contentData;
 
   return (
-    <div className="generaltext">
+    <div className={"generaltext " + (props.addClass ? props.addClass : '')}>
       <div className="container">
-        <div className={`row middle-sm ${(content.alignImage === "right") ? "reverse" : ""}`}>
-          <div className={`col-sm-${props.col1}`}>
-            <Img fluid={content.image.localFile.childImageSharp.fluid} alt="Alternative Text" />
-          </div>
+        <div className={`row middle-sm ${(content.alignImage === "right") ? props.reverseClass : `reverse ${props.reverseClass}`}`}>
           <div className={`col-sm-${props.col2}`}>
             <div className="textBox">
               <div dangerouslySetInnerHTML={{ __html: content.description }} />
@@ -22,6 +19,11 @@ const GeneralText = ({ ...props }) =>  {
                   </div>
                 )
               })()}
+            </div>
+          </div>
+          <div className={`col-sm-${props.col1}`}>
+            <div className="image__wrap">
+              <Img fluid={content.image.localFile.childImageSharp.fluid} alt="Alternative Text" />
             </div>
           </div>
         </div>
