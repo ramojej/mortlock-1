@@ -72,22 +72,24 @@ const Banner = ({ ...props }) =>  {
     )
   } else if(bannerContent !== undefined) {
       return (
-        <div className="inner__banner banner__small">
+        <div className={ !bannerContent.banner_description ? "inner__banner banner__smaller" : "inner__banner banner__small" }>
           <div className="bg__image has-overlay">
             <BackgroundImage fluid={bannerContent.banner_image.localFile.childImageSharp.fluid} />
           </div>
           <div className="container">
             <div className="inner__bannerbox">
               <div className="box">
-                <h1 dangerouslySetInnerHTML={{ __html: bannerContent.banner_heading }} />
-                <span className="inner__bannertext" dangerouslySetInnerHTML={{ __html: bannerContent.banner_description }} />
-                <div className="inner__bannerbuttons">
-                  {bannerContent.banner_buttons.map((button, index) => (
-                    (index === 1) ? 
-                    <Button type="external" link={button.button_link} text={button.button_text} style={button.button_style} key={index} /> : 
-                    <Button link={button.button_link} text={button.button_text} style={button.button_style} key={index} /> 
-                  ))}
-                </div>
+                <h1 className={ !bannerContent.banner_description ? "text-center" : null } dangerouslySetInnerHTML={{ __html: bannerContent.banner_heading }} />
+                { bannerContent.banner_description ? <span className="inner__bannertext" dangerouslySetInnerHTML={{ __html: bannerContent.banner_description }} /> : null }
+                { bannerContent.banner_buttons ?
+                  <div className="inner__bannerbuttons">
+                    {bannerContent.banner_buttons.map((button, index) => (
+                      (index === 1) ? 
+                      <Button type="external" link={button.button_link} text={button.button_text} style={button.button_style} key={index} /> : 
+                      <Button link={button.button_link} text={button.button_text} style={button.button_style} key={index} /> 
+                    ))}
+                  </div> : null
+                }
               </div>
             </div>
           </div>

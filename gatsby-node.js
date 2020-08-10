@@ -60,8 +60,12 @@ exports.createPages = async ({ graphql, actions }) => {
   const homepageTemplate = path.resolve(`./src/templates/template-homepage.js`)
   const contactTemplate = path.resolve(`./src/templates/template-contact.js`)
   const aboutPageTemplate = path.resolve(`./src/templates/template-about.js`)
-  const productSingleTemplate = path.resolve(`./src/templates/template-productsingle.js`)
+  const productSingleTemplate = path.resolve(`./src/templates/template-product-single.js`)
   const productParentTemplate = path.resolve(`./src/templates/template-product-parent.js`)
+  const requestAQuoteTemplate = path.resolve(`./src/templates/template-request-a-quote.js`)
+  const pricingTemplate = path.resolve(`./src/templates/template-pricing.js`)
+  const portfolioParentTemplate = path.resolve(`./src/templates/template-portfolio-parent.js`)
+  const blogParentTemplate = path.resolve(`./src/templates/template-blog-parent.js`)
   // We want to create a detailed page for each page node.
   // The path field contains the relative original WordPress link
   // and we use it for the slug to preserve url structure.
@@ -117,6 +121,52 @@ exports.createPages = async ({ graphql, actions }) => {
           },
         })
         break;
+      case "template-request-a-quote.php":
+        createPage({
+          path: edge.node.path,
+          component: slash(requestAQuoteTemplate),
+          context: {
+            id: edge.node.id,
+          },
+        })
+        break;
+      case "template-pricing.php":
+        createPage({
+          path: edge.node.path,
+          component: slash(pricingTemplate),
+          context: {
+            id: edge.node.id,
+          },
+        })
+        break;
+      case "template-portfolio-parent.php":
+        createPage({
+          path: edge.node.path,
+          component: slash(portfolioParentTemplate),
+          context: {
+            id: edge.node.id,
+          },
+        })
+        break;
+      case "template-blog-parent.php":
+        const posts = allWordpressPost.edges
+        const postsPerPage = 2
+        const numberOfPages = Math.ceil(posts.length / postsPerPage)
+
+        Array.from({ length: numberOfPages }).forEach((page, index) => {
+          createPage({
+            path: index === 0 ? edge.node.path : `${edge.node.path}${index + 1}`,
+            component: slash(blogParentTemplate),
+            context: {
+              id: edge.node.id,
+              actualPath: edge.node.path,
+              posts: posts.slice(index * postsPerPage, (index * postsPerPage) + postsPerPage),
+              numberOfPages,
+              currentPage: index + 1
+            },
+          })
+        })
+        break;
       default:
         createPage({
           path: edge.node.path,
@@ -135,7 +185,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // The Post ID is prefixed with 'POST_'
   allWordpressPost.edges.forEach(edge => {
     createPage({
-      path: `/news${edge.node.path}`,
+      path: `${edge.node.path}`,
       component: slash(postTemplate),
       context: {
         id: edge.node.id,

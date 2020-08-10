@@ -55,11 +55,6 @@ export const pageQuery = graphql`
             banner_heading
             banner_description
             banner_image_overlay
-            banner_buttons {
-              button_link
-              button_style
-              button_text
-            }
             product_list {
               button_link
               button_text

@@ -9,8 +9,10 @@ class Post extends Component {
 
     return (
       <Layout>
-        <h1>{StaticPage.title} I am all general Page</h1>
-        <div dangerouslySetInnerHTML={{ __html: StaticPage.content }} />
+        <div className="single__wrapper">
+          <h1>{StaticPage.title} I am all general Page</h1>
+          <div dangerouslySetInnerHTML={{ __html: StaticPage.content }} />
+        </div>
       </Layout>
     )
   }

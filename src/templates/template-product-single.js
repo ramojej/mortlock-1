@@ -163,11 +163,6 @@ export const pageQuery = graphql`
             banner_image_overlay
             banner_heading
             banner_description
-            banner_buttons {
-              button_link
-              button_style
-              button_text
-            }
             product_title
             product_overview_aside_title
             product_aside_image {

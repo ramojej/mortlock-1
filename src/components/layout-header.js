@@ -30,12 +30,6 @@ const Header = ({ data }) => (
                 wordpress_id
                 slug
                 classes
-                child_items {
-                  title
-                  slug
-                  classes
-                  wordpress_id
-                }
               }
             }
           }

@@ -202,6 +202,10 @@ p {
   }
 }
 
+.text-center {
+  text-align: center;
+}
+
 input[type="text"],
 input[type="email"],
 input[type="tel"],
@@ -1957,6 +1961,16 @@ ul.footer_menu {
     padding: 90px 0 155px;
   }
 
+  .banner__smaller & {
+    height: 428px;
+    padding: 50px 0;
+    align-items: center;
+  }
+
+  .box {
+    width: 100%;
+  }
+
   .button {
     margin-right: 30px;
     min-width: 228px;
@@ -2515,5 +2529,70 @@ ul.info__list {
     width: 9999px;
     height: 2px;
     background: $primary-color;
+  }
+}
+
+.quote__text {
+  border-bottom: 2px solid $primary-color;
+  padding-bottom: 39px;
+  margin-bottom: 67px;
+}
+
+.quote__formwrap {
+  max-width: 990px;
+  margin: 0 auto;
+}
+
+.check__list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -6px;
+
+  li {
+    padding: 0 6px;
+    width: 33.33%;
+  }
+}
+
+.custom_check {
+  display: block;
+  border: 1px solid #312f30;
+  height: 54px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 5px 10px 5px 60px;
+  cursor: pointer;
+
+  input[type="checkbox"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+
+    &:check {
+      & + .custom-text {
+        color: #fff;
+        background-color: $primary-color;
+        border-color: $primary-color;
+      }
+    }
+  }
+
+  .custom-text {
+    display: block;
+    white-space: nowrap;
+  }
+
+  .custom-box {
+    position: absolute;
+    top: 50%;
+    margin-top: -8px;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #312f30;
+    border-radius: 2px;
+    left: 28px;
   }
 }

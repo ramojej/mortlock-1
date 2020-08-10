@@ -92,11 +92,6 @@ export const pageQuery = graphql`
             banner_image_overlay
             banner_description
             banner_heading
-            banner_buttons {
-              button_link
-              button_style
-              button_text
-            }
             history_title
             history_aside_text
             history_year
