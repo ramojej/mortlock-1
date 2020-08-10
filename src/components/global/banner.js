@@ -49,7 +49,7 @@ const Banner = ({ ...props }) =>  {
         {bannerContent.map((slide, index) => (
           <div className="slide" key={index}>
             <div className="bg__image has-overlay">
-              <Img fluid={slide.banner_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
+            { slide.banner_image ? <Img fluid={slide.banner_image.localFile.childImageSharp.fluid} alt="Alternative Text" /> : null }
             </div>
             <div className="container container__big">
               <div className="banner__text">
@@ -74,7 +74,7 @@ const Banner = ({ ...props }) =>  {
       return (
         <div className={ !bannerContent.banner_description ? "inner__banner banner__smaller" : "inner__banner banner__small" }>
           <div className="bg__image has-overlay">
-            <BackgroundImage fluid={bannerContent.banner_image.localFile.childImageSharp.fluid} />
+            { bannerContent.banner_image ? <BackgroundImage fluid={bannerContent.banner_image.localFile.childImageSharp.fluid} /> : null }
           </div>
           <div className="container">
             <div className="inner__bannerbox">

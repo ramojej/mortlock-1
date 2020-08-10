@@ -15,7 +15,7 @@ const toggleMenuDropdown = () => {
   document.body.classList.toggle('nav__active');
 }
 
-const Header = ({ data }) => (
+const Header = ({ data, ...props }) => (
   <StaticQuery
     query={graphql`
       query MyQuery {
@@ -75,7 +75,7 @@ const Header = ({ data }) => (
     `}
 
     render={data => (
-      <header className="header">
+      <header className={props.color ? `header ${props.color}` : "header"}>
         <nav className="header__top">
           <div className="container container__big">
             <ul className="headertop__nav">

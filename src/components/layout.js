@@ -8,7 +8,7 @@ import "../assets/scss/global.scss";
 
 const Layout = ({ children, ...props }) => (
   <div id="wrapper">
-    <Header />
+    <Header color={props.headerColor} />
     <main id="main">{children}</main>
     <Footer />
   </div>
