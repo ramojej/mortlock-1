@@ -30,7 +30,7 @@ const GlobalSuccessStory = ({ ...props }) =>  {
               <div className="row">
                 <div className="col-sm-6">
                   <div className="videoWrapper">
-                    <div className="embedWrapper" dangerouslySetInnerHTML={{ __html: success.video_link }} />
+                    Video
                   </div>
                 </div>
                 <div className="col-sm-6">
@@ -56,3 +56,6 @@ const GlobalSuccessStory = ({ ...props }) =>  {
 }
 
 export default GlobalSuccessStory;
+
+
+{/* <div className="embedWrapper" dangerouslySetInnerHTML={{ __html: success.video_link }} /> */}

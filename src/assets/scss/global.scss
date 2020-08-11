@@ -1721,6 +1721,7 @@ ul.footer_menu {
   @include breakpoint('small') {
     padding-top: 0;
     font-size: 90px;
+    text-align: left;
   }
 }
 

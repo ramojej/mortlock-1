@@ -7,10 +7,7 @@ import Layout from '../components/layout';
 class Post extends Component {
   render() {
     const pageData = this.props.data.wordpressPost
-    const add = this.props.data
-
-    console.log(add);
-
+    
     return (
       <Layout headerColor="dark">
         <div className="single__wrapper">

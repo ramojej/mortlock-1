@@ -162,7 +162,9 @@ exports.createPages = async ({ graphql, actions }) => {
               actualPath: edge.node.path,
               posts: posts.slice(index * postsPerPage, (index * postsPerPage) + postsPerPage),
               numberOfPages,
-              currentPage: index + 1
+              currentPage: index + 1,
+              skip: index * postsPerPage,
+              limit: postsPerPage
             },
           })
         })
