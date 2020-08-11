@@ -30,7 +30,7 @@ class Page extends Component {
                       <div className="blog_text">
                         <h3 dangerouslySetInnerHTML={{ __html: post.node.title }} />
                         <div dangerouslySetInnerHTML={{ __html: post.node.excerpt }}  />
-                        <Link to={post.node.slug}>Read more</Link>
+                        <Link to={`${data.pageContext.actualPath}${post.node.slug}`}>Read more</Link>
                       </div>
                     </div>
                   </div>

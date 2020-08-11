@@ -123,7 +123,6 @@ const Header = ({ data, ...props }) => (
                                       </span>
                                     </div>
                                     {(() => {
-                                      console.log(data.allWordpressAcfOptions.edges[0].node.options.header_mega_menu);
                                       if(menu.classes.includes('megamenu')) {
                                         if(menu.title.toLowerCase() === 'timber decking') {
                                           return (
@@ -197,7 +196,7 @@ const Header = ({ data, ...props }) => (
                                                       return (
                                                         <div className="col-sm-3" key={index}>
                                                           <div className="menubox">
-                                                          <Link to="/timber-decking/proplank">
+                                                            <Link to="/timber-decking/proplank">
                                                               <span className="menuTitle">{dropmenu.menu_title}</span>
                                                               <p>{dropmenu.menu_description}</p>
                                                               <div className="imagebox">
