@@ -26,6 +26,7 @@ module.exports = {
         ],
       }
     },
+    `gatsby-background-image`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sass`,
     {
@@ -38,15 +39,36 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `GatsbyJS`,
+        short_name: `GatsbyJS`,
+        start_url: `/favicon/`,
+        background_color: `#fff`,
+        theme_color: `#a2764f`,
+        icon: `src/images/mortlock-icon.png`,
+        icons: [
+          {
+            src: `/favicon/android-chrome-192x192.png`,
+            sizes: `192x192`,
+            type: `image/png`,
+          },
+          {
+            src: `/favicon/android-chrome-512x512.png`,
+            sizes: `192x192`,
+            type: `image/png`,
+          }
+        ]
+      },
+    },
+    {
       resolve: "gatsby-source-wordpress",
       options: {
+        minimizeDeprecationNotice: true,
         /*
          * The base URL of the WordPress site without the trailingslash and the protocol. This is required.
          * Example : 'demo.wp-api.org' or 'www.example-site.com'
          */
-        options: {
-          minimizeDeprecationNotice: true
-        },
         baseUrl: process.env.API_URL,
         // The protocol. This can be http or https.
         protocol: process.env.API_PROTOCOL,

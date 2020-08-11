@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { graphql } from "gatsby";
 
+import SEO from "../components/seo";
+
 import Layout from "../components/layout";
 import Banner from "../components/global/banner";
 import GeneralText from "../components/general-text";
@@ -86,6 +88,7 @@ class IndexPage extends Component {
 
     return (
       <Layout>
+        <SEO description="Mortlock Timber is Australia&#039;s Leading manufacturer &amp; supplier of architectural timber products including Timber Cladding, Timber Decking &amp; Timber Ceiling Systems. We offer various timber species such as Spotted Gum, Blackbutt, Jarrah, Pacific Teak, American Oak, Burnt Ash, Ironbark, Merbau and many more." title="Mortlock Timber | Timber Cladding, Decking &amp; Ceiling Systems" />
         <Banner data={ bannerContent } type="homepage" />
         <GeneralText contentData={ aboutContent } col1="7" col2="5" />
         <GeneralText contentData={ imageBlock } col1="5" col2="7" addClass="range" />
