@@ -150,7 +150,7 @@ exports.createPages = async ({ graphql, actions }) => {
         break;
       case "template-blog-parent.php":
         const posts = allWordpressPost.edges
-        const postsPerPage = 2
+        const postsPerPage = 6
         const numberOfPages = Math.ceil(posts.length / postsPerPage)
 
         Array.from({ length: numberOfPages }).forEach((page, index) => {

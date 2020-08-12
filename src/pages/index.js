@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { graphql } from "gatsby";
 
 import SEO from "../components/seo";
-
 import Layout from "../components/layout";
 import Banner from "../components/global/banner";
 import GeneralText from "../components/general-text";
@@ -86,9 +85,14 @@ class IndexPage extends Component {
       allTestimonials: this.props.data.allWordpressAcfOptions.edges[0].node.options.client_testimonials,
     }
 
+    console.log(this.props.data.allWordpressPage.edges[0].node);
+
     return (
       <Layout>
-        <SEO description="Mortlock Timber is Australia&#039;s Leading manufacturer &amp; supplier of architectural timber products including Timber Cladding, Timber Decking &amp; Timber Ceiling Systems. We offer various timber species such as Spotted Gum, Blackbutt, Jarrah, Pacific Teak, American Oak, Burnt Ash, Ironbark, Merbau and many more." title="Mortlock Timber | Timber Cladding, Decking &amp; Ceiling Systems" />
+        <SEO 
+          description={this.props.data.allWordpressPage.edges[0].node.yoast.metadesc} 
+          title={this.props.data.allWordpressPage.edges[0].node.yoast.title} 
+        />
         <Banner data={ bannerContent } type="homepage" />
         <GeneralText contentData={ aboutContent } col1="7" col2="5" />
         <GeneralText contentData={ imageBlock } col1="5" col2="7" addClass="range" />
@@ -125,9 +129,13 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   query {
-    allWordpressPage(filter: {path: {eq: "/"}}) {
+    allWordpressPage(filter: {template: {eq: "template-homepage.php"}}) {
       edges {
         node {
+          yoast {
+            title
+            metadesc
+          }
           acf {
             banner_slider {
               banner_button_text

@@ -7,6 +7,10 @@ import Layout from '../components/layout';
 class Post extends Component {
   render() {
     const pageData = this.props.data.wordpressPost
+    const relatedData = this.props.data.allWordpressPost
+
+    console.log(relatedData);
+
     
     return (
       <Layout headerColor="dark">
@@ -32,6 +36,16 @@ class Post extends Component {
           </div>
           <div className="container container__small">
             <div className="post__content" dangerouslySetInnerHTML={{ __html: pageData.content }} />
+          </div>
+          <div className="related__blogs">
+            <div className="container">
+              <h2>Related Articles</h2>
+              <div className="row">
+                <div className="col-sm-6">
+                  
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </Layout>
@@ -67,11 +81,27 @@ export const pageQuery = graphql`
         metadesc
       }
     }
-    site {
-      id
-      siteMetadata {
-        title
-        description
+
+    allWordpressPost(sort: {fields: [date], order:DESC}, limit: 2) {
+      edges {
+        node {
+          title
+          date(formatString: "DD MMMM YYYY")
+          content
+          wordpress_id
+          type
+          excerpt
+          path
+          featured_media {
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 500) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

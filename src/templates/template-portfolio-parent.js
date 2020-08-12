@@ -16,14 +16,16 @@ class Page extends Component {
 
 export default Page
 
-// export const pageQuery = graphql`
-//   query {
-//     allWordpressPage(filter: {template: {eq: "template-portfolio-parent.php"}}) {
-//       edges {
-//         node {
-//           acf
-//         }
-//       }
-//     }
-//   }
-// `
+export const pageQuery = graphql`
+  query {
+    allWordpressPage(filter: {template: {eq: "template-portfolio-parent.php"}}) {
+      edges {
+        node {
+          acf {
+            banner_heading
+          }
+        }
+      }
+    }
+  }
+`

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { graphql } from "gatsby";
 
+import SEO from "../components/seo";
 import Banner from '../components/global/banner';
 import Layout from '../components/layout';
 
@@ -25,8 +26,14 @@ class Page extends Component {
       description_additional_box: this.props.data.allWordpressPage.edges[0].node.acf.description_additional_box
     }
 
+    console.log(this.props.data.allWordpressPage);
+
     return (
       <Layout>
+        <SEO 
+          description={this.props.data.allWordpressPage.edges[0].node.yoast.metadesc ? this.props.data.allWordpressPage.edges[0].node.yoast.metadesc : null} 
+          title={this.props.data.allWordpressPage.edges[0].node.yoast.title ? this.props.data.allWordpressPage.edges[0].node.yoast.title : null} 
+        />
         <Banner data={bannerContent} type="homepag" />
         <ProductBoxes data={boxesContent} />
         <ExpandableContent data={expandableContent} />
@@ -42,6 +49,10 @@ export const pageQuery = graphql`
     allWordpressPage(filter: {template: {eq: "template-product-parent.php"}}) {
       edges {
         node {
+          yoast {
+            title
+            metadesc
+          }
           acf {
             banner_image {
               localFile {

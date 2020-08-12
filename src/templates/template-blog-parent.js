@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { graphql, Link } from "gatsby";
 import Img from "gatsby-image";
 
+import BackgroundImage from 'gatsby-background-image';
+
 import Layout from '../components/layout';
 
 class Page extends Component {
@@ -14,6 +16,22 @@ class Page extends Component {
           <div className="container">
             <div className="blog__heading">
               <h1>News</h1>
+              <div className="article__metas">
+                <form className="form__search">
+                  <div className="search__wrap">
+                    <span className="title">search</span>
+                    <input type="text" placeholder="search keywords here..." />
+                  </div>
+                  <div className="search__wrap">
+                    <span className="title">filter</span>
+                    <select>
+                      <option>all articles</option>
+                      <option>all articles</option>
+                      <option>all articles</option>
+                    </select>
+                  </div>
+                </form>
+              </div>
             </div>
             <div className="blog__content">
               <div className="row">
@@ -21,7 +39,9 @@ class Page extends Component {
                   <div className="col-sm-6" key={post.node.wordpress_id}>
                     <div className="blog_article">
                       <div className="blog_image">
-                        { post.node.featured_media ? <Img fluid={post.node.featured_media.localFile.childImageSharp.fluid} alt="Alternative Text" /> : 'image' }
+                        <Link to={`${data.pageContext.actualPath}${post.node.slug}`}>
+                          { post.node.featured_media ? <BackgroundImage fluid={post.node.featured_media.localFile.childImageSharp.fluid} alt="Alternative Text" /> : 'image' }
+                        </Link>
                       </div>
                       <div className="blog_meta">
                         { post.node.categories ? <span className="post_category">{post.node.categories.map((category, index) => ( <span key={index}>{category.name} </span> ))}</span> : null }
@@ -30,7 +50,7 @@ class Page extends Component {
                       <div className="blog_text">
                         <h3 dangerouslySetInnerHTML={{ __html: post.node.title }} />
                         <div dangerouslySetInnerHTML={{ __html: post.node.excerpt }}  />
-                        <Link to={`${data.pageContext.actualPath}${post.node.slug}`}>Read more</Link>
+                        <Link className="link" to={`${data.pageContext.actualPath}${post.node.slug}`}>Read more</Link>
                       </div>
                     </div>
                   </div>
@@ -66,6 +86,7 @@ export const pageQuery = graphql`
           title
           excerpt
           slug
+          wordpress_id
           categories {
             name
           }

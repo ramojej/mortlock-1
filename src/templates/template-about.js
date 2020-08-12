@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { graphql } from "gatsby";
 
+import SEO from "../components/seo";
 import Banner from '../components/global/banner';
 import SubMenu from '../components/global-subnav';
 import Layout from '../components/layout';
@@ -61,6 +62,10 @@ class Page extends Component {
 
     return (
       <Layout>
+        <SEO 
+          description={this.props.data.allWordpressPage.edges[0].node.yoast.metadesc} 
+          title={this.props.data.allWordpressPage.edges[0].node.yoast.title} 
+        />
         <Banner data={bannerContent} type="homepag" />
         <SubMenu />
         <AboutHistory data={aboutHistory} />
@@ -79,6 +84,10 @@ export const pageQuery = graphql`
     allWordpressPage(filter: {path: {eq: "/about/"}}) {
       edges {
         node {
+          yoast {
+            title
+            metadesc
+          }
           acf {
             banner_image {
               localFile {
