@@ -8,7 +8,7 @@ class Page extends Component {
 
     return (
       <Layout>
-        
+        Portfolio Parent page
       </Layout>
     )
   }

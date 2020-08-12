@@ -9,7 +9,7 @@ class Post extends Component {
     const pageData = this.props.data.wordpressPost
     const relatedData = this.props.data.allWordpressPost
 
-    console.log(relatedData);
+    console.log(pageData);
 
     
     return (
@@ -42,7 +42,7 @@ class Post extends Component {
               <h2>Related Articles</h2>
               <div className="row">
                 <div className="col-sm-6">
-                  
+
                 </div>
               </div>
             </div>

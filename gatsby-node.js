@@ -41,6 +41,7 @@ exports.createPages = async ({ graphql, actions }) => {
             status
             template
             format
+            title
           }
         }
       }
@@ -105,10 +106,11 @@ exports.createPages = async ({ graphql, actions }) => {
         break;
       case "template-product-parent.php":
         createPage({
-          path: edge.node.path,
+          path: `${edge.node.path}`,
           component: slash(productParentTemplate),
           context: {
             id: edge.node.id,
+            slug: edge.node.slug,
           },
         })
         break;
@@ -160,7 +162,7 @@ exports.createPages = async ({ graphql, actions }) => {
             context: {
               id: edge.node.id,
               actualPath: edge.node.path,
-              posts: posts.slice(index * postsPerPage, (index * postsPerPage) + postsPerPage),
+              posts: posts,
               numberOfPages,
               currentPage: index + 1,
               skip: index * postsPerPage,

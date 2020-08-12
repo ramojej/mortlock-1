@@ -10,29 +10,31 @@ import ExpandableContent from "../components/productparent/expandable-content";
 
 class Page extends Component {
   render() {
+    console.log(this.props);
+
     const bannerContent = {
-      banner_image: this.props.data.allWordpressPage.edges[0].node.acf.banner_image,
-      banner_image_overlay: this.props.data.allWordpressPage.edges[0].node.acf.banner_image_overlay,
-      banner_heading: this.props.data.allWordpressPage.edges[0].node.acf.banner_heading,
-      banner_description: this.props.data.allWordpressPage.edges[0].node.acf.banner_description,
-      banner_buttons: this.props.data.allWordpressPage.edges[0].node.acf.banner_buttons
+      banner_image: this.props.data.wordpressPage.acf.banner_image,
+      banner_image_overlay: this.props.data.wordpressPage.acf.banner_image_overlay,
+      banner_heading: this.props.data.wordpressPage.acf.banner_heading,
+      banner_description: this.props.data.wordpressPage.acf.banner_description,
+      banner_buttons: this.props.data.wordpressPage.acf.banner_buttons
     }
 
-    const boxesContent = this.props.data.allWordpressPage.edges[0].node.acf.product_list
+    const boxesContent = this.props.data.wordpressPage.acf.product_list
     
     const expandableContent = {
-      description_text_box: this.props.data.allWordpressPage.edges[0].node.acf.description_text_box,
-      description_button_text: this.props.data.allWordpressPage.edges[0].node.acf.description_button_text,
-      description_additional_box: this.props.data.allWordpressPage.edges[0].node.acf.description_additional_box
+      description_text_box: this.props.data.wordpressPage.acf.description_text_box,
+      description_button_text: this.props.data.wordpressPage.acf.description_button_text,
+      description_additional_box: this.props.data.wordpressPage.acf.description_additional_box
     }
 
-    console.log(this.props.data.allWordpressPage);
+    console.log(window.location.pathname);
 
     return (
       <Layout>
         <SEO 
-          description={this.props.data.allWordpressPage.edges[0].node.yoast.metadesc ? this.props.data.allWordpressPage.edges[0].node.yoast.metadesc : null} 
-          title={this.props.data.allWordpressPage.edges[0].node.yoast.title ? this.props.data.allWordpressPage.edges[0].node.yoast.title : null} 
+          description={this.props.data.wordpressPage.yoast.metadesc ? this.props.data.wordpressPage.yoast.metadesc : null} 
+          title={this.props.data.wordpressPage.yoast.title ? this.props.data.wordpressPage.yoast.title : null} 
         />
         <Banner data={bannerContent} type="homepag" />
         <ProductBoxes data={boxesContent} />
@@ -45,48 +47,45 @@ class Page extends Component {
 export default Page
 
 export const pageQuery = graphql`
-  query {
-    allWordpressPage(filter: {template: {eq: "template-product-parent.php"}}) {
-      edges {
-        node {
-          yoast {
-            title
-            metadesc
-          }
-          acf {
-            banner_image {
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 1170) {
-                    ...GatsbyImageSharpFluid_withWebp
-                  }
-                }
+  query($id: String!) {
+    wordpressPage(id: { eq: $id }) {
+      slug
+      yoast {
+        title
+        metadesc
+      }
+      acf {
+        banner_image {
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 1170) {
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
-            banner_heading
-            banner_description
-            banner_image_overlay
-            product_list {
-              button_link
-              button_text
-              popup_text
-              product_description
-              product_image {
-                localFile {
-                  childImageSharp {
-                    fluid(maxWidth: 900) {
-                      ...GatsbyImageSharpFluid_withWebp
-                    }
-                  }
-                }
-              }
-              product_title
-            }
-            description_text_box
-            description_button_text
-            description_additional_box
           }
         }
+        banner_heading
+        banner_description
+        banner_image_overlay
+        product_list {
+          button_link
+          button_text
+          popup_text
+          product_description
+          product_image {
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 900) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
+          }
+          product_title
+        }
+        description_text_box
+        description_button_text
+        description_additional_box
       }
     }
   }
