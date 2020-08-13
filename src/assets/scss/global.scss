@@ -1983,6 +1983,10 @@ ul.footer_menu {
     align-items: center;
   }
 
+  .banner__project & {
+    height: 840px;
+  }
+
   .box {
     width: 100%;
   }
@@ -2000,6 +2004,14 @@ ul.footer_menu {
     display: block;
     font-size: 25px;
     font-weight: 700;
+  }
+}
+
+.banner__project {
+  .inner__bannerbox {
+    .inner__bannerbuttons {
+      padding-top: 66px;
+    }
   }
 }
 
@@ -2893,5 +2905,56 @@ ul.info__list {
       background: #312f30;
       pointer-events: none;
     }
+  }
+}
+
+.project__detail {
+  padding: 155px 0;
+}
+
+.project_content {
+  padding-top: 11px;
+}
+
+.project_heading {
+  position: relative;
+  padding-bottom: 39px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    right: 120px;
+    bottom: 0;
+    height: 2px;
+    background: $primary-color;
+    left: -9999px;
+  }
+}
+
+.project_infos {
+  padding: 53px 0;
+}
+
+.project__info {
+  line-height: 1;
+  padding-bottom: 70px;
+  display: block;
+
+  .title {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: $primary-color;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .info {
+    display: block;
+    font-size: 30px;
+    font-weight: 700;
+    color: #312f30;
+    letter-spacing: 1px;
   }
 }

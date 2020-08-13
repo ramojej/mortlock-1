@@ -73,7 +73,7 @@ class IndexPage extends Component {
     }
 
     const latestArticles = this.props.data.allWordpressPost.edges;
-    const latestProjects = this.props.data.allWordpressWpProjects.edges;
+    const latestProjects = this.props.data.allWordpressWpProject.edges;
     const latestSuccessStories = this.props.data.allWordpressAcfOptions.edges[0].node.options.success_stories;
     const latestTestomonial = this.props.data.allWordpressAcfOptions.edges[0].node.options.client_testimonials;
 
@@ -265,20 +265,11 @@ export const pageQuery = graphql`
       }
     }
 
-    allWordpressWpProjects(limit: 3) {
+    allWordpressWpProject(limit: 3) {
       edges {
         node {
           title
           wordpress_id
-          featured_media {
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 500) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
-            }
-          }
         }
       }
     }

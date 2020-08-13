@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { graphql } from "gatsby";
 
 import SEO from "../components/seo";
+
 import Layout from "../components/layout";
 import Banner from "../components/global/banner";
 import GeneralText from "../components/general-text";
@@ -74,7 +75,7 @@ class IndexPage extends Component {
     }
 
     const latestArticles = this.props.data.allWordpressPost.edges;
-    const latestProjects = this.props.data.allWordpressWpProjects.edges;
+    const latestProjects = this.props.data.allWordpressWpProject.edges;
 
     const latestSuccessStories = {
       successTitle: this.props.data.allWordpressAcfOptions.edges[0].node.options.success_stories_heading,
@@ -288,20 +289,11 @@ export const pageQuery = graphql`
       }
     }
 
-    allWordpressWpProjects(limit: 3) {
+    allWordpressWpProject(limit: 3) {
       edges {
         node {
           title
           wordpress_id
-          featured_media {
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 1200) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
-            }
-          }
         }
       }
     }

@@ -72,7 +72,7 @@ const Banner = ({ ...props }) =>  {
     )
   } else if(bannerContent !== undefined) {
       return (
-        <div className={ !bannerContent.banner_description ? "inner__banner banner__smaller" : "inner__banner banner__small" }>
+        <div className={bannerContent.banner_type === "project" ? 'inner__banner banner__project' : 'inner__banner' }>
           <div className="bg__image has-overlay">
             { bannerContent.banner_image ? <BackgroundImage fluid={bannerContent.banner_image.localFile.childImageSharp.fluid} /> : null }
           </div>

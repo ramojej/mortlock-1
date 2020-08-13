@@ -145,6 +145,7 @@ module.exports = {
         // "**/users",
         includedRoutes: [
           "**/categories",
+          "**/project-category",
           "**/posts",
           "**/pages",
           "**/media",
@@ -152,7 +153,7 @@ module.exports = {
           "**/taxonomies",
           "**/menus",
           "**/users",
-          "**/projects"
+          "**/project"
         ],
         // Blacklisted routes using glob patterns
         excludedRoutes: ["**/posts/1456"],
