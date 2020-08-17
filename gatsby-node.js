@@ -154,12 +154,24 @@ exports.createPages = async ({ graphql, actions }) => {
         })
         break;
       case "template-portfolio-parent.php":
-        createPage({
-          path: edge.node.path,
-          component: slash(portfolioParentTemplate),
-          context: {
-            id: edge.node.id,
-          },
+        const projects = allWordpressWpProject.edges
+        const projectsPerPage = 2
+        const numberOfProjects = Math.ceil(projects.length / projectsPerPage)
+
+        Array.from({ length: numberOfProjects }).forEach((project, index) => {
+          createPage({
+            path: index === 0 ? edge.node.path : `${edge.node.path}${index + 1}`,
+            component: slash(portfolioParentTemplate),
+            context: {
+              id: edge.node.id,
+              actualPath: edge.node.path,
+              projects: projects,
+              numberOfProjects,
+              currentPage: index + 1,
+              skip: index * projectsPerPage,
+              limit: projectsPerPage
+            },
+          })
         })
         break;
       case "template-blog-parent.php":

@@ -232,6 +232,15 @@ export const pageQuery = graphql`
               client_titleposition
             }
             success_stories {
+              video_thumbnail {
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 1000) {
+                      ...GatsbyImageSharpFluid_withWebp
+                    }
+                  }
+                }
+              }
               video_link
               success_client_quote
               success_client_position__title

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { graphql, Link } from "gatsby";
-import Img from "gatsby-image";
 
 import BackgroundImage from 'gatsby-background-image';
 
@@ -8,8 +7,8 @@ import Layout from '../components/layout';
 
 class Page extends Component {
   render() {
-    const data = this.props
-    console.log(data)
+    const data = this.props;
+
     return (
       <Layout>
         <div className="blog__wrapper">

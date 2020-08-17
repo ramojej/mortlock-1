@@ -83,6 +83,7 @@ a:not([class]) {
 
 img {
   max-width: 100%;
+  height: auto;
   vertical-align: top;
 }
 
@@ -256,7 +257,7 @@ label {
   left: 0;
   right: 0;
   top: 0;
-  bottom: 0;
+  height: 100%;
   z-index: -1;
   overflow: hidden;
 
@@ -1482,7 +1483,7 @@ ul.footer_menu {
   position: relative;
 
   .news_image {
-    max-height: 357px;
+    height: 357px;
     overflow: hidden;
     margin-bottom: 20px;
 
@@ -1617,6 +1618,8 @@ ul.footer_menu {
 .project__block {
   background: #312f30;
   padding: 40px 0;
+  overflow: hidden;
+  
   @include breakpoint('small') {
     padding: 120px 0;
   }
@@ -1885,6 +1888,7 @@ ul.footer_menu {
 
     @include breakpoint('small') {
       margin: 78px 0 0 105px;
+      text-align: left;
     }
   }
 
@@ -1922,8 +1926,8 @@ ul.footer_menu {
     padding-bottom: 20px;
 
     @include breakpoint('small') {
-      margin: 0 0 58px 105px;
-      padding: 0 0 43px;
+      margin: 0 0 68px 105px;
+      padding: 0 0 53px;
       text-transform: uppercase;
       letter-spacing: 3px;
     }
@@ -1944,9 +1948,40 @@ ul.footer_menu {
   position: relative;
   z-index: 4;
   margin-bottom: 30px;
+  height: 563px;
+  background: #efefef;
 
   @include breakpoint('small') {
     margin-right: -18px;
+  }
+}
+
+.video__content {
+  position: absolute;
+  padding-bottom: 56.25%;
+  height: 0;
+  left: 0;
+  right: 0;
+  top: 14%;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.video--playing {
+  .video__play {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .bg__image {
+    opacity: 0;
+    visibility: hidden;
   }
 }
 
@@ -2956,5 +2991,55 @@ ul.info__list {
     font-weight: 700;
     color: #312f30;
     letter-spacing: 1px;
+  }
+}
+
+.video__play {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  background: rgba(#000, 0.4);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s, visibility 0.3s;
+
+  .text__wrap {
+    cursor: pointer;
+
+    &:hover {
+      .text {
+        border-bottom-color: transparent;
+        letter-spacing: 3px;
+      }
+    }
+  }
+
+  .icon {
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 0 auto;
+    pointer-events:  none;
+  }
+
+  .text {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 12px;
+    font-weight: 700;
+    display: inline-block;
+    vertical-align: top;
+    border-bottom: 2px solid $primary-color;
+    transition: all 0.3s;
+    pointer-events:  none;
   }
 }

@@ -256,6 +256,15 @@ export const pageQuery = graphql`
             }
             success_stories_heading
             success_stories {
+              video_thumbnail {
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 1000) {
+                      ...GatsbyImageSharpFluid_withWebp
+                    }
+                  }
+                }
+              }
               video_link
               success_client_quote
               success_client_position__title
@@ -294,6 +303,15 @@ export const pageQuery = graphql`
         node {
           title
           wordpress_id
+          featured_media {
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 1300) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
+          }
         }
       }
     }

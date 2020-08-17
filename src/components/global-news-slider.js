@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import Img from 'gatsby-image';
 import Slider from "react-slick";
+
+import BackgroundImage from 'gatsby-background-image';
 
 const GlobalNewsSlider = ({ ...props }) =>  {
   const content = props.contentData;
@@ -43,11 +44,17 @@ const GlobalNewsSlider = ({ ...props }) =>  {
               <div className="article">
                 <span className="article__date">{article.node.date}</span>
                 <div className="news_image">
-                  <Img fluid={article.node.featured_media.localFile.childImageSharp.fluid} alt="Alternative Text" />
+                  <BackgroundImage className="bg__image" fluid={article.node.featured_media.localFile.childImageSharp.fluid} />
                 </div>
                 <div className="article_text">
                   <h3><Link to={article.node.path}>{article.node.title}</Link></h3>
-                  <div dangerouslySetInnerHTML={{ __html: article.node.excerpt }} />
+                  {(() => {
+                    const regex = /(<([^>]+)>)/ig;
+                    var removeHTMLtags = article.node.excerpt.replace(regex, '').substring(0, 500) + "...";
+                    return (
+                      <p>{removeHTMLtags}</p>
+                    )
+                  })()}
                   <Link to={article.node.path} className="read-more">Read more</Link>
                 </div>
               </div>
