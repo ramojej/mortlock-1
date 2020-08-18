@@ -46,27 +46,27 @@ const Banner = ({ ...props }) =>  {
     return (
       <div className="banner">
         <Slider className="banner__slider" {...sliderSettings}>
-        {bannerContent.map((slide, index) => (
-          <div className="slide" key={index}>
-            <div className="bg__image has-overlay">
-            { slide.banner_image ? <Img fluid={slide.banner_image.localFile.childImageSharp.fluid} alt="Alternative Text" /> : null }
-            </div>
-            <div className="container container__big">
-              <div className="banner__text">
-                <div className="bottomtext__top">
-                  <h1 dangerouslySetInnerHTML={{ __html: slide.banner_heading }} />
-                  <span className="bannerCounter"><span className="activeNum">0{count}</span><span className="bar">/</span>0{bannerContent.length}</span>
-                </div>
-                <div className="bottomtext__bottom">
-                  <span className="banner__smalltext" dangerouslySetInnerHTML={{ __html: slide.banner_sub_heading }} />
-                </div>
-                <div className="mobile__button">
-                  <Button link={slide.banner_button_link} text={slide.banner_button_text} style={slide.banner_button_style} /> 
+          { bannerContent ? bannerContent.map((slide, index) => (
+            <div className="slide" key={index}>
+              <div className="bg__image has-overlay">
+              { slide.slider_banner_image ? <BackgroundImage  fluid={slide.slider_banner_image.localFile.childImageSharp.fluid} alt="Alternative Text" /> : null }
+              </div>
+              <div className="container container__big">
+                <div className="banner__text">
+                  <div className="bottomtext__top">
+                    <h1 dangerouslySetInnerHTML={{ __html: slide.slider_banner_heading }} />
+                    <span className="bannerCounter"><span className="activeNum">0{count}</span><span className="bar">/</span>0{bannerContent.length}</span>
+                  </div>
+                  <div className="bottomtext__bottom">
+                    <span className="banner__smalltext" dangerouslySetInnerHTML={{ __html: slide.slider_banner_sub_heading }} />
+                  </div>
+                  <div className="mobile__button">
+                    <Button link={slide.slider_banner_button_link} text={slide.slider_banner_button_text} style={slide.slider_banner_button_style} /> 
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          )) : null }
         </Slider>
       </div>
     )
@@ -88,8 +88,7 @@ const Banner = ({ ...props }) =>  {
                       <Button type="external" link={button.button_link} text={button.button_text} style={button.button_style} key={index} /> : 
                       <Button link={button.button_link} text={button.button_text} style={button.button_style} key={index} /> 
                     ))}
-                  </div> : null
-                }
+                  </div> : null }
               </div>
             </div>
           </div>

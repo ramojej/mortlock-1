@@ -62,7 +62,7 @@ const Footer = ({ data }) => (
         <div className="container">
           <div className="footer__top">
             <div className="row">
-              <div className="col-sm-3">
+              <div className="col-sm-7 col-md-4 col-lg-3">
                 <div className="footer_logo">
                   <a href="https://www.dilate.com.au">
                     <Img fluid={data.allWordpressAcfOptions.edges[0].node.options.footer_logo.localFile.childImageSharp.fluid} alt="Alternative Text" />
@@ -79,7 +79,7 @@ const Footer = ({ data }) => (
                   </ul>
                 </div>
               </div>
-              <div className="col-sm-2">
+              <div className="col-sm-5 col-md-3 col-lg-2">
                 <h4>Products</h4>
                 <ul className="footer_menu">
                   {data.allWordpressMenusMenusItems.edges[1].node.items.map((menu) => (
@@ -87,7 +87,7 @@ const Footer = ({ data }) => (
                   ))}
                 </ul>
               </div>
-              <div className="col-sm-4">
+              <div className="col-sm-7 col-md-5 col-lg-4">
                 <h4>Useful Links</h4>
                 <div className="splitMenu">
                   <ul className="footer_menu">
@@ -97,7 +97,7 @@ const Footer = ({ data }) => (
                   </ul>
                 </div>
               </div>
-              <div className="col-sm-3">
+              <div className="col-sm-5 col-md-4 col-lg-3">
                 <h4>Contact info</h4>
                 <ul className="footer_menu">
                   <li>Head office & Manufacturing</li>
@@ -109,10 +109,10 @@ const Footer = ({ data }) => (
           </div>
           <div className="footer__bottom">
             <div className="row">
-              <div className="col-sm-6">
+              <div className="col-md-6">
                 <strong className="copyright">&copy; 2020 Mortlock Timber  |  <Link to="/terms-and-conditions">Terms & Conditions</Link></strong>
               </div>
-              <div className="col-sm-6">
+              <div className="col-md-6">
                 <strong className="websiteby">Website designed & built with <svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m72.746 6.9453c-17.012 0-22.746 15.102-22.746 15.102s-5.7305-15.102-22.746-15.102c-17.008 0-27.254 16.215-27.254 29.578 0 22.395 50 56.531 50 56.531s50-34.125 50-56.527c0-13.367-10.238-29.582-27.254-29.582z"/></svg> by <a href="https://www.dilate.com.au">Dilate Digital</a></strong>
               </div>
             </div>

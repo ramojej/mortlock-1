@@ -5,9 +5,12 @@
 @import "./_flex";
 
 $breakpoints: (
-  'small':  767px,
-  'medium': 992px,
-  'large':  1200px
+  'small':  768px,
+  'medium': 1024px,
+  'large':  1200px,
+  'big':  1500px,
+  'xlarge':  1700px,
+  'xxlarge':  1950px
 ) !default;
 
 @mixin breakpoint($breakpoint) {
@@ -38,9 +41,9 @@ $flexboxgrid-outer-margin: 2.1875rem !default;
 // Syntax:
 // name SIZErem,
 $flexboxgrid-breakpoints:
-  sm 48em 46rem,
-  md 62em 61rem,
-  lg 75em 71rem !default;
+  sm 768px 767px,
+  md 1024px 1023px,
+  lg 1200px 1199px !default;
 
 $flexboxgrid-max-width: 92.9375rem + 2.1875rem * 2 !default; 
 $flexboxgrid-large-max-width: 111.25rem + 2.1875rem * 2 !default;

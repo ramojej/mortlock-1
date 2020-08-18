@@ -8,8 +8,8 @@ const GeneralText = ({ ...props }) =>  {
   return (
     <div className={"generaltext " + (props.addClass ? props.addClass : '')}>
       <div className="container">
-        <div className={`row middle-sm ${(content.alignImage === "right") ? props.reverseClass : `reverse ${props.reverseClass}`}`}>
-          <div className={`col-sm-${props.col2}`}>
+        <div className={`row middle-md ${(content.alignImage === "right") ? props.reverseClass : `reverse ${props.reverseClass}`}`}>
+          <div className={props.col2}>
             <div className="textBox">
               <div dangerouslySetInnerHTML={{ __html: content.description }} />
               {(() => {
@@ -21,7 +21,7 @@ const GeneralText = ({ ...props }) =>  {
               })()}
             </div>
           </div>
-          <div className={`col-sm-${props.col1}`}>
+          <div className={props.col1}>
             <div className="image__wrap">
               <Img fluid={content.image.localFile.childImageSharp.fluid} alt="Alternative Text" />
             </div>

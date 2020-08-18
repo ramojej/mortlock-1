@@ -132,7 +132,7 @@ const Header = ({ data, ...props }) => (
                                                   {data.allWordpressAcfOptions.edges[0].node.options.header_mega_menu.map((dropmenu, index) => {
                                                     if(dropmenu.menu_category === "timberdecking") {
                                                       return (
-                                                        <div className="col-sm-4" key={index}>
+                                                        <div className="col-md-4" key={index}>
                                                           <div className="menubox">
                                                             <Link to="/timber-decking/proplank">
                                                               <span className="menuTitle">{dropmenu.menu_title}</span>
@@ -163,7 +163,7 @@ const Header = ({ data, ...props }) => (
                                                   {data.allWordpressAcfOptions.edges[0].node.options.header_mega_menu.map((dropmenu, index) => {
                                                     if(dropmenu.menu_category === "timberceilings") {
                                                       return (
-                                                        <div className="col-sm-4" key={index}>
+                                                        <div className="col-md-4" key={index}>
                                                           <div className="menubox">
                                                             <Link to="/timber-decking/proplank">
                                                               <span className="menuTitle">{dropmenu.menu_title}</span>
@@ -186,7 +186,7 @@ const Header = ({ data, ...props }) => (
                                               </div>
                                             </div>
                                           )
-                                        } else if(menu.title.toLowerCase() === 'timber walls') {
+                                        } else if(menu.title.toLowerCase() === 'timber cladding') {
                                           return (
                                             <div className="dropdown">
                                               <div className="container">
@@ -194,7 +194,7 @@ const Header = ({ data, ...props }) => (
                                                   {data.allWordpressAcfOptions.edges[0].node.options.header_mega_menu.map((dropmenu, index) => {
                                                     if(dropmenu.menu_category === "timberwalls") {
                                                       return (
-                                                        <div className="col-sm-3" key={index}>
+                                                        <div className="col-md-3" key={index}>
                                                           <div className="menubox">
                                                             <Link to="/timber-decking/proplank">
                                                               <span className="menuTitle">{dropmenu.menu_title}</span>

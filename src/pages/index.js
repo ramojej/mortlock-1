@@ -15,7 +15,7 @@ import "../assets/scss/global.scss";
 
 class IndexPage extends Component {
   render() {
-    const bannerContent = this.props.data.allWordpressPage.edges[0].node.acf.banner_slider;
+    const bannerContent = this.props.data.allWordpressPage.edges[0].node.acf.banner_home_slider;
     
     const aboutContent = {
       alignImage: this.props.data.allWordpressPage.edges[0].node.acf.align_about_image,
@@ -95,12 +95,12 @@ class IndexPage extends Component {
           title={this.props.data.allWordpressPage.edges[0].node.yoast.title} 
         />
         <Banner data={ bannerContent } type="homepage" />
-        <GeneralText contentData={ aboutContent } col1="7" col2="5" />
-        <GeneralText contentData={ imageBlock } col1="5" col2="7" addClass="range" />
-        <GeneralText contentData={ pricingBlock } col1="7" col2="5" addClass="pricing" />
-        <GeneralText contentData={ timberDecking } col1="8" col2="4" addClass="decking" />
-        <GeneralText contentData={ timberWalls } col1="5" col2="7" addClass="walls" />
-        <GeneralText contentData={ timberCeilings } col1="6" col2="6" addClass="ceilings" />
+        <GeneralText contentData={ aboutContent } col1="col-sm-6 col-lg-7" col2="col-sm-6 col-lg-5" />
+        <GeneralText contentData={ imageBlock } col1="col-sm-6 col-lg-5" col2="col-sm-6 col-lg-7" addClass="range" />
+        <GeneralText contentData={ pricingBlock } col1="col-sm-6 col-lg-7" col2="col-sm-6 col-lg-5" addClass="pricing" />
+        <GeneralText contentData={ timberDecking } col1="col-sm-7 col-lg-8" col2="col-sm-5 col-lg-4" addClass="decking" />
+        <GeneralText contentData={ timberWalls } col1="col-sm-6 col-lg-5" col2="col-sm-6 col-lg-7" addClass="walls" />
+        <GeneralText contentData={ timberCeilings } col1="col-sm-6 col-lg-6" col2="col-sm-6 col-lg-6" addClass="ceilings" />
         {(() => {
           if(generalContent.latestProject) return (
             <GlobalProjectSlider contentData={ latestProjects } />
@@ -138,13 +138,13 @@ export const pageQuery = graphql`
             metadesc
           }
           acf {
-            banner_slider {
-              banner_button_text
-              banner_button_link
-              banner_button_style
-              banner_heading
-              banner_sub_heading
-              banner_image {
+            banner_home_slider {
+              slider_banner_button_link
+              slider_banner_button_text
+              slider_banner_button_style
+              slider_banner_heading
+              slider_banner_sub_heading
+              slider_banner_image {
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 1920) {

@@ -9,18 +9,14 @@ import Banner from '../components/global/banner';
 
 class Project extends Component {
   render() {
-    const pageData = this.props.data.wordpressWpProject
-
-
-
-    console.log(pageData);
+    const pageData = this.props.data.wordpressWpProject;
 
     const bannerContent = {
-      banner_image: pageData.featured_media,
-      banner_image_overlay: pageData.acf.banner_image_overlay,
-      banner_heading: pageData.acf.project_title,
-      banner_description: pageData.acf.project_location,
-      banner_buttons: pageData.acf.banner_buttons,
+      banner_image: pageData.acf.project_banner_image,
+      banner_image_overlay: pageData.acf.project_banner_image_overlay,
+      banner_heading: pageData.acf.project_banner_heading,
+      banner_description: pageData.acf.project_banner_description,
+      banner_buttons: pageData.acf.project_banner_buttons,
       banner_type: 'project'
     }
     return (
@@ -34,13 +30,13 @@ class Project extends Component {
           <div className="container">
             <div className="row">
               <div className="col-sm-4">
-                <h2 className="project_heading" dangerouslySetInnerHTML={{ __html: pageData.acf.about_heading }} />
+                { (pageData.acf.about_heading || pageData.acf.about_heading === undefined ) ? <h2 className="project_heading" dangerouslySetInnerHTML={{ __html: pageData.acf.about_heading }} /> : null }
               </div>
               <div className="col-sm-8">
-                <div className="project_content" dangerouslySetInnerHTML={{ __html: pageData.acf.about_description }} />
+                { pageData.acf.about_description ? <div className="project_content" dangerouslySetInnerHTML={{ __html: pageData.acf.about_description }} /> : null }
               </div>
             </div>
-            <div className="project_infos">
+            {/* <div className="project_infos">
               <div className="row">
                 {pageData.acf.project_info.map((info, index) => (
                   (index < 1) ? 
@@ -55,15 +51,15 @@ class Project extends Component {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="video__wrapper">
-              <Img fluid={pageData.acf.project_video_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
+              { pageData.acf.project_video_image ? <Img fluid={pageData.acf.project_video_image.localFile.childImageSharp.fluid} alt="Alternative Text" /> : null }
             </div>
             <div className="spec__wrapper">
               <div className="row">
                 <div className="col-sm-4">
                   <div className="spec__image">
-                    <Img fluid={pageData.acf.specification_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
+                    { pageData.acf.specification_image ? <Img fluid={pageData.acf.specification_image.localFile.childImageSharp.fluid} alt="Alternative Text" /> : null }
                   </div>
                 </div>
                 <div className="col-sm-8">
@@ -76,6 +72,16 @@ class Project extends Component {
             </div>
             <div className="gallery__wrapper">
               <div className="row">
+                {
+                  pageData.acf.gallery_images ? 
+                  pageData.acf.gallery_images.map((image, index) => (
+                      <div className="col-sm-4">
+                        <div className="image">
+                          <Img fluid={image.gallery_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
+                        </div>
+                      </div>
+                  )) : null 
+                }
                 <div className="col-sm-4">
                   <div className="gallery_image">
                     image
@@ -130,50 +136,55 @@ export const pageQuery = graphql`
         }
       }
       acf {
-        main_banner_image {
+        project_banner_heading
+        project_banner_image_overlay
+        project_banner_description
+        project_banner_image {
           localFile {
             childImageSharp {
-              fluid(maxWidth: 1170) {
+              fluid(maxWidth: 1920) {
                 ...GatsbyImageSharpFluid_withWebp
               }
             }
           }
         }
-        main_banner_heading
-        main_banner_description
-        main_banner_image_overlay
+        project_banner_buttons {
+          button_link
+          button_style
+          button_text
+        }
         about_heading
         about_description
-        specification_heading
-        specification_image {
-          localFile {
-            childImageSharp {
-              fluid(maxWidth: 900) {
-                ...GatsbyImageSharpFluid_withWebp
+        gallery_images {
+          gallery_image {
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 500) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
               }
             }
           }
         }
         project_info {
-          info_description
           info_title
+          info_description
         }
         project_video_image {
           localFile {
             childImageSharp {
-              fluid(maxWidth: 1200) {
+              fluid(maxWidth: 1400) {
                 ...GatsbyImageSharpFluid_withWebp
               }
             }
           }
         }
-        gallery_images {
-          gallery_image {
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 900) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
+        specification_heading
+        specification_image {
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 800) {
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
           }

@@ -13,7 +13,7 @@ import "../assets/scss/global.scss";
 
 class IndexPage extends Component {
   render() {
-    const bannerContent = this.props.data.allWordpressPage.edges[0].node.acf.banner_slider;
+    const bannerContent = '';
     
     const aboutContent = {
       alignImage: this.props.data.allWordpressPage.edges[0].node.acf.align_about_image,
@@ -115,23 +115,10 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   query {
-    allWordpressPage(filter: {path: {eq: "/"}}) {
+    allWordpressPage(filter: {template: {eq: "template-homepage.php"}}) {
       edges {
         node {
           acf {
-            banner_slider {
-              banner_heading
-              banner_sub_heading
-              banner_image {
-                localFile {
-                  childImageSharp {
-                    fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid_withWebp
-                    }
-                  }
-                }
-              }
-            }
             align_about_image
             about_description
             about_button_text

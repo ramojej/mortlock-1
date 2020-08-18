@@ -15,11 +15,6 @@ module.exports = {
         alias: {
           "@src": "src"
           // "@components": "src/components",
-          // "@layouts": "src/layouts",
-          // "@pages": "src/pages",
-          // "@sass": "src/sass",
-          // "@templates": "src/templates",
-          // "@posts": "content/posts",
         },
         extensions: [
           "js",

@@ -44,7 +44,7 @@ const GlobalSuccessStory = ({ ...props }) =>  {
           <div className="slide" key={index}>
             <div className="container">
               <div className="row">
-                <div className="col-sm-6">
+                <div className="col-md-6">
                   <div className={ (playVideo && slideIndex === index ) ? "videoWrapper video--playing" : "videoWrapper" }>
                     { (playVideo && slideIndex === index ) ? <div data-id={index} className="video__content" dangerouslySetInnerHTML={{ __html: success.video_link }} /> : null }
                     <div className="video__play">
@@ -56,7 +56,7 @@ const GlobalSuccessStory = ({ ...props }) =>  {
                     <BackgroundImage className="bg__image" fluid={success.video_thumbnail.localFile.childImageSharp.fluid} />
                   </div>
                 </div>
-                <div className="col-sm-6">
+                <div className="col-md-6">
                   <div className="successText">
                     <h2>{content.successTitle}</h2>
                     <blockquote className="quote">

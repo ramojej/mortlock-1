@@ -5,7 +5,7 @@ const ProductOverview = ({ ...props }) =>  {
   const content = props.data;
   return (
     <div className="product__overview">
-    <div className="aside__text" dangerouslySetInnerHTML={{ __html: content.product_overview_aside_title }} />
+    { content.product_overview_aside_title ? <div className="aside__text" dangerouslySetInnerHTML={{ __html: content.product_overview_aside_title }} /> : null }
       <div className="container">
         <div className="row">
           <div className="col-sm-4">

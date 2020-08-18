@@ -13,12 +13,13 @@ import AboutArchitects from "../components/about/block-architects";
 
 class Page extends Component {
   render() {
+
     const bannerContent = {
-      banner_image: this.props.data.allWordpressPage.edges[0].node.acf.banner_image,
-      banner_image_overlay: this.props.data.allWordpressPage.edges[0].node.acf.banner_image_overlay,
-      banner_heading: this.props.data.allWordpressPage.edges[0].node.acf.banner_heading,
-      banner_description: this.props.data.allWordpressPage.edges[0].node.acf.banner_description,
-      banner_buttons: this.props.data.allWordpressPage.edges[0].node.acf.banner_buttons
+      banner_image: this.props.data.allWordpressPage.edges[0].node.acf.main_banner_image,
+      banner_image_overlay: this.props.data.allWordpressPage.edges[0].node.acf.main_banner_image_overlay,
+      banner_heading: this.props.data.allWordpressPage.edges[0].node.acf.main_banner_heading,
+      banner_description: this.props.data.allWordpressPage.edges[0].node.acf.main_banner_sub_heading,
+      banner_buttons: this.props.data.allWordpressPage.edges[0].node.acf.main_banner_buttons
     }
 
     const aboutHistory = {
@@ -81,7 +82,7 @@ export default Page
 
 export const pageQuery = graphql`
   query {
-    allWordpressPage(filter: {path: {eq: "/about/"}}) {
+    allWordpressPage(filter: {template: {eq: "template-about.php"}}) {
       edges {
         node {
           yoast {
@@ -89,6 +90,14 @@ export const pageQuery = graphql`
             metadesc
           }
           acf {
+            main_banner_heading
+            main_banner_buttons {
+              button_style
+              button_text
+              button_link
+            }
+            main_banner_image_overlay
+            main_banner_sub_heading
             main_banner_image {
               localFile {
                 childImageSharp {
@@ -98,9 +107,6 @@ export const pageQuery = graphql`
                 }
               }
             }
-            main_banner_heading
-            main_banner_description
-            main_banner_image_overlay
             history_title
             history_aside_text
             history_year
