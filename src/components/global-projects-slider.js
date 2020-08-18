@@ -32,7 +32,7 @@ const GlobalProjectSlider = ({ ...props }) =>  {
             <div className="slide" key={project.node.wordpress_id}>
               <div className="project__box">
                 <div className="project_image">
-                {project.node.featured_media ? <Img fluid={project.node.featured_media.localFile.childImageSharp.fluid} alt="Alternative Text" /> : null }
+                {/* {project.node.featured_media ? <Img fluid={project.node.featured_media.localFile.childImageSharp.fluid} alt="Alternative Text" /> : null } */}
                 </div>
                 <div className="project_text">
                   <span className="project_title">{project.node.title}</span>

@@ -10,8 +10,6 @@ import ExpandableContent from "../components/productparent/expandable-content";
 
 class Page extends Component {
   render() {
-    console.log(this.props);
-
     const bannerContent = {
       banner_image: this.props.data.wordpressPage.acf.banner_image,
       banner_image_overlay: this.props.data.wordpressPage.acf.banner_image_overlay,
@@ -55,7 +53,7 @@ export const pageQuery = graphql`
         metadesc
       }
       acf {
-        banner_image {
+        main_banner_image {
           localFile {
             childImageSharp {
               fluid(maxWidth: 1170) {
@@ -64,9 +62,9 @@ export const pageQuery = graphql`
             }
           }
         }
-        banner_heading
-        banner_description
-        banner_image_overlay
+        main_banner_heading
+        main_banner_description
+        main_banner_image_overlay
         product_list {
           button_link
           button_text

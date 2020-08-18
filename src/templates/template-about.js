@@ -89,18 +89,18 @@ export const pageQuery = graphql`
             metadesc
           }
           acf {
-            banner_image {
+            main_banner_image {
               localFile {
                 childImageSharp {
-                  fluid(maxWidth: 1920) {
+                  fluid(maxWidth: 1170) {
                     ...GatsbyImageSharpFluid_withWebp
                   }
                 }
               }
             }
-            banner_image_overlay
-            banner_description
-            banner_heading
+            main_banner_heading
+            main_banner_description
+            main_banner_image_overlay
             history_title
             history_aside_text
             history_year

@@ -214,7 +214,7 @@ export const pageQuery = graphql`
       edges {
         node {
           acf {
-            banner_image {
+            main_banner_image {
               localFile {
                 childImageSharp {
                   fluid(maxWidth: 1170) {
@@ -223,9 +223,9 @@ export const pageQuery = graphql`
                 }
               }
             }
-            banner_heading
-            banner_description
-            banner_image_overlay
+            main_banner_heading
+            main_banner_description
+            main_banner_image_overlay
           }
         }
       }

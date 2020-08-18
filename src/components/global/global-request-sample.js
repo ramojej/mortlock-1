@@ -4,8 +4,6 @@ import Img from 'gatsby-image';
 const RequestSample = ({ ...props }) =>  {
   const content = props.data;
 
-  console.log(content);
-
   return (
     <div className="request__block">
       <div className="container">

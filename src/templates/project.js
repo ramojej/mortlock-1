@@ -130,14 +130,18 @@ export const pageQuery = graphql`
         }
       }
       acf {
-        banner_image_overlay
-        project_title
-        project_location
-        banner_buttons {
-          button_link
-          button_style
-          button_text
+        main_banner_image {
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 1170) {
+                ...GatsbyImageSharpFluid_withWebp
+              }
+            }
+          }
         }
+        main_banner_heading
+        main_banner_description
+        main_banner_image_overlay
         about_heading
         about_description
         specification_heading

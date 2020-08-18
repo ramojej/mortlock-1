@@ -23,7 +23,7 @@ class Page extends Component {
                     <div className="blog_article">
                       <div className="blog_image">
                         <Link to={post.node.path}>
-                          { post.node.featured_media ? <BackgroundImage fluid={post.node.featured_media.localFile.childImageSharp.fluid} alt="Alternative Text" /> : 'image' }
+                          {/* { post.node.featured_media ? <BackgroundImage fluid={post.node.featured_media.localFile.childImageSharp.fluid} alt="Alternative Text" /> : 'image' } */}
                         </Link>
                       </div>
                       <div className="blog_meta">
@@ -77,9 +77,6 @@ export const pageQuery = graphql`
           }
           slug
           path
-          acf {
-            project_location
-          }
           project_category
           wordpress_id
         }

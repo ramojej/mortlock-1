@@ -17,49 +17,50 @@ import PricingBlock from "../components/global/global-pricing-block";
 
 class Page extends Component {
   render() {
+    console.log(this.props)
 
     const bannerContent = {
-      banner_image: this.props.data.allWordpressPage.edges[0].node.acf.banner_image,
-      banner_image_overlay: this.props.data.allWordpressPage.edges[0].node.acf.banner_image_overlay,
-      banner_heading: this.props.data.allWordpressPage.edges[0].node.acf.banner_heading,
-      banner_description: this.props.data.allWordpressPage.edges[0].node.acf.banner_description,
-      banner_buttons: this.props.data.allWordpressPage.edges[0].node.acf.banner_buttons
+      banner_image: this.props.data.wordpressPage.acf.banner_image,
+      banner_image_overlay: this.props.data.wordpressPage.acf.banner_image_overlay,
+      banner_heading: this.props.data.wordpressPage.acf.banner_heading,
+      banner_description: this.props.data.wordpressPage.acf.banner_description,
+      banner_buttons: this.props.data.wordpressPage.acf.banner_button_wrap
     }
 
     const productOverview = {
-      product_title: this.props.data.allWordpressPage.edges[0].node.acf.product_title,
-      product_overview_aside_title: this.props.data.allWordpressPage.edges[0].node.acf.product_overview_aside_title,
-      product_aside_image: this.props.data.allWordpressPage.edges[0].node.acf.product_aside_image,
-      product_description: this.props.data.allWordpressPage.edges[0].node.acf.product_description
+      product_title: this.props.data.wordpressPage.acf.product_title,
+      product_overview_aside_title: this.props.data.wordpressPage.acf.product_overview_aside_title,
+      product_aside_image: this.props.data.wordpressPage.acf.product_aside_image,
+      product_description: this.props.data.wordpressPage.acf.product_description
     }
 
     const productBenefit = {
-      product_benefit_image: this.props.data.allWordpressPage.edges[0].node.acf.product_benefit_image,
-      product_benefit_title: this.props.data.allWordpressPage.edges[0].node.acf.product_benefit_title,
-      product_benefit_columns: this.props.data.allWordpressPage.edges[0].node.acf.product_benefit_columns
+      product_benefit_image: this.props.data.wordpressPage.acf.product_benefit_image,
+      product_benefit_title: this.props.data.wordpressPage.acf.product_benefit_title,
+      product_benefit_columns: this.props.data.wordpressPage.acf.product_benefit_columns
     }
 
     const prouctApplication = {
-      application_content: this.props.data.allWordpressPage.edges[0].node.acf.application_content,
-      structural_svg: this.props.data.allWordpressPage.edges[0].node.acf.structural_svg,
-      interior_svg: this.props.data.allWordpressPage.edges[0].node.acf.interior_svg,
-      exterior_svg: this.props.data.allWordpressPage.edges[0].node.acf.exterior_svg,
-      application_gallery_image: this.props.data.allWordpressPage.edges[0].node.acf.application_gallery_image
+      application_content: this.props.data.wordpressPage.acf.application_content,
+      structural_svg: this.props.data.wordpressPage.acf.structural_svg,
+      interior_svg: this.props.data.wordpressPage.acf.interior_svg,
+      exterior_svg: this.props.data.wordpressPage.acf.exterior_svg,
+      application_gallery_image: this.props.data.wordpressPage.acf.application_gallery_image
     }
 
     const requestSample = {
-      request_block_heading: this.props.data.allWordpressPage.edges[0].node.acf.request_block_heading,
-      request_sample_image: this.props.data.allWordpressPage.edges[0].node.acf.request_sample_image,
-      request_sample_description: this.props.data.allWordpressPage.edges[0].node.acf.request_sample_description
+      request_block_heading: this.props.data.wordpressPage.acf.request_block_heading,
+      request_sample_image: this.props.data.wordpressPage.acf.request_sample_image,
+      request_sample_description: this.props.data.wordpressPage.acf.request_sample_description
     }
 
     return (
       <Layout>
         <SEO 
-          description={this.props.data.allWordpressPage.edges[0].node.yoast.metadesc ? this.props.data.allWordpressPage.edges[0].node.yoast.metadesc : null} 
-          title={this.props.data.allWordpressPage.edges[0].node.yoast.title ? this.props.data.allWordpressPage.edges[0].node.yoast.title : null} 
+          description={this.props.data.wordpressPage.yoast.metadesc ? this.props.data.wordpressPage.yoast.metadesc : null} 
+          title={this.props.data.wordpressPage.yoast.title ? this.props.data.wordpressPage.yoast.title : null} 
         />
-        <Banner data={bannerContent} type="homepag" />
+        <Banner data={bannerContent} />
         <SubMenu />
         <div className="product__singlewrap">
           <ProductOverview data={productOverview} />
@@ -151,157 +152,153 @@ class Page extends Component {
 export default Page
 
 export const pageQuery = graphql`
-  query {
-    allWordpressPage(filter: {template: {eq: "template-product-single.php"}}) {
-      edges {
-        node {
-          yoast {
-            title
-            metadesc
-          }
-          acf {
-            banner_image {
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 1800) {
-                    ...GatsbyImageSharpFluid_withWebp
-                  }
-                }
+  query($id: String!) {
+    wordpressPage(id: { eq: $id }) {
+      yoast {
+        title
+        metadesc
+      }
+      acf {
+        main_banner_image {
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 1170) {
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
-            banner_image_overlay
-            banner_heading
-            banner_description
-            product_title
-            product_overview_aside_title
-            product_aside_image {
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 800) {
-                    ...GatsbyImageSharpFluid_withWebp
-                  }
-                }
-              }
-            }
-            product_description
-            product_benefit_image {
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 600) {
-                    ...GatsbyImageSharpFluid_withWebp
-                  }
-                }
-              }
-            }
-            product_benefit_title
-            product_benefit_columns {
-              benefit_or_button
-              button_text
-              button_link
-              icon_svg
-              benefit_title
-              benefit_description
-            }
-            structural_svg
-            interior_svg
-            exterior_svg
-            application_content
-            application_gallery_image {
-              gallery_image {
-                localFile {
-                  childImageSharp {
-                    fluid(maxWidth: 1200) {
-                      ...GatsbyImageSharpFluid_withWebp
-                    }
-                  }
-                }
-              }
-              image_title
-              image_application_tag
-            }
-            timber_species {
-              timber_small_thumbnail {
-                localFile {
-                  childImageSharp {
-                    fluid(maxWidth: 250) {
-                      ...GatsbyImageSharpFluid_withWebp
-                    }
-                  }
-                }
-              }
-              timber_title
-              timber_finishes_download_text
-              timber_finishes_button_style
-              timber_finishes {
-                finishes_image_thumbnail {
-                  localFile {
-                    childImageSharp {
-                      fluid(maxWidth: 500) {
-                        ...GatsbyImageSharpFluid_withWebp
-                      }
-                    }
-                  }
-                }
-                finishes_title
-              }
-            }
-            shape_and_size_title
-            batten_shapes {
-              shape_and_size_title
-              shape_icons {
-                shape_svg
-                shape_title
-              }
-            }
-            installation_image {
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 950) {
-                    ...GatsbyImageSharpFluid_withWebp
-                  }
-                }
-              }
-            }
-            installation_title
-            installation_description
-            installation_button_text
-            installation_button_link
-            installation_button_style
-            useful_info {
-              useful_icon
-              userful_info_heading
-              useful_info_text
-              useful_info_link_text
-            }
-            faq_title
-            faqs {
-              faq_title
-              faq_content
-            }
-            pricing_title
-            pricing_image {
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 650) {
-                    ...GatsbyImageSharpFluid_withWebp
-                  }
-                }
-              }
-            }
-            pricing_description
-            request_block_heading
-            request_sample_image {
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 600) {
-                    ...GatsbyImageSharpFluid_withWebp
-                  }
-                }
-              }
-            }
-            request_sample_description
           }
         }
+        main_banner_heading
+        main_banner_description
+        main_banner_image_overlay
+        product_title
+        product_overview_aside_title
+        product_aside_image {
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 800) {
+                ...GatsbyImageSharpFluid_withWebp
+              }
+            }
+          }
+        }
+        product_description
+        product_benefit_image {
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 600) {
+                ...GatsbyImageSharpFluid_withWebp
+              }
+            }
+          }
+        }
+        product_benefit_title
+        product_benefit_columns {
+          benefit_or_button
+          button_text
+          button_link
+          icon_svg
+          benefit_title
+          benefit_description
+        }
+        structural_svg
+        interior_svg
+        exterior_svg
+        application_content
+        application_gallery_image {
+          gallery_image {
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 1200) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
+          }
+          image_title
+          image_application_tag
+        }
+        timber_species {
+          timber_small_thumbnail {
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 250) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
+          }
+          timber_title
+          timber_finishes_download_text
+          timber_finishes_button_style
+          timber_finishes {
+            finishes_image_thumbnail {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 500) {
+                    ...GatsbyImageSharpFluid_withWebp
+                  }
+                }
+              }
+            }
+            finishes_title
+          }
+        }
+        shape_and_size_title
+        batten_shapes {
+          shape_and_size_title
+          shape_icons {
+            shape_svg
+            shape_title
+          }
+        }
+        installation_image {
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 950) {
+                ...GatsbyImageSharpFluid_withWebp
+              }
+            }
+          }
+        }
+        installation_title
+        installation_description
+        installation_button_text
+        installation_button_link
+        installation_button_style
+        useful_info {
+          useful_icon
+          userful_info_heading
+          useful_info_text
+          useful_info_link_text
+        }
+        faq_title
+        faqs {
+          faq_title
+          faq_content
+        }
+        pricing_title
+        pricing_image {
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 650) {
+                ...GatsbyImageSharpFluid_withWebp
+              }
+            }
+          }
+        }
+        pricing_description
+        request_block_heading
+        request_sample_image {
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 600) {
+                ...GatsbyImageSharpFluid_withWebp
+              }
+            }
+          }
+        }
+        request_sample_description
       }
     }
   }
