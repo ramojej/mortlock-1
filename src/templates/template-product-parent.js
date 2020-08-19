@@ -10,12 +10,13 @@ import ExpandableContent from "../components/productparent/expandable-content";
 
 class Page extends Component {
   render() {
+    
     const bannerContent = {
-      banner_image: this.props.data.wordpressPage.acf.banner_image,
-      banner_image_overlay: this.props.data.wordpressPage.acf.banner_image_overlay,
-      banner_heading: this.props.data.wordpressPage.acf.banner_heading,
-      banner_description: this.props.data.wordpressPage.acf.banner_description,
-      banner_buttons: this.props.data.wordpressPage.acf.banner_buttons
+      banner_image: this.props.data.wordpressPage.acf.product_parent_banner_image,
+      banner_image_overlay: this.props.data.wordpressPage.acf.main_banner_image_overlay,
+      banner_heading: this.props.data.wordpressPage.acf.product_parent_banner_heading,
+      banner_description: this.props.data.wordpressPage.acf.product_parent_banner_description,
+      banner_buttons: this.props.data.wordpressPage.acf.product_parent_banner_buttons
     }
 
     const boxesContent = this.props.data.wordpressPage.acf.product_list
@@ -25,8 +26,6 @@ class Page extends Component {
       description_button_text: this.props.data.wordpressPage.acf.description_button_text,
       description_additional_box: this.props.data.wordpressPage.acf.description_additional_box
     }
-
-    console.log(window.location.pathname);
 
     return (
       <Layout>
@@ -53,7 +52,7 @@ export const pageQuery = graphql`
         metadesc
       }
       acf {
-        main_banner_image {
+        product_parent_banner_image {
           localFile {
             childImageSharp {
               fluid(maxWidth: 1170) {
@@ -62,9 +61,14 @@ export const pageQuery = graphql`
             }
           }
         }
-        main_banner_heading
-        main_banner_description
+        product_parent_banner_heading
+        product_parent_banner_description
         main_banner_image_overlay
+        product_parent_banner_buttons {
+          button_text
+          button_link
+          button_style
+        }
         product_list {
           button_link
           button_text

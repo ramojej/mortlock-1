@@ -46,6 +46,7 @@ class Page extends Component {
       section_main_heading: this.props.data.allWordpressPage.edges[0].node.acf.section_main_heading,
       sustainability_aside_heading: this.props.data.allWordpressPage.edges[0].node.acf.sustainability_aside_heading,
       sustainability_main_content: this.props.data.allWordpressPage.edges[0].node.acf.sustainability_main_content,
+      sustainability_read_more_content: this.props.data.allWordpressPage.edges[0].node.acf.sustainability_read_more_content,
       sustainability_button_text: this.props.data.allWordpressPage.edges[0].node.acf.sustainability_button_text,
       sustainability_button_link: this.props.data.allWordpressPage.edges[0].node.acf.sustainability_button_link,
       sustainability_button_style: this.props.data.allWordpressPage.edges[0].node.acf.sustainability_button_style,
@@ -61,6 +62,8 @@ class Page extends Component {
       architect_main_image: this.props.data.allWordpressPage.edges[0].node.acf.architect_main_image
     }
 
+    const submenus = ['our-history', 'mission', 'sustainability', 'architects'];
+
     return (
       <Layout>
         <SEO 
@@ -68,7 +71,7 @@ class Page extends Component {
           title={this.props.data.allWordpressPage.edges[0].node.yoast.title} 
         />
         <Banner data={bannerContent} type="homepag" />
-        <SubMenu />
+        <SubMenu data={submenus} />
         <AboutHistory data={aboutHistory} />
         <AboutMission data={aboutMission} />
         <AboutSustainability data={aboutSustainability} />
@@ -146,6 +149,7 @@ export const pageQuery = graphql`
             section_main_heading
             sustainability_aside_heading
             sustainability_main_content
+            sustainability_read_more_content
             sustainability_button_text
             sustainability_button_link
             sustainability_button_style

@@ -2,27 +2,29 @@ import React, { Component } from "react";
 import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
+import SEO from "../components/seo";
 import Banner from '../components/global/banner';
 
 class Page extends Component {
   render() {
     const bannerContent = {
-      banner_image: this.props.data.allWordpressPage.edges[0].node.acf.banner_image,
-      banner_image_overlay: this.props.data.allWordpressPage.edges[0].node.acf.banner_image_overlay,
-      banner_heading: this.props.data.allWordpressPage.edges[0].node.acf.banner_heading,
-      banner_description: this.props.data.allWordpressPage.edges[0].node.acf.banner_description,
-      banner_buttons: this.props.data.allWordpressPage.edges[0].node.acf.banner_buttons
+      banner_image: this.props.data.allWordpressPage.edges[0].node.acf.request_banner_image,
+      banner_image_overlay: this.props.data.allWordpressPage.edges[0].node.acf.request_banner_image_overlay,
+      banner_heading: this.props.data.allWordpressPage.edges[0].node.acf.request_banner_heading,
+      banner_description: this.props.data.allWordpressPage.edges[0].node.acf.request_banner_description,
+      banner_buttons: this.props.data.allWordpressPage.edges[0].node.acf.request_banner_buttons
     }
 
     return (
       <Layout>
         <Banner data={bannerContent} />
+        <SEO 
+          description={this.props.data.allWordpressPage.edges[0].node.yoast.metadesc} 
+          title={this.props.data.allWordpressPage.edges[0].node.yoast.title} 
+        />
         <div className="contact__wrapper">
           <div className="container container__small">
-            <div className="quote__text">
-              <h2>fill out the form below to request a quote</h2>
-              <p>Our consultants are able to assist with budgeting and quotations for projects large or small. To make large scale projects and tenders easier, we are able measure from PDF drawings which are returned with a detailed BOQ and quotation for cross referencing. We also offer face to face proposal presentation where required. Please provide your details below including a brief description or project reference and one of our consultants will be in touch.</p>
-            </div>
+            <div className="quote__text" dangerouslySetInnerHTML={{ __html: this.props.data.allWordpressPage.edges[0].node.acf.request_a_quote_content }} />
             <div className="quote__formwrap">
               <form className="contact__form" action="#">
                 <div className="row">
@@ -103,19 +105,24 @@ export const pageQuery = graphql`
     allWordpressPage(filter: {template: {eq: "template-request-a-quote.php"}}) {
       edges {
         node {
+          yoast {
+            title
+            metadesc
+          }
           acf {
-            main_banner_image {
+            request_banner_image {
               localFile {
                 childImageSharp {
-                  fluid(maxWidth: 1170) {
+                  fluid(maxWidth: 1920) {
                     ...GatsbyImageSharpFluid_withWebp
                   }
                 }
               }
             }
-            main_banner_heading
-            main_banner_description
-            main_banner_image_overlay
+            request_banner_description
+            request_banner_heading
+            request_banner_image_overlay
+            request_a_quote_content
           }
         }
       }

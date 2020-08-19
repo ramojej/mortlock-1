@@ -4,40 +4,108 @@ import { graphql, Link } from "gatsby";
 import BackgroundImage from 'gatsby-background-image';
 
 import Layout from "../components/layout";
+import SEO from "../components/seo";
 
 class Page extends Component {
   render() {
     const data = this.props
 
-    console.log(data);
-
     return (
       <Layout>
-        <div className="project__wrapper">
+        <SEO 
+          description={this.props.data.allWordpressWpProject.edges[0].node.yoast.metadesc} 
+          title={this.props.data.allWordpressWpProject.edges[0].node.yoast.title} 
+        />
+        <div className="blog__wrapper">
           <div className="container">
-            <h1>Portfolio</h1>
-            <div className="blog__content">
-              <div className="row">
-                {data.data.allWordpressWpProject.edges.map(post => (
-                  <div className="col-sm-6" key={post.node.wordpress_id}>
-                    <div className="blog_article">
-                      <div className="blog_image">
-                        <Link to={post.node.path}>
-                          {/* { post.node.featured_media ? <BackgroundImage fluid={post.node.featured_media.localFile.childImageSharp.fluid} alt="Alternative Text" /> : 'image' } */}
-                        </Link>
-                      </div>
-                      <div className="blog_meta">
-                        { post.node.categories ? <span className="post_category">{post.node.categories.map((category, index) => ( <span key={index}>{category.name} </span> ))}</span> : null }
-                        <span className="date">{post.node.date}</span>
-                      </div>
-                      <div className="blog_text">
-                        <h3 dangerouslySetInnerHTML={{ __html: post.node.title }} />
-                        <div dangerouslySetInnerHTML={{ __html: post.node.excerpt }}  />
-                        <Link className="link" to={post.node.path}>Read more</Link>
+            <div className="blog__heading">
+              <h1>Portfolio</h1>
+              <div className="article__metas">
+                <span className="filter__button">Show Filters <i>+</i></span>
+              </div>
+            </div>
+            <div className="project__wrapper">
+              <div className="filter__wrapper filter--active">
+                <span className="filter__button">Hide Filters <i>-</i></span>
+                <div className="aside">
+                  <span className="title">Product</span>
+                  <ul className="list">
+                    <li>
+                      <label className="custom-check">
+                        <input type="checkbox"/>
+                        <span className="custom-text">Timber Decking</span>
+                        <span className="custom-box"></span>
+                      </label>
+                    </li>
+                    <li>
+                      <label className="custom-check">
+                        <input type="checkbox"/>
+                        <span className="custom-text">Timber Walls</span>
+                        <span className="custom-box"></span>
+                      </label>
+                    </li>
+                    <li>
+                      <label className="custom-check">
+                        <input type="checkbox"/>
+                        <span className="custom-text">Timber Ceilings</span>
+                        <span className="custom-box"></span>
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+                <div className="aside">
+                  <span className="title">Project Type</span>
+                  <ul className="list">
+                    <li>
+                      <label className="custom-check">
+                        <input type="checkbox"/>
+                        <span className="custom-text">Residential</span>
+                        <span className="custom-box"></span>
+                      </label>
+                    </li>
+                    <li>
+                      <label className="custom-check">
+                        <input type="checkbox"/>
+                        <span className="custom-text">Commercial</span>
+                        <span className="custom-box"></span>
+                      </label>
+                    </li>
+                    <li>
+                      <label className="custom-check">
+                        <input type="checkbox"/>
+                        <span className="custom-text">Education &amp; Culture</span>
+                        <span className="custom-box"></span>
+                      </label>
+                    </li>
+                    <li>
+                      <label className="custom-check">
+                        <input type="checkbox"/>
+                        <span className="custom-text">Public Spaces</span>
+                        <span className="custom-box"></span>
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="project__content filter--active">
+                <div className="row">
+                  {data.data.allWordpressWpProject.edges.map(post => (
+                    <div className="col-sm-6" key={post.node.wordpress_id}>
+                      <div className="project_article">
+                        <div className="blog_image">
+                          { post.node.featured_media ? <BackgroundImage fluid={post.node.featured_media.localFile.childImageSharp.fluid} alt="Alternative Text" /> : 'image' }
+                          <div className="image_overlay">
+                            <Link className="button primary" to={post.node.path}>View Project</Link>
+                          </div>
+                        </div>
+                        <div className="project_desc">
+                        <h3><Link to={post.node.path}>{post.node.title}</Link></h3>
+                        <span className="location">{post.node.acf.project_banner_description}</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
             <div className="pagination">
@@ -79,6 +147,13 @@ export const pageQuery = graphql`
           path
           project_category
           wordpress_id
+          acf {
+            project_banner_description
+          }
+          yoast {
+            title
+            metadesc
+          }
         }
       }
     }

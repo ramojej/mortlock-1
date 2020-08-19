@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Img from 'gatsby-image';
-
-import Button from '@src/components/global/button';
+import { Link } from 'gatsby';
 
 const AboutArchitects = ({ ...props }) =>  {
   const content = props.data;
+  const [readMore, setReadMore] = useState(false);
+
+  const readMoreLink = (e) => {
+    setReadMore(true);
+  }
 
   return (
     <div className="sustainability__block">
@@ -15,12 +19,9 @@ const AboutArchitects = ({ ...props }) =>  {
           <Img fluid={content.sustainability_main_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
         </div>
         <div className="sustainability__contentbox">
-          <div dangerouslySetInnerHTML={{ __html: content.sustainability_main_content }} />
-          <Button
-                link={content.architech_button_link} 
-                text={content.sustainability_button_text} 
-                style={content.sustainability_button_style} 
-          />
+          <div className="content" dangerouslySetInnerHTML={{ __html: content.sustainability_main_content }} />
+          <div className={ readMore ? 'text-hidden visible' : 'text-hidden' } dangerouslySetInnerHTML={{ __html: content.sustainability_read_more_content }} />
+          { !readMore ? <span className={(content.sustainability_button_style) ? 'button ' + content.sustainability_button_style : 'button'} onClick={ () => readMoreLink() }>{content.sustainability_button_text}</span> : null }
         </div>
       </div>
     </div>

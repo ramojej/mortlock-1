@@ -63,7 +63,7 @@ table {
 
   td {
     border-bottom: 1px solid #312f30;
-    padding: 10px 40px;
+    padding: 11px 26px;
 
     &:first-child {
       border-right: 1px solid #312f30;
@@ -99,5 +99,51 @@ figure {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
+  }
+}
+
+.wp-block-gallery {
+  display: block;
+  width: 100%;
+
+  .blocks-gallery-item {
+    padding: 0;
+
+    &:before {
+      display: none;
+    }
+
+  }
+}
+
+.blocks-gallery-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+
+  .blocks-gallery-item {
+    padding: 0 15px 15px;
+  }
+}
+
+.columns-2 {
+  @include breakpoint('small') {
+    .blocks-gallery-item {
+      width: 50%;
+    }
+  }
+}
+.columns-3 {
+  @include breakpoint('small') {
+    .blocks-gallery-item {
+      width: 33.33%;
+    }
+  }
+}
+.columns-4 {
+  @include breakpoint('small') {
+    .blocks-gallery-item {
+      width: 25%;
+    }
   }
 }

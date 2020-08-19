@@ -39,7 +39,7 @@ const AboutMission = ({ ...props }) =>  {
             <h2>{content.our_value_heading}</h2>
             <div className="row">
               {content.our_value_boxes.map((box, index) => (
-                <div className="col-sm-3">
+                <div className="col-sm-3" key={index}>
                   <div className="article__box">
                     <div className="icon_box">
                       <div dangerouslySetInnerHTML={{ __html: box.icon_svg_code }} />

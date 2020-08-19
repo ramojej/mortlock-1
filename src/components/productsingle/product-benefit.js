@@ -24,7 +24,8 @@ const ProductBenefit = ({ ...props }) =>  {
                     <div className="btn__wrap">
                       <Button
                         link={benefit.button_link} 
-                        text={benefit.button_text} 
+                        text={benefit.button_text}
+                        style={benefit.button_style}
                       />
                     </div> :
                     <div className="icon__wrapper">

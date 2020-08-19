@@ -134,7 +134,7 @@ const Header = ({ data, ...props }) => (
                                                       return (
                                                         <div className="col-md-4" key={index}>
                                                           <div className="menubox">
-                                                            <Link to="/timber-decking/proplank">
+                                                            <Link to={dropmenu.menu_link.replace('https://mortlock.dilatedigital.com.au','')}>
                                                               <span className="menuTitle">{dropmenu.menu_title}</span>
                                                               <p>{dropmenu.menu_description}</p>
                                                               <div className="imagebox">
@@ -165,7 +165,7 @@ const Header = ({ data, ...props }) => (
                                                       return (
                                                         <div className="col-md-4" key={index}>
                                                           <div className="menubox">
-                                                            <Link to="/timber-decking/proplank">
+                                                          <Link to={dropmenu.menu_link.replace('https://mortlock.dilatedigital.com.au','')}>
                                                               <span className="menuTitle">{dropmenu.menu_title}</span>
                                                               <p>{dropmenu.menu_description}</p>
                                                               <div className="imagebox">
@@ -196,7 +196,7 @@ const Header = ({ data, ...props }) => (
                                                       return (
                                                         <div className="col-md-3" key={index}>
                                                           <div className="menubox">
-                                                            <Link to="/timber-decking/proplank">
+                                                          <Link to={dropmenu.menu_link.replace('https://mortlock.dilatedigital.com.au','')}>
                                                               <span className="menuTitle">{dropmenu.menu_title}</span>
                                                               <p>{dropmenu.menu_description}</p>
                                                               <div className="imagebox">

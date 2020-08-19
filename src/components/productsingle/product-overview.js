@@ -10,7 +10,9 @@ const ProductOverview = ({ ...props }) =>  {
         <div className="row">
           <div className="col-sm-4">
             <h2 dangerouslySetInnerHTML={{ __html: content.product_title }} />
-            <Img fluid={content.product_aside_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
+            <div className="aside__image">
+              <Img fluid={content.product_aside_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
+            </div>
           </div>
           <div className="col-sm-offset-1 col-sm-7" dangerouslySetInnerHTML={{ __html: content.product_description }}  />
         </div>

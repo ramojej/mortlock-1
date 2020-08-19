@@ -1,19 +1,24 @@
 import React, { Component } from "react";
 import Img from 'gatsby-image';
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
+
+import BackgroundImage from 'gatsby-background-image';
 
 import Layout from '../components/layout';
+import SEO from "../components/seo";
 
 class Post extends Component {
   render() {
     const pageData = this.props.data.wordpressPost
     const relatedData = this.props.data.allWordpressPost
 
-    console.log(pageData);
-
     
     return (
       <Layout headerColor="dark">
+        <SEO 
+          description={pageData.yoast.metadesc} 
+          title={pageData.yoast.title} 
+        />
         <div className="single__wrapper">
           <div className="container">
             <div className="post__heading">
@@ -41,9 +46,26 @@ class Post extends Component {
             <div className="container">
               <h2>Related Articles</h2>
               <div className="row">
-                <div className="col-sm-6">
-
-                </div>
+                {relatedData.edges ? relatedData.edges.map((relatedpost, index) => (
+                  <div className="col-sm-6" key={index}>
+                    <div className="blog_article">
+                      <div className="blog_image">
+                        <Link to={relatedpost.node.path}>
+                          { relatedpost.node.featured_media ? <BackgroundImage fluid={relatedpost.node.featured_media.localFile.childImageSharp.fluid} alt="Alternative Text" /> : 'image' }
+                        </Link>
+                      </div>
+                      <div className="blog_meta">
+                        { relatedpost.node.categories ? <span className="post_category">{relatedpost.node.categories.map((category, index) => ( <span key={index}>{category.name} </span> ))}</span> : null }
+                        <span className="date">{relatedpost.node.date}</span>
+                      </div>
+                      <div className="blog_text">
+                        <h3 dangerouslySetInnerHTML={{ __html: relatedpost.node.title }} />
+                        <div dangerouslySetInnerHTML={{ __html: relatedpost.node.excerpt }}  />
+                        <Link className="link" to={relatedpost.node.path}>Read more</Link>
+                      </div>
+                    </div>
+                  </div>
+                )) : null }
               </div>
             </div>
           </div>
@@ -92,6 +114,9 @@ export const pageQuery = graphql`
           type
           excerpt
           path
+          categories {
+            name
+          }
           featured_media {
             localFile {
               childImageSharp {

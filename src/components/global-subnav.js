@@ -5,10 +5,9 @@ const GlobalSubNav = ({ ...props }) =>  {
     <div className="subnav__holder">
       <div className="container">
         <ul className="subnav">
-          <li><a href="https://dilate.com.au">Our History</a></li>
-          <li><a href="https://dilate.com.au">Mission</a></li>
-          <li><a href="https://dilate.com.au">Sustainability</a></li>
-          <li><a href="https://dilate.com.au">Architects</a></li>
+          {props.data ? props.data.map((item, index) => (
+            <li key={index}><a href={`#${item}`}>{item.replace('-', ' ')}</a></li>
+          )) : null }
         </ul>
       </div>
     </div>

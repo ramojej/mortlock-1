@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
+import SEO from "../components/seo";
 import Banner from "../components/global/banner";
 import GeneralText from "../components/general-text";
 import GlobalNewsSlider from "../components/global-news-slider";

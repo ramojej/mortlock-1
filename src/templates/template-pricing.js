@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { graphql } from "gatsby";
+import Img from 'gatsby-image';
 
 import SEO from "../components/seo";
 import Layout from "../components/layout";
@@ -7,14 +8,16 @@ import Banner from '../components/global/banner';
 
 class Page extends Component {
   render() {
+
     const bannerContent = {
-      banner_image: this.props.data.allWordpressPage.edges[0].node.acf.banner_image,
-      banner_image_overlay: this.props.data.allWordpressPage.edges[0].node.acf.banner_image_overlay,
-      banner_heading: this.props.data.allWordpressPage.edges[0].node.acf.banner_heading,
-      banner_description: this.props.data.allWordpressPage.edges[0].node.acf.banner_description,
-      banner_buttons: this.props.data.allWordpressPage.edges[0].node.acf.banner_buttons
+      banner_image: this.props.data.allWordpressPage.edges[0].node.acf.pricing_banner_image,
+      banner_image_overlay: this.props.data.allWordpressPage.edges[0].node.acf.pricing_banner_image_overlay,
+      banner_heading: this.props.data.allWordpressPage.edges[0].node.acf.pricing_banner_heading,
+      banner_description: this.props.data.allWordpressPage.edges[0].node.acf.pricing_banner_description,
+      banner_buttons: this.props.data.allWordpressPage.edges[0].node.acf.pricing_banner_buttons
     }
 
+    const pricingImage = this.props.data.allWordpressPage.edges[0].node.acf.pricing_image
     return (
       <Layout>
         <SEO 
@@ -25,15 +28,12 @@ class Page extends Component {
         <div className="contact__wrapper">
           <div className="container">
             <div className="quote__text">
-              <h2>pricing &amp; product guide</h2>
+              <h2 dangerouslySetInnerHTML={{ __html: this.props.data.allWordpressPage.edges[0].node.acf.pricing_heading }} />
             </div>
             <div className="row">
               <div className="col-sm-6">
                 <div className="pricing_formwrap">
-                  <div>
-                    <p>Our product guide gives illustrations, specifications, portfolio photo examples and a pricing guide to assist with budgeting.</p>
-                    <p>Provide your contact details below for immediate access to our Product guide, as well as full access on your PC to all our other specific product flyers and resource downloads</p>
-                  </div>
+                  <div dangerouslySetInnerHTML={{ __html: this.props.data.allWordpressPage.edges[0].node.acf.pricing_page_description }} />
                   <form className="contact__form" action="#">
                     <div className="row">
                       <div className="col-sm-6">
@@ -126,7 +126,7 @@ class Page extends Component {
               </div>
               <div className="col-sm-6">
                 <div className="pricing__image">
-                  <img />
+                  {pricingImage ? <Img fluid={pricingImage.localFile.childImageSharp.fluid} alt="Alternative Text" /> : null}
                 </div>
               </div>
             </div>
@@ -150,18 +150,34 @@ export const pageQuery = graphql`
             metadesc
           }
           acf {
-            main_banner_image {
+            pricing_banner_image {
               localFile {
                 childImageSharp {
-                  fluid(maxWidth: 1170) {
+                  fluid(maxWidth: 500) {
                     ...GatsbyImageSharpFluid_withWebp
                   }
                 }
               }
             }
-            main_banner_heading
-            main_banner_description
-            main_banner_image_overlay
+            pricing_banner_image_overlay
+            pricing_banner_heading
+            pricing_banner_description
+            pricing_banner_buttons {
+              button_text
+              button_link
+              button_style
+            }
+            pricing_image {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 500) {
+                    ...GatsbyImageSharpFluid_withWebp
+                  }
+                }
+              }
+            }
+            pricing_heading
+            pricing_page_description 
           }
         }
       }

@@ -155,7 +155,7 @@ exports.createPages = async ({ graphql, actions }) => {
         break;
       case "template-portfolio-parent.php":
         const projects = allWordpressWpProject.edges
-        const projectsPerPage = 2
+        const projectsPerPage = 4
         const numberOfProjects = Math.ceil(projects.length / projectsPerPage)
 
         Array.from({ length: numberOfProjects }).forEach((project, index) => {

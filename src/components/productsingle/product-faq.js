@@ -1,25 +1,20 @@
 import React from 'react';
 
 const ProductFaq = ({ ...props }) =>  {
+  const content = props.data;
   return (
     <div className="faq__block">
       <div className="general-heading">
-        <h2>FAQS</h2>
-        <span className="info">Select timber species below to see their corresponding finishes</span>
+        <h2>{content.faq_title}</h2>
       </div>
-      <div className="faq__List">
-        <div className="faq__item">
-          <span className="title">What size decking joists should I use?</span>
-          <div className="faq__slide">
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. </p>
+      <div className="faq__list">
+        {content.faqs ? content.faqs.map((faq,index) => (
+          <div className="faq__item" key={index}>
+            <span className="icon_wrap"><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></span>
+            <span className="title" dangerouslySetInnerHTML={{ __html: faq.faq_title }} />
+            <div className="faq__slide" dangerouslySetInnerHTML={{ __html: faq.faq_content }} />
           </div>
-        </div>
-        <div className="faq__item">
-          <span className="title">What size decking joists should I use?</span>
-          <div className="faq__slide">
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. </p>
-          </div>
-        </div>
+        )) : null }
       </div>
     </div>
   )
