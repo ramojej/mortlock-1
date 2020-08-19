@@ -19,7 +19,7 @@ class Page extends Component {
                 <form className="form__search">
                   <div className="search__wrap">
                     <span className="title">search</span>
-                    <input type="text" placeholder="search keywords here..." />
+                    <input type="text" name="search" aria-label="Search" placeholder="search keywords here..." />
                   </div>
                   <div className="search__wrap">
                     <span className="title">filter</span>

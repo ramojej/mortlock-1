@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class ContactForm extends Component {
+class RequestAQuote extends Component {
   render() {
     return (
       <form className="contact__form" action="#">
@@ -35,7 +35,7 @@ class ContactForm extends Component {
             <div className="form_group">
               <label htmlFor="phone">Phone</label>
               <div className="form_input">
-                <input aria-label="Company name" type="text" name="phone" id="phone" placeholder="Enter your phone number" />
+                <input aria-label="Phone" type="text" name="phone" id="phone" placeholder="Enter your phone number" />
               </div>
             </div>
           </div>
@@ -60,7 +60,7 @@ class ContactForm extends Component {
         <div className="form_group">
           <label htmlFor="message">Message</label>
           <div className="form_input">
-            <textarea aria-label="Message" id="message" placeholder="Please leave a detailed message here..." name="message"></textarea>
+            <textarea aria-label="Message" id="message" placeholder="Please leave a detailed message here..." name="message" />
           </div>
         </div>
         <div className="btn_wrap">
@@ -71,4 +71,4 @@ class ContactForm extends Component {
   }
 }
 
-export default ContactForm;
+export default RequestAQuote;

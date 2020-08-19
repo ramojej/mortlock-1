@@ -53,14 +53,8 @@ const position = {
   lng: -122.214
 }
 
-const divStyle = {
-  background: `white`,
-  border: `1px solid #ccc`,
-  padding: 15
-}
-
 const onLoad = polygon => {
-  console.log("polygon: ", polygon);
+  
 }
 
 class Page extends Component {
@@ -176,9 +170,9 @@ export const pageQuery = graphql`
             contact_banner_heading
             contact_banner_description
             contact_banner_buttons {
-              button_text
-              button_link
-              button_style
+              contact_button_text
+              contact_button_link
+              contact_button_style
             }
             contact_heading
             location_heading

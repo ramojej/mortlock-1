@@ -102,7 +102,7 @@ const Header = ({ data, ...props }) => (
                 </Link>
               </div>
               <nav className="header__nav">
-                <span className="nav__hamburger" onClick={() => toggleMenuDropdown() }><span>Opener</span></span>
+                <span className="nav__hamburger" role="button" tabIndex={0} onKeyDown={ () => toggleMenuDropdown() } onClick={() => toggleMenuDropdown() }><span>Opener</span></span>
                 <div className="menu__wrapper">
                   <ul className="main__nav">
                       {(() => {
@@ -118,7 +118,7 @@ const Header = ({ data, ...props }) => (
                                   <>
                                     <div className="menu__linkwrap">
                                       <Link to={"/" + menu.slug}>{menu.title}</Link>
-                                      <span className="drop__control" onClick={ e => toggleMenuAccordion(e) }>
+                                      <span className="drop__control" role="button" tabIndex={0} onKeyDown={ e => toggleMenuAccordion(e) } onClick={ e => toggleMenuAccordion(e) }>
                                         <svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m49.938 55.984-37.711-36.293-12.227 12.742 49.938 47.875 50.062-47.875-12.227-12.742z" /></svg>
                                       </span>
                                     </div>

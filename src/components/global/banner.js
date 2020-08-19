@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Img from 'gatsby-image';
 import Slider from "react-slick";
 
 import BackgroundImage from 'gatsby-background-image';

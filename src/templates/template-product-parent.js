@@ -63,11 +63,11 @@ export const pageQuery = graphql`
         }
         product_parent_banner_heading
         product_parent_banner_description
-        main_banner_image_overlay
+        product_parent_banner_overlay
         product_parent_banner_buttons {
-          button_text
-          button_link
-          button_style
+          product_parent_button_link
+          product_parent_button_text
+          product_parent_button_style
         }
         product_list {
           button_link

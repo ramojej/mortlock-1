@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'gatsby';
 import Img from 'gatsby-image';
+
+import PricingForm from "../forms/pricing-form-3502";
 
 const PricingBlock = ({ ...props }) =>  {
   const content = props.data;
@@ -14,54 +15,7 @@ const PricingBlock = ({ ...props }) =>  {
               <h2 dangerouslySetInnerHTML={{ __html: content.pricing_title }} />
               <div dangerouslySetInnerHTML={{ __html: content.pricing_description }} />
               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p>
-              <form className="contact__form" action="#">
-                <div className="row">
-                  <div className="col-sm-6">
-                    <div className="form_group">
-                      <label htmlFor="firstname">first name</label>
-                      <div className="form_input">
-                        <input type="text" name="firstname" placeholder="Enter your first name" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-sm-6">
-                    <div className="form_group">
-                      <label htmlFor="lastname">last name</label>
-                      <div className="form_input">
-                        <input type="text" name="lastname" placeholder="Enter your last name" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-sm-6">
-                    <div className="form_group">
-                      <label htmlFor="email">Email</label>
-                      <div className="form_input">
-                        <input type="text" name="email" placeholder="Enter your email address" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-sm-6">
-                    <div className="form_group">
-                      <label htmlFor="phone">Phone</label>
-                      <div className="form_input">
-                        <input type="text" name="phone" placeholder="Enter your phone number" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="form_group">
-                  <label htmlFor="company">company name</label>
-                  <div className="form_input">
-                    <input type="text" name="company" placeholder="Enter company name" />
-                  </div>
-                </div>
-                <div className="btn_wrap">
-                  <button className="button" type="submit">Submit</button>
-                  <Link className="button blackoutline" to="/contact-us/">know exactly what you’re looking for? click here</Link>
-                </div>
-              </form>
+              <PricingForm />
             </div>
           </div>
           <div className="col-sm-offset-1 col-sm-5">

@@ -86,8 +86,6 @@ class IndexPage extends Component {
       allTestimonials: this.props.data.allWordpressAcfOptions.edges[0].node.options.client_testimonials,
     }
 
-    console.log(this.props.data.allWordpressPage.edges[0].node);
-
     return (
       <Layout>
         <SEO 

@@ -31,23 +31,16 @@ class Page extends Component {
                   <span className="title">Product</span>
                   <ul className="list">
                     <li>
-                      <label className="custom-check">
-                        <input type="checkbox"/>
+                      <label className="custom-check" htmlFor="timber">
+                        <input role="button" type="checkbox" aria-label="Timber" id="timber" name="timber"/>
                         <span className="custom-text">Timber Decking</span>
                         <span className="custom-box"></span>
                       </label>
                     </li>
                     <li>
-                      <label className="custom-check">
-                        <input type="checkbox"/>
-                        <span className="custom-text">Timber Walls</span>
-                        <span className="custom-box"></span>
-                      </label>
-                    </li>
-                    <li>
-                      <label className="custom-check">
-                        <input type="checkbox"/>
-                        <span className="custom-text">Timber Ceilings</span>
+                      <label className="custom-check" htmlFor="timber1">
+                        <input type="checkbox" id="timber1" aria-label="Timber" name="timber1"/>
+                        <span className="custom-text">Timber Decking</span>
                         <span className="custom-box"></span>
                       </label>
                     </li>
@@ -57,30 +50,16 @@ class Page extends Component {
                   <span className="title">Project Type</span>
                   <ul className="list">
                     <li>
-                      <label className="custom-check">
-                        <input type="checkbox"/>
+                      <label className="custom-check" htmlFor="residential">
+                        <input type="checkbox" id="residential" aria-label="Timber" name="residential" />
                         <span className="custom-text">Residential</span>
                         <span className="custom-box"></span>
                       </label>
                     </li>
                     <li>
-                      <label className="custom-check">
-                        <input type="checkbox"/>
-                        <span className="custom-text">Commercial</span>
-                        <span className="custom-box"></span>
-                      </label>
-                    </li>
-                    <li>
-                      <label className="custom-check">
-                        <input type="checkbox"/>
-                        <span className="custom-text">Education &amp; Culture</span>
-                        <span className="custom-box"></span>
-                      </label>
-                    </li>
-                    <li>
-                      <label className="custom-check">
-                        <input type="checkbox"/>
-                        <span className="custom-text">Public Spaces</span>
+                      <label className="custom-check" htmlFor="residential1">
+                        <input type="checkbox" id="residential1" aria-label="Timber" name="residential1" />
+                        <span className="custom-text">Residential</span>
                         <span className="custom-box"></span>
                       </label>
                     </li>

@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { graphql } from "gatsby";
+import BackgroundImage from 'gatsby-background-image';
 
 import SEO from "../components/seo";
-import Banner from '../components/global/banner';
 import SubMenu from '../components/global-subnav';
 import Layout from '../components/layout';
+import Button from "../components/global/button";
 
 import AboutHistory from "../components/about/block-history";
 import AboutMission from "../components/about/block-value";
@@ -15,11 +16,11 @@ class Page extends Component {
   render() {
 
     const bannerContent = {
-      banner_image: this.props.data.allWordpressPage.edges[0].node.acf.main_banner_image,
-      banner_image_overlay: this.props.data.allWordpressPage.edges[0].node.acf.main_banner_image_overlay,
-      banner_heading: this.props.data.allWordpressPage.edges[0].node.acf.main_banner_heading,
-      banner_description: this.props.data.allWordpressPage.edges[0].node.acf.main_banner_sub_heading,
-      banner_buttons: this.props.data.allWordpressPage.edges[0].node.acf.main_banner_buttons
+      banner_image: this.props.data.allWordpressPage.edges[0].node.acf.about_banner_image,
+      banner_image_overlay: this.props.data.allWordpressPage.edges[0].node.acf.about_banner_image_overlay,
+      banner_heading: this.props.data.allWordpressPage.edges[0].node.acf.about_banner_heading,
+      banner_description: this.props.data.allWordpressPage.edges[0].node.acf.about_banner_sub_heading,
+      banner_buttons: this.props.data.allWordpressPage.edges[0].node.acf.about_banner_buttons
     }
 
     const aboutHistory = {
@@ -70,7 +71,27 @@ class Page extends Component {
           description={this.props.data.allWordpressPage.edges[0].node.yoast.metadesc} 
           title={this.props.data.allWordpressPage.edges[0].node.yoast.title} 
         />
-        <Banner data={bannerContent} type="homepag" />
+        <div className='inner__banner'>
+          <div className="bg__image has-overlay">
+            { bannerContent.banner_image ? <BackgroundImage fluid={bannerContent.banner_image.localFile.childImageSharp.fluid} /> : null }
+          </div>
+          <div className="container">
+            <div className="inner__bannerbox">
+              <div className="box">
+                <h1 className={ !bannerContent.banner_description ? "text-center" : null } dangerouslySetInnerHTML={{ __html: bannerContent.banner_heading }} />
+                { bannerContent.banner_description ? <span className="inner__bannertext" dangerouslySetInnerHTML={{ __html: bannerContent.banner_description }} /> : null }
+                { bannerContent.banner_buttons ?
+                  <div className="inner__bannerbuttons">
+                    {bannerContent.banner_buttons.map((button, index) => (
+                      (index === 1) ? 
+                      <Button type="external" link={button.about_banner_button_link} text={button.about_banner_button_text} style={button.about_banner_button_style} key={index} /> : 
+                      <Button link={button.about_banner_button_link} text={button.about_banner_button_text} style={button.about_banner_button_style} key={index} /> 
+                    ))}
+                  </div> : null }
+              </div>
+            </div>
+          </div>
+        </div>
         <SubMenu data={submenus} />
         <AboutHistory data={aboutHistory} />
         <AboutMission data={aboutMission} />
@@ -93,15 +114,15 @@ export const pageQuery = graphql`
             metadesc
           }
           acf {
-            main_banner_heading
-            main_banner_buttons {
-              button_style
-              button_text
-              button_link
+            about_banner_heading
+            about_banner_buttons {
+              about_banner_button_text
+              about_banner_button_style
+              about_banner_button_link
             }
-            main_banner_image_overlay
-            main_banner_sub_heading
-            main_banner_image {
+            about_banner_image_overlay
+            about_banner_sub_heading
+            about_banner_image {
               localFile {
                 childImageSharp {
                   fluid(maxWidth: 1170) {

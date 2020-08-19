@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { graphql, Link } from "gatsby";
+import BackgroundImage from 'gatsby-background-image';
 
 import Layout from '../components/layout';
 import SEO from "../components/seo";
-import Banner from '../components/global/banner';
 import SubMenu from '../components/global-subnav';
+import Button from "../components/global/button";
 
 import ProductOverview from "../components/productsingle/product-overview";
 import ProductBenefit from "../components/productsingle/product-benefit";
@@ -18,13 +19,13 @@ import PricingBlock from "../components/global/global-pricing-block";
 
 
 class Page extends Component {
-  render() {    
+  render() {
     const bannerContent = {
-      banner_image: this.props.data.wordpressPage.acf.main_banner_image,
-      banner_image_overlay: this.props.data.wordpressPage.acf.main_banner_image_overlay,
-      banner_heading: this.props.data.wordpressPage.acf.main_banner_heading,
-      banner_description: this.props.data.wordpressPage.acf.main_banner_sub_heading,
-      banner_buttons: this.props.data.wordpressPage.acf.main_banner_buttons
+      banner_image: this.props.data.wordpressPage.acf.product_single_banner_image,
+      banner_image_overlay: this.props.data.wordpressPage.acf.product_single_banner_image_overlay,
+      banner_heading: this.props.data.wordpressPage.acf.product_single_banner_heading,
+      banner_description: this.props.data.wordpressPage.acf.product_single_banner_sub_heading,
+      banner_buttons: this.props.data.wordpressPage.acf.product_single_banner_buttons
     }
 
     const productOverview = {
@@ -86,7 +87,27 @@ class Page extends Component {
           description={this.props.data.wordpressPage.yoast.metadesc ? this.props.data.wordpressPage.yoast.metadesc : null} 
           title={this.props.data.wordpressPage.yoast.title ? this.props.data.wordpressPage.yoast.title : null} 
         />
-        <Banner data={bannerContent} />
+        <div className='inner__banner'>
+          <div className="bg__image has-overlay">
+            { bannerContent.banner_image ? <BackgroundImage fluid={bannerContent.banner_image.localFile.childImageSharp.fluid} /> : null }
+          </div>
+          <div className="container">
+            <div className="inner__bannerbox">
+              <div className="box">
+                <h1 className={ !bannerContent.banner_description ? "text-center" : null } dangerouslySetInnerHTML={{ __html: bannerContent.banner_heading }} />
+                { bannerContent.banner_description ? <span className="inner__bannertext" dangerouslySetInnerHTML={{ __html: bannerContent.banner_description }} /> : null }
+                { bannerContent.banner_buttons ?
+                  <div className="inner__bannerbuttons">
+                    {bannerContent.banner_buttons.map((button, index) => (
+                      (index === 1) ? 
+                      <Button type="external" link={button.product_single_button_link} text={button.product_single_button_text} style={button.product_single_button_style} key={index} /> : 
+                      <Button link={button.product_single_button_link} text={button.product_single_button_text} style={button.product_single_button_style} key={index} /> 
+                    ))}
+                  </div> : null }
+              </div>
+            </div>
+          </div>
+        </div>
         <SubMenu data={submenus} />
         <div className="product__singlewrap">
           <ProductOverview data={productOverview} />
@@ -257,15 +278,15 @@ export const pageQuery = graphql`
         metadesc
       }
       acf {
-        main_banner_sub_heading
-        main_banner_heading
-        main_banner_image_overlay
-        main_banner_buttons {
-          button_text
-          button_style
-          button_link
+        product_single_banner_sub_heading
+        product_single_banner_heading
+        product_single_banner_image_overlay
+        product_single_banner_buttons {
+          product_single_button_link
+          product_single_button_text
+          product_single_button_style
         }
-        main_banner_image {
+        product_single_banner_image {
           localFile {
             childImageSharp {
               fluid(maxWidth: 1920) {

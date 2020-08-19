@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Img from 'gatsby-image';
-import { Link } from 'gatsby';
 
 const AboutArchitects = ({ ...props }) =>  {
   const content = props.data;
@@ -21,7 +20,7 @@ const AboutArchitects = ({ ...props }) =>  {
         <div className="sustainability__contentbox">
           <div className="content" dangerouslySetInnerHTML={{ __html: content.sustainability_main_content }} />
           <div className={ readMore ? 'text-hidden visible' : 'text-hidden' } dangerouslySetInnerHTML={{ __html: content.sustainability_read_more_content }} />
-          { !readMore ? <span className={(content.sustainability_button_style) ? 'button ' + content.sustainability_button_style : 'button'} onClick={ () => readMoreLink() }>{content.sustainability_button_text}</span> : null }
+          { !readMore ? <span role="button" tabIndex={0} className={(content.sustainability_button_style) ? 'button ' + content.sustainability_button_style : 'button'} onKeyDown={ () => readMoreLink() } onClick={ () => readMoreLink() }>{content.sustainability_button_text}</span> : null }
         </div>
       </div>
     </div>
