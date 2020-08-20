@@ -162,7 +162,7 @@ class Page extends Component {
                 </div>
                 <div className="col-sm-4">
                   <div className="shape__column">
-                    <span className="title">block profile</span>
+                    <span className="title">concave profile</span>
                     <ul className="block-icons">
                       <li>
                         <div className="block-iconwrap">
@@ -200,7 +200,7 @@ class Page extends Component {
                 </div>
                 <div className="col-sm-4">
                   <div className="shape__column">
-                    <span className="title">block profile</span>
+                    <span className="title">dome profile</span>
                     <ul className="block-icons">
                       <li>
                         <div className="block-iconwrap">

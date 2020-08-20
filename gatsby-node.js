@@ -155,7 +155,7 @@ exports.createPages = async ({ graphql, actions }) => {
         break;
       case "template-portfolio-parent.php":
         const projects = allWordpressWpProject.edges
-        const projectsPerPage = 4
+        const projectsPerPage = 18
         const numberOfProjects = Math.ceil(projects.length / projectsPerPage)
 
         Array.from({ length: numberOfProjects }).forEach((project, index) => {
@@ -176,7 +176,7 @@ exports.createPages = async ({ graphql, actions }) => {
         break;
       case "template-blog-parent.php":
         const posts = allWordpressPost.edges
-        const postsPerPage = 6
+        const postsPerPage = 18
         const numberOfPages = Math.ceil(posts.length / postsPerPage)
 
         Array.from({ length: numberOfPages }).forEach((page, index) => {

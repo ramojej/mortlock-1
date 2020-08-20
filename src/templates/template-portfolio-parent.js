@@ -25,7 +25,7 @@ class Page extends Component {
               </div>
             </div>
             <div className="project__wrapper">
-              <div className="filter__wrapper filter--active">
+              {/* <div className="filter__wrapper filter--active">
                 <span className="filter__button">Hide Filters <i>-</i></span>
                 <div className="aside">
                   <span className="title">Product</span>
@@ -65,7 +65,7 @@ class Page extends Component {
                     </li>
                   </ul>
                 </div>
-              </div>
+              </div> */}
               <div className="project__content filter--active">
                 <div className="row">
                   {data.data.allWordpressWpProject.edges.map(post => (
@@ -116,7 +116,7 @@ export const pageQuery = graphql`
           featured_media {
             localFile {
               childImageSharp {
-                fluid(maxWidth: 900) {
+                fluid(maxWidth: 1200) {
                   ...GatsbyImageSharpFluid_withWebp
                 }
               }

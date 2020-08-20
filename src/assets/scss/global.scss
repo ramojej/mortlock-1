@@ -3137,11 +3137,11 @@ ul.info__list {
     top: 0;
     opacity: 0;
 
-    &:check {
-      & + .custom-text {
-        color: #fff;
-        background-color: $primary-color;
-        border-color: $primary-color;
+    &:checked {
+      & + .custom-box {
+        &:before {
+          opacity: 1;
+        }
       }
     }
   }
@@ -3163,6 +3163,18 @@ ul.info__list {
 
     @include breakpoint('small') {
       left: 28px;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 3px;
+      right: 3px;
+      bottom: 3px;
+      top: 3px;
+      background-color: $primary-color;
+      opacity: 0;
+      transition: opacity 0.3s;
     }
   }
 }
@@ -3330,7 +3342,7 @@ ul.info__list {
   display: none;
 
   @include breakpoint('medium') {
-    display: block;
+    // display: block;
   }
 }
 
@@ -4529,4 +4541,13 @@ ul.block-icons {
     padding-left: 10px;
     padding-right: 10px;
   }
+}
+
+.form-msg {
+  display: block;
+  border: 1px solid green;
+  font-size: 14px;
+  padding: 4px 20px;
+  background: #5ea95e;
+  color: #fff;
 }

@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { graphql } from "gatsby";
 import Img from 'gatsby-image';
+import BackgroundImage from 'gatsby-background-image';
 
+import Button from "../components/global/button";
 import SEO from "../components/seo";
 import Layout from "../components/layout";
-import Banner from '../components/global/banner';
 import PricingForm from "../components/forms/pricing-form-3502";
 
 class Page extends Component {
@@ -26,7 +27,27 @@ class Page extends Component {
           description={this.props.data.allWordpressPage.edges[0].node.yoast.metadesc} 
           title={this.props.data.allWordpressPage.edges[0].node.yoast.title} 
         />
-        <Banner data={bannerContent} />
+        <div className={bannerContent.banner_type ? `inner__banner ${bannerContent.banner_type}` : 'inner__banner'}>
+          <div className="bg__image has-overlay">
+            { bannerContent.banner_image ? <BackgroundImage fluid={bannerContent.banner_image.localFile.childImageSharp.fluid} /> : null }
+          </div>
+          <div className="container">
+            <div className="inner__bannerbox">
+              <div className="box">
+                <h1 className={ !bannerContent.banner_description ? "text-center" : null } dangerouslySetInnerHTML={{ __html: bannerContent.banner_heading }} />
+                { bannerContent.banner_description ? <span className="inner__bannertext" dangerouslySetInnerHTML={{ __html: bannerContent.banner_description }} /> : null }
+                { bannerContent.banner_buttons ?
+                  <div className="inner__bannerbuttons">
+                    {bannerContent.banner_buttons.map((button, index) => (
+                      (index === 1) ? 
+                      <Button type="external" link={button.pricing_button_link} text={button.pricing_button_text} style={button.pricing_button_style} key={index} /> : 
+                      <Button link={button.pricing_button_link} text={button.pricing_button_text} style={button.pricing_button_style} key={index} /> 
+                    ))}
+                  </div> : null }
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="contact__wrapper">
           <div className="container">
             <div className="quote__text">
@@ -68,7 +89,7 @@ export const pageQuery = graphql`
             pricing_banner_image {
               localFile {
                 childImageSharp {
-                  fluid(maxWidth: 500) {
+                  fluid(maxWidth: 1920) {
                     ...GatsbyImageSharpFluid_withWebp
                   }
                 }
