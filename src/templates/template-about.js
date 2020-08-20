@@ -93,10 +93,10 @@ class Page extends Component {
           </div>
         </div>
         <SubMenu data={submenus} />
-        <AboutHistory data={aboutHistory} />
-        <AboutMission data={aboutMission} />
-        <AboutSustainability data={aboutSustainability} />
-        <AboutArchitects data={aboutArchitect} />
+        <AboutHistory id={submenus[0]} data={aboutHistory} />
+        <AboutMission id={submenus[1]} data={aboutMission} />
+        <AboutSustainability id={submenus[2]} data={aboutSustainability} />
+        <AboutArchitects id={submenus[3]} data={aboutArchitect} />
       </Layout>
     )
   }

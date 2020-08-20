@@ -3,8 +3,9 @@ import Img from 'gatsby-image';
 
 const AboutHistory = ({ ...props }) =>  {
   const content = props.data;
+  const id = props.id;
   return (
-    <div className="history__text">
+    <div className="history__text" id={id}>
       <div className="aside__text" dangerouslySetInnerHTML={{ __html: content.history_aside_text }} />
       <div className="container container__small">
         <h2 className="main_heading" dangerouslySetInnerHTML={{ __html: content.history_title }} />

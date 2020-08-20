@@ -5,9 +5,10 @@ import PricingForm from "../forms/pricing-form-3502";
 
 const PricingBlock = ({ ...props }) =>  {
   const content = props.data;
+  const id = props.id;
 
   return (
-    <div className="pricing__block">
+    <div className="pricing__block" id={ id ? id : null }>
       <div className="container">
         <div className="row">
           <div className="col-sm-6">

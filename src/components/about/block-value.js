@@ -4,9 +4,10 @@ import Img from 'gatsby-image';
 
 const AboutMission = ({ ...props }) =>  {
   const content = props.data;
+  const id = props.id;
   
   return (
-    <div className="about__contentblock">
+    <div className="about__contentblock" id={id}>
       <div className="aside__text" dangerouslySetInnerHTML={{ __html: content.mission_aside_text }} />
       <div className="container">
         <div className="mission__block">

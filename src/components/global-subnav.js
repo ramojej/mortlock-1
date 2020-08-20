@@ -1,4 +1,5 @@
 import React from 'react';
+import scrollTo from 'gatsby-plugin-smoothscroll';
 
 const GlobalSubNav = ({ ...props }) =>  {
   return (
@@ -6,7 +7,9 @@ const GlobalSubNav = ({ ...props }) =>  {
       <div className="container">
         <ul className="subnav">
           {props.data ? props.data.map((item, index) => (
-            <li key={index}><a href={`#${item}`}>{item.replace('-', ' ')}</a></li>
+            <li key={index}>
+              <button data-id={`#${item}`} onClick={() => scrollTo(`#${item}`)}>{item.replace('-', ' ')}</button>
+            </li>
           )) : null }
         </ul>
       </div>

@@ -17,7 +17,7 @@ class Page extends Component {
       banner_heading: this.props.data.wordpressPage.acf.product_parent_banner_heading,
       banner_description: this.props.data.wordpressPage.acf.product_parent_banner_description,
       banner_buttons: this.props.data.wordpressPage.acf.product_parent_banner_buttons,
-      banner_type: 'small'
+      banner_type: 'medium'
     }
 
     const boxesContent = this.props.data.wordpressPage.acf.product_list

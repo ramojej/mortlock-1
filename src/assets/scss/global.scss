@@ -373,7 +373,8 @@ label {
   left: 0;
   right: 0;
   top: 0;
-  z-index: 6;
+  z-index: 999;
+  box-shadow: 0 0 12px rgba(#000, 0.4);
 
   @include breakpoint('medium') {
     height: $header-height;
@@ -2300,6 +2301,7 @@ ul.footer_menu {
   display: none;
 
   @include breakpoint('medium') {
+    display: block;
     background: #fff;
     font-size: 14px;
     text-transform: uppercase;
@@ -2312,11 +2314,17 @@ ul.footer_menu {
     vertical-align: top;
   }
 
-  a {
+  button {
     font-weight: 700;
     display: block;
     color: #121212;
+    border: none;
+    outline: none !important;
+    background: transparent;
+    text-transform: uppercase;
     padding: 40px 38px;
+    letter-spacing: 1px;
+    cursor: pointer;
     transition: color 0.3s, background 0.3s;
 
     &:hover {

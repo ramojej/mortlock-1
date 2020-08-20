@@ -3,6 +3,7 @@ import Img from 'gatsby-image';
 
 const AboutArchitects = ({ ...props }) =>  {
   const content = props.data;
+  const id = props.id;
   const [readMore, setReadMore] = useState(false);
 
   const readMoreLink = (e) => {
@@ -10,7 +11,7 @@ const AboutArchitects = ({ ...props }) =>  {
   }
 
   return (
-    <div className="sustainability__block">
+    <div className="sustainability__block" id={id}>
       <div className="aside__text" dangerouslySetInnerHTML={{ __html: content.sustainability_aside_heading }} />
       <div className="container container__small">
         <h2 className="main_heading" dangerouslySetInnerHTML={{ __html: content.section_main_heading }} />

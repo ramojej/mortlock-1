@@ -65,7 +65,7 @@ class Page extends Component {
       banner_heading: this.props.data.allWordpressPage.edges[0].node.acf.contact_banner_heading,
       banner_description: this.props.data.allWordpressPage.edges[0].node.acf.contact_banner_description,
       banner_buttons: this.props.data.allWordpressPage.edges[0].node.acf.contact_banner_buttons,
-      banner_size: 'small'
+      banner_type: 'medium'
     }
 
     return (

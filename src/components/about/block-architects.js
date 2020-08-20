@@ -5,9 +5,10 @@ import Button from '@src/components/global/button';
 
 const AboutArchitects = ({ ...props }) =>  {
   const content = props.data;
+  const id = props.id;
 
   return (
-    <div className="architect__block">
+    <div className="architect__block" id={id}>
       <div className="aside__text" dangerouslySetInnerHTML={{ __html: content.architect_aside_heading }} />
       <div className="container">
         <div className="architect__image">

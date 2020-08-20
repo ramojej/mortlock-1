@@ -3,8 +3,10 @@ import Img from 'gatsby-image';
 
 const ProductOverview = ({ ...props }) =>  {
   const content = props.data;
+  const id = props.id;
+
   return (
-    <div className="product__overview">
+    <div className="product__overview" id={id}>
     { content.product_overview_aside_title ? <div className="aside__text" dangerouslySetInnerHTML={{ __html: content.product_overview_aside_title }} /> : null }
       <div className="container">
         <div className="row">

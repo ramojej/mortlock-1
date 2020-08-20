@@ -110,11 +110,11 @@ class Page extends Component {
         </div>
         <SubMenu data={submenus} />
         <div className="product__singlewrap">
-          <ProductOverview data={productOverview} />
+          <ProductOverview id={submenus[0]} data={productOverview} />
           <ProductBenefit data={productBenefit} />
           <ProductApplication data={prouctApplication} />
         </div>
-        <div className="product__description">
+        <div className="product__description" id={submenus[1]}>
           <div className="container">
             <ProductSpecies data={timber_species} />
             <div className="shapes__boxes">
@@ -261,7 +261,7 @@ class Page extends Component {
             <ProductFaq data={productFAQ} />
           </div>
         </div>
-        <PricingBlock data={productPricing} />
+        <PricingBlock id={submenus[2]} data={productPricing} />
         <RequestSample data={requestSample} />
       </Layout>
     )
