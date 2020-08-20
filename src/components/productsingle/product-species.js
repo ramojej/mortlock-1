@@ -12,7 +12,7 @@ const ProductSpecies = ({ ...props }) =>  {
       <div className="species-boxes">
         <div className="row">
           {content ? content.map((timber, index) => (
-            <div className="col-sm-3" key={index}>
+            <div className="col-xs-6 col-sm-3" key={index}>
               <div className="species-box">
                 <div className="image">
                   <Img fluid={timber.timber_small_thumbnail.localFile.childImageSharp.fluid} alt="Alternative Text" />
@@ -23,7 +23,7 @@ const ProductSpecies = ({ ...props }) =>  {
             </div>
           )) : null }
           {content ? content.map((timber, index) => (
-            <div className="col-sm-3" key={index}>
+            <div className="col-xs-6 col-sm-3" key={index}>
               <div className="species-box">
                 <div className="image">
                   <Img fluid={timber.timber_small_thumbnail.localFile.childImageSharp.fluid} alt="Alternative Text" />
@@ -34,7 +34,7 @@ const ProductSpecies = ({ ...props }) =>  {
             </div>
           )) : null }
           {content ? content.map((timber, index) => (
-            <div className="col-sm-3" key={index}>
+            <div className="col-xs-6 col-sm-3" key={index}>
               <div className="species-box">
                 <div className="image">
                   <Img fluid={timber.timber_small_thumbnail.localFile.childImageSharp.fluid} alt="Alternative Text" />
@@ -45,7 +45,7 @@ const ProductSpecies = ({ ...props }) =>  {
             </div>
           )) : null }
           {content ? content.map((timber, index) => (
-            <div className="col-sm-3" key={index}>
+            <div className="col-xs-6 col-sm-3" key={index}>
               <div className="species-box">
                 <div className="image">
                   <Img fluid={timber.timber_small_thumbnail.localFile.childImageSharp.fluid} alt="Alternative Text" />

@@ -15,6 +15,11 @@ const toggleMenuDropdown = () => {
   document.body.classList.toggle('nav__active');
 }
 
+const removeActiveClass = () => {
+  console.log('click');
+  document.body.classList.remove('nav__active');
+}
+
 const Header = ({ data, ...props }) => (
   <StaticQuery
     query={graphql`
@@ -85,7 +90,7 @@ const Header = ({ data, ...props }) => (
                 return (
                   <>
                   {slug.edges[num].node.items.map((menu) => (
-                    <li key={menu.wordpress_id}><Link to={"/" + menu.slug}>{menu.title}</Link></li>
+                    <li tabIndex={-1} onKeyDown={ () => removeActiveClass() } onClick={() => removeActiveClass() } key={menu.wordpress_id}><Link to={"/" + menu.slug}>{menu.title}</Link></li>
                   ))}
                   </>
                 )
@@ -117,7 +122,7 @@ const Header = ({ data, ...props }) => (
                                 return (
                                   <>
                                     <div className="menu__linkwrap">
-                                      <Link to={"/" + menu.slug}>{menu.title}</Link>
+                                      <Link to={"/" + menu.slug} tabIndex={0} onKeyDown={ () => removeActiveClass() } onClick={() => removeActiveClass() }>{menu.title}</Link>
                                       <span className="drop__control" role="button" tabIndex={0} onKeyDown={ e => toggleMenuAccordion(e) } onClick={ e => toggleMenuAccordion(e) }>
                                         <svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m49.938 55.984-37.711-36.293-12.227 12.742 49.938 47.875 50.062-47.875-12.227-12.742z" /></svg>
                                       </span>
@@ -134,7 +139,7 @@ const Header = ({ data, ...props }) => (
                                                       return (
                                                         <div className="col-md-4" key={index}>
                                                           <div className="menubox">
-                                                            <Link to={dropmenu.menu_link.replace('https://mortlock.dilatedigital.com.au','')}>
+                                                            <Link tabIndex={0} onKeyDown={ () => removeActiveClass() } onClick={() => removeActiveClass() } to={dropmenu.menu_link.replace('https://mortlock.dilatedigital.com.au','')}>
                                                               <span className="menuTitle">{dropmenu.menu_title}</span>
                                                               <p>{dropmenu.menu_description}</p>
                                                               <div className="imagebox">
@@ -165,7 +170,7 @@ const Header = ({ data, ...props }) => (
                                                       return (
                                                         <div className="col-md-4" key={index}>
                                                           <div className="menubox">
-                                                          <Link to={dropmenu.menu_link.replace('https://mortlock.dilatedigital.com.au','')}>
+                                                          <Link tabIndex={0} onKeyDown={ () => removeActiveClass() } onClick={() => removeActiveClass() } to={dropmenu.menu_link.replace('https://mortlock.dilatedigital.com.au','')}>
                                                               <span className="menuTitle">{dropmenu.menu_title}</span>
                                                               <p>{dropmenu.menu_description}</p>
                                                               <div className="imagebox">
@@ -196,7 +201,7 @@ const Header = ({ data, ...props }) => (
                                                       return (
                                                         <div className="col-md-3" key={index}>
                                                           <div className="menubox">
-                                                          <Link to={dropmenu.menu_link.replace('https://mortlock.dilatedigital.com.au','')}>
+                                                          <Link tabIndex={0} onKeyDown={ () => removeActiveClass() } onClick={() => removeActiveClass() } to={dropmenu.menu_link.replace('https://mortlock.dilatedigital.com.au','')}>
                                                               <span className="menuTitle">{dropmenu.menu_title}</span>
                                                               <p>{dropmenu.menu_description}</p>
                                                               <div className="imagebox">
@@ -239,7 +244,7 @@ const Header = ({ data, ...props }) => (
                                 )
                               } else {
                                 return (
-                                  <Link to={"/" + menu.slug}>{menu.title}</Link>
+                                  <Link to={"/" + menu.slug} tabIndex={0} onKeyDown={ () => removeActiveClass() } onClick={() => removeActiveClass() }>{menu.title}</Link>
                                 )
                               }
                             })()}
@@ -256,7 +261,7 @@ const Header = ({ data, ...props }) => (
                 <a href={`tel:${data.allWordpressAcfOptions.edges[0].node.options.header_phone_number}`}><svg className="icon" viewBox="0 0 100 100"><path d="m37.496 38.379 3.3438-5.0078c1.0312-1.5508 1.0547-3.5703 0.054687-5.1406l-10.008-15.73-11.914 3.9688c-4.8359 1.6133-7.5859 6.8008-6.043 11.66 2.6914 8.4609 8.875 21.926 22.949 35.992 14.066 14.07 27.527 20.254 35.992 22.949 4.8594 1.5469 10.047-1.207 11.66-6.0469l3.9648-11.906-15.723-10.008c-1.5742-1.0039-3.5938-0.98438-5.1445 0.050781l-5.0078 3.3398c-1.5312 1.0195-3.5039 1.0781-5.0664 0.10547-2.5469-1.582-6.6211-4.4062-10.688-8.4766-4.0703-4.0664-6.8945-8.1367-8.4727-10.684-0.97266-1.5625-0.91797-3.5352 0.10156-5.0664"/></svg> {data.allWordpressAcfOptions.edges[0].node.options.header_phone_number}</a>
               </div>
               <div className="header__button">
-                <Link to={data.allWordpressAcfOptions.edges[0].node.options.header_button_link} className="button">{data.allWordpressAcfOptions.edges[0].node.options.header_button_text}</Link>
+                <Link tabIndex={0} onKeyDown={ () => removeActiveClass() } onClick={() => removeActiveClass() } to={data.allWordpressAcfOptions.edges[0].node.options.header_button_link} className="button">{data.allWordpressAcfOptions.edges[0].node.options.header_button_text}</Link>
               </div>
             </div>
             </div>

@@ -13,7 +13,8 @@ class Page extends Component {
       banner_image_overlay: this.props.data.allWordpressPage.edges[0].node.acf.request_banner_image_overlay,
       banner_heading: this.props.data.allWordpressPage.edges[0].node.acf.request_banner_heading,
       banner_description: this.props.data.allWordpressPage.edges[0].node.acf.request_banner_description,
-      banner_buttons: this.props.data.allWordpressPage.edges[0].node.acf.request_banner_buttons
+      banner_buttons: this.props.data.allWordpressPage.edges[0].node.acf.request_banner_buttons,
+      banner_type: 'small'
     }
 
     return (

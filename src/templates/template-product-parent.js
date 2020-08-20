@@ -16,7 +16,8 @@ class Page extends Component {
       banner_image_overlay: this.props.data.wordpressPage.acf.main_banner_image_overlay,
       banner_heading: this.props.data.wordpressPage.acf.product_parent_banner_heading,
       banner_description: this.props.data.wordpressPage.acf.product_parent_banner_description,
-      banner_buttons: this.props.data.wordpressPage.acf.product_parent_banner_buttons
+      banner_buttons: this.props.data.wordpressPage.acf.product_parent_banner_buttons,
+      banner_type: 'small'
     }
 
     const boxesContent = this.props.data.wordpressPage.acf.product_list
@@ -33,7 +34,7 @@ class Page extends Component {
           description={this.props.data.wordpressPage.yoast.metadesc ? this.props.data.wordpressPage.yoast.metadesc : null} 
           title={this.props.data.wordpressPage.yoast.title ? this.props.data.wordpressPage.yoast.title : null} 
         />
-        <Banner data={bannerContent} type="homepag" />
+        <Banner data={bannerContent} />
         <ProductBoxes data={boxesContent} />
         <ExpandableContent data={expandableContent} />
       </Layout>

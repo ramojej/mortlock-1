@@ -182,12 +182,13 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 h2 {
-  font-size: 30px;
+  font-size: 25px;
   line-height: 1.75;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 
   @include breakpoint('small') {
     font-size: 40px;
-    text-transform: uppercase;
     letter-spacing: 4px;
   }
 }
@@ -219,15 +220,20 @@ select {
   width: 100%;
   border: 1px solid #312f30;
   border-radius: 0;
-  height: 54px;
+  height: 45px;
   background-color: transparent;
   padding: 5px 30px;
   color: #9c9c9c;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 20px;
   font-weight: 500;
   outline: none !important;
   transition: border 0.3s;
+
+  @include breakpoint('medium') {
+    height: 54px;
+    font-size: 16px;
+  }
 
   &:focus {
     border-color: $primary-color;
@@ -250,7 +256,11 @@ label {
   font-weight: 700;
   color: #312f30;
   text-transform: uppercase;
-  margin-bottom: 11px;
+  margin-bottom: 3px;
+
+  @include breakpoint('medium') {
+    margin-bottom: 11px;
+  }
 }
 
 .bg__image {
@@ -318,7 +328,7 @@ label {
   border: 1px solid #312f30;
   border-radius: 0;
   outline: none;
-  padding: 13px 30px;
+  padding: 9px 20px;
   text-transform: uppercase;
   font-size: 14px;
   text-align: center;
@@ -328,6 +338,7 @@ label {
 
   @include breakpoint('small') {
     font-size: 16px;
+    padding: 13px 30px;
   }
 
   &:hover {
@@ -366,7 +377,7 @@ label {
 
   @include breakpoint('medium') {
     height: $header-height;
-    position: absolute;
+    position: fixed;
   }
 }
 
@@ -644,6 +655,7 @@ ul.main__nav {
     color: #fff;
     display: block;
     padding: 10px 25px;
+    outline: none !important;
 
     @include breakpoint('medium') {
       padding: 34px 0;
@@ -727,6 +739,7 @@ ul.main__nav {
       color: #fff;
       padding: 12px 20px;
       transition: background 0.3s, color 0.3s;
+      outline: none !important;
 
       @include breakpoint('medium') {
         color: #312f30; 
@@ -772,6 +785,7 @@ ul.main__nav {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    outline: none !important;
 
     @include breakpoint('medium') {
       right: -16px;
@@ -2201,28 +2215,41 @@ ul.footer_menu {
   }
 
   h1 {
-    font-size: 90px;
+    font-size: 40px;
     margin: 0 0 9px;
     font-family: 'Maison Neue';
+
+    @include breakpoint('medium') {
+      font-size: 90px;
+    }
   }
 }
 
 .inner__bannerbox {
-  height: 740px;
-  padding: 161px 0;
+  height: 380px;
+  padding: 100px 0 30px;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
 
-  .banner__small & {
+  @include breakpoint('medium') {
+    height: 740px;
+    padding: 161px 0;
+  }
+
+  .medium & {
     height: 538px;
     padding: 90px 0 155px;
   }
 
-  .banner__smaller & {
-    height: 428px;
+  .small & {
+    height: 200px;
     padding: 50px 0;
     align-items: center;
+
+    @include breakpoint('medium') {
+      height: 380px;
+    }
   }
 
   .banner__project & {
@@ -2235,17 +2262,29 @@ ul.footer_menu {
 
   .button {
     margin-right: 30px;
-    min-width: 228px;
+    min-width: 210px;
+
+    @include breakpoint('small') {
+      min-width: 228px;
+    }
   }
 
   .inner__bannerbuttons {
     padding-top: 31px;
+
+    .button {
+      margin-bottom: 15px;
+    }
   }
 
   .inner__bannertext {
     display: block;
-    font-size: 25px;
+    font-size: 16px;
     font-weight: 700;
+    
+    @include breakpoint('medium') {
+      font-size: 25px;
+    }
   }
 }
 
@@ -2258,11 +2297,15 @@ ul.footer_menu {
 }
 
 .subnav__holder {
-  background: #fff;
-  font-size: 14px;
-  text-transform: uppercase;
-  margin: 0 0 47px -75px;
-  letter-spacing: 0.1em;
+  display: none;
+
+  @include breakpoint('medium') {
+    background: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin: 0 0 47px -75px;
+    letter-spacing: 0.1em;
+  }
 
   li {
     display: inline-block;
@@ -2284,40 +2327,61 @@ ul.footer_menu {
 }
 
 .aside__text {
-  position: absolute;
-  top: 50%;
-  left: 50px;
-  transform: rotate(-90deg);
-  font-size: 14px;
-  text-transform: uppercase;
-  color: $primary-color;
-  letter-spacing: 0.1em;
-  transform-origin: 0 0;
+  display: none;
+  @include breakpoint('medium') {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50px;
+    transform: rotate(-90deg);
+    font-size: 14px;
+    text-transform: uppercase;
+    color: $primary-color;
+    letter-spacing: 0.1em;
+    transform-origin: 0 0;
+  }
 }
 
 .history__text {
   position: relative;
-  padding: 100px 0 37px;
+  padding: 40px 0;
+  
+  @include breakpoint('medium') {
+    padding: 100px 0 37px;
+  }
   
   h2 {
     text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 50px;
+    letter-spacing: 1px;
+
+    @include breakpoint('medium') {
+      letter-spacing: 3px;
+      margin-bottom: 50px;
+    }
   }
 
   .main_heading {
     text-align: center;
-    margin-bottom: 76px;
+    margin-bottom: 30px;
+
+    @include breakpoint('medium') {
+      margin-bottom: 76px;
+    }
   }
 }
 
 .historyYear {
-  font-size: 30px;
-  font-weight: 700;
-  display: block;
-  letter-spacing: 2px;
-  overflow: hidden;
-  margin: -8px 30px 0 0;
+  display: none;
+
+  @include breakpoint('medium') {
+    display: block;
+    font-size: 30px;
+    font-weight: 700;
+    display: block;
+    letter-spacing: 2px;
+    overflow: hidden;
+    margin: -8px 30px 0 0;
+  }
 
   span {
     display: inline-block;
@@ -2339,12 +2403,18 @@ ul.footer_menu {
 
 .history__contentbox {
   .row {
-    margin-bottom: 165px;
+    margin-bottom: 30px;
+
+    @include breakpoint('medium') {
+      margin-bottom: 165px;
+    }
   }
 
   .col-sm-7 {
     .historytext_box {
-      padding: 6px 0 0 78px;
+      @include breakpoint('medium') {
+        padding: 6px 0 0 78px;
+      }
     }
 
     .historytext_image {
@@ -2365,22 +2435,41 @@ ul.footer_menu {
 }
 
 .history__intro {
-  margin-bottom: 62px;
+  margin-bottom: 30px;
+
+  @include breakpoint('medium') {
+    margin-bottom: 62px;
+  }
 }
 
 .history__image {
-  margin-bottom: 127px;
+  margin-bottom: 30px;
+
+  @include breakpoint('medium') {
+    margin-bottom: 127px;
+  }
 }
 
 .historytext_box {
-  padding: 60px 60px 0 0;
+  padding: 40px 0 0;
+  @include breakpoint('medium') {
+    padding: 60px 60px 0 0;
+  }
 }
 
 .about__contentblock {
   background: #312f30;
   color: #7e7e7e;
   position: relative;
-  padding: 196px 0;
+  padding: 40px 0;
+
+  @include breakpoint('medium') {
+    padding: 60px 0;
+  }
+
+  @include breakpoint('medium') {
+    padding: 196px 0;
+  }
 
   h2, h3, h4 {
     color: $primary-color;
@@ -2394,13 +2483,22 @@ ul.footer_menu {
 }
 
 .mission__block {
-  padding-bottom: 100px;
+  padding-bottom: 20px;
+
+  @include breakpoint('medium') {
+    padding-bottom: 100px;
+  }
 
   h2 {
-    letter-spacing: 4px;
+    letter-spacing: 2px;
     position: relative;
-    padding-bottom: 42px;
-    margin-bottom: 58px;
+    padding-bottom: 10px;
+
+    @include breakpoint('medium') {
+      padding-bottom: 42px;
+      margin-bottom: 58px;
+      letter-spacing: 4px;
+    }
 
     &:before {
       content: '';
@@ -2415,32 +2513,53 @@ ul.footer_menu {
 }
 
 .mission__textbox {
-  font-size: 23px;
-  line-height: 1.9;
   background: #312f30;
   z-index: 4;
   position: relative;
-  padding: 0 110px 63px 0;
+  font-size: 18px;
+  line-height: 1.6;
+
+  @include breakpoint('medium') {
+    padding: 0 110px 63px 0;
+    font-size: 23px;
+    line-height: 1.9;
+  }
 }
 
 .mission__image {
-  margin: 17px 8px 0 -470px;
+  @include breakpoint('medium') {
+    margin: 17px 8px 0 -470px;
+  }
 }
 
 .vision__block {
-  padding: 73px 0;
+  padding: 20px 0;
+  
+  @include breakpoint('medium') {
+    padding: 73px 0;
+  }
 }
 
 .vision__text {
-  font-size: 23px;
-  line-height: 1.9;
-  padding: 98px 0 0 120px;
+  font-size: 18px;
+  line-height: 1.6;
+  padding: 30px 0 0;
+
+  @include breakpoint('medium') {
+    font-size: 23px;
+    line-height: 1.9;
+    padding: 98px 0 0 120px;
+  }
 
   h2 {
-    letter-spacing: 4px;
     position: relative;
-    padding-bottom: 42px;
-    margin-bottom: 58px;
+    padding-bottom: 10px;
+
+    @include breakpoint('medium') {
+      padding-bottom: 42px;
+      margin-bottom: 58px;
+      letter-spacing: 4px;
+    }
 
     &:before {
       content: '';
@@ -2455,32 +2574,55 @@ ul.footer_menu {
 }
 
 .values__block {
-  padding: 94px 0 48px;
+  padding: 20px 0;
+
+  @include breakpoint('medium') {
+    padding: 94px 0 48px;
+  }
 
   h2 {
-    padding-bottom: 46px;
-    margin-bottom: 90px;
     text-align: center;
     border-bottom: 2px solid $primary-color;
+    padding-bottom: 10px;
+
+    @include breakpoint('medium') {
+      padding-bottom: 46px;
+      margin-bottom: 90px;
+    }
   }
 }
 
 .article__box {
+  margin-bottom: 40px;
+
   .icon {
-    width: 72px;
-    height: 72px;
+    width: 50px;
+    height: 50px;
     color: $primary-color;
+
+    @include breakpoint('medium') {
+      width: 72px;
+      height: 72px;
+    }
   }
 
   .icon_box {
-    margin-bottom: 47px;
+    margin-bottom: 20px;
+
+    @include breakpoint('medium') {
+      margin-bottom: 47px;
+    }
   }
 
   h4 {
     letter-spacing: 2px;
     text-transform: uppercase;
-    margin-bottom: 55px;
     color: $primary-color;
+    margin-bottom: 10px;
+
+    @include breakpoint('medium') {
+      margin-bottom: 55px;
+    }
   }
 
   .link {
@@ -2491,13 +2633,20 @@ ul.footer_menu {
 
 .sustainability__block {
   position: relative;
-  padding: 143px 0 92px;
+  padding: 40px 0;
+
+  @include breakpoint('medium') {
+    padding: 143px 0 92px;
+  }
   
   h2 {
     text-transform: uppercase;
     letter-spacing: 3px;
     text-align: center;
-    margin-bottom: 68px;
+
+    @include breakpoint('medium') {
+      margin-bottom: 68px;
+    }
   }
   
   .button {
@@ -2506,38 +2655,61 @@ ul.footer_menu {
 }
 
 .sustainability__image {
-  margin-bottom: 80px;
+  margin-bottom: 30px;
+
+  @include breakpoint('medium') {
+    margin-bottom: 80px;
+  }
 }
 
 .sustainability__contentbox {
   .content {
-    padding-bottom: 60px;
+    @include breakpoint('medium') {
+      padding-bottom: 60px;
+    }
   }
 }
 
 .content + .text-hidden.visible {
-  margin-top: -60px;
+  @include breakpoint('medium') {
+    margin-top: -60px;
+  }
 }
 
 .architect__block {
-  padding: 100px 0 120px;
+  padding: 30px 0;
+
+  @include breakpoint('medium') {
+    padding: 100px 0 120px;
+  }
 }
 
 .architect__contentbox {
-  max-width: 970px;
-  margin: -386px auto 0;
-  background: #efefef;
-  padding: 95px 100px;
-  position: relative;
+  padding: 30px 0 0;
+  
+  @include breakpoint('medium') {
+    max-width: 970px;
+    margin: -386px auto 0;
+    background: #efefef;
+    padding: 95px 100px;
+    position: relative;
+  }
 
   >div {
-    padding-bottom: 47px;
+    @include breakpoint('medium') {
+      padding-bottom: 47px;
+    }
   }
 
   h2 {
-    letter-spacing: 4px;
     text-transform: uppercase;
-    margin: 0 0 44px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+
+    @include breakpoint('medium') {
+      letter-spacing: 4px;
+      margin: 0 0 44px;
+    }
   }
 
   .button {
@@ -2546,11 +2718,19 @@ ul.footer_menu {
 }
 
 .product__singlewrap {
-  padding: 100px 0 77px;
+  padding: 40px 0 20px;
+
+  @include breakpoint('medium') {
+    padding: 100px 0 77px;
+  }
 }
 
 .product__wrapper {
-  padding: 133px 0 72px;
+  padding: 40px 0;
+
+  @include breakpoint('medium') {
+    padding: 133px 0 72px;
+  }
 
   h2 {
     color: $primary-color;
@@ -2619,7 +2799,11 @@ ul.footer_menu {
   }
 
   .btn__wrap {
-    padding-top: 40px;
+    padding-top: 20px;
+
+    @include breakpoint('medium') {
+      padding-top: 40px;
+    }
   }
 }
 
@@ -2630,8 +2814,13 @@ ul.footer_menu {
     text-transform: uppercase;
     letter-spacing: 3px;
     position: relative;
-    padding: 0 0 134px;
-    margin: 0 0 128px;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+
+    @include breakpoint('medium') {
+      padding: 0 0 134px;
+      margin: 0 0 128px;
+    }
 
     &:before {
       content: '';
@@ -2646,7 +2835,11 @@ ul.footer_menu {
 }
 
 .aside__image {
-  margin-left: 90px;
+  margin-bottom: 30px;
+
+  @include breakpoint('medium') {
+    margin-left: 90px;
+  }
 }
 
 .product__description {
@@ -2661,11 +2854,16 @@ ul.footer_menu {
 
 .general-heading {
   position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 42px;
-  margin-bottom: 74px;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+
+  @include breakpoint('small') {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 42px;
+    margin-bottom: 74px;
+  }
 
   &:before {
     content: '';
@@ -2679,14 +2877,21 @@ ul.footer_menu {
 
   h2 {
     text-transform: uppercase;
-    letter-spacing: 4px;
     margin: 0;
+    letter-spacing: 1px;
+
+    @include breakpoint('medium') {
+      letter-spacing: 4px;
+    }
   }
 
   .info {
     display: block;
     color: $primary-color;
-    font-size: 22px;
+
+    @include breakpoint('medium') {
+      font-size: 22px;
+    }
   }
 }
 
@@ -2702,6 +2907,7 @@ ul.footer_menu {
   width: 21px;
   text-indent: -9999px;
   overflow: hidden;
+  outline: none !important;
 
   @include breakpoint('small') {
     top: 28px;
@@ -2741,12 +2947,25 @@ ul.footer_menu {
 }
 
 .contact__wrapper {
-  padding: 130px 0;
+  padding: 45px 0;
+
+  @include breakpoint('medium') {
+    padding: 130px 0;
+  }
+}
+
+.contact__desc {
+  h2 {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+    @media only screen and (max-width: 767px) {
+      margin-bottom: 10px;
+    }
+  }
 }
 
 form {
-  padding: 11px 0 0 8px;
-
   .row {
     margin-left: -15px;
     margin-right: -15px;
@@ -2766,7 +2985,11 @@ form {
 }
 
 .form_group {
-  margin-bottom: 25px;
+  margin-bottom: 15px;
+
+  @include breakpoint('medium') {
+    margin-bottom: 25px;
+  }
 }
 
 .contact__form {
@@ -2787,8 +3010,8 @@ ul.info__list {
   }
 
   .ico_wrap {
-    width: 56px;
-    height: 56px;
+    width: 46px;
+    height: 46px;
     border: 1px solid #312f30;
     color: #312f30;
     margin-right: 20px;
@@ -2796,6 +3019,11 @@ ul.info__list {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+
+    @include breakpoint('medium') {
+      width: 56px;
+      height: 56px;
+    }
   }
 
   .title {
@@ -2810,8 +3038,12 @@ ul.info__list {
   .text {
     display: block;
     color: #312f30;
-    font-size: 25px;
+    font-size: 20px;
     line-height: 1;
+
+    @include breakpoint('medium') {
+      font-size: 25px;
+    }
 
     a {
       color: #312f30;
@@ -2820,8 +3052,20 @@ ul.info__list {
 }
 
 .map_heading {
-  margin-top: 151px;
+  margin-top: 50px;
   position: relative;
+
+  @include breakpoint('medium') {
+    margin-top: 151px;
+  }
+
+  h2 {
+    font-size: 25px;
+
+    @include breakpoint('medium') {
+      font-size: 30px;
+    }
+  }
 
   &:before {
     content: '';
@@ -2836,8 +3080,12 @@ ul.info__list {
 
 .quote__text {
   border-bottom: 2px solid $primary-color;
-  padding-bottom: 39px;
-  margin-bottom: 67px;
+  margin-bottom: 40px;
+
+  @include breakpoint('medium') {
+    padding-bottom: 39px;
+    margin-bottom: 67px;
+  }
 }
 
 .quote__formwrap {
@@ -2852,7 +3100,11 @@ ul.info__list {
 
   li {
     padding: 0 6px;
-    width: 33.33%;
+    width: 50%;
+
+    @include breakpoint('small') {
+      width: 33.33%;
+    }
   }
 }
 
@@ -2864,8 +3116,12 @@ ul.info__list {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  padding: 5px 10px 5px 60px;
   cursor: pointer;
+  padding: 5px 10px 5px 30px;
+
+  @include breakpoint('small') {
+    padding: 5px 10px 5px 60px;
+  }
 
   input[type="checkbox"] {
     position: absolute;
@@ -2895,23 +3151,35 @@ ul.info__list {
     height: 16px;
     border: 1px solid #312f30;
     border-radius: 2px;
-    left: 28px;
+    left: 7px;
+
+    @include breakpoint('small') {
+      left: 28px;
+    }
   }
 }
 
 .single__wrapper {
-  padding: 95px 0;
+  padding: 40px 0;
+
+  @include breakpoint('medium') {
+    padding: 95px 0;
+  }
 }
 
 .post__heading {
   text-align: center;
 
   h1 {
-    font-size: 90px;
+    font-size: 40px;
     line-height: 1.055;
-    max-width: 1170px;
-    margin: 0 auto 27px;
     text-transform: capitalize;
+
+    @include breakpoint('medium') {
+      font-size: 90px;
+      max-width: 1170px;
+      margin: 0 auto 27px;
+    }
   }
 }
 
@@ -2921,16 +3189,23 @@ ul.info__list {
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 2px;
-  margin-bottom: 36px;
+  
+  @include breakpoint('medium') {
+    margin-bottom: 36px;
+  }
 }
 
 .post__meta {
-  display: block;
-  margin-bottom: 53px;
-  font-size: 16px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  display: none;
+
+  @include breakpoint('small') {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 53px;
+  }
 
   .author {
     color: $primary-color;
@@ -2938,35 +3213,52 @@ ul.info__list {
 }
 
 .share__block {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 77px;
+  margin-bottom: 20px;
+
+  @include breakpoint('small') {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 77px;
+  }
 
   .title {
     text-transform: uppercase;
     font-weight: 700;
     font-size: 16px;
     letter-spacing: 2px;
-    margin-right: 40px;
+    text-align: center;
+    display: block;
+    margin-bottom: 10px;
+
+    @include breakpoint('small') {
+      margin: 0 40px 0 0;
+    }
   }
 
   .social-networks {
     position: relative;
-    padding: 19px 0 19px 40px;
+    @include breakpoint('small') {
+      padding: 19px 0 19px 40px;
+    }
 
     &:before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 72px;
-      width: 1px;
-      background-color: #c6c6c6;
+      @include breakpoint('small') {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 72px;
+        width: 1px;
+        background-color: #c6c6c6;
+      }
     }
 
     li {
-      margin-right: 35px;
+      margin: 0 10px;
+      @include breakpoint('small') {
+        margin: 0 35px 0 0;
+      }
     }
 
     a {
@@ -2977,26 +3269,38 @@ ul.info__list {
 
 .featured__image {
   max-width: 1209px;
-  margin: 0 auto 102px;
   text-align: center;
-}
+  margin-bottom: 20px;
 
-.blog__wrapper {
-  padding: 113px 0;
-
-  h1 {
-    font-size: 90px;
+  @include breakpoint('medium') {
+    margin: 0 auto 102px;
   }
 }
 
-.form__search {
+.blog__wrapper {
+  padding: 40px 0;
 
+  @include breakpoint('medium') {
+    padding: 113px 0;
+  }
+
+  h1 {
+    font-size: 40px;
+
+    @include breakpoint('medium') {
+      font-size: 90px;
+    }
+  }
 }
 
 .blog__heading {
   padding-bottom: 6px;
   border-bottom: 2px solid $primary-color;
-  margin-bottom: 83px;
+  margin-bottom: 20px;
+
+  @include breakpoint('medium') {
+    margin-bottom: 83px;
+  }
 
   &:after {
     content: '';
@@ -3006,11 +3310,20 @@ ul.info__list {
 
   h1 {
     float: left;
+    
+    @media only screen and (max-width: 767px) {
+      margin-bottom: 0;
+    }
   }
 }
 
 .article__metas {
   float: right;
+  display: none;
+
+  @include breakpoint('medium') {
+    display: block;
+  }
 }
 
 .form__search {
@@ -3066,7 +3379,11 @@ ul.info__list {
 }
 
 .blog_article {
-  margin-bottom: 58px;
+  margin-bottom: 35px;
+
+  @include breakpoint('medium') {
+    margin-bottom: 58px;
+  }
 
   .post_category {
     margin: 0;
@@ -3080,10 +3397,16 @@ ul.info__list {
   }
 
   h3 {
-    font-size: 30px;
+    font-size: 25px;
     line-height: 1.1667;
     text-transform: uppercase;
     letter-spacing: 2px;
+    margin-bottom: 20px;
+
+    @include breakpoint('medium') {
+      font-size: 30px;
+      margin-bottom: 30px;
+    }
   }
 
   .link {
@@ -3096,9 +3419,13 @@ ul.info__list {
 }
 
 .blog_image {
-  height: 435px;
+  height: 185px;
   overflow: hidden;
   position: relative;
+
+  @include breakpoint('medium') {
+    height: 435px;
+  }
 
   &:hover {
     .image_overlay {
@@ -3124,28 +3451,46 @@ ul.info__list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 39px 78px 34px 68px;
+  padding: 18px 0;
+
+  @include breakpoint('medium') {
+    padding: 39px 78px 34px 68px;
+  }
 }
 
 .blog_text {
-  padding: 44px 67px;
+  padding: 20px 0;
+
+  @include breakpoint('medium') {
+    padding: 44px 67px;
+  }
 
   p {
-    margin-bottom: 39px;
+    margin-bottom: 15px;
+
+    @include breakpoint('medium') {
+      margin-bottom: 39px;
+    }
   }
 }
 
 .pagination {
-  margin-top: 89px;
-  border-top: 2px solid #312f30;
-  padding: 60px 0 24px;
   text-align: center;
+  border-top: 2px solid #312f30;
+  padding: 20px 0;
+
+  @include breakpoint('medium') {
+    margin-top: 89px;
+    padding: 60px 0 24px;
+  }
 
   .title,
   .pages {
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0 20px;
+    @include breakpoint('small') {
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 20px;
+    }
   }
 
   .title {
@@ -3153,6 +3498,11 @@ ul.info__list {
     font-weight: 700;
     font-size: 14px;
     letter-spacing: 2px;
+    margin-bottom: 10px;
+    
+    @include breakpoint('small') {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -3160,7 +3510,11 @@ ul.info__list {
   li {
     display: inline-block;
     vertical-align: middle;
-    margin: 0 6px;
+    margin: 0 3px 5px;
+
+    @include breakpoint('medium') {
+      margin: 0 6px;
+    }
   }
 
   a {
@@ -3191,7 +3545,11 @@ ul.info__list {
 }
 
 .project__detail {
-  padding: 155px 0;
+  padding: 50px 0;
+
+  @include breakpoint('small') {
+    padding: 155px 0;
+  }
 }
 
 .project_content {
@@ -3200,7 +3558,11 @@ ul.info__list {
 
 .project_heading {
   position: relative;
-  padding-bottom: 39px;
+  padding-bottom: 10px;
+
+  @include breakpoint('small') {
+    padding-bottom: 39px;
+  }
 
   &:before {
     content: '';
@@ -3214,13 +3576,21 @@ ul.info__list {
 }
 
 .project_infos {
-  padding: 53px 0 36px;
+  padding: 20px 0;
+
+  @include breakpoint('small') {
+    padding: 53px 0 36px;
+  }
 }
 
 .project__info {
   line-height: 1;
-  padding-bottom: 70px;
+  padding-bottom: 25px;
   display: block;
+
+  @include breakpoint('small') {
+    padding-bottom: 70px;
+  }
 
   .title {
     display: block;
@@ -3234,10 +3604,14 @@ ul.info__list {
 
   .info {
     display: block;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 700;
     color: #312f30;
     letter-spacing: 1px;
+
+    @include breakpoint('small') {
+      font-size: 30px;
+    }
   }
 }
 
@@ -3324,7 +3698,11 @@ ul.info__list {
 }
 
 .project_desc {
-  padding: 36px 0 0;
+  padding: 15px 0 0;
+
+  @include breakpoint('medium') {
+    padding: 36px 0 0;
+  }
 
   .location {
     display: block;
@@ -3367,13 +3745,25 @@ ul.info__list {
 }
 
 .project_article {
+  border-bottom: 2px solid $primary-color;
+  margin-bottom: 30px;
   padding-bottom: 36px;
+
+  @include breakpoint('medium') {
+    margin-bottom: 0;
+    border-bottom: none;
+  }
 }
 
 .filter__wrapper {
-  float: left;
-  width: 0;
-  overflow: hidden;
+  display: none;
+
+  @include breakpoint('medium') {
+    display: block;
+    float: left;
+    width: 0;
+    overflow: hidden;
+  }
 
   .filter__button {
     margin-top: 0;
@@ -3388,6 +3778,15 @@ ul.info__list {
 
 .project__content {
   overflow: hidden;
+
+  .row {
+    [class^="col-"]:last-child,
+    [class*=" col-"]:last-child {
+      .project_article {
+        border: none;
+      }
+    }
+  }
 }
 
 .aside {
@@ -3453,7 +3852,7 @@ ul.info__list {
 .video__wrapper {
   position: relative;
   z-index: 4;
-  margin-bottom: 100px;
+  margin-bottom: 35px;
   height: 350px;
   background: #efefef;
 
@@ -3469,20 +3868,29 @@ ul.info__list {
 }
 
 .spec__image {
-  margin-right: -250px;
+  @include breakpoint('small') {
+    margin-right: -250px;
+  }
 }
 
 .spec__column {
   position: relative;
   z-index: 4;
   background: #efefef;
-  margin: 100px 0 0 -92px;
-  padding: 68px 0 100px 101px;
+  padding: 30px 0 0;
 
+  @include breakpoint('small') {
+    margin: 100px 0 0 -92px;
+    padding: 68px 0 100px 101px;
+  }
   h2 {
     position: relative;
-    margin: 0 0 61px;
-    padding: 0 0 35px;
+    padding-bottom: 5px;
+
+    @include breakpoint('small') {
+      margin: 0 0 61px;
+      padding: 0 0 35px;
+    }
 
     &:before {
       content: '';
@@ -3497,7 +3905,11 @@ ul.info__list {
 }
 
 .spec__wrapper {
-  padding-bottom: 155px;
+  padding-bottom: 20px;
+
+  @include breakpoint('small') {
+    padding-bottom: 155px;
+  }
 }
 
 .gallery__wrapper {
@@ -3505,23 +3917,37 @@ ul.info__list {
     text-align: center;
     position: relative;
     border-bottom: 2px solid $primary-color;
-    padding-bottom: 38px;
-    margin: 0 0 96px;
+    padding-bottom: 5px;
+
+    @include breakpoint('small') {
+      padding-bottom: 38px;
+      margin: 0 0 96px;
+    }
   }
 }
 
 .galley__image {
-  column-count: 3;
-  -webkit-column-count: 3;
-  column-gap: 40px;
+  @include breakpoint('small') {
+    column-count: 3;
+    -webkit-column-count: 3;
+    column-gap: 40px;
+  }
 
   .image {
-    margin-bottom: 40px;
+    margin-bottom: 25px;
+    
+    @include breakpoint('small') {
+      margin-bottom: 40px;
+    }
   }
 }
 
 .product__overview {
-  padding: 0 0 62px;
+  padding: 0 0 30px;
+  
+  @include breakpoint('medium') {
+    padding: 0 0 62px;
+  }
 }
 
 .benefit__text {
@@ -3529,8 +3955,13 @@ ul.info__list {
 
   h2 {
     position: relative;
-    padding: 0 0 37px;
-    margin: 0 0 63px;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    
+    @include breakpoint('medium') {
+      padding: 0 0 37px;
+      margin: 0 0 63px;
+    }
 
     &:before {
       content: '';
@@ -3542,15 +3973,30 @@ ul.info__list {
       height: 2px;
     }
   }
+
+  .btn__wrap {
+    padding-top: 10px;
+
+    .button {
+      min-width: 200px;
+    }
+  }
 }
 
 .icon__wrapper {
-  margin-bottom: 42px;
+  margin-bottom: 20px;
+  @include breakpoint('medium') {
+    margin-bottom: 42px;
+  }
 
   .benefit_icon {
-    width: 100px;
     float: left;
     color: $primary-color;
+    width: 60px;
+
+    @include breakpoint('medium') {
+      width: 100px;
+    }
   }
 
   .benefit_text {
@@ -3561,35 +4007,50 @@ ul.info__list {
     text-transform: uppercase;
     letter-spacing: 2px;
     line-height: 1.5;
-    margin: 0 0 17px;
+    margin-bottom: 10px;
+
+    @include breakpoint('medium') {
+      margin: 0 0 17px;
+    }
   }
 
   .icon {
-    width: 62px;
-    height: 62px;
+    width: 40px;
+    height: 40px;
+
+    @include breakpoint('medium') {
+      width: 62px;
+      height: 62px;
+    }
   }
 }
 
 .product__benefit {
-  padding: 0 0 60px;
+  @include breakpoint('medium') {
+    padding: 0 0 60px;
+  }
 }
 
 .application__wrapper {
-  padding: 170px 0 50px;
+  padding: 30px 0;
+
+  @include breakpoint('medium') {
+    padding: 170px 0 50px;
+  }
 }
 
 .application__textbox {
-  padding: 0 0 58px;
-}
-
-.application__text {
-  padding: 44px 0 0;
+  padding-bottom: 30px;
 }
 
 .application__iconbox {
   position: relative;
-  padding-top: 122px;
-  margin-right: -50px;
+  padding-top: 30px;
+
+  @include breakpoint('medium') {
+    padding-top: 72px;
+    margin-right: -50px;
+  }
 
   &:before {
     content: '';
@@ -3602,14 +4063,22 @@ ul.info__list {
   }
 
   .icon_wrap {
-    margin-bottom: 36px;
+    margin-bottom: 5px;
+
+    @include breakpoint('medium') {
+      margin-bottom: 36px;
+    }
   }
 }
 
-.app__list {
+ul.app__list {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 -15px;
+  margin: 0 -25px 20px;
+
+  @include breakpoint('medium') {
+    margin: 0 -15px;
+  }
 
   li {
     width: 33.33%;
@@ -3625,16 +4094,25 @@ ul.info__list {
   }
 
   .icon {
-    width: 55px;
-    height: 55px;
+    width: 30px;
+    height: 30px;
+
+    @include breakpoint('medium') {
+      width: 55px;
+      height: 55px;
+    }
   }
 
   .text {
     display: block;
-    font-size: 18px;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 700;
+    font-size: 14px;
+
+    @include breakpoint('medium') {
+      font-size: 18px;
+    }
   }
 }
 
@@ -3645,8 +4123,9 @@ ul.info__list {
     color: #312f30;
     height: 48px;
     width: 48px;
-    right: 25px;
-    bottom: 35px;
+    right: 50%;
+    margin-right: -35px;
+    bottom: 0px;
 
     @include breakpoint('medium') {
       right: 55px;
@@ -3654,29 +4133,45 @@ ul.info__list {
     }
 
     &.slick-prev {
-      right: 79px;
+      transform: translateX(-50%);
+      margin-right: 0;
 
       @include breakpoint('medium') {
-        right: 118px;
+        transform: none;
+        right: 88px;
       }
     }
   }
 
   .gallery__text {
     display: block;
-    padding: 50px 90px;
-    font-size: 30px;
     font-weight: 700;
+    font-size: 22px;
+    padding: 20px 0 60px;
+    text-align: center;
+
+    @include breakpoint('medium') {
+      padding: 50px 90px;
+      font-size: 30px;
+      text-align: left;
+    }
   }
 }
 
 .product__description {
-  padding: 187px 0;
+  padding: 35px 0;
+  @include breakpoint('medium') {
+    padding: 187px 0;
+  }
 }
 
 .species-box {
   max-width: 240px;
-  margin: 0 0 38px;
+  margin-bottom: 20px;
+
+  @include breakpoint('small') {
+    margin: 0 0 38px;
+  }
 
   &:hover {
     .image {
@@ -3692,10 +4187,15 @@ ul.info__list {
 
 
   .image {
-    height: 240px;
+    height: 130px;
     overflow: hidden;
     position: relative;
-    margin-bottom: 37px;
+    margin-bottom: 10px;
+
+    @include breakpoint('small') {
+      height: 240px;
+      margin-bottom: 37px;
+    }
 
     &:before {
       content: '';
@@ -3725,20 +4225,29 @@ ul.info__list {
 
   .title {
     display: block;
-    font-size: 20px;
+    font-size: 16px;
     color: $primary-color;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
+    
+    @include breakpoint('small') {
+      font-size: 20px;
+    }
   }
 }
 
 .product-species {
-  padding: 0 0 195px;
+  padding-bottom: 20px;
+
+  @include breakpoint('medium') {
+    padding: 0 0 195px;
+  }
 }
 
 .shape__column {
   border: 1px solid $primary-color;
+  margin-bottom: 30px;
 
   .title {
     display: block;
@@ -3799,16 +4308,29 @@ ul.block-icons {
 }
 
 .shapes__boxes {
-  padding-bottom: 202px;
+  @include breakpoint('medium') {
+    padding-bottom: 100px;
+  }
+  @include breakpoint('big') {
+    padding-bottom: 202px;
+  }
 }
 
 .installation__block {
-  padding-bottom: 166px;
+  padding-bottom: 30px;
+
+  @include breakpoint('medium') {
+    padding-bottom: 166px;
+  }
 
   h2 {
     position: relative;
-    padding: 0 0 50px;
-    margin: 0 0 59px;
+    padding-bottom: 10px;
+
+    @include breakpoint('medium') {
+      padding: 0 0 50px;
+      margin: 0 0 59px;
+    }
     
     &:before {
       content: '';
@@ -3824,6 +4346,11 @@ ul.block-icons {
 
 .installation__text {
   padding-top: 51px;
+  padding-bottom: 30px;
+
+  @include breakpoint('medium') {
+    padding-bottom: 0;
+  }
 }
 
 .installation_content {
@@ -3831,7 +4358,11 @@ ul.block-icons {
 }
 
 .useful__info {
-  padding-bottom: 217px;
+  padding-bottom: 30px;
+
+  @include breakpoint('medium') {
+    padding-bottom: 217px;
+  }
 }
 
 .info__slider {
@@ -3848,31 +4379,48 @@ ul.block-icons {
 
   .title {
     display: block;
-    font-size: 22px;
+    font-size: 18px;
     color: $primary-color;
     text-transform: uppercase;
     font-weight: 700;
     letter-spacing: 1px;
     cursor: pointer;
+
+    @include breakpoint('medium') {
+      font-size: 22px;
+    }
   }
 
   .icon_wrap {
     position: absolute;
     left: 0;
-    top: 28px;
+    top: 8px;
     color: $primary-color;
 
+    @include breakpoint('medium') {
+      top: 28px;
+    }
+
     .icon {
-      width: 16px;
-      height: 16px;
+      width: 12px;
+      height: 12px;
+
+      @include breakpoint('medium') {
+        width: 16px;
+        height: 16px;
+      }
     }
   }
 }
 
 .faq__item {
   position: relative;
-  padding: 30px 0 30px 46px;
   border-bottom: 1px solid #433f41;
+  padding: 10px 0 10px 30px;
+
+  @include breakpoint('medium') {
+    padding: 30px 0 30px 46px;
+  }
 }
 
 .faq__slide {
@@ -3881,14 +4429,22 @@ ul.block-icons {
 }
 
 .pricing__block {
-  padding: 157px 0;
+  padding: 40px 0;
+
+  @include breakpoint('medium') {
+    padding: 157px 0;
+  }
 }
 
 .pricing__text {
   h2 {
     position: relative;
-    padding-bottom: 43px;
-    margin-bottom: 64px;
+    padding-bottom: 14px;
+
+    @include breakpoint('medium') {
+      padding-bottom: 43px;
+      margin-bottom: 64px;
+    }
 
     &:before {
       content: '';
@@ -3903,16 +4459,26 @@ ul.block-icons {
 }
 
 .price__image {
-  margin-left: -48px;
+  @include breakpoint('medium') {
+    margin-left: -48px;
+  }
 }
 
 .request__block {
-  padding: 166px 0;
+  padding: 40px 0;
+
+  @include breakpoint('medium') {
+    padding: 166px 0;
+  }
 
   h2 {
     position: relative;
-    padding-bottom: 43px;
-    margin-bottom: 64px;
+    padding-bottom: 15px;
+
+    @include breakpoint('medium') {
+      padding-bottom: 43px;
+      margin-bottom: 64px;
+    }
 
     &:before {
       content: '';
@@ -3931,5 +4497,28 @@ ul.block-icons {
 }
 
 .request__image {
-  margin-right: -20px;
+  margin-bottom: 20px;
+
+  @include breakpoint('medium') {
+    margin-right: -20px;
+  }
+}
+
+.related__blogs {
+  border-top: 2px solid #312f30;
+  margin-top: 30px;
+  padding-top: 30px;
+}
+
+.species-boxes {
+  .row {
+    margin-right: -10px;
+    margin-left: -10px;
+  }
+
+  [class^="col-"],
+  [class*=" col-"] {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
