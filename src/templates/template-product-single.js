@@ -13,6 +13,7 @@ import ProductApplication from "../components/productsingle/product-application"
 import ProductFaq from "../components/productsingle/product-faq";
 import ProductSpecies from "../components/productsingle/product-species";
 import ProductInstallation from "../components/productsingle/product-installation";
+import BattenShapeAndSize from "../components/productsingle/product-battensize";
 
 import RequestSample from "../components/global/global-request-sample";
 import PricingBlock from "../components/global/global-pricing-block";
@@ -49,7 +50,11 @@ class Page extends Component {
       application_gallery_image: this.props.data.wordpressPage.acf.application_gallery_image
     }
 
-    const timber_species = this.props.data.wordpressPage.acf.timber_species;
+    const timber_species = {
+      species: this.props.data.wordpressPage.acf.timber_species,
+      timber_finishes_download_text: this.props.data.wordpressPage.acf.timber_finishes_download_text,
+      timber_finishes_button_style: this.props.data.wordpressPage.acf.timber_finishes_button_style
+    }
 
     const productInstallation = {
       installation_image: this.props.data.wordpressPage.acf.installation_image,
@@ -61,6 +66,11 @@ class Page extends Component {
     }
 
     const userLinks = this.props.data.wordpressPage.acf.useful_info;
+
+    const batten_size = {
+      shape_and_size_title: this.props.data.wordpressPage.acf.shape_and_size_title,
+      batten_shapes: this.props.data.wordpressPage.acf.batten_shapes
+    }
 
     const productFAQ = {
       faq_title: this.props.data.wordpressPage.acf.faq_title,
@@ -117,127 +127,7 @@ class Page extends Component {
         <div className="product__description" id={submenus[1]}>
           <div className="container">
             <ProductSpecies data={timber_species} />
-            <div className="shapes__boxes">
-              <div className="general-heading">
-                <h2>batten shapes & sizes</h2>
-              </div>
-              <div className="row">
-                <div className="col-sm-4">
-                  <div className="shape__column">
-                    <span className="title">block profile</span>
-                    <ul className="block-icons">
-                      <li>
-                        <div className="block-iconwrap">
-                          <svg className="icon" xmlns="http://www.w3.org/2000/svg" width="55" height="56" viewBox="0 0 55 56"><path class="cls-1" d="M309.01,3740.99H296.62v3.94h-8.913v-3.94h-12.39v3.94H266.4v-3.94h-12.39v52.06h10.652v3.94h12.39v-3.94h8.913v3.94h12.391v-3.94H309.01v-52.06Zm-53.259,50.38v-48.71h8.914v48.71h-8.914Zm19.566,3.94H266.4V3746.6h8.914v48.71Zm1.738-3.94v-48.71h8.913v48.71h-8.913Zm19.565,3.94h-8.913V3746.6h8.913v48.71Zm10.652-3.94h-8.913v-48.71h8.913v48.71Z" transform="translate(-254 -3741)"/></svg>
-                        </div>
-                        <span className="text">30mm x 20mm</span>
-                      </li>
-                      <li>
-                        <div className="block-iconwrap">
-                          <svg className="icon" xmlns="http://www.w3.org/2000/svg" width="55" height="56" viewBox="0 0 55 56"><path class="cls-1" d="M309.01,3740.99H296.62v3.94h-8.913v-3.94h-12.39v3.94H266.4v-3.94h-12.39v52.06h10.652v3.94h12.39v-3.94h8.913v3.94h12.391v-3.94H309.01v-52.06Zm-53.259,50.38v-48.71h8.914v48.71h-8.914Zm19.566,3.94H266.4V3746.6h8.914v48.71Zm1.738-3.94v-48.71h8.913v48.71h-8.913Zm19.565,3.94h-8.913V3746.6h8.913v48.71Zm10.652-3.94h-8.913v-48.71h8.913v48.71Z" transform="translate(-254 -3741)"/></svg>
-                        </div>
-                        <span className="text">30mm x 20mm</span>
-                      </li>
-                      <li>
-                        <div className="block-iconwrap">
-                          <svg className="icon" xmlns="http://www.w3.org/2000/svg" width="55" height="56" viewBox="0 0 55 56"><path class="cls-1" d="M309.01,3740.99H296.62v3.94h-8.913v-3.94h-12.39v3.94H266.4v-3.94h-12.39v52.06h10.652v3.94h12.39v-3.94h8.913v3.94h12.391v-3.94H309.01v-52.06Zm-53.259,50.38v-48.71h8.914v48.71h-8.914Zm19.566,3.94H266.4V3746.6h8.914v48.71Zm1.738-3.94v-48.71h8.913v48.71h-8.913Zm19.565,3.94h-8.913V3746.6h8.913v48.71Zm10.652-3.94h-8.913v-48.71h8.913v48.71Z" transform="translate(-254 -3741)"/></svg>
-                        </div>
-                        <span className="text">30mm x 20mm</span>
-                      </li>
-                      <li>
-                        <div className="block-iconwrap">
-                          <svg className="icon" xmlns="http://www.w3.org/2000/svg" width="55" height="56" viewBox="0 0 55 56"><path class="cls-1" d="M309.01,3740.99H296.62v3.94h-8.913v-3.94h-12.39v3.94H266.4v-3.94h-12.39v52.06h10.652v3.94h12.39v-3.94h8.913v3.94h12.391v-3.94H309.01v-52.06Zm-53.259,50.38v-48.71h8.914v48.71h-8.914Zm19.566,3.94H266.4V3746.6h8.914v48.71Zm1.738-3.94v-48.71h8.913v48.71h-8.913Zm19.565,3.94h-8.913V3746.6h8.913v48.71Zm10.652-3.94h-8.913v-48.71h8.913v48.71Z" transform="translate(-254 -3741)"/></svg>
-                        </div>
-                        <span className="text">30mm x 20mm</span>
-                      </li>
-
-                      <li>
-                        <div className="block-iconwrap">
-                          <svg className="icon" xmlns="http://www.w3.org/2000/svg" width="55" height="56" viewBox="0 0 55 56"><path class="cls-1" d="M309.01,3740.99H296.62v3.94h-8.913v-3.94h-12.39v3.94H266.4v-3.94h-12.39v52.06h10.652v3.94h12.39v-3.94h8.913v3.94h12.391v-3.94H309.01v-52.06Zm-53.259,50.38v-48.71h8.914v48.71h-8.914Zm19.566,3.94H266.4V3746.6h8.914v48.71Zm1.738-3.94v-48.71h8.913v48.71h-8.913Zm19.565,3.94h-8.913V3746.6h8.913v48.71Zm10.652-3.94h-8.913v-48.71h8.913v48.71Z" transform="translate(-254 -3741)"/></svg>
-                        </div>
-                        <span className="text">30mm x 20mm</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="col-sm-4">
-                  <div className="shape__column">
-                    <span className="title">concave profile</span>
-                    <ul className="block-icons">
-                      <li>
-                        <div className="block-iconwrap">
-                          <svg className="icon" xmlns="http://www.w3.org/2000/svg" width="55" height="56" viewBox="0 0 55 56"><path class="cls-1" d="M309.01,3740.99H296.62v3.94h-8.913v-3.94h-12.39v3.94H266.4v-3.94h-12.39v52.06h10.652v3.94h12.39v-3.94h8.913v3.94h12.391v-3.94H309.01v-52.06Zm-53.259,50.38v-48.71h8.914v48.71h-8.914Zm19.566,3.94H266.4V3746.6h8.914v48.71Zm1.738-3.94v-48.71h8.913v48.71h-8.913Zm19.565,3.94h-8.913V3746.6h8.913v48.71Zm10.652-3.94h-8.913v-48.71h8.913v48.71Z" transform="translate(-254 -3741)"/></svg>
-                        </div>
-                        <span className="text">30mm x 20mm</span>
-                      </li>
-                      <li>
-                        <div className="block-iconwrap">
-                          <svg className="icon" xmlns="http://www.w3.org/2000/svg" width="55" height="56" viewBox="0 0 55 56"><path class="cls-1" d="M309.01,3740.99H296.62v3.94h-8.913v-3.94h-12.39v3.94H266.4v-3.94h-12.39v52.06h10.652v3.94h12.39v-3.94h8.913v3.94h12.391v-3.94H309.01v-52.06Zm-53.259,50.38v-48.71h8.914v48.71h-8.914Zm19.566,3.94H266.4V3746.6h8.914v48.71Zm1.738-3.94v-48.71h8.913v48.71h-8.913Zm19.565,3.94h-8.913V3746.6h8.913v48.71Zm10.652-3.94h-8.913v-48.71h8.913v48.71Z" transform="translate(-254 -3741)"/></svg>
-                        </div>
-                        <span className="text">30mm x 20mm</span>
-                      </li>
-                      <li>
-                        <div className="block-iconwrap">
-                          <svg className="icon" xmlns="http://www.w3.org/2000/svg" width="55" height="56" viewBox="0 0 55 56"><path class="cls-1" d="M309.01,3740.99H296.62v3.94h-8.913v-3.94h-12.39v3.94H266.4v-3.94h-12.39v52.06h10.652v3.94h12.39v-3.94h8.913v3.94h12.391v-3.94H309.01v-52.06Zm-53.259,50.38v-48.71h8.914v48.71h-8.914Zm19.566,3.94H266.4V3746.6h8.914v48.71Zm1.738-3.94v-48.71h8.913v48.71h-8.913Zm19.565,3.94h-8.913V3746.6h8.913v48.71Zm10.652-3.94h-8.913v-48.71h8.913v48.71Z" transform="translate(-254 -3741)"/></svg>
-                        </div>
-                        <span className="text">30mm x 20mm</span>
-                      </li>
-                      <li>
-                        <div className="block-iconwrap">
-                          <svg className="icon" xmlns="http://www.w3.org/2000/svg" width="55" height="56" viewBox="0 0 55 56"><path class="cls-1" d="M309.01,3740.99H296.62v3.94h-8.913v-3.94h-12.39v3.94H266.4v-3.94h-12.39v52.06h10.652v3.94h12.39v-3.94h8.913v3.94h12.391v-3.94H309.01v-52.06Zm-53.259,50.38v-48.71h8.914v48.71h-8.914Zm19.566,3.94H266.4V3746.6h8.914v48.71Zm1.738-3.94v-48.71h8.913v48.71h-8.913Zm19.565,3.94h-8.913V3746.6h8.913v48.71Zm10.652-3.94h-8.913v-48.71h8.913v48.71Z" transform="translate(-254 -3741)"/></svg>
-                        </div>
-                        <span className="text">30mm x 20mm</span>
-                      </li>
-
-                      <li>
-                        <div className="block-iconwrap">
-                          <svg className="icon" xmlns="http://www.w3.org/2000/svg" width="55" height="56" viewBox="0 0 55 56"><path class="cls-1" d="M309.01,3740.99H296.62v3.94h-8.913v-3.94h-12.39v3.94H266.4v-3.94h-12.39v52.06h10.652v3.94h12.39v-3.94h8.913v3.94h12.391v-3.94H309.01v-52.06Zm-53.259,50.38v-48.71h8.914v48.71h-8.914Zm19.566,3.94H266.4V3746.6h8.914v48.71Zm1.738-3.94v-48.71h8.913v48.71h-8.913Zm19.565,3.94h-8.913V3746.6h8.913v48.71Zm10.652-3.94h-8.913v-48.71h8.913v48.71Z" transform="translate(-254 -3741)"/></svg>
-                        </div>
-                        <span className="text">30mm x 20mm</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="col-sm-4">
-                  <div className="shape__column">
-                    <span className="title">dome profile</span>
-                    <ul className="block-icons">
-                      <li>
-                        <div className="block-iconwrap">
-                          <svg className="icon" xmlns="http://www.w3.org/2000/svg" width="55" height="56" viewBox="0 0 55 56"><path class="cls-1" d="M309.01,3740.99H296.62v3.94h-8.913v-3.94h-12.39v3.94H266.4v-3.94h-12.39v52.06h10.652v3.94h12.39v-3.94h8.913v3.94h12.391v-3.94H309.01v-52.06Zm-53.259,50.38v-48.71h8.914v48.71h-8.914Zm19.566,3.94H266.4V3746.6h8.914v48.71Zm1.738-3.94v-48.71h8.913v48.71h-8.913Zm19.565,3.94h-8.913V3746.6h8.913v48.71Zm10.652-3.94h-8.913v-48.71h8.913v48.71Z" transform="translate(-254 -3741)"/></svg>
-                        </div>
-                        <span className="text">30mm x 20mm</span>
-                      </li>
-                      <li>
-                        <div className="block-iconwrap">
-                          <svg className="icon" xmlns="http://www.w3.org/2000/svg" width="55" height="56" viewBox="0 0 55 56"><path class="cls-1" d="M309.01,3740.99H296.62v3.94h-8.913v-3.94h-12.39v3.94H266.4v-3.94h-12.39v52.06h10.652v3.94h12.39v-3.94h8.913v3.94h12.391v-3.94H309.01v-52.06Zm-53.259,50.38v-48.71h8.914v48.71h-8.914Zm19.566,3.94H266.4V3746.6h8.914v48.71Zm1.738-3.94v-48.71h8.913v48.71h-8.913Zm19.565,3.94h-8.913V3746.6h8.913v48.71Zm10.652-3.94h-8.913v-48.71h8.913v48.71Z" transform="translate(-254 -3741)"/></svg>
-                        </div>
-                        <span className="text">30mm x 20mm</span>
-                      </li>
-                      <li>
-                        <div className="block-iconwrap">
-                          <svg className="icon" xmlns="http://www.w3.org/2000/svg" width="55" height="56" viewBox="0 0 55 56"><path class="cls-1" d="M309.01,3740.99H296.62v3.94h-8.913v-3.94h-12.39v3.94H266.4v-3.94h-12.39v52.06h10.652v3.94h12.39v-3.94h8.913v3.94h12.391v-3.94H309.01v-52.06Zm-53.259,50.38v-48.71h8.914v48.71h-8.914Zm19.566,3.94H266.4V3746.6h8.914v48.71Zm1.738-3.94v-48.71h8.913v48.71h-8.913Zm19.565,3.94h-8.913V3746.6h8.913v48.71Zm10.652-3.94h-8.913v-48.71h8.913v48.71Z" transform="translate(-254 -3741)"/></svg>
-                        </div>
-                        <span className="text">30mm x 20mm</span>
-                      </li>
-                      <li>
-                        <div className="block-iconwrap">
-                          <svg className="icon" xmlns="http://www.w3.org/2000/svg" width="55" height="56" viewBox="0 0 55 56"><path class="cls-1" d="M309.01,3740.99H296.62v3.94h-8.913v-3.94h-12.39v3.94H266.4v-3.94h-12.39v52.06h10.652v3.94h12.39v-3.94h8.913v3.94h12.391v-3.94H309.01v-52.06Zm-53.259,50.38v-48.71h8.914v48.71h-8.914Zm19.566,3.94H266.4V3746.6h8.914v48.71Zm1.738-3.94v-48.71h8.913v48.71h-8.913Zm19.565,3.94h-8.913V3746.6h8.913v48.71Zm10.652-3.94h-8.913v-48.71h8.913v48.71Z" transform="translate(-254 -3741)"/></svg>
-                        </div>
-                        <span className="text">30mm x 20mm</span>
-                      </li>
-
-                      <li>
-                        <div className="block-iconwrap">
-                          <svg className="icon" xmlns="http://www.w3.org/2000/svg" width="55" height="56" viewBox="0 0 55 56"><path class="cls-1" d="M309.01,3740.99H296.62v3.94h-8.913v-3.94h-12.39v3.94H266.4v-3.94h-12.39v52.06h10.652v3.94h12.39v-3.94h8.913v3.94h12.391v-3.94H309.01v-52.06Zm-53.259,50.38v-48.71h8.914v48.71h-8.914Zm19.566,3.94H266.4V3746.6h8.914v48.71Zm1.738-3.94v-48.71h8.913v48.71h-8.913Zm19.565,3.94h-8.913V3746.6h8.913v48.71Zm10.652-3.94h-8.913v-48.71h8.913v48.71Z" transform="translate(-254 -3741)"/></svg>
-                        </div>
-                        <span className="text">30mm x 20mm</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <BattenShapeAndSize data={batten_size} />
             <ProductInstallation data={productInstallation} />
             <div className="useful__info">
               <div className="general-heading">
@@ -342,8 +232,11 @@ export const pageQuery = graphql`
           image_title
           image_application_tag
         }
+        timber_finishes_download_text
+        timber_finishes_button_style
         timber_species {
           timber_small_thumbnail {
+            alt_text
             localFile {
               childImageSharp {
                 fluid(maxWidth: 250) {
@@ -353,10 +246,9 @@ export const pageQuery = graphql`
             }
           }
           timber_title
-          timber_finishes_download_text
-          timber_finishes_button_style
           timber_finishes {
             finishes_image_thumbnail {
+              alt_text
               localFile {
                 childImageSharp {
                   fluid(maxWidth: 500) {
@@ -423,14 +315,6 @@ export const pageQuery = graphql`
           }
         }
         request_sample_description
-        timber_species {
-          timber_title
-          timber_finishes_button_style
-          timber_finishes_download_text
-          timber_finishes {
-            finishes_title
-          }
-        }
       }
     }
   }

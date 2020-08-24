@@ -9,8 +9,12 @@ class Page extends Component {
 
     return (
       <Layout>
-        <h1>{StaticPage.title} I am all general Page</h1>
-        <div dangerouslySetInnerHTML={{ __html: StaticPage.content }} />
+        <div className="general__wrappper">
+          <div className="container">
+            <h1>{StaticPage.title}</h1>
+            <div dangerouslySetInnerHTML={{ __html: StaticPage.content }} />
+          </div>
+        </div>
       </Layout>
     )
   }

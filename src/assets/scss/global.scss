@@ -343,6 +343,7 @@ label {
 
   &:hover {
     color: #fff;
+    background: darken(#312f30, 10%);
   }
 
   &.primary {
@@ -373,7 +374,7 @@ label {
   left: 0;
   right: 0;
   top: 0;
-  z-index: 999;
+  z-index: 99;
   box-shadow: 0 0 12px rgba(#000, 0.4);
 
   @include breakpoint('medium') {
@@ -1241,7 +1242,7 @@ ul.main__nav {
       @include breakpoint('large') {
         padding-left: 37px;
         position: relative;
-        z-index: 99;
+        z-index: 9;
       }
     }
     
@@ -1447,6 +1448,12 @@ ul.main__nav {
   position: relative;
   text-align: center;
   letter-spacing: 2px;
+  transition: all 0.3s;
+
+  &:hover {
+    background: #312f30;
+    color: #fff;
+  }
 
   .btnArrow {
     width: 55px;
@@ -1459,6 +1466,7 @@ ul.main__nav {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    transition: color 0.3s;
   }
 
   .icon {
@@ -1473,6 +1481,14 @@ ul.main__nav {
     .btnArrow {
       background: $primary-color;
       color: #312f30;
+    }
+
+    &:hover {
+      background: $primary-color;
+
+      .btnArrow {
+        color: #fff;
+      }
     }
   }
 }
@@ -1546,6 +1562,26 @@ ul.footer_menu {
 
   li {
     margin-bottom: 10px;
+  }
+}
+
+.footer__contactinfo {
+  p,
+  address {
+    margin-bottom: 10px;
+  }
+  
+  address {
+    font-style: normal;
+  }
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
   }
 }
 
@@ -1887,15 +1923,23 @@ ul.footer_menu {
   overflow: hidden;
   position: relative;
 
-  &:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    z-index: 2;
-    box-shadow: inset 0 -450px 150px -250px rgba(49, 47, 48, 0.5);
+  a {
+    display: block;
+    height: 100%;
+    cursor: pointer;
+    position: relative;
+    z-index: 3;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      z-index: 2;
+      box-shadow: inset 0 -450px 150px -250px rgba(49, 47, 48, 0.5);
+    }
   }
 }
 
@@ -1908,6 +1952,14 @@ ul.footer_menu {
   text-align: center;
   display: block;
   text-shadow: 0 0 12px rgba(#000, 0.6);
+
+  a {
+    color: #fff;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
 
   @include breakpoint('medium') {
     font-size: 50px;
@@ -3655,6 +3707,7 @@ ul.info__list {
 
   .text__wrap {
     cursor: pointer;
+    outline: none !important;
 
     &:hover {
       .text {
@@ -4301,7 +4354,7 @@ ul.block-icons {
   padding: 20px 0;
 
   li {
-    padding: 0 10px 20px;
+    padding: 0 5px 20px;
     text-align: center;
     width: 33.33%;
     color: $primary-color;
@@ -4309,20 +4362,22 @@ ul.block-icons {
 
   .block-iconwrap {
     width: 50px;
-    height: 75px;
+    height: 80px;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-end;
+    justify-content: center;
     margin: 0 auto 14px;
   }
 
   .icon {
-    width: 100%;
+    margin: 0 auto;
+    width: 90%;
     height: auto;
   }
 
   .text {
-    font-size: 15px;
+    font-size: 14px;
     display: block;
   }
 }
@@ -4550,4 +4605,26 @@ ul.block-icons {
   padding: 4px 20px;
   background: #5ea95e;
   color: #fff;
+}
+
+.general__wrappper {
+  padding: 60px 0;
+}
+
+.popup__wrapper {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+
+  .popup__active & {
+    opacity: 1;
+    visibility: visible;
+  }
 }

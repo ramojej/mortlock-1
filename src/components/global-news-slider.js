@@ -50,9 +50,9 @@ const GlobalNewsSlider = ({ ...props }) =>  {
                   <h3><Link to={article.node.path}>{article.node.title}</Link></h3>
                   {(() => {
                     const regex = /(<([^>]+)>)/ig;
-                    var removeHTMLtags = article.node.excerpt.replace(regex, '').substring(0, 500) + "...";
+                    var removeHTMLtags = article.node.excerpt.replace(regex, '').substring(0, 150) + "...";
                     return (
-                      <p>{removeHTMLtags}</p>
+                      <p dangerouslySetInnerHTML={{ __html: removeHTMLtags }} />
                     )
                   })()}
                   <Link to={article.node.path} className="read-more">Read more</Link>

@@ -10,7 +10,10 @@ const GeneralText = ({ ...props }) =>  {
       <div className="container">
         <div className={`row middle-md ${(content.alignImage === "right") ? props.reverseClass : `reverse ${props.reverseClass}`}`}>
           <div className={props.col2}>
-            <div className="textBox">
+            <div className="textBox" 
+                data-sal="slide-up" 
+                data-sal-easing="ease"
+                data-sal-delay="5">
               <div dangerouslySetInnerHTML={{ __html: content.description }} />
               {(() => {
                 if(props.contentData.showButton) return (
@@ -22,7 +25,10 @@ const GeneralText = ({ ...props }) =>  {
             </div>
           </div>
           <div className={props.col1}>
-            <div className="image__wrap">
+            <div className="image__wrap"
+                data-sal="slide-up" 
+                data-sal-easing="ease"
+                data-sal-delay="85">
               <Img fluid={content.image.localFile.childImageSharp.fluid} alt="Alternative Text" />
             </div>
           </div>

@@ -28,14 +28,18 @@ const GlobalProjectSlider = ({ ...props }) =>  {
       <div className="container">
         <h2>latest projects</h2>
         <Slider className="project__slider" ref={customSlider} {...sliderSettings}>
-          {content.map((project, index) => (
+          {content.map((project) => (
             <div className="slide" key={project.node.wordpress_id}>
               <div className="project__box">
                 <div className="project_image">
-                {project.node.featured_media ? <Img fluid={project.node.featured_media.localFile.childImageSharp.fluid} alt="Alternative Text" /> : null }
+                <Link to={project.node.path}>
+                  {project.node.featured_media ? 
+                    <Img fluid={project.node.featured_media.localFile.childImageSharp.fluid} alt="Alternative Text" /> 
+                  : null }
+                </Link>
                 </div>
                 <div className="project_text">
-                  <span className="project_title">{project.node.title}</span>
+                  <span className="project_title"><Link to={project.node.path}>{project.node.title}</Link></span>
                 </div>
                 <div className="control_wrapper">
                   <button className="slick-arrow slick-prev" onClick={()=>gotoPrev()}><span className="text">Prev</span><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100"><path d="m87.5 45.832h-58.75l17.918-17.914-5.8359-5.8359-27.914 27.918 27.914 27.918 5.8359-5.8359-17.918-17.914h58.75z"/></svg></button>

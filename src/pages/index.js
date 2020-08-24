@@ -301,11 +301,12 @@ export const pageQuery = graphql`
         node {
           title
           wordpress_id
+          path
           featured_media {
             alt_text
             localFile {
               childImageSharp {
-                fluid(maxWidth: 1300) {
+                fluid(maxWidth: 1300, quality: 100) {
                   ...GatsbyImageSharpFluid_withWebp
                 }
               }

@@ -45,6 +45,7 @@ const Header = ({ data, ...props }) => (
             node {
               options {
                 main_header_logo {
+                  alt_text
                   localFile {
                     childImageSharp {
                       fluid(maxWidth: 500) {
@@ -103,7 +104,10 @@ const Header = ({ data, ...props }) => (
             <div className="header__bottomwrap">
               <div className="header__logo">
                 <Link to="/">
-                  <Img fluid={data.allWordpressAcfOptions.edges[0].node.options.main_header_logo.localFile.childImageSharp.fluid} alt="Alternative Text" />
+                  <Img 
+                    fluid={data.allWordpressAcfOptions.edges[0].node.options.main_header_logo.localFile.childImageSharp.fluid} 
+                    alt={ data.allWordpressAcfOptions.edges[0].node.options.main_header_logo.alt_text ? data.allWordpressAcfOptions.edges[0].node.options.main_header_logo.alt_text : 'Mortlock Timber' }
+                  />
                 </Link>
               </div>
               <nav className="header__nav">
@@ -191,7 +195,7 @@ const Header = ({ data, ...props }) => (
                                               </div>
                                             </div>
                                           )
-                                        } else if(menu.title.toLowerCase() === 'timber wall cladding') {
+                                        } else if(menu.title.toLowerCase() === 'timber wall') {
                                           return (
                                             <div className="dropdown">
                                               <div className="container">
