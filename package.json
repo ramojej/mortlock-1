@@ -6,6 +6,7 @@
   "author": "Bipu Bajgai <bipu@dilate.com.au>",
   "dependencies": {
     "@react-google-maps/api": "^1.9.12",
+    "axios": "^0.20.0",
     "gatsby": "^2.23.3",
     "gatsby-background-image": "^1.1.1",
     "gatsby-cli": "^2.12.88",

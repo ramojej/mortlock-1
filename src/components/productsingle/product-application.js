@@ -18,6 +18,7 @@ function SamplePrevArrow(props) {
 
 const ProductApplication = ({ ...props }) =>  {
   const content = props.data;
+  const customSlider = React.createRef();
 
   const sliderSettings = {
     infinite: true,
@@ -28,6 +29,11 @@ const ProductApplication = ({ ...props }) =>  {
     prevArrow: <SamplePrevArrow />
   };
 
+  const slideToGo = (index) => {
+    console.log(customSlider)
+    customSlider.current.slickGoTo(parseInt(index));
+  }
+
   return (
     <div className="application__wrapper">
       <div className="container">
@@ -36,9 +42,9 @@ const ProductApplication = ({ ...props }) =>  {
             <div className="application__text">
               <div className="application__textbox" dangerouslySetInnerHTML={{ __html: content.application_content }} />
               <div className="application__iconbox">
-                <ul className="app__list">
+                <div className="app__list">
                   {content.application_gallery_image.map((list, index) => (
-                    <li key={index}>
+                    <div className="app_list" key={index} onClick={() => slideToGo(index)}>
                       {(() => {
                         if(list.image_application_tag === "exterior") { 
                           return (
@@ -55,14 +61,14 @@ const ProductApplication = ({ ...props }) =>  {
                         }
                       })()}
                       <span className="text">{list.image_application_tag}</span>
-                    </li>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             </div>
           </div>
           <div className="col-sm-offset-1 col-sm-7">
-            <Slider className="gallery__wrapper" {...sliderSettings}>
+            <Slider className="gallery__wrapper" ref={customSlider} {...sliderSettings}>
               {content.application_gallery_image.map((slide, index) => (
                 <div className="slide" key={index}>
                   <div className="gallery__image">

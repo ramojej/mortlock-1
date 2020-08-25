@@ -5,7 +5,10 @@ class SampleRequest extends Component {
     firstname: '',
     lastname: '',
     email: '',
-    phone: ''
+    phone: '',
+    company: '',
+    state: '',
+    postcode: ''
   }
 
   handleInputChange = event => {
@@ -44,6 +47,12 @@ class SampleRequest extends Component {
             </div>
           </div>
         </div>
+        <div className="form_group">
+          <label htmlFor="company">Company</label>
+          <div className="form_input">
+            <input aria-label="Company" type="text" name="company" id="company" placeholder="Enter your company name" value={this.state.company} onChange={this.handleInputChange} />
+          </div>
+        </div>
         <div className="row">
           <div className="col-sm-6">
             <div className="form_group">
@@ -62,52 +71,35 @@ class SampleRequest extends Component {
             </div>
           </div>
         </div>
+        <div className="row">
+          <div className="col-sm-6">
+            <div className="form_group">
+              <label htmlFor="state">State</label>
+              <div className="form_input">
+                <input aria-label="State" type="text" name="state" id="state" placeholder="Enter your state" value={this.state.state} onChange={this.handleInputChange} />
+              </div>
+            </div>
+          </div>
+          <div className="col-sm-6">
+            <div className="form_group">
+              <label htmlFor="postcode">Postcode</label>
+              <div className="form_input">
+                <input aria-label="postcode" type="text" name="postcode" id="postcode" placeholder="Enter your postcode" value={this.state.postcode} onChange={this.handleInputChange} />
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="form_group">
-          <label htmlFor="company">select the brochure(s) you need</label>
-          <ul className="check__list">
-            <li>
-              <label className="custom_check" htmlFor="proplank">
-                <input aria-label="Proplank" type="checkbox" name="brochure" id="proplank" />
-                <span className="custom-box"></span>
-                <span className="custom-text">proplank</span>
-              </label>
-            </li>
-            <li>
-              <label className="custom_check" htmlFor="trendplank">
-                <input aria-label="Trendplank" type="checkbox" name="brochure" id="trendplank" />
-                <span className="custom-box"></span>
-                <span className="custom-text">TRENDplank</span>
-              </label>
-            </li>
-            <li>
-              <label className="custom_check" htmlFor="satinplank">
-                <input aria-label="Satinplank" type="checkbox" name="brochure" id="satinplank" />
-                <span className="custom-box"></span>
-                <span className="custom-text">SATINPLANK</span>
-              </label>
-            </li>
-            <li>
-              <label className="custom_check" htmlFor="marineplank">
-                <input aria-label="Marineplank" type="checkbox" name="brochure" id="marineplank" />
-                <span className="custom-box"></span>
-                <span className="custom-text">MARINEplank</span>
-              </label>
-            </li>
-            <li>
-              <label className="custom_check" htmlFor="metroplank">
-                <input aria-label="Metroplank" type="checkbox" name="brochure" id="metroplank" />
-                <span className="custom-box"></span>
-                <span className="custom-text">METROplank</span>
-              </label>
-            </li>
-            <li>
-              <label className="custom_check" htmlFor="classicplank">
-                <input aria-label="Classicplank" type="checkbox" name="brochure" id="classicplank" />
-                <span className="custom-box"></span>
-                <span className="custom-text">CLASSICPLANK</span>
-              </label>
-            </li>
-          </ul>
+          <label htmlFor="projectsize">Project Size M2 <span className="info">(Proplank not recommended for projects under 30m2)</span></label>
+          <div className="form_input">
+            <input aria-label="Project Size" type="text" name="projectsize" id="projectsize" placeholder="Enter details here" value={this.state.projectsize} onChange={this.handleInputChange} />
+          </div>
+        </div>
+        <div className="form_group">
+          <label htmlFor="message">Message</label>
+          <div className="form_input">
+            <textarea aria-label="Message" id="message" placeholder="Please leave a detailed message here..." name="message" value={this.state.message } onChange={this.handleInputChange} />
+          </div>
         </div>
         <div className="btn_wrap">
           <button className="button" type="submit">Submit</button>

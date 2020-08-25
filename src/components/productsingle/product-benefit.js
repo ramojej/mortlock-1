@@ -1,7 +1,6 @@
 import React from 'react';
 import Img from 'gatsby-image';
-
-import Button from '@src/components/global/button';
+import { Link } from 'gatsby';
 
 const ProductBenefit = ({ ...props }) =>  {
   const content = props.data;
@@ -22,11 +21,7 @@ const ProductBenefit = ({ ...props }) =>  {
                   <div className="col-sm-6" key={index}>
                   {(benefit.benefit_or_button === 'button') ?
                     <div className="btn__wrap">
-                      <Button
-                        link={benefit.button_link} 
-                        text={benefit.button_text}
-                        style={benefit.button_style}
-                      />
+                      <Link to={ benefit.button_link } className="button-learn">{ benefit.button_text } <span className="btnArrow"><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></span></Link>
                     </div> :
                     <div className="icon__wrapper">
                       <div className="benefit_icon" dangerouslySetInnerHTML={{ __html: benefit.icon_svg }} />

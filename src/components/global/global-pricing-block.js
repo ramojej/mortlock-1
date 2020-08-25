@@ -1,7 +1,7 @@
 import React from 'react';
 import Img from 'gatsby-image';
 
-import PricingForm from "../forms/pricing-form-3502";
+import ProductPricingForm from "../forms/pricing-form";
 
 const PricingBlock = ({ ...props }) =>  {
   const content = props.data;
@@ -14,9 +14,8 @@ const PricingBlock = ({ ...props }) =>  {
           <div className="col-sm-6">
             <div className="pricing__text">
               <h2 dangerouslySetInnerHTML={{ __html: content.pricing_title }} />
-              <div dangerouslySetInnerHTML={{ __html: content.pricing_description }} />
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p>
-              <PricingForm />
+              <p dangerouslySetInnerHTML={{ __html: content.pricing_description }} />
+              <ProductPricingForm />
             </div>
           </div>
           <div className="col-sm-offset-1 col-sm-5">

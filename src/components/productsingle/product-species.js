@@ -10,14 +10,13 @@ const togglePopupOverlay = () => {
 const ProductSpecies = ({ ...props }) =>  {
   const content = props.data;
   const [popupIndex, setPopupIndex] = useState();
+  const [popupTitle, setPopupTitle] = useState();
 
-  const setFinishIndex = (num) => {
+  const setFinishIndex = (num, title) => {
     togglePopupOverlay();
     setPopupIndex(num);
+    setPopupTitle(title);
   }
-
-  console.log("Index", popupIndex);
-  console.log(content);
   
   return (
     <div className="product-species">
@@ -32,7 +31,7 @@ const ProductSpecies = ({ ...props }) =>  {
               <div className="species-box">
                 <div className="image">
                   { timber.timber_small_thumbnail ? <Img fluid={timber.timber_small_thumbnail.localFile.childImageSharp.fluid} alt={timber.timber_small_thumbnail.alt_text || ''} /> : null }
-                  <span className="button whiteoutline" onClick={ () => setFinishIndex(index) }>View finishes</span>
+                  <span className="button whiteoutline" onClick={ () => setFinishIndex(index, timber.timber_title) }>View finishes</span>
                 </div>
                 <span className="title">{timber.timber_title}</span>
               </div>
@@ -40,7 +39,7 @@ const ProductSpecies = ({ ...props }) =>  {
           )) : null }
         </div>
       </div>
-      { popupIndex !== undefined ? <ProductFinishes data={content.species[popupIndex].timber_finishes} /> : null }
+      { popupIndex !== undefined ? <ProductFinishes title={popupTitle} data={content.species[popupIndex].timber_finishes} /> : null }
     </div>
   )
 }

@@ -93,7 +93,7 @@ class IndexPage extends Component {
           title={this.props.data.allWordpressPage.edges[0].node.yoast.title} 
         />
         <Banner data={ bannerContent } type="homepage" />
-        <GeneralText contentData={ aboutContent } col1="col-sm-6 col-xlg-7" col2="col-sm-6 col-xlg-5" />
+        <GeneralText contentData={ aboutContent } animation="false" col1="col-sm-6 col-xlg-7" col2="col-sm-6 col-xlg-5" />
         <GeneralText contentData={ imageBlock } col1="col-sm-6 col-xlg-5" col2="col-sm-6 col-xlg-7" addClass="range" />
         <GeneralText contentData={ pricingBlock } col1="col-sm-6 col-xlg-7" col2="col-sm-6 col-xlg-5" addClass="pricing" />
         <GeneralText contentData={ timberDecking } col1="col-sm-7 col-xlg-8" col2="col-sm-5 col-xlg-4" addClass="decking" />
