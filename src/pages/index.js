@@ -93,12 +93,12 @@ class IndexPage extends Component {
           title={this.props.data.allWordpressPage.edges[0].node.yoast.title} 
         />
         <Banner data={ bannerContent } type="homepage" />
-        <GeneralText contentData={ aboutContent } col1="col-sm-6 col-lg-7" col2="col-sm-6 col-lg-5" />
-        <GeneralText contentData={ imageBlock } col1="col-sm-6 col-lg-5" col2="col-sm-6 col-lg-7" addClass="range" />
-        <GeneralText contentData={ pricingBlock } col1="col-sm-6 col-lg-7" col2="col-sm-6 col-lg-5" addClass="pricing" />
-        <GeneralText contentData={ timberDecking } col1="col-sm-7 col-lg-8" col2="col-sm-5 col-lg-4" addClass="decking" />
-        <GeneralText contentData={ timberWalls } col1="col-sm-6 col-lg-5" col2="col-sm-6 col-lg-7" addClass="walls" />
-        <GeneralText contentData={ timberCeilings } col1="col-sm-6 col-lg-6" col2="col-sm-6 col-lg-6" addClass="ceilings" />
+        <GeneralText contentData={ aboutContent } col1="col-sm-6 col-xlg-7" col2="col-sm-6 col-xlg-5" />
+        <GeneralText contentData={ imageBlock } col1="col-sm-6 col-xlg-5" col2="col-sm-6 col-xlg-7" addClass="range" />
+        <GeneralText contentData={ pricingBlock } col1="col-sm-6 col-xlg-7" col2="col-sm-6 col-xlg-5" addClass="pricing" />
+        <GeneralText contentData={ timberDecking } col1="col-sm-7 col-xlg-8" col2="col-sm-5 col-xlg-4" addClass="decking" />
+        <GeneralText contentData={ timberWalls } col1="col-sm-6 col-xlg-5" col2="col-sm-6 col-xlg-7" addClass="walls" />
+        <GeneralText contentData={ timberCeilings } col1="col-sm-6 col-xlg-6" col2="col-sm-6 col-xlg-6" addClass="ceilings" />
         {(() => {
           if(generalContent.latestProject) return (
             <GlobalProjectSlider contentData={ latestProjects } />

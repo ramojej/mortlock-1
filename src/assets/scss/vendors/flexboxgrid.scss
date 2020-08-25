@@ -43,7 +43,8 @@ $flexboxgrid-outer-margin: 2.1875rem !default;
 $flexboxgrid-breakpoints:
   sm 768px 767px,
   md 1024px 1023px,
-  lg 1200px 1199px !default;
+  lg 1200px 1199px,
+  xlg 1950px 1949px !default;
 
 $flexboxgrid-max-width: 92.9375rem + 2.1875rem * 2 !default; 
 $flexboxgrid-large-max-width: 111.25rem + 2.1875rem * 2 !default;
@@ -59,7 +60,7 @@ $half-gutter-width: $flexboxgrid-gutter-width * .5;
 .container {
   padding-left: 25px;
   padding-right: 25px;
-  max-width: $flexboxgrid-max-width;
+  max-width: 1250px;
   margin: 0 auto;
 
   @include breakpoint('small') {
@@ -67,12 +68,22 @@ $half-gutter-width: $flexboxgrid-gutter-width * .5;
     padding-right: $flexboxgrid-outer-margin;
   }
 
+  @include breakpoint('xxlarge') {
+    max-width: $flexboxgrid-max-width;
+  }
+
   &.container__big {
-    max-width: $flexboxgrid-large-max-width;
+    max-width: 1550px;
+
+    @include breakpoint('xxlarge') {
+      max-width: $flexboxgrid-large-max-width;
+    }
   }
 
   &.container__small {
-    max-width: $flexboxgrid-small-max-width;
+    @include breakpoint('xxlarge') {
+      max-width: $flexboxgrid-small-max-width;
+    }
   }
 
   &:after {
