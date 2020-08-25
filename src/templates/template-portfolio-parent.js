@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, Component } from "react";
 import { graphql, Link } from "gatsby";
 
 import BackgroundImage from 'gatsby-background-image';
@@ -10,6 +10,11 @@ class Page extends Component {
   render() {
     const data = this.props
 
+    const [activateFilter, setActivateFilter] = useState();
+
+    activeProjectFilter = () => {
+
+    } 
     return (
       <Layout>
         <SEO 
@@ -21,11 +26,11 @@ class Page extends Component {
             <div className="blog__heading">
               <h1>Portfolio</h1>
               <div className="article__metas">
-                <span className="filter__button">Show Filters <i>+</i></span>
+                <span className="filter__button" onClick={ () => this.activeProjectFilter() }>Show Filters <i>+</i></span>
               </div>
             </div>
             <div className="project__wrapper">
-              {/* <div className="filter__wrapper filter--active">
+              <div className="filter__wrapper filter--active">
                 <span className="filter__button">Hide Filters <i>-</i></span>
                 <div className="aside">
                   <span className="title">Product</span>
@@ -65,7 +70,7 @@ class Page extends Component {
                     </li>
                   </ul>
                 </div>
-              </div> */}
+              </div>
               <div className="project__content filter--active">
                 <div className="row">
                   {data.data.allWordpressWpProject.edges.map(post => (

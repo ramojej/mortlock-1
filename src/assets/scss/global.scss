@@ -3641,6 +3641,10 @@ ul.info__list {
   margin-bottom: 20px;
 
   @include breakpoint('medium') {
+    margin-bottom: 53px;
+  }
+
+  @include breakpoint('xxlarge') {
     margin-bottom: 83px;
   }
 
@@ -3661,7 +3665,6 @@ ul.info__list {
 
 .article__metas {
   float: right;
-  display: none;
 
   @include breakpoint('medium') {
     // display: block;
@@ -3766,6 +3769,10 @@ ul.info__list {
   position: relative;
 
   @include breakpoint('medium') {
+    height: 370px;
+  }
+
+  @include breakpoint('xxlarge') {
     height: 435px;
   }
 
@@ -4044,6 +4051,10 @@ ul.info__list {
   padding: 15px 0 0;
 
   @include breakpoint('medium') {
+    padding: 26px 0 0;
+  }
+
+  @include breakpoint('xxlarge') {
     padding: 36px 0 0;
   }
 
@@ -4056,8 +4067,12 @@ ul.info__list {
   }
 
   h3 {
-    font-size: 33px;
+    font-size: 28px;
     margin-bottom: 9px;
+
+    @include breakpoint('xxlarge') {
+      font-size: 33px;
+    }
 
     a {
       color: #312f30;
