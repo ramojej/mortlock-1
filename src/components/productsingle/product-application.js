@@ -72,7 +72,7 @@ const ProductApplication = ({ ...props }) =>  {
               {content.application_gallery_image.map((slide, index) => (
                 <div className="slide" key={index}>
                   <div className="gallery__image">
-                    <Img fluid={slide.gallery_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
+                    {slide.gallery_image && <Img fluid={slide.gallery_image.localFile.childImageSharp.fluid} alt="Alternative Text" />}
                   </div>
                   <span className="gallery__text">{ slide.image_title }</span>
                 </div>

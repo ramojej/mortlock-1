@@ -5288,7 +5288,11 @@ ul.block-icons {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s, visibility 0.3s;
-  padding: 100px 0;
+  padding: 50px 0;
+
+  @include breakpoint('medium') {
+    padding: 100px 0;
+  }
 
   .popup__active & {
     opacity: 1;
@@ -5328,8 +5332,13 @@ ul.block-icons {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  padding: 0 0 40px;
-  margin-bottom: 80px;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+
+  @include breakpoint('medium') {
+    padding: 0 0 40px;
+    margin-bottom: 80px;
+  }
 
   h2 {
     margin-bottom: 0;
@@ -5344,6 +5353,13 @@ ul.block-icons {
     height: 2px;
     background: $primary-color;
     bottom: 0;
+  }
+
+  .button-learn {
+    @media only screen and (max-width: 767px) {
+      transform: scale(0.7);
+      transform-origin: 0 0;
+    }
   }
 }
 
@@ -5471,7 +5487,7 @@ ul.block-icons {
 }
 
 .map_popup {
-  padding: 5px 10px;
+  padding: 2px 5px;
   font-family: 'Maison Neue';
   
   .title,

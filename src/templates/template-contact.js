@@ -7,183 +7,135 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Button from "../components/global/button";
 
+import markerIcon from '../../static/map-icon.svg';
+
 import ContactForm from '../components/forms/contact-form-137';
 
 const exampleMapStyles = [
   {
-    "featureType": "all",
-    "elementType": "labels",
+    "elementType": "geometry",
     "stylers": [
       {
-        "visibility": "on"
+        "color": "#f5f5f5"
       }
     ]
   },
   {
-    "featureType": "all",
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
     "elementType": "labels.text.fill",
     "stylers": [
       {
-        "saturation": 36
-      },
-      {
-        "color": "#000000"
-      },
-      {
-        "lightness": 40
+        "color": "#616161"
       }
     ]
   },
   {
-    "featureType": "all",
     "elementType": "labels.text.stroke",
     "stylers": [
       {
-        "visibility": "on"
-      },
-      {
-        "color": "#000000"
-      },
-      {
-        "lightness": 16
+        "color": "#f5f5f5"
       }
     ]
   },
   {
-    "featureType": "all",
-    "elementType": "labels.icon",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "administrative",
-    "elementType": "geometry.fill",
-    "stylers": [
-      {
-        "color": "#000000"
-      },
-      {
-        "lightness": 20
-      }
-    ]
-  },
-  {
-    "featureType": "administrative",
-    "elementType": "geometry.stroke",
-    "stylers": [
-      {
-        "color": "#000000"
-      },
-      {
-        "lightness": 17
-      },
-      {
-        "weight": 1.2
-      }
-    ]
-  },
-  {
-    "featureType": "administrative.country",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#838383"
-      }
-    ]
-  },
-  {
-    "featureType": "administrative.locality",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#c4c4c4"
-      }
-    ]
-  },
-  {
-    "featureType": "administrative.neighborhood",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#aaaaaa"
-      }
-    ]
-  },
-  {
-    "featureType": "landscape",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#151516"
-      },
-      {
-        "lightness": "0"
-      }
-    ]
-  },
-  {
-    "featureType": "poi",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#000000"
-      },
-      {
-        "lightness": 21
-      },
-      {
-        "visibility": "on"
-      }
-    ]
-  },
-  {
-    "featureType": "poi",
+    "featureType": "administrative.land_parcel",
     "elementType": "labels",
     "stylers": [
       {
         "visibility": "off"
-      },
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.land_parcel",
+    "elementType": "labels.text.fill",
+    "stylers": [
       {
-        "hue": "#ff0000"
+        "color": "#bdbdbd"
       }
     ]
   },
   {
     "featureType": "poi",
-    "elementType": "labels.icon",
+    "elementType": "geometry",
     "stylers": [
       {
-        "saturation": "-100"
+        "color": "#eeeeee"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "labels.text",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#757575"
       }
     ]
   },
   {
     "featureType": "poi.business",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
     "elementType": "geometry",
     "stylers": [
       {
-        "visibility": "on"
+        "color": "#e5e5e5"
       }
     ]
   },
   {
-    "featureType": "road.highway",
-    "elementType": "geometry.fill",
+    "featureType": "poi.park",
+    "elementType": "labels.text",
     "stylers": [
       {
-        "color": "#6e6e6e"
-      },
-      {
-        "lightness": "0"
+        "visibility": "off"
       }
     ]
   },
   {
-    "featureType": "road.highway",
-    "elementType": "geometry.stroke",
+    "featureType": "poi.park",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#9e9e9e"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#ffffff"
+      }
+    ]
+  },
+  {
+    "featureType": "road.arterial",
+    "elementType": "labels",
     "stylers": [
       {
         "visibility": "off"
@@ -192,70 +144,25 @@ const exampleMapStyles = [
   },
   {
     "featureType": "road.arterial",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#000000"
-      },
-      {
-        "lightness": 18
-      }
-    ]
-  },
-  {
-    "featureType": "road.arterial",
-    "elementType": "geometry.fill",
-    "stylers": [
-      {
-        "color": "#575757"
-      }
-    ]
-  },
-  {
-    "featureType": "road.arterial",
     "elementType": "labels.text.fill",
     "stylers": [
       {
-        "color": "#c3c3c3"
+        "color": "#757575"
       }
     ]
   },
   {
-    "featureType": "road.arterial",
-    "elementType": "labels.text.stroke",
-    "stylers": [
-      {
-        "color": "#2c2c2c"
-      }
-    ]
-  },
-  {
-    "featureType": "road.local",
+    "featureType": "road.highway",
     "elementType": "geometry",
     "stylers": [
       {
-        "color": "#000000"
-      },
-      {
-        "lightness": 16
+        "color": "#dadada"
       }
     ]
   },
   {
-    "featureType": "road.local",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#5f5f5f"
-      },
-      {
-        "visibility": "on"
-      }
-    ]
-  },
-  {
-    "featureType": "road.local",
-    "elementType": "labels.text.stroke",
+    "featureType": "road.highway",
+    "elementType": "labels",
     "stylers": [
       {
         "visibility": "off"
@@ -263,14 +170,55 @@ const exampleMapStyles = [
     ]
   },
   {
-    "featureType": "transit",
+    "featureType": "road.highway",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#616161"
+      }
+    ]
+  },
+  {
+    "featureType": "road.local",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "road.local",
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "road.local",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#9e9e9e"
+      }
+    ]
+  },
+  {
+    "featureType": "transit.line",
     "elementType": "geometry",
     "stylers": [
       {
-        "color": "#717171"
-      },
+        "color": "#e5e5e5"
+      }
+    ]
+  },
+  {
+    "featureType": "transit.station",
+    "elementType": "geometry",
+    "stylers": [
       {
-        "lightness": 19
+        "color": "#eeeeee"
       }
     ]
   },
@@ -279,10 +227,16 @@ const exampleMapStyles = [
     "elementType": "geometry",
     "stylers": [
       {
-        "color": "#000000"
-      },
+        "color": "#c9c9c9"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "labels.text.fill",
+    "stylers": [
       {
-        "lightness": 17
+        "color": "#9e9e9e"
       }
     ]
   }
@@ -294,35 +248,75 @@ const mapContainerStyle = {
 }
 
 const center = {
-  lat: 0,
-  lng: -180
+  lat: -25.4287277,
+  lng: 136.6484181
 }
 
 const markers = [
   {
-    name: 'Warehouse & Freight Distribution SA',
-    location: 'Mile End, Adelaide, 5031',
+    name: 'Warehouse & Freight Distribution QLD',
+    location: 'Wacol, Brisbane, 4076',
     position: {
-      lat: -33.890542,
-      lng: 151.274856
+      lat: -27.5877829,
+      lng: 152.8953389
+    }
+  },
+  {
+    name: 'Warehouse & Freight Distribution NSW',
+    location: 'Belfield, Sydney, 2191',
+    position: {
+      lat: -33.904586,
+      lng: 151.081818
     }
   },
   {
     name: 'Warehouse & Freight Distribution SA',
     location: 'Mile End, Adelaide, 5031',
     position: {
-      lat: -13.890542,
-      lng: 50.274856
+      lat: -34.9259144,
+      lng: 138.5523506
     }
   },
   {
-    name: 'Warehouse & Freight Distribution SA',
-    location: 'Mile End, Adelaide, 5031',
+    name: 'Warehouse & Freight Distribution VIC',
+    location: 'Spotswood, Melbourne, 3105',
     position: {
-      lat: -5.890542,
-      lng: 10.274856
+      lat: -37.7669906,
+      lng: 145.0682016
     }
   },
+  {
+    name: 'Warehouse & Freight Distribution TAS',
+    location: 'East Devonport TAS 7310',
+    position: {
+      lat: -41.1962534,
+      lng: 146.3881491
+    }
+  },
+  {
+    name: 'Warehouse & Freight Distribution WA South West',
+    location: 'Davenport, Bunbury, 6230',
+    position: {
+      lat: -33.3788281,
+      lng: 115.6471673
+    }
+  },
+  {
+    name: 'Warehouse & Freight Distribution WA Metro',
+    location: 'Welshpool, Perth, 6105',
+    position: {
+      lat: -31.992784,
+      lng: 115.9293821
+    }
+  },
+  {
+    name: 'Head office & Manufacturing',
+    location: 'Welshpool, Perth, 6105',
+    position: {
+      lat: -31.6364806,
+      lng: 117.1320352
+    }
+  }
 ]
 
 const onLoad = polygon => {
@@ -429,7 +423,7 @@ class Page extends Component {
               zoom={4} 
               center={center} 
               mapStyles={ exampleMapStyles }
-              defaultOptions={{
+              options={{
                 styles: exampleMapStyles
               }}
             >
@@ -438,6 +432,9 @@ class Page extends Component {
                   <Marker 
                     position={marker.position} 
                     key={index} 
+                    icon={{
+                      url: 'https://mortlock.dilatedigital.com.au/wp-content/uploads/2020/08/location-pin.png'
+                    }}
                     onClick={() => this.hangleTogglePopup(index)}>
                     {(this.state.openInfoWindowMarkerId === index) && 
                       <InfoWindow position={marker.position}>

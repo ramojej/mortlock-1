@@ -195,7 +195,7 @@ const Header = ({ data, ...props }) => (
                                               </div>
                                             </div>
                                           )
-                                        } else if(menu.title.toLowerCase() === 'timber wall') {
+                                        } else if(menu.title.toLowerCase() === 'timber walls') {
                                           return (
                                             <div className="dropdown">
                                               <div className="container">
