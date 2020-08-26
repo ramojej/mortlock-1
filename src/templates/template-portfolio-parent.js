@@ -12,34 +12,38 @@ class Page extends Component {
 
     this.state = {
       activeFilter: false,
-      data: 'bipu',
-      content: props
+      content: props,
+      page: props.data.allWordpressPage
     }
+
+    this.toggleVisibility = this.toggleVisibility.bind(this);
   }
-  
-  
+
+  toggleVisibility() {
+    this.setState({
+      activeFilter: !this.state.activeFilter
+    })
+  }
+
 
   render() {
-
-    console.log(this.state);
     return (
       <Layout>
-        test
-        {/* <SEO 
-          description={data.allWordpressWpProject.edges[0].node.yoast.metadesc} 
-          title={data.allWordpressWpProject.edges[0].node.yoast.title} 
+        <SEO 
+          description={this.state.page.edges[0].node.yoast.metadesc} 
+          title={this.state.page.edges[0].node.yoast.title} 
         />
         <div className="blog__wrapper">
           <div className="container">
             <div className="blog__heading">
               <h1>Portfolio</h1>
               <div className="article__metas">
-                <span className="filter__button">Show Filters <i>+</i></span>
+                { !this.state.activeFilter && <span className="filter__button" onClick={ this.toggleVisibility }>Show Filters <i>+</i></span> }
               </div>
             </div>
             <div className="project__wrapper">
-              <div className="filter__wrapper filter--active">
-                <span className="filter__button">Hide Filters <i>-</i></span>
+              <div className={ this.state.activeFilter ? 'filter__wrapper filter--active' : 'filter__wrapper' }>
+                <span className="filter__button" onClick={ this.toggleVisibility }>Hide Filters <i>-</i></span>
                 <div className="aside">
                   <span className="title">Product</span>
                   <ul className="list">
@@ -81,7 +85,7 @@ class Page extends Component {
               </div>
               <div className="project__content filter--active">
                 <div className="row">
-                  {data.data.allWordpressWpProject.edges.map(post => (
+                  {this.state.content.data.allWordpressWpProject.edges.map(post => (
                     <div className="col-sm-6" key={post.node.wordpress_id}>
                       <div className="project_article">
                         <div className="blog_image">
@@ -103,15 +107,15 @@ class Page extends Component {
             <div className="pagination">
               <span className="title">Pages</span>
               <ul className="pages">
-                {Array.from({ length: data.pageContext.numberOfProjects }).map((page, index) =>  (
-                  <li key={index} className={index + 1 === data.pageContext.currentPage ? 'active' : null }>
-                    <Link to={index === 0 ? data.pageContext.actualPath : `${data.pageContext.actualPath}${index + 1}`}>{index + 1}</Link>
+                {Array.from({ length: this.state.content.pageContext.numberOfProjects }).map((page, index) =>  (
+                  <li key={index} className={index + 1 === this.state.content.pageContext.currentPage ? 'active' : null }>
+                    <Link to={index === 0 ? this.state.content.pageContext.actualPath : `${this.state.content.pageContext.actualPath}${index + 1}`}>{index + 1}</Link>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
-        </div> */}
+        </div>
       </Layout>
     )
   }
@@ -142,6 +146,17 @@ export const pageQuery = graphql`
           acf {
             project_banner_description
           }
+          yoast {
+            title
+            metadesc
+          }
+        }
+      }
+    }
+
+    allWordpressPage(filter: {template: {eq: "template-portfolio-parent.php"}}) {
+      edges {
+        node {
           yoast {
             title
             metadesc
