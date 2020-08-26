@@ -11,7 +11,9 @@ const BattenShapeAndSize = ({ ...props }) =>  {
         {content.batten_shapes ? 
           content.batten_shapes.map((size, index) => (
             <div className="col-sm" key={index}>
-              <div className="shape__column">
+              <div className="shape__column" data-sal="slide-up" 
+      data-sal-easing="ease"
+      data-sal-delay="5">
                 <span className="title" dangerouslySetInnerHTML={{ __html: size.shape_and_size_title }} />
                 { size.shape_icons ? 
                     <ul className="block-icons">

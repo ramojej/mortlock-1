@@ -386,7 +386,9 @@ class Page extends Component {
                   <h2 dangerouslySetInnerHTML={{ __html: this.props.data.allWordpressPage.edges[0].node.acf.contact_heading }} />
                   <div dangerouslySetInnerHTML={{ __html: this.props.data.allWordpressPage.edges[0].node.acf.contact_general_description }} />
                   <ul className="info__list">
-                    <li>
+                    <li data-sal="slide-up" 
+      data-sal-easing="ease"
+      data-sal-delay="5">
                       <span className="ico_wrap">
                       <svg className="icon" viewBox="0 0 100 100"><path d="m37.496 38.379 3.3438-5.0078c1.0312-1.5508 1.0547-3.5703 0.054687-5.1406l-10.008-15.73-11.914 3.9688c-4.8359 1.6133-7.5859 6.8008-6.043 11.66 2.6914 8.4609 8.875 21.926 22.949 35.992 14.066 14.07 27.527 20.254 35.992 22.949 4.8594 1.5469 10.047-1.207 11.66-6.0469l3.9648-11.906-15.723-10.008c-1.5742-1.0039-3.5938-0.98438-5.1445 0.050781l-5.0078 3.3398c-1.5312 1.0195-3.5039 1.0781-5.0664 0.10547-2.5469-1.582-6.6211-4.4062-10.688-8.4766-4.0703-4.0664-6.8945-8.1367-8.4727-10.684-0.97266-1.5625-0.91797-3.5352 0.10156-5.0664"/></svg>
                       </span>
@@ -395,7 +397,9 @@ class Page extends Component {
                         <span className="text"><a href="tel:1800870452">1800 870 452</a></span>
                       </div>
                     </li>
-                    <li>
+                    <li data-sal="slide-up" 
+      data-sal-easing="ease"
+      data-sal-delay="5">
                       <span className="ico_wrap">
                         <svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m50.172 57.094l44.637-37.715h-89.617z"/><path d="m66.781 47.75l32.871 30.105c0.34766-0.69141 0.34766-1.3828 0.34766-2.4219v-50.863c0-1.7305-0.34766-2.7695-1.3828-3.8047l-31.832 26.988z"/><path d="m3.1133 80.277c0.69141 0 1.3828 0.34766 2.0742 0.34766h89.965c0.69141 0 1.3828-0.34766 1.7305-0.34766l-32.871-30.449-12.805 10.727c-0.69141 0.69141-1.7305 0.69141-2.0742 0l-13.148-10.727z"/><path d="m0 75.434c0 1.0391 0.34766 1.7305 0.69141 2.4219l32.871-30.105-31.832-26.988c-1.0391 1.0391-1.7305 2.0742-1.7305 3.8047z"/></svg>
                       </span>

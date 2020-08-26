@@ -33,7 +33,10 @@ const GlobalTestimonialSlider = ({ ...props }) =>  {
 
   return (
     <div className="testimonial__block">
-      <div className="container">
+      <div className="container" 
+      data-sal="slide-up" 
+      data-sal-easing="ease"
+      data-sal-delay="5">
         <header className="general__heading">
           <h2>{content.testimonialHeading}</h2>
           <div className="control_wrapper">

@@ -40,7 +40,9 @@ const ProductApplication = ({ ...props }) =>  {
         <div className="row">
           <div className="col-sm-4">
             <div className="application__text">
-              <div className="application__textbox" dangerouslySetInnerHTML={{ __html: content.application_content }} />
+              <div className="application__textbox" data-sal="slide-up" 
+      data-sal-easing="ease"
+      data-sal-delay="5" dangerouslySetInnerHTML={{ __html: content.application_content }} />
               <div className="application__iconbox">
                 <div className="app__list">
                   {content.application_gallery_image.map((list, index) => (

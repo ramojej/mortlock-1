@@ -10,7 +10,9 @@ const AboutMission = ({ ...props }) =>  {
     <div className="about__contentblock" id={id}>
       <div className="aside__text" dangerouslySetInnerHTML={{ __html: content.mission_aside_text }} />
       <div className="container">
-        <div className="mission__block">
+        <div className="mission__block" data-sal="slide-up" 
+      data-sal-easing="ease"
+      data-sal-delay="5">
           <div className="row">
             <div className="col-sm-5">
               <div className="mission__textbox" dangerouslySetInnerHTML={{ __html: content.our_mission_text }} />
@@ -25,12 +27,16 @@ const AboutMission = ({ ...props }) =>  {
         <div className="vision__block">
           <div className="row">
             <div className="col-sm-7">
-              <div className="vision__image">
+              <div className="vision__image" data-sal="slide-up" 
+      data-sal-easing="ease"
+      data-sal-delay="5">
                 <Img fluid={content.our_vision_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
               </div>
             </div>
             <div className="col-sm-5">
-              <div className="vision__text" dangerouslySetInnerHTML={{ __html: content.our_vision_content }} />
+              <div className="vision__text" data-sal="slide-up" 
+      data-sal-easing="ease"
+      data-sal-delay="5" dangerouslySetInnerHTML={{ __html: content.our_vision_content }} />
             </div>
           </div>
         </div>
@@ -41,7 +47,9 @@ const AboutMission = ({ ...props }) =>  {
             <div className="row">
               {content.our_value_boxes.map((box, index) => (
                 <div className="col-sm-3" key={index}>
-                  <div className="article__box">
+                  <div className="article__box" data-sal="slide-up" 
+      data-sal-easing="ease"
+      data-sal-delay="5">
                     <div className="icon_box">
                       <div dangerouslySetInnerHTML={{ __html: box.icon_svg_code }} />
                     </div>

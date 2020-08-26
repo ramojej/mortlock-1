@@ -69,7 +69,9 @@ const Project = ({...props}) =>  {
         <div className="container">
           <div className="row">
             <div className="col-sm-4">
-              { (pageData.acf.about_heading || pageData.acf.about_heading === undefined ) ? <h2 className="project_heading" dangerouslySetInnerHTML={{ __html: pageData.acf.about_heading }} /> : null }
+              { (pageData.acf.about_heading || pageData.acf.about_heading === undefined ) ? <h2 className="project_heading" data-sal="slide-up" 
+      data-sal-easing="ease"
+      data-sal-delay="5" dangerouslySetInnerHTML={{ __html: pageData.acf.about_heading }} /> : null }
             </div>
             <div className="col-sm-8">
               { pageData.acf.about_description ? <div className="project_content" dangerouslySetInnerHTML={{ __html: pageData.acf.about_description }} /> : null }
@@ -79,13 +81,17 @@ const Project = ({...props}) =>  {
             <div className="row">
               {pageData.acf.project_info.map((info, index) => (
                 (index < 1) ? 
-                  <div className="col-sm-4" key={index}><span className="project__info"><span className="title">{info.info_title}</span><span className="info">{info.info_description}</span></span></div> : null
+                  <div className="col-sm-4" data-sal="slide-up" 
+                  data-sal-easing="ease"
+                  data-sal-delay="5" key={index}><span className="project__info"><span className="title">{info.info_title}</span><span className="info">{info.info_description}</span></span></div> : null
               ))}
               <div className="col-sm-8">
                 <div className="row">
                   {pageData.acf.project_info.map((info, index) => (
                     (index >= 1) ? 
-                      <div className="col-sm-4" key={index}><span className="project__info"><span className="title">{info.info_title}</span><span className="info">{info.info_description}</span></span></div> : null
+                      <div className="col-sm-4" data-sal="slide-up" 
+                      data-sal-easing="ease"
+                      data-sal-delay="5" key={index}><span className="project__info"><span className="title">{info.info_title}</span><span className="info">{info.info_description}</span></span></div> : null
                   ))}
                 </div>
               </div>
@@ -109,7 +115,9 @@ const Project = ({...props}) =>  {
                 </div>
               </div>
               <div className="col-sm-7">
-                <div className="spec__column">
+                <div className="spec__column" data-sal="slide-up" 
+                  data-sal-easing="ease"
+                  data-sal-delay="5">
                   <h2>{pageData.acf.specification_heading}</h2>
                   <div className="spec__box" dangerouslySetInnerHTML={{ __html: pageData.content }} />
                 </div>

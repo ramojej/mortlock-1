@@ -102,7 +102,9 @@ class Page extends Component {
             { bannerContent.banner_image ? <BackgroundImage fluid={bannerContent.banner_image.localFile.childImageSharp.fluid} /> : null }
           </div>
           <div className="container">
-            <div className="inner__bannerbox">
+            <div className="inner__bannerbox" data-sal="slide-up" 
+      data-sal-easing="ease"
+      data-sal-delay="5">
               <div className="box">
                 <h1 className={ !bannerContent.banner_description ? "text-center" : null } dangerouslySetInnerHTML={{ __html: bannerContent.banner_heading }} />
                 { bannerContent.banner_description ? <span className="inner__bannertext" dangerouslySetInnerHTML={{ __html: bannerContent.banner_description }} /> : null }
@@ -135,7 +137,9 @@ class Page extends Component {
               </div>
               <div className="info__slider row">
                 {userLinks ? userLinks.map((link, index) => (
-                  <div className="col-sm-3" key={index}>
+                  <div className="col-sm-3" data-sal="slide-up" 
+                  data-sal-easing="ease"
+                  data-sal-delay="5" key={index}>
                     <div className="article__box">
                       <div className="icon_box">
                         <div dangerouslySetInnerHTML={{ __html: link.useful_icon }} />

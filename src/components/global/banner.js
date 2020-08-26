@@ -51,7 +51,10 @@ const Banner = ({ ...props }) =>  {
               { slide.slider_banner_image ? <BackgroundImage  fluid={slide.slider_banner_image.localFile.childImageSharp.fluid} alt="Alternative Text" /> : null }
               </div>
               <div className="container container__big">
-                <div className="banner__text">
+                <div className="banner__text" 
+                  data-sal="slide-up" 
+                  data-sal-easing="ease"
+                  data-sal-delay="100">
                   <div className="bottomtext__top">
                     <h1 dangerouslySetInnerHTML={{ __html: slide.slider_banner_heading }} />
                     <span className="bannerCounter"><span className="activeNum">0{count}</span><span className="bar">/</span>0{bannerContent.length}</span>
@@ -76,7 +79,9 @@ const Banner = ({ ...props }) =>  {
             { bannerContent.banner_image ? <BackgroundImage fluid={bannerContent.banner_image.localFile.childImageSharp.fluid} /> : null }
           </div>
           <div className="container">
-            <div className="inner__bannerbox">
+            <div className="inner__bannerbox" data-sal="slide-up" 
+      data-sal-easing="ease"
+      data-sal-delay="5">
               <div className="box">
                 <h1 className={ !bannerContent.banner_description ? "text-center" : null } dangerouslySetInnerHTML={{ __html: bannerContent.banner_heading }} />
                 { bannerContent.banner_description ? <span className="inner__bannertext" dangerouslySetInnerHTML={{ __html: bannerContent.banner_description }} /> : null }

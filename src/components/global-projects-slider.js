@@ -25,7 +25,10 @@ const GlobalProjectSlider = ({ ...props }) =>  {
 
   return (
     <div className="project__block">
-      <div className="container">
+      <div className="container" 
+      data-sal="slide-up" 
+      data-sal-easing="ease"
+      data-sal-delay="5"> 
         <h2>latest projects</h2>
         <Slider className="project__slider" ref={customSlider} {...sliderSettings}>
           {content.map((project) => (

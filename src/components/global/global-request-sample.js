@@ -15,7 +15,9 @@ const RequestSample = ({ ...props }) =>  {
               {content.request_block_heading ? <h2 dangerouslySetInnerHTML={{ __html: content.request_block_heading }} /> : null }
               {content.request_sample_description ? <div className="request__content" dangerouslySetInnerHTML={{ __html: content.request_sample_description }} /> : null }
               { content.request_sample_image ? 
-                <div className="request__image">
+                <div className="request__image" data-sal="slide-up" 
+                data-sal-easing="ease"
+                data-sal-delay="5">
                   <Img fluid={content.request_sample_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
                 </div>
                 : null }

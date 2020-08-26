@@ -37,7 +37,10 @@ const GlobalSuccessStory = ({ ...props }) =>  {
   }
 
   return (
-    <div className="success__block">
+    <div className="success__block"
+    data-sal="slide-up" 
+      data-sal-easing="ease"
+      data-sal-delay="5">
       <Slider className="success__slider" ref={customSlider} {...sliderSettings}>
         {content.successStories.map((success, index) => (
           <div className="slide" key={index}>

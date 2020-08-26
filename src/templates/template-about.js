@@ -77,7 +77,9 @@ class Page extends Component {
           </div>
           <div className="container">
             <div className="inner__bannerbox">
-              <div className="box">
+              <div className="box" data-sal="slide-up" 
+      data-sal-easing="ease"
+      data-sal-delay="5">
                 <h1 className={ !bannerContent.banner_description ? "text-center" : null } dangerouslySetInnerHTML={{ __html: bannerContent.banner_heading }} />
                 { bannerContent.banner_description ? <span className="inner__bannertext" dangerouslySetInnerHTML={{ __html: bannerContent.banner_description }} /> : null }
                 { bannerContent.banner_buttons ?

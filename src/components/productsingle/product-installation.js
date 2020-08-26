@@ -15,7 +15,9 @@ const ProductInstallation = ({ ...props }) =>  {
           </div>
         </div>
         <div className="col-sm-offset-1 col-sm-7">
-          <div className="installation__image">
+          <div className="installation__image" data-sal="slide-up" 
+      data-sal-easing="ease"
+      data-sal-delay="5">
             <Img fluid={content.installation_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
           </div>
         </div>

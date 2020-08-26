@@ -11,7 +11,9 @@ const ExpandableContent = ({ ...props }) =>  {
 
   return (
     <div className="expand__content">
-      <div className="container container__small">
+      <div className="container container__small" data-sal="slide-up" 
+      data-sal-easing="ease"
+      data-sal-delay="5">
         <div dangerouslySetInnerHTML={{ __html: content.description_text_box }} />
         {readMoreActive ? <div className="addedBox" dangerouslySetInnerHTML={{ __html: content.description_additional_box }} /> : null }
         <div className="btn__wrap">

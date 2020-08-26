@@ -27,7 +27,9 @@ const ProductSpecies = ({ ...props }) =>  {
       <div className="species-boxes">
         <div className="row">
           {content.species ? content.species.map((timber, index) => (
-            <div className="col-xs-6 col-sm-3" data-key={`${index}`} key={index}>
+            <div className="col-xs-6 col-sm-3" data-sal="slide-up" 
+            data-sal-easing="ease"
+            data-sal-delay="5" data-key={`${index}`} key={index}>
               <div className="species-box">
                 <div className="image">
                   { timber.timber_small_thumbnail ? <Img fluid={timber.timber_small_thumbnail.localFile.childImageSharp.fluid} alt={timber.timber_small_thumbnail.alt_text || ''} /> : null }

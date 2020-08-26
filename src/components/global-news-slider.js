@@ -36,7 +36,10 @@ const GlobalNewsSlider = ({ ...props }) =>  {
 
   return (
     <div className="news__block">
-      <div className="container">
+      <div className="container"
+      data-sal="slide-up" 
+      data-sal-easing="ease"
+      data-sal-delay="5">
         <h2>latest from us</h2>
         <Slider className="news__slider" ref={customSlider} {...sliderSettings}>
           {content.map((article) => (

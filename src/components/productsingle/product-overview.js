@@ -11,8 +11,12 @@ const ProductOverview = ({ ...props }) =>  {
       <div className="container">
         <div className="row">
           <div className="col-sm-4">
-            <h2 className="main-heading" dangerouslySetInnerHTML={{ __html: content.product_title }} />
-            <div className="aside__image">
+            <h2 className="main-heading" data-sal="slide-up" 
+      data-sal-easing="ease"
+      data-sal-delay="5" dangerouslySetInnerHTML={{ __html: content.product_title }} />
+            <div className="aside__image" data-sal="slide-up" 
+      data-sal-easing="ease"
+      data-sal-delay="10">
               <Img fluid={content.product_aside_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
             </div>
           </div>
