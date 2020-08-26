@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class PricingForm extends Component {
   render() {
     return (
-      <form className="contact__form" action="#">
+      <form className="pricing__form" action="#">
         <div className="row">
           <div className="col-sm-6">
             <div className="form_group">

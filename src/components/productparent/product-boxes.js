@@ -1,7 +1,6 @@
 import React from 'react';
+import { Link } from 'gatsby';
 import Img from 'gatsby-image';
-
-import Button from '@src/components/global/button';
 
 const ProductBoxes = ({ ...props }) =>  {
   const content = props.data;
@@ -21,11 +20,8 @@ const ProductBoxes = ({ ...props }) =>  {
                   </div>
                 </div>
                 <div className="product__desc">
-                  <div dangerouslySetInnerHTML={{ __html: product.product_description }} />
-                  <Button
-                    link={product.button_link} 
-                    text={product.button_text}
-                  />
+                  {product.product_description ? <div dangerouslySetInnerHTML={{ __html: product.product_description }} /> : null }
+                  <Link to={ product.button_link } className="button-learn">{ product.button_text } <span className="btnArrow"><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></span></Link>
                 </div>
               </div>
             </div>

@@ -1,13 +1,124 @@
-import React, { Component } from "react";
-import { graphql, Link } from "gatsby";
+import React, { Component } from "react"
+import { graphql, Link } from "gatsby"
 
-import BackgroundImage from 'gatsby-background-image';
+import BackgroundImage from "gatsby-background-image"
 
-import Layout from '../components/layout';
+import Layout from "../components/layout"
 
 class Page extends Component {
+  constructor(props) {
+    super(props)
+    const posts = props.pageContext.posts
+    const categoriesArray = []
+    props.data.allWordpressCategory.edges.forEach(item => {
+      categoriesArray.push(item.node)
+    })
+
+    this.state = {
+      search: "",
+      posts: posts,
+      filtered: posts,
+      searchCount: 0,
+      fitlerValue: "all articles",
+      searching: false,
+      filtering: false,
+      categories: categoriesArray,
+    }
+  }
+
+  searchPosts = (posts, searchedValue) => {
+    return posts.filter(post => {
+      return (
+        post.node.title.toLowerCase().indexOf(searchedValue.toLowerCase()) !==
+          -1 ||
+        post.node.excerpt.toLowerCase().indexOf(searchedValue.toLowerCase()) !==
+          -1 ||
+        post.node.content.toLowerCase().indexOf(searchedValue.toLowerCase()) !==
+          -1
+      )
+    })
+  }
+
+  filterPosts = (posts, filteredValue) => {
+    return posts.filter(post => {
+      for (let categoryObj of post.node.categories) {
+        if (categoryObj.name == filteredValue) return true
+      }
+    })
+  }
+
+  handleOnChangeSearch = e => {
+    const posts = this.state.posts
+    let filteredPosts
+    let searching = true
+
+    //if the search box is empty skip filtereing the page
+    if (e.target.value.length === 0) {
+      filteredPosts = this.state.filtered
+      searching = false
+    } else {
+      if (this.state.filtering) {
+        filteredPosts = this.searchPosts(
+          this.filterPosts(posts, this.state.fitlerValue),
+          e.target.value
+        )
+        console.log(filteredPosts, posts, e.target.value)
+      } else {
+        filteredPosts = this.searchPosts(posts, e.target.value)
+        console.log(filteredPosts, posts, e.target.value)
+      }
+    }
+
+    this.setState({
+      search: e.target.value,
+      searching,
+      filtered: filteredPosts,
+      searchCount: filteredPosts.length,
+    })
+  }
+
+  handleKeyDown = e => {
+    if (e.key === "Enter") {
+      e.preventDefault()
+    }
+  }
+
+  handleOnChangeFilter = e => {
+    const posts = this.state.posts
+    let filtering = true
+    let filteredPosts
+    if (e.target.value == "all articles") {
+      filteredPosts = posts
+      filtering = false
+    } else {
+      filteredPosts = this.filterPosts(posts, e.target.value)
+    }
+
+    if (this.state.searching) {
+      filteredPosts = this.searchPosts(filteredPosts, this.state.search)
+    }
+
+    this.setState({
+      filtered: filteredPosts,
+      filtering,
+      fitlerValue: e.target.value,
+      searchCount: filteredPosts.length,
+    })
+  }
+
   render() {
-    const data = this.props;
+    const data = this.props
+    //fitler search
+    let displayedPosts =
+      this.state.searching || this.state.filtering
+        ? this.state.filtered
+        : this.props.data.allWordpressPost.edges
+
+    const paginationStyle = {
+      display: "none",
+    }
+
+    console.log(this.props)
 
     return (
       <Layout>
@@ -19,51 +130,137 @@ class Page extends Component {
                 <form className="form__search">
                   <div className="search__wrap">
                     <span className="title">search</span>
-                    <input type="text" name="search" aria-label="Search" placeholder="search keywords here..." />
+                    <input
+                      type="text"
+                      className="inputSearch"
+                      placeholder="search keywords here..."
+                      value={this.state.search}
+                      onChange={this.handleOnChangeSearch}
+                      onKeyDown={this.handleKeyDown}
+                    />
                   </div>
                   <div className="search__wrap">
                     <span className="title">filter</span>
-                    <select>
-                      <option>all articles</option>
-                      <option>all articles</option>
-                      <option>all articles</option>
+                    <select
+                      id="filterBlog"
+                      value={this.state.fitlerValue}
+                      onChange={this.handleOnChangeFilter}
+                    >
+                      <option value="all articles">all articles</option>
+                      {this.state.categories.map(category => (
+                        <option key={category.id} value={category.name}>
+                          {category.name}
+                        </option>
+                      ))}
                     </select>
                   </div>
                 </form>
               </div>
             </div>
             <div className="blog__content">
+              {this.state.searching ? (
+                <p>
+                  We found {this.state.searchCount}{" "}
+                  {this.state.searchCount == 1 ? "post" : " posts "} for "
+                  {this.state.search}"
+                  {this.state.fitlerValue != "all articles"
+                    ? ` in "${this.state.fitlerValue}"`
+                    : ""}
+                </p>
+              ) : (
+                ""
+              )}
               <div className="row">
-                {data.data.allWordpressPost.edges.map(post => (
-                  <div className="col-sm-6" key={post.node.wordpress_id}>
+                {displayedPosts.map(post => (
+                  <div
+                    className="col-sm-6"
+                    key={
+                      this.state.searching || this.state.filtering
+                        ? post.node.id
+                        : post.node.wordpress_id
+                    }
+                  >
                     <div className="blog_article">
-                      <div className="blog_image">
-                        <Link to={`${data.pageContext.actualPath}${post.node.slug}`}>
-                          { post.node.featured_media ? <BackgroundImage fluid={post.node.featured_media.localFile.childImageSharp.fluid} alt="Alternative Text" /> : 'image' }
-                        </Link>
-                      </div>
+                      {!this.state.searching && !this.state.filtering && (
+                        <div className="blog_image">
+                          <Link
+                            to={`${data.pageContext.actualPath}${post.node.slug}`}
+                          >
+                            {post.node.featured_media ? (
+                              <BackgroundImage
+                                fluid={
+                                  post.node.featured_media.localFile
+                                    .childImageSharp.fluid
+                                }
+                                alt="Alternative Text"
+                              />
+                            ) : (
+                              "image"
+                            )}
+                          </Link>
+                        </div>
+                      )}
                       <div className="blog_meta">
-                        { post.node.categories ? <span className="post_category">{post.node.categories.map((category, index) => ( <span key={index}>{category.name} </span> ))}</span> : null }
+                        {post.node.categories ? (
+                          <span className="post_category">
+                            {post.node.categories.map((category, index) => (
+                              <span key={index}>{category.name} </span>
+                            ))}
+                          </span>
+                        ) : null}
                         <span className="date">{post.node.date}</span>
                       </div>
                       <div className="blog_text">
-                        <h3 dangerouslySetInnerHTML={{ __html: post.node.title }} />
-                        <div dangerouslySetInnerHTML={{ __html: post.node.excerpt }}  />
-                        <Link className="link" to={`${data.pageContext.actualPath}${post.node.slug}`}>Read more</Link>
+                        <h3><Link to={`${data.pageContext.actualPath}${post.node.slug}`} dangerouslySetInnerHTML={{ __html: post.node.title }} /></h3>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: post.node.excerpt,
+                          }}
+                        />
+                        <Link
+                          className="link"
+                          to={`${data.pageContext.actualPath}${post.node.slug}`}
+                        >
+                          Read more
+                        </Link>
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="pagination">
+            <div
+              className="pagination"
+              style={
+                this.state.searching || this.state.filtering
+                  ? paginationStyle
+                  : {}
+              }
+            >
               <span className="title">Pages</span>
               <ul className="pages">
-                {Array.from({ length: data.pageContext.numberOfPages }).map((page, index) =>  (
-                  <li key={index} className={index + 1 === data.pageContext.currentPage ? 'active' : null }>
-                    <Link to={index === 0 ? data.pageContext.actualPath : `${data.pageContext.actualPath}${index + 1}`}>{index + 1}</Link>
-                  </li>
-                ))}
+                {Array.from({ length: data.pageContext.numberOfPages }).map(
+                  (page, index) => (
+                    <li
+                      key={index}
+                      className={
+                        index + 1 === data.pageContext.currentPage
+                          ? "active"
+                          : null
+                      }
+                    >
+                      <Link
+                        to={
+                          index === 0
+                            ? data.pageContext.actualPath
+                            : `${data.pageContext.actualPath}${index + 1}`
+                        }
+                      >
+                        {index + 1}
+                      </Link>
+                    </li>
+                  )
+                )}
               </ul>
             </div>
           </div>
@@ -77,7 +274,11 @@ export default Page
 
 export const pageQuery = graphql`
   query($skip: Int!, $limit: Int!) {
-    allWordpressPost(sort: {fields: [date], order:DESC}, limit: $limit, skip: $skip) {
+    allWordpressPost(
+      sort: { fields: [date], order: DESC }
+      limit: $limit
+      skip: $skip
+    ) {
       edges {
         node {
           id
@@ -101,5 +302,13 @@ export const pageQuery = graphql`
         }
       }
     }
+    allWordpressCategory {
+      edges {
+        node {
+          name
+          id
+        }
+      }
+    }
   }
-`;
+`

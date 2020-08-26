@@ -66,7 +66,11 @@ class Page extends Component {
                 </div>
               </div>
             </div>
-            
+          </div>
+        </div>
+        <div className="contact__wrapper">
+          <div className="container container__small">
+            <div dangerouslySetInnerHTML={{ __html: this.props.data.allWordpressPage.edges[0].node.acf.pricing_description_bottom }} />
           </div>
         </div>
       </Layout>
@@ -113,7 +117,8 @@ export const pageQuery = graphql`
               }
             }
             pricing_heading
-            pricing_page_description 
+            pricing_page_description
+            pricing_description_bottom
           }
         }
       }

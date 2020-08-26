@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { graphql } from "gatsby";
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import BackgroundImage from 'gatsby-background-image';
 
 import Layout from "../components/layout";
@@ -11,32 +11,281 @@ import ContactForm from '../components/forms/contact-form-137';
 
 const exampleMapStyles = [
   {
-      featureType: "poi",
-      elementType: "geometry",
-      stylers: [
-          {
-              color: "#eeeeee",
-          },
-      ],
+    "featureType": "all",
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "on"
+      }
+    ]
   },
   {
-      featureType: "poi",
-      elementType: "labels.text",
-      stylers: [
-          {
-              visibility: "off",
-          },
-      ],
+    "featureType": "all",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "saturation": 36
+      },
+      {
+        "color": "#000000"
+      },
+      {
+        "lightness": 40
+      }
+    ]
   },
   {
-      featureType: "water",
-      elementType: "labels.text.fill",
-      stylers: [
-          {
-              color: "#9e9e9e",
-          },
-      ],
+    "featureType": "all",
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "visibility": "on"
+      },
+      {
+        "color": "#000000"
+      },
+      {
+        "lightness": 16
+      }
+    ]
   },
+  {
+    "featureType": "all",
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "color": "#000000"
+      },
+      {
+        "lightness": 20
+      }
+    ]
+  },
+  {
+    "featureType": "administrative",
+    "elementType": "geometry.stroke",
+    "stylers": [
+      {
+        "color": "#000000"
+      },
+      {
+        "lightness": 17
+      },
+      {
+        "weight": 1.2
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.country",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#838383"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.locality",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#c4c4c4"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.neighborhood",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#aaaaaa"
+      }
+    ]
+  },
+  {
+    "featureType": "landscape",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#151516"
+      },
+      {
+        "lightness": "0"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#000000"
+      },
+      {
+        "lightness": 21
+      },
+      {
+        "visibility": "on"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      },
+      {
+        "hue": "#ff0000"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "saturation": "-100"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.business",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "visibility": "on"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "color": "#6e6e6e"
+      },
+      {
+        "lightness": "0"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "geometry.stroke",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "road.arterial",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#000000"
+      },
+      {
+        "lightness": 18
+      }
+    ]
+  },
+  {
+    "featureType": "road.arterial",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "color": "#575757"
+      }
+    ]
+  },
+  {
+    "featureType": "road.arterial",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#c3c3c3"
+      }
+    ]
+  },
+  {
+    "featureType": "road.arterial",
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "color": "#2c2c2c"
+      }
+    ]
+  },
+  {
+    "featureType": "road.local",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#000000"
+      },
+      {
+        "lightness": 16
+      }
+    ]
+  },
+  {
+    "featureType": "road.local",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#5f5f5f"
+      },
+      {
+        "visibility": "on"
+      }
+    ]
+  },
+  {
+    "featureType": "road.local",
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "transit",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#717171"
+      },
+      {
+        "lightness": 19
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#000000"
+      },
+      {
+        "lightness": 17
+      }
+    ]
+  }
 ];
 
 const mapContainerStyle = {
@@ -46,27 +295,66 @@ const mapContainerStyle = {
 
 const center = {
   lat: 0,
-  lng: -117
+  lng: -180
 }
 
-const position = {
-  lat: 117.8208688,
-  lng: -25.325894
-}
+const markers = [
+  {
+    name: 'Warehouse & Freight Distribution SA',
+    location: 'Mile End, Adelaide, 5031',
+    position: {
+      lat: -33.890542,
+      lng: 151.274856
+    }
+  },
+  {
+    name: 'Warehouse & Freight Distribution SA',
+    location: 'Mile End, Adelaide, 5031',
+    position: {
+      lat: -13.890542,
+      lng: 50.274856
+    }
+  },
+  {
+    name: 'Warehouse & Freight Distribution SA',
+    location: 'Mile End, Adelaide, 5031',
+    position: {
+      lat: -5.890542,
+      lng: 10.274856
+    }
+  },
+]
 
 const onLoad = polygon => {
   
 }
 
 class Page extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      openInfoWindowMarkerId: ''
+    }
+  }
+
+  hangleTogglePopup = (index) => {
+    this.setState({
+      openInfoWindowMarkerId: index
+    });
+  }
+
   render() {
+    console.log(this.state);
+
     const bannerContent = {
       banner_image: this.props.data.allWordpressPage.edges[0].node.acf.contact_banner_image,
       banner_image_overlay: this.props.data.allWordpressPage.edges[0].node.acf.contact_banner_image_overlay,
       banner_heading: this.props.data.allWordpressPage.edges[0].node.acf.contact_banner_heading,
       banner_description: this.props.data.allWordpressPage.edges[0].node.acf.contact_banner_description,
       banner_buttons: this.props.data.allWordpressPage.edges[0].node.acf.contact_banner_buttons,
-      banner_type: 'medium'
+      banner_type: 'small'
     }
 
     return (
@@ -135,29 +423,33 @@ class Page extends Component {
           </div>
         </div>
         <div className="map__block">
-          <LoadScript
-          googleMapsApiKey="AIzaSyBbIerZtfMMgQ4UtzbkItzFEkv9uuSa5uM"
-          >
-            <GoogleMap
-              mapContainerStyle={mapContainerStyle}
-              zoom={2}
-              center={center}
+          <LoadScript googleMapsApiKey="AIzaSyBbIerZtfMMgQ4UtzbkItzFEkv9uuSa5uM">
+            <GoogleMap 
+              mapContainerStyle={mapContainerStyle} 
+              zoom={4} 
+              center={center} 
               mapStyles={ exampleMapStyles }
+              defaultOptions={{
+                styles: exampleMapStyles
+              }}
             >
-              { /* Child components, such as markers, info windows, etc. */ }
-              <Marker
-                onLoad={onLoad}
-                position={position}
-              >
-                {/* <InfoWindow
-                  onLoad={onLoad}
-                  position={position}
-                >
-                  <div style={divStyle}>
-                    <h1>InfoWindow</h1>
-                  </div>
-                </InfoWindow> */}
-              </Marker>
+              { markers ?
+                markers.map((marker, index) => (
+                  <Marker 
+                    position={marker.position} 
+                    key={index} 
+                    onClick={() => this.hangleTogglePopup(index)}>
+                    {(this.state.openInfoWindowMarkerId === index) && 
+                      <InfoWindow position={marker.position}>
+                        <div className="map_popup">
+                          <span className="title">{marker.name}</span>
+                          <span className="subheading">{marker.location}</span>
+                        </div>
+                      </InfoWindow>
+                    }
+                  </Marker>
+                ))
+              : null }
             </GoogleMap>
           </LoadScript>
         </div>
