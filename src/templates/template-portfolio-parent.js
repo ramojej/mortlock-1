@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { Component } from "react";
 import { graphql, Link } from "gatsby";
 
 import BackgroundImage from 'gatsby-background-image';
@@ -7,26 +7,34 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 
 class Page extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      activeFilter: false,
+      data: 'bipu',
+      content: props
+    }
+  }
+  
+  
+
   render() {
-    const data = this.props
 
-    const [activateFilter, setActivateFilter] = useState();
-
-    activeProjectFilter = () => {
-
-    } 
+    console.log(this.state);
     return (
       <Layout>
-        <SEO 
-          description={this.props.data.allWordpressWpProject.edges[0].node.yoast.metadesc} 
-          title={this.props.data.allWordpressWpProject.edges[0].node.yoast.title} 
+        test
+        {/* <SEO 
+          description={data.allWordpressWpProject.edges[0].node.yoast.metadesc} 
+          title={data.allWordpressWpProject.edges[0].node.yoast.title} 
         />
         <div className="blog__wrapper">
           <div className="container">
             <div className="blog__heading">
               <h1>Portfolio</h1>
               <div className="article__metas">
-                <span className="filter__button" onClick={ () => this.activeProjectFilter() }>Show Filters <i>+</i></span>
+                <span className="filter__button">Show Filters <i>+</i></span>
               </div>
             </div>
             <div className="project__wrapper">
@@ -103,7 +111,7 @@ class Page extends Component {
               </ul>
             </div>
           </div>
-        </div>
+        </div> */}
       </Layout>
     )
   }

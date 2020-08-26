@@ -3042,6 +3042,7 @@ ul.footer_menu {
 
   .button {
     display: block;
+    margin-top: auto;
   }
 }
 
@@ -3077,10 +3078,6 @@ ul.footer_menu {
 .expand__content {
   padding: 40px 0 159px;
   text-align: center;
-
-  .addedBox {
-    display: none;
-  }
 
   .button {
     width: 100%;
