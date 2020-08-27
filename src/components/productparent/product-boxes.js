@@ -8,7 +8,7 @@ const ProductBoxes = ({ ...props }) =>  {
   return (
     <div className="product__wrapper">
       <div className="container">
-        <div className="row">
+        <div className="row center-xs">
           {content.map((product, index) => (
             <div className="col-sm-4" key={index}>
               <div className="product__box">

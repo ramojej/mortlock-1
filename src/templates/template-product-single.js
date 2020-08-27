@@ -33,7 +33,8 @@ class Page extends Component {
       product_title: this.props.data.wordpressPage.acf.product_title,
       product_overview_aside_title: this.props.data.wordpressPage.acf.product_overview_aside_title,
       product_aside_image: this.props.data.wordpressPage.acf.product_aside_image,
-      product_description: this.props.data.wordpressPage.acf.product_description
+      product_description: this.props.data.wordpressPage.acf.product_description,
+      product_expand_description: this.props.data.wordpressPage.acf.product_expand_description
     }
 
     const productBenefit = {
@@ -201,6 +202,7 @@ export const pageQuery = graphql`
           }
         }
         product_description
+        product_expand_description
         product_benefit_image {
           localFile {
             childImageSharp {

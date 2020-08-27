@@ -168,7 +168,7 @@ const Header = ({ data, ...props }) => (
                                           return (
                                             <div className="dropdown">
                                               <div className="container">
-                                                <div className="row">
+                                                <div className="row center-sm">
                                                   {data.allWordpressAcfOptions.edges[0].node.options.header_mega_menu.map((dropmenu, index) => {
                                                     if(dropmenu.menu_category === "timberceilings") {
                                                       return (
@@ -203,7 +203,7 @@ const Header = ({ data, ...props }) => (
                                                   {data.allWordpressAcfOptions.edges[0].node.options.header_mega_menu.map((dropmenu, index) => {
                                                     if(dropmenu.menu_category === "timberwalls") {
                                                       return (
-                                                        <div className="col-md-3" key={index}>
+                                                        <div className="col-md-4" key={index}>
                                                           <div className="menubox">
                                                           <Link tabIndex={0} onKeyDown={ () => removeActiveClass() } onClick={() => removeActiveClass() } to={dropmenu.menu_link.replace('https://mortlock.dilatedigital.com.au','')}>
                                                               <span className="menuTitle">{dropmenu.menu_title}</span>

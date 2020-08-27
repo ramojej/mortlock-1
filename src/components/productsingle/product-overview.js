@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Img from 'gatsby-image';
 
 const ProductOverview = ({ ...props }) =>  {
   const content = props.data;
   const id = props.id;
+
+  const [readMoreActive, setReadMoreActive ] = useState(false);
+
+  const expandContent = () => {
+    setReadMoreActive(!readMoreActive);
+  }
 
   return (
     <div className="product__overview" id={id}>
@@ -20,7 +26,11 @@ const ProductOverview = ({ ...props }) =>  {
               <Img fluid={content.product_aside_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
             </div>
           </div>
-          <div className="col-sm-offset-1 col-sm-7" dangerouslySetInnerHTML={{ __html: content.product_description }}  />
+          <div className="col-sm-offset-1 col-sm-7">
+            { content.product_description && <div dangerouslySetInnerHTML={{ __html: content.product_description }} /> }
+            { (content.product_expand_description && readMoreActive) && <div className="extra__content" dangerouslySetInnerHTML={{ __html: content.product_expand_description }} /> }
+            {content.product_expand_description && <span className="button" onClick={ () => expandContent() }>{!readMoreActive ? 'Read more' : 'Read less' }</span> }
+          </div>
         </div>
       </div>
     </div>
