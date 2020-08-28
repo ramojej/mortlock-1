@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import axios from 'axios';
+import qs from 'qs';
 
 import Helpers from '../helpers/helpers';
 import Loader from '../helpers/loader';
+
 
 
 class ContactForm extends Component {
@@ -17,7 +19,7 @@ class ContactForm extends Component {
         phone: '',
         company: '',
         whoareyou: '',
-        message: '',
+        message: ''
       },
       errors: {
         firstname: '',
@@ -26,54 +28,119 @@ class ContactForm extends Component {
         phone: '',
         company: '',
         whoareyou: '',
-        message: '',
+        message: ''
       },
       passedValidation: false,
-      submitActive: false
+      submitActive: false,
+      mainFormMsg: '',
+      mainFormState: null
     }
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   handleInputChange(event) {
     const { name, value, type } = event.target;
-
     this.setState({
-      fields: {
-        ...this.state.fields,
-        [name]: value
-      },
-      // errors: {
-      //   ...this.state.errors,
-      //   [name]: Helpers.formValidation(type, value).err
-      // }
-    })
+      submitActive: false,
+      mainFormMsg: '',
+      mainFormState: ''
+    });
+    console.log(value);
 
-    console.log(this.state);
+    if(event.target.classList.contains('noEmpty')) {
+      this.setState({
+        fields: {
+          ...this.state.fields,
+          [name]: value
+        },
+        errors: {
+          ...this.state.errors,
+          [name]: Helpers.formValidation(type, value).err
+        }
+      })
+    } else {
+      this.setState({
+        fields: {
+          ...this.state.fields,
+          [name]: value
+        }
+      })
+    }
   }
 
   handleSubmit = async (event) => {
     event.preventDefault();
     this.setState({ submitActive: true });
+    const formLink = 'https://mortlock.dilatedigital.com.au/wp-json/contact-form-7/v1/contact-forms/137/feedback';
+    let isFormValid = false;
+    let elements = document.querySelectorAll('.contact__form .noEmpty');
 
-    if(this.state.passedValidation) {
-      axios.post('', Helpers.config).then((res) => {
-        console.log(res);
+    for (let i = 0, element; element = elements[i++];) {
+      if (element.value === "") {
+        isFormValid = false;
+        setTimeout(() => {
+          this.setState({ 
+            submitActive: false,
+            mainFormMsg: 'Please fill in the required fields.',
+            mainFormState: 'error',
+            errors: {
+              ...this.state.errors,
+              [element.name]: Helpers.formValidation(element.type, element.value).err
+            }
+          });
+        }, 800);
+      } else {
+        isFormValid =true;
+      }
+    }
+
+    if(isFormValid) {
+      axios.post(formLink, qs.stringify(this.state.fields), Helpers.config).then((res) => {
+        if(res.data.status === 'mail_sent') {
+          setTimeout(() => {
+            this.setState({
+              submitActive: false,
+              mainFormMsg: res.data.message,
+              mainFormState: res.data.status,
+              fields: {
+                firstname: '',
+                lastname: '',
+                email: '',
+                phone: '',
+                company: '',
+                whoareyou: '',
+                message: ''
+              }
+            })
+          }, 800); 
+
+          setTimeout(() => {
+            this.setState({ mainFormMsg: '', mainFormState: '' });
+          }, 4000);
+        } else if(res.data.status === 'validation_failed') {
+          setTimeout(() => {
+            this.setState({
+              submitActive: false,
+              mainFormMsg: res.data.message,
+              mainFormState: res.data.status
+            })
+          }, 800);
+        }
       })
       .catch((err) => {
         console.log(err);
       })
     }
-    console.log(this.state);
   }
+
   render() {
     const { submitActive } = this.state;
-    console.log(this.state);
     return (
-      <form className={submitActive ? 'contact__form loading' : 'contact__form'} id="contact__form" type="POST" onSubmit={ this.handleSubmit }>
+      <form className={submitActive ? 'contact__form loading' : 'contact__form'} id="contact__form" type="POST" onSubmit={ this.handleSubmit } noValidate>
         <div className="row">
           <div className="col-sm-6">
             <div className="form_group">
-              <label htmlFor="firstname">first name</label>
+              <label htmlFor="firstname">first name *</label>
               <div className="form_input">
                 <input aria-label="Firstname" type="text" name="firstname" id="firstname" placeholder="Enter your first name" className="noEmpty" value={this.state.fields.firstname || ''} onChange={ this.handleInputChange } />
                 {this.state.errors.firstname !== '' && <span className='error'>{this.state.errors.firstname}</span>}
@@ -82,7 +149,7 @@ class ContactForm extends Component {
           </div>
           <div className="col-sm-6">
             <div className="form_group">
-              <label htmlFor="lastname">last name</label>
+              <label htmlFor="lastname">last name *</label>
               <div className="form_input">
                 <input aria-label="Lastname" className="noEmpty" type="text" name="lastname" id="lastname" placeholder="Enter your last name" value={this.state.fields.lastname || ''} onChange={ this.handleInputChange } />
                 {this.state.errors.lastname !== '' && <span className='error'>{this.state.errors.lastname}</span>}
@@ -93,7 +160,7 @@ class ContactForm extends Component {
         <div className="row">
           <div className="col-sm-6">
             <div className="form_group">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">Email *</label>
               <div className="form_input">
                 <input aria-label="Email" className="noEmpty" type="email" name="email" id="email" placeholder="Enter your email address" value={this.state.fields.email || ''} onChange={ this.handleInputChange } />
                 {this.state.errors.email !== '' && <span className='error'>{this.state.errors.email}</span>}
@@ -102,9 +169,9 @@ class ContactForm extends Component {
           </div>
           <div className="col-sm-6">
             <div className="form_group">
-              <label htmlFor="phone">Phone</label>
+              <label htmlFor="phone">Phone *</label>
               <div className="form_input">
-                <input aria-label="Company name" type="text" name="phone" id="phone" placeholder="Enter your phone number" value={this.state.fields.phone || ''} onChange={ this.handleInputChange } />
+                <input aria-label="Company name" className="noEmpty" type="text" name="phone" id="phone" placeholder="Enter your phone number" value={this.state.fields.phone || ''} onChange={ this.handleInputChange } />
                 {this.state.errors.phone !== '' && <span className='error'>{this.state.errors.phone}</span>}
               </div>
             </div>
@@ -120,11 +187,12 @@ class ContactForm extends Component {
         <div className="form_group">
           <label htmlFor="whoareyou">are you a/an</label>
           <div className="form_input">
-            <select name="whoareyou" id="whoareyou" value={this.state.fields.whoweare || ''} onChange={ this.handleInputChange }>
-              <option>Architect/Specifier</option>
-              <option>Builder</option>
-              <option>Contractor/Carpenter</option>
-              <option>Individual/Owner Builder</option>
+            <select name="whoareyou" id="whoareyou" value={this.state.fields.whoareyou || ''} onChange={ this.handleInputChange }>
+              <option value="default">- Select -</option>
+              <option value="Architect/Specifier">Architect/Specifier</option>
+              <option value="Builder">Builder</option>
+              <option value="Contractor/Carpenter">Contractor/Carpenter</option>
+              <option value="Individual/Owner Builder">Individual/Owner Builder</option>
             </select>
           </div>
         </div>
@@ -136,7 +204,7 @@ class ContactForm extends Component {
         </div>
         <div className="btn_wrap">
           <button className="button" type="submit"><span className="text">Submit</span><Loader /></button>
-          {this.state.submit ? <span className="form-msg">Thank you for contacting us. We will get back to you soon</span> : null }
+          {this.state.mainFormMsg && <span className={`form-msg ${this.state.mainFormState}`}>{ this.state.mainFormMsg }</span>}
         </div>
       </form>
     )

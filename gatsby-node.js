@@ -44,6 +44,11 @@ exports.createPages = async ({ graphql, actions }) => {
             title
             excerpt
             content
+            date(formatString: "DD MMMM YYYY")
+            featured_media {
+              alt_text
+              link
+            }
             categories {
               name
             }

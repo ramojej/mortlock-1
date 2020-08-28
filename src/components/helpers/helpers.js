@@ -8,8 +8,6 @@ const Helpers = {
         errorMsg = data.length < 1 ? 'Field cannot be empty.' : '';
       } else if(type === 'email') {
         errorMsg = validEmailRegex.test(data) ? '' : 'Email is not valid!';
-      } else if(type === 'password') {
-        errorMsg = data.length < 4 ? 'Password must be 4 characters long!' : '';
       }
 
       if(errorMsg === '') {
@@ -19,7 +17,7 @@ const Helpers = {
       return { valid: isValid, err: errorMsg };
     },
 
-    emtypValidation: function(selector) {
+    emptyValidation: function(selector) {
       var elements = document.querySelectorAll(selector + ' .noEmpty');
 
       for (var i = 0, element; element = elements[i++];) {

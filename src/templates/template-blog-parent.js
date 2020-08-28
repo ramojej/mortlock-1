@@ -42,7 +42,7 @@ class Page extends Component {
   filterPosts = (posts, filteredValue) => {
     return posts.filter(post => {
       for (let categoryObj of post.node.categories) {
-        if (categoryObj.name == filteredValue) return true
+        if (categoryObj.name === filteredValue) return true
       }
     })
   }
@@ -87,7 +87,7 @@ class Page extends Component {
     const posts = this.state.posts
     let filtering = true
     let filteredPosts
-    if (e.target.value == "all articles") {
+    if (e.target.value === "all articles") {
       filteredPosts = posts
       filtering = false
     } else {
@@ -117,8 +117,6 @@ class Page extends Component {
     const paginationStyle = {
       display: "none",
     }
-
-    console.log(this.props)
 
     return (
       <Layout>
@@ -161,9 +159,9 @@ class Page extends Component {
               {this.state.searching ? (
                 <p>
                   We found {this.state.searchCount}{" "}
-                  {this.state.searchCount == 1 ? "post" : " posts "} for "
+                  {this.state.searchCount === 1 ? "post" : " posts "} for "
                   {this.state.search}"
-                  {this.state.fitlerValue != "all articles"
+                  {this.state.fitlerValue !== "all articles"
                     ? ` in "${this.state.fitlerValue}"`
                     : ""}
                 </p>
@@ -181,7 +179,7 @@ class Page extends Component {
                     }
                   >
                     <div className="blog_article">
-                      {!this.state.searching && !this.state.filtering && (
+                      {(!this.state.searching && !this.state.filtering) ?
                         <div className="blog_image">
                           <Link
                             to={`${data.pageContext.actualPath}${post.node.slug}`}
@@ -198,8 +196,13 @@ class Page extends Component {
                               "image"
                             )}
                           </Link>
+                        </div> :
+                        <div className="blog_image">
+                          <Link to={`${post.node.path}`}>
+                            <div className="bg_image" style={{ backgroundImage: `url(${post.node.featured_media.link})` }}></div>
+                          </Link>
                         </div>
-                      )}
+                      }
                       <div className="blog_meta">
                         {post.node.categories ? (
                           <span className="post_category">
@@ -211,18 +214,15 @@ class Page extends Component {
                         <span className="date">{post.node.date}</span>
                       </div>
                       <div className="blog_text">
-                        <h3><Link to={`${data.pageContext.actualPath}${post.node.slug}`} dangerouslySetInnerHTML={{ __html: post.node.title }} /></h3>
+                        <h3>
+                          <Link to={(!this.state.searching && !this.state.filtering) ? `${data.pageContext.actualPath}${post.node.slug}` : `${post.node.path}` } dangerouslySetInnerHTML={{ __html: post.node.title }} />
+                        </h3>
                         <div
                           dangerouslySetInnerHTML={{
                             __html: post.node.excerpt,
                           }}
                         />
-                        <Link
-                          className="link"
-                          to={`${data.pageContext.actualPath}${post.node.slug}`}
-                        >
-                          Read more
-                        </Link>
+                        <Link className="link" to={(!this.state.searching && !this.state.filtering) ? `${data.pageContext.actualPath}${post.node.slug}` : `${post.node.path}` }>Read more</Link>
                       </div>
                     </div>
                   </div>

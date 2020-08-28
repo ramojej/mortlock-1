@@ -256,6 +256,9 @@ select {
   line-height: 20px;
   font-weight: 500;
   outline: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none;
+  appearance: none;
   transition: border 0.3s;
 
   @include breakpoint('medium') {
@@ -1001,7 +1004,7 @@ ul.main__nav {
 
 .menubox {
   text-align: left;
-  
+
   .imagebox {
     position: relative;
 
@@ -1756,6 +1759,11 @@ ul.footer_menu {
   p,
   address {
     margin-bottom: 10px;
+    text-align: center;
+
+    @include breakpoint('small') {
+      text-align: left;
+    }
   }
   
   address {
@@ -3517,6 +3525,11 @@ ul.info__list {
 
     a {
       color: #312f30;
+      transition: color 0.3s;
+
+      &:hover {
+        color: $primary-color;
+      }
     }
   }
 }
@@ -4007,6 +4020,18 @@ ul.check__list {
     width: 100%;
     height: 100%;
   }
+}
+
+.bg_image {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .blog_meta {
@@ -4733,8 +4758,8 @@ ul.check__list {
     content: '';
     top: 0;
     position: absolute;
-    left: -9999px;
-    right: -300px;
+    left: 0;
+    right: 0;
     height: 2px;
     background: $primary-color;
   }
@@ -5038,7 +5063,7 @@ ul.block-icons {
     }
 
     .block-iconwrap {
-      width: 110px;
+      width: 160px;
       height: 70px;
     }
 
@@ -5315,6 +5340,18 @@ ul.block-icons {
   padding: 4px 20px;
   background: #5ea95e;
   color: #fff;
+
+  &.error {
+    background-color: #bb1717;
+    border-color: #c31515;
+    color: #fff;
+  }
+
+  &.validation_failed {
+    background-color: #c75b1c;
+    border-color: #a04713;
+    color: #fff;
+  }
 }
 
 .general__wrappper {
@@ -5606,6 +5643,51 @@ form {
       padding-top: 10px;
       margin-bottom: 15px;
     }
+  }
+}
+
+.file__holder {
+  position: relative;
+  margin: 20px 0 50px;
+  cursor: pointer;
+
+  input[type="file"] {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+
+    &:hover {
+      + .custom-file-label {
+        &:before {
+          background-color: #312f30;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+.custom-file-label {
+  height: 40px;
+  position: relative;
+  padding-left: 160px;
+  line-height: 42px;
+
+  &:before {
+    content: 'CHOOSE FILE';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    border: 1px solid #312f30;
+    color: #312f30;
+    padding: 0 24px;
+    transition: color 0.3s, background 0.3s;
   }
 }
 
