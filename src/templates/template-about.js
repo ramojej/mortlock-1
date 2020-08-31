@@ -12,6 +12,8 @@ import AboutMission from "../components/about/block-value";
 import AboutSustainability from "../components/about/block-sustainability";
 import AboutArchitects from "../components/about/block-architects";
 
+import Scroll from "../components/helpers/scroll";
+
 class Page extends Component {
   render() {
 
@@ -99,6 +101,7 @@ class Page extends Component {
         <AboutMission id={submenus[1]} data={aboutMission} />
         <AboutSustainability id={submenus[2]} data={aboutSustainability} />
         <AboutArchitects id={submenus[3]} data={aboutArchitect} />
+        <Scroll className="up__arrow" show={true} showBelow={5000} />
       </Layout>
     )
   }

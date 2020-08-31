@@ -5805,6 +5805,30 @@ form {
   clear: both;
 }
 
+.up__arrow {
+  position: fixed;
+  right: 30px;
+  bottom: 40px;
+  background: $primary-color;
+  width: 45px;
+  height: 45px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: none;
+
+  @include breakpoint('medium') {
+    display: flex;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
 .loader {
   display: inline-block;
   position: relative;
