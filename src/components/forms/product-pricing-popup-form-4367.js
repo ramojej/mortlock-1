@@ -253,10 +253,9 @@ class ProductPricingPopupForm extends Component {
                 <div className="form_input">
                   <select name="timberfinishes" id="timberfinishes" value={this.state.fields.timberfinishes || ''} onChange={ this.handleInputChange }>
                     <option value="default">- Select -</option>
-                    <option value="Architect/Specifier">Proplank</option>
-                    <option value="Builder">Builder</option>
-                    <option value="Contractor/Carpenter">Contractor/Carpenter</option>
-                    <option value="Individual/Owner Builder">Individual/Owner Builder</option>
+                    <option value="Architect/Specifier">Timber Decking</option>
+                    <option value="Builder">Timber Cladding</option>
+                    <option value="Contractor/Carpenter">Timber Walls</option>
                   </select>
                 </div>
               </div>
@@ -269,10 +268,11 @@ class ProductPricingPopupForm extends Component {
                 <div className="form_input">
                   <select name="battensize" id="battensize" value={this.state.fields.battensize || ''} onChange={ this.handleInputChange }>
                     <option value="default">- Select -</option>
-                    <option value="Architect/Specifier">Proplank</option>
-                    <option value="Builder">Builder</option>
-                    <option value="Contractor/Carpenter">Contractor/Carpenter</option>
-                    <option value="Individual/Owner Builder">Individual/Owner Builder</option>
+                    <option value="Architect/Specifier">0-10</option>
+                    <option value="Builder">10-50</option>
+                    <option value="Contractor/Carpenter">50-100</option>
+                    <option value="Individual/Owner Builder">100-150</option>
+                    <option value="Individual/Owner Builder">150-300</option>
                   </select>
                 </div>
               </div>
@@ -283,10 +283,11 @@ class ProductPricingPopupForm extends Component {
                 <div className="form_input">
                   <select name="battenspacing" id="battenspacing" value={this.state.fields.battenspacing || ''} onChange={ this.handleInputChange }>
                     <option value="default">- Select -</option>
-                    <option value="Architect/Specifier">Proplank</option>
-                    <option value="Builder">Builder</option>
-                    <option value="Contractor/Carpenter">Contractor/Carpenter</option>
-                    <option value="Individual/Owner Builder">Individual/Owner Builder</option>
+                    <option value="Architect/Specifier">0-10</option>
+                    <option value="Builder">10-50</option>
+                    <option value="Contractor/Carpenter">50-100</option>
+                    <option value="Individual/Owner Builder">100-150</option>
+                    <option value="Individual/Owner Builder">150-300</option>
                   </select>
                 </div>
               </div>
