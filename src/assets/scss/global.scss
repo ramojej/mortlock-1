@@ -4873,16 +4873,18 @@ ul.check__list {
   .text {
     display: block;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     font-weight: 700;
     font-size: 14px;
 
-    @include breakpoint('medium') {
+    @include breakpoint('xxlarge') {
       font-size: 16px;
     }
+  }
 
-    @include breakpoint('xxlarge') {
-      font-size: 18px;
+  .slick-current {
+    .app_list {
+      color: $primary-color;
     }
   }
 }
@@ -5106,19 +5108,11 @@ ul.block-icons {
       @include breakpoint('small') {
         width: 33.33%;
       }
-
-      @include breakpoint('medium') {
-        width: 25%;
-      }
-
-      @include breakpoint('large') {
-        width: 20%;
-      }
     }
 
     .block-iconwrap {
-      width: 160px;
-      height: 70px;
+      width: 180px;
+      height: 80px;
       margin-left: auto;
       margin-right: auto;
     }

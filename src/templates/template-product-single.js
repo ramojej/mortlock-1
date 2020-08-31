@@ -44,11 +44,8 @@ class Page extends Component {
       product_benefit_columns: this.props.data.wordpressPage.acf.product_benefit_columns
     }
 
-    const prouctApplication = {
+    const productApplication = {
       application_content: this.props.data.wordpressPage.acf.application_content,
-      structural_svg: this.props.data.wordpressPage.acf.structural_svg,
-      interior_svg: this.props.data.wordpressPage.acf.interior_svg,
-      exterior_svg: this.props.data.wordpressPage.acf.exterior_svg,
       application_gallery_image: this.props.data.wordpressPage.acf.application_gallery_image
     }
 
@@ -130,7 +127,7 @@ class Page extends Component {
         <div className="product__singlewrap">
           <ProductOverview id={submenus[0]} data={productOverview} />
           <ProductBenefit data={productBenefit} />
-          <ProductApplication data={prouctApplication} />
+          <ProductApplication data={productApplication} />
         </div>
         <div className="product__description" id={submenus[1]}>
           <div className="container">
@@ -141,7 +138,7 @@ class Page extends Component {
               <div className="general-heading">
                 <h2>Useful Info</h2>
               </div>
-              <div className="info__slider row">
+              <div className="info__slider row center-sm">
                 {userLinks ? userLinks.map((link, index) => (
                   <div className="col-sm-3" data-sal="slide-up" 
                   data-sal-easing="ease"
@@ -227,12 +224,11 @@ export const pageQuery = graphql`
           benefit_title
           benefit_description
         }
-        structural_svg
-        interior_svg
-        exterior_svg
         application_content
         application_gallery_image {
           gallery_image {
+            link
+            alt_text
             localFile {
               childImageSharp {
                 fluid(maxWidth: 1200) {
@@ -242,7 +238,7 @@ export const pageQuery = graphql`
             }
           }
           image_title
-          image_application_tag
+          image_icon
         }
         timber_finishes_download_text
         timber_finishes_button_style

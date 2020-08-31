@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Img from 'gatsby-image';
 import Slider from "react-slick";
 
@@ -16,74 +16,99 @@ function SamplePrevArrow(props) {
   );
 }
 
-const ProductApplication = ({ ...props }) =>  {
-  const content = props.data;
-  const customSlider = React.createRef();
+const sliderSettings = {
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  nextArrow: <SampleNextArrow />,
+  prevArrow: <SamplePrevArrow />
+};
 
-  const sliderSettings = {
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />
-  };
 
-  const slideToGo = (index) => {
-    customSlider.current.slickGoTo(parseInt(index));
+const navSliderSettings = {
+  infinite: true,
+  speed: 500,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  arrows: false
+};
+class ProductApplication extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      nav1: null,
+      nav2: null
+    };
   }
 
-  return (
-    <div className="application__wrapper">
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-4">
-            <div className="application__text">
-              <div className="application__textbox" data-sal="slide-up" 
-      data-sal-easing="ease"
-      data-sal-delay="5" dangerouslySetInnerHTML={{ __html: content.application_content }} />
-              <div className="application__iconbox">
-                <div className="app__list">
-                  {content.application_gallery_image.map((list, index) => (
-                    <div className="app_list" key={index} role="button" tabIndex={0} onKeyDown={() => slideToGo(index)} onClick={() => slideToGo(index)}>
-                      {(() => {
-                        if(list.image_application_tag === "exterior") { 
-                          return (
-                            <div className="icon_wrap" dangerouslySetInnerHTML={{ __html: content.exterior_svg }} />
-                          ) 
-                        } else if(list.image_application_tag === "interior") {
-                          return (
-                            <div className="icon_wrap" dangerouslySetInnerHTML={{ __html: content.interior_svg }} />
-                          ) 
-                        } else if(list.image_application_tag === "structural") {
-                          return (
-                            <div className="icon_wrap" dangerouslySetInnerHTML={{ __html: content.structural_svg }} />
-                          )
-                        }
-                      })()}
-                      <span className="text">{list.image_application_tag}</span>
-                    </div>
-                  ))}
+  componentDidMount() {
+    this.setState({
+      nav1: this.slider1,
+      nav2: this.slider2
+    });
+  }
+
+  render() {
+    console.log(this.props);
+    return (
+      <div className="application__wrapper">
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-4">
+              <div className="application__text">
+                <div className="application__textbox" data-sal="slide-up"  data-sal-easing="ease" data-sal-delay="5" dangerouslySetInnerHTML={{ __html: this.props.data.application_content }} />
+                <div className="application__iconbox">
+                  <Slider className="app__list" ref={slider => (this.slider2 = slider)} focusOnSelect={true} asNavFor={this.state.nav1} {...navSliderSettings}>
+                    {this.props.data.application_gallery_image.map((list, index) => (
+                      <div className="app_list" key={index}>
+                        <div className="icon_wrap" dangerouslySetInnerHTML={{ __html: list.image_icon }} />
+                        <span className="text">{list.image_title}</span>
+                      </div>
+                    ))}
+                  </Slider>
+                  {/* <div className="app__list">
+                    {content.application_gallery_image.map((list, index) => (
+                      <div className="app_list" key={index} role="button" tabIndex={0} onKeyDown={() => slideToGo(index)} onClick={() => slideToGo(index)}>
+                        {(() => {
+                          if(list.image_application_tag === "exterior") { 
+                            return (
+                              <div className="icon_wrap" dangerouslySetInnerHTML={{ __html: content.exterior_svg }} />
+                            ) 
+                          } else if(list.image_application_tag === "interior") {
+                            return (
+                              <div className="icon_wrap" dangerouslySetInnerHTML={{ __html: content.interior_svg }} />
+                            ) 
+                          } else if(list.image_application_tag === "structural") {
+                            return (
+                              <div className="icon_wrap" dangerouslySetInnerHTML={{ __html: content.structural_svg }} />
+                            )
+                          }
+                        })()}
+                        <span className="text">{list.image_application_tag}</span>
+                      </div>
+                    ))}
+                  </div> */}
                 </div>
               </div>
             </div>
-          </div>
-          <div className="col-sm-offset-1 col-sm-7">
-            <Slider className="gallery__wrapper" ref={customSlider} {...sliderSettings}>
-              {content.application_gallery_image.map((slide, index) => (
-                <div className="slide" key={index}>
-                  <div className="gallery__image">
-                    {slide.gallery_image && <Img fluid={slide.gallery_image.localFile.childImageSharp.fluid} alt="Alternative Text" />}
+            <div className="col-sm-offset-1 col-sm-7">
+              <Slider className="gallery__wrapper" ref={slider => (this.slider1 = slider)} asNavFor={this.state.nav2} {...sliderSettings}>
+                {this.props.data.application_gallery_image.map((slide, index) => (
+                  <div className="slide" key={index}>
+                    <div className="gallery__image">
+                      {slide.gallery_image && <Img fluid={slide.gallery_image.localFile.childImageSharp.fluid} alt="Alternative Text" />}
+                    </div>
+                    <span className="gallery__text">{ slide.image_title }</span>
                   </div>
-                  <span className="gallery__text">{ slide.image_title }</span>
-                </div>
-              ))}
-            </Slider>
+                ))}
+              </Slider>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default ProductApplication;
