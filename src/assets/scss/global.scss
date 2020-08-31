@@ -3629,6 +3629,10 @@ ul.check__list {
           background: $primary-color;
           color: #fff;
           border-color: $primary-color;
+
+          mark {
+            color: #fff;
+          }
         }
       }
 

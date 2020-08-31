@@ -15,18 +15,20 @@ class PricingForm extends Component {
         lastname: '',
         email: '',
         phone: '',
-        company: '',
-        whoareyou: '',
-        message: ''
+        productinterest: [
+          {id: 1, name: "Timber Ceilings", value: "timberceilings", isChecked: false},
+          {id: 2, name: "Timber Walls", value: "timberwalls", isChecked: false},
+          {id: 3, name: "Timber Decking", value: "timberdecking", isChecked: false},
+          {id: 4, name: "Shou Sugi Ban", value: "shousugiban", isChecked: false}
+        ],
+        products: []
       },
       errors: {
         firstname: '',
         lastname: '',
         email: '',
-        phone: '',
-        company: '',
-        whoareyou: '',
-        message: ''
+        phone: ''
+
       },
       passedValidation: false,
       submitActive: false,
@@ -34,6 +36,25 @@ class PricingForm extends Component {
       mainFormState: null
     }
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleInputCheck = this.handleInputCheck.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleInputCheck(event) {
+    console.log(event.target.checked)
+    let interests = this.state.fields.productinterest
+
+    interests.forEach(interest => {
+      if (interest.value === event.target.value)
+      interest.isChecked =  event.target.checked
+    })
+    
+    this.setState({
+      fields: {
+        ...this.state.fields,
+        productinterest: interests
+      }
+    })
   }
 
   handleInputChange(event) {
@@ -65,8 +86,9 @@ class PricingForm extends Component {
     }
   }
 
-  handleSubmit = async (event) => {
+  handleSubmit = (event) => {
     event.preventDefault();
+    let checkedBoxes = [];
     this.setState({ submitActive: true });
     const formLink = 'https://mortlock.dilatedigital.com.au/wp-json/contact-form-7/v1/contact-forms/3502/feedback';
     let isFormValid = false;
@@ -92,7 +114,21 @@ class PricingForm extends Component {
     }
 
     if(isFormValid) {
-      axios.post(formLink, qs.stringify(this.state.fields), Helpers.config).then((res) => {
+      this.state.fields.productinterest.map(interest => {
+        if(interest.isChecked) {
+          checkedBoxes.push(interest.value);
+        }
+      });
+
+      const formData = {
+        firstname: this.state.fields.firstname,
+        lastname: this.state.fields.lastname,
+        email: this.state.fields.email,
+        phone: this.state.fields.phone,
+        products: checkedBoxes
+      }
+
+      axios.post(formLink, qs.stringify(formData), Helpers.config).then((res) => {
         if(res.data.status === 'mail_sent') {
           setTimeout(() => {
             this.setState({
@@ -104,9 +140,13 @@ class PricingForm extends Component {
                 lastname: '',
                 email: '',
                 phone: '',
-                company: '',
-                whoareyou: '',
-                message: ''
+                productinterest: [
+                  {id: 1, name: "Timber Ceilings", value: "timberceilings", isChecked: false},
+                  {id: 2, name: "Timber Walls", value: "timberwalls", isChecked: false},
+                  {id: 3, name: "Timber Decking", value: "timberdecking", isChecked: false},
+                  {id: 4, name: "Shou Sugi Ban", value: "shousugiban", isChecked: false}
+                ],
+                products: []
               }
             })
           }, 800); 
@@ -176,36 +216,19 @@ class PricingForm extends Component {
         </div>
         
         <div className="form_group">
-          <span className="label">Select product of Interesh</span>
+          <span className="label">Select product of Interest</span>
           <ul className="check__list">
-            <li>
-              <label className="custom_check" htmlFor="timberceilings">
-                <input aria-label="Timber Ceilings" type="checkbox" id="timberceilings" />
-                <span className="custom-box"></span>
-                <span className="custom-text">Timber Ceilings</span>
-              </label>
-            </li>
-            <li>
-              <label className="custom_check" htmlFor="timberwalls">
-                <input aria-label="Timber walls" type="checkbox" id="timberwalls" />
-                <span className="custom-box"></span>
-                <span className="custom-text">Timber Walls</span>
-              </label>
-            </li>
-            <li>
-              <label className="custom_check" htmlFor="timberdecking">
-                <input aria-label="Timber Decking" type="checkbox" id="timberdecking" />
-                <span className="custom-box"></span>
-                <span className="custom-text">Timber Decking</span>
-              </label>
-            </li>
-            <li>
-              <label className="custom_check" htmlFor="shousugiban">
-                <input aria-label="Shou Sugi Ban" type="checkbox" id="shousugiban" />
-                <span className="custom-box"></span>
-                <span className="custom-text">Shou Sugi Ban</span>
-              </label>
-            </li>
+            {
+              this.state.fields.productinterest.map((interest, index) => (
+                <li key={index}>
+                  <label className="custom_check" htmlFor={interest.value}>
+                    <input aria-label={interest.name} name="productinterest" checked={interest.isChecked} value={interest.value} type="checkbox" id={interest.value} onChange={this.handleInputCheck} />
+                    <span className="custom-box"></span>
+                    <span className="custom-text">{interest.name}</span>
+                  </label>
+                </li>
+              ))
+            }
           </ul>
         </div>
         <div className="btn_wrap">
