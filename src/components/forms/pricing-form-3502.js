@@ -43,7 +43,6 @@ class PricingForm extends Component {
       mainFormMsg: '',
       mainFormState: ''
     });
-    console.log(value);
 
     if(event.target.classList.contains('noEmpty')) {
       this.setState({

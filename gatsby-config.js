@@ -7,6 +7,7 @@ module.exports = {
     title: `Architectural Timber | Hardwood Suppliers | Mortlock Timber`,
     description: `Mortlock Timber is Australia's leading designer, manufacturer and hardwood supplier of architectural timber products, with over 80 years of combined experience.`,
     author: `@bipubajgai`,
+    siteUrl: `https://gatsby.dilatedigital.com.au`
   },
   plugins: [
     {

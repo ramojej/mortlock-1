@@ -11,18 +11,14 @@ class Post extends Component {
   render() {
     const pageData = this.props.data.wordpressPost
     const relatedData = this.props.data.allWordpressPost
-    const postURL = window.location;
-    
-    console.log(postURL.href);
+    const postURL = this.props.location;
 
     const socialSharers = (event, el) => {
       event.preventDefault();
-      console.log(el);
       window.open(el, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=440,width=660');
       return false;
     }
 
-    
     return (
       <Layout headerColor="dark">
         <SEO 

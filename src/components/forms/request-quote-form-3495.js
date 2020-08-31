@@ -169,7 +169,6 @@ class RequestAQuote extends Component {
 
   render() {
     const { submitActive } = this.state;
-    console.log(this.state);
     return (
       <form className={submitActive ? 'contact__form loading' : 'contact__form'} id="quote__form" type="POST" onSubmit={ this.handleSubmit } noValidate>
         <div className="row">

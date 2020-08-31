@@ -30,7 +30,6 @@ const ProductApplication = ({ ...props }) =>  {
   };
 
   const slideToGo = (index) => {
-    console.log(customSlider)
     customSlider.current.slickGoTo(parseInt(index));
   }
 

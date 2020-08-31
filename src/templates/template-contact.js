@@ -333,8 +333,6 @@ class Page extends Component {
   }
 
   render() {
-    console.log(this.state);
-
     const bannerContent = {
       banner_image: this.props.data.allWordpressPage.edges[0].node.acf.contact_banner_image,
       banner_image_overlay: this.props.data.allWordpressPage.edges[0].node.acf.contact_banner_image_overlay,

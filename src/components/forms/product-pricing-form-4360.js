@@ -47,7 +47,6 @@ class ProductPricingForm extends Component {
       mainFormMsg: '',
       mainFormState: ''
     });
-    console.log(value);
 
     if(event.target.classList.contains('noEmpty')) {
       this.setState({
@@ -146,7 +145,6 @@ class ProductPricingForm extends Component {
 
   render() {
     const { submitActive, popupActive, popupFormActive } = this.state;
-    console.log(this.state.popupFormActive);
 
     if(popupActive) {
       return (

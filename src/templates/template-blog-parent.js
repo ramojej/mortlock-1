@@ -62,10 +62,8 @@ class Page extends Component {
           this.filterPosts(posts, this.state.fitlerValue),
           e.target.value
         )
-        console.log(filteredPosts, posts, e.target.value)
       } else {
         filteredPosts = this.searchPosts(posts, e.target.value)
-        console.log(filteredPosts, posts, e.target.value)
       }
     }
 

@@ -86,8 +86,6 @@ class Page extends Component {
       display: "none",
     }
 
-    console.log(this.state);
-
     return (
       <Layout>
         <SEO 
