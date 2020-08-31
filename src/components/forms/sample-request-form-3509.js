@@ -138,7 +138,6 @@ class SampleRequest extends Component {
     }
   }
 
-
   render() {
     const { submitActive, popupActive } = this.state;
     if(popupActive) {
@@ -218,19 +217,19 @@ class SampleRequest extends Component {
             </div>
           </div>
           <div className="form_group">
-            <label htmlFor="projectsize">Project Size M2 <span className="info">(Proplank not recommended for projects under 30m<sup>2</sup>)</span></label>
+            <label htmlFor="projectsize">Project Size M2 {(this.props.pageID === 339) && <span className="info">(Proplank not recommended for projects under 30m<sup>2</sup>)</span> }</label>
             <div className="form_input">
               <input aria-label="Project Size" type="text" name="projectsize" id="projectsize" placeholder="Enter details here" value={this.state.projectsize} onChange={this.handleInputChange} />
             </div>
           </div>
           <div className="form_group">
-          <span className="label">{this.props.data.request_sample_heading} Sample options <span className="info">(Select from the option below)</span></span>
+          <span className="label"><span dangerouslySetInnerHTML={{ __html: this.props.data.request_sample_heading }}/> Sample options <span className="info">(Select from the option below)</span></span>
           <ul className="check__list custom">
             <li>
               <label className="custom_check" htmlFor="proplank1">
                 <input aria-label="Proplank" type="checkbox" id="proplank1" />
                 <span className="custom-box"></span>
-                <span className="custom-text">{this.props.data.request_sample_heading} Sample kit</span>
+                <span className="custom-text"><span dangerouslySetInnerHTML={{ __html: this.props.data.request_sample_heading }}/> &nbsp;Sample kit</span>
               </label>
             </li>
             <li>

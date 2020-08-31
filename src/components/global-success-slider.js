@@ -11,13 +11,29 @@ const GlobalSuccessStory = ({ ...props }) =>  {
   const [slideIndex, setSlideIndex] = useState();
 
   const sliderSettings = {
-    infinite: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    draggable: false
+    draggable: false,
+    afterChange: (currentSlide) => {
+      if(content.successStories.length === currentSlide) {
+        setTimeout(() => {
+          goToFirst();
+        }, 500);
+      }
+    },
+    infinite: false
+
   };
+
+  const goToFirst = () => {
+    customSlider.current.slickGoTo(0);
+  }
+
+  const goToLast = () => {
+    customSlider.current.slickGoTo(content.successStories.length);
+  }
   
   const gotoNext = () => {
     customSlider.current.slickNext();

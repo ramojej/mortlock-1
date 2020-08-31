@@ -162,7 +162,7 @@ class Page extends Component {
           </div>
         </div>
         <PricingBlock pageID={postID} id={submenus[2]} data={productPricing} />
-        <RequestSample data={requestSample} />
+        <RequestSample wpPageId={postID} data={requestSample} />
       </Layout>
     )
   }

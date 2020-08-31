@@ -5,7 +5,6 @@ import SampleRequest from '../forms/sample-request-form-3509';
 
 const RequestSample = ({ ...props }) =>  {
   const content = props.data;
-
   return (
     <div className="request__block" id="request-a-sample">
       <div className="container">
@@ -24,7 +23,7 @@ const RequestSample = ({ ...props }) =>  {
             </div>
           </div>
           <div className="col-sm-offset-1 col-sm-7">
-            <SampleRequest data={content} />
+            <SampleRequest pageID={props.wpPageId} data={content} />
           </div>
         </div>
       </div>

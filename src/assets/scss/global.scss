@@ -294,6 +294,11 @@ label,
     margin-bottom: 11px;
   }
 
+  mark {
+    background: transparent;
+    padding: 0;
+  }
+
   .info {
     font-size: 90%;
     font-style: italic;
@@ -5069,13 +5074,12 @@ ul.block-icons {
   }
 
   .block-iconwrap {
-    width: 95px;
     height: 80px;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-end;
     justify-content: center;
-    margin: 0 auto 14px;
+    margin: 0 -40px 14px;
   }
 
   .icon {
@@ -5111,6 +5115,8 @@ ul.block-icons {
     .block-iconwrap {
       width: 160px;
       height: 70px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .icon {
