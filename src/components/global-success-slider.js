@@ -16,24 +16,9 @@ const GlobalSuccessStory = ({ ...props }) =>  {
     slidesToScroll: 1,
     arrows: false,
     draggable: false,
-    afterChange: (currentSlide) => {
-      if(content.successStories.length === currentSlide) {
-        setTimeout(() => {
-          goToFirst();
-        }, 500);
-      }
-    },
     infinite: false
 
   };
-
-  const goToFirst = () => {
-    customSlider.current.slickGoTo(0);
-  }
-
-  const goToLast = () => {
-    customSlider.current.slickGoTo(content.successStories.length);
-  }
   
   const gotoNext = () => {
     customSlider.current.slickNext();

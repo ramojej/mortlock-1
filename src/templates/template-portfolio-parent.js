@@ -95,9 +95,9 @@ class Page extends Component {
         <div className="blog__wrapper">
           <div className="container">
             <div className="blog__heading">
-              <h1>Portfolio</h1>
+              <h1>Projects</h1>
               <div className="article__metas">
-                <span className="filter__button" onClick={ this.toggleVisibility }>{!this.state.activeFilter ? <span>Show Filters <i>+</i></span> : <span>Hide Filters <i>-</i></span> } </span>
+                <span role="button" tabIndex={0} className="filter__button" onKeyDown={ this.toggleVisibility } onClick={ this.toggleVisibility }>{!this.state.activeFilter ? <span>Show Filters <i>+</i></span> : <span>Hide Filters <i>-</i></span> } </span>
               </div>
               <div className={ this.state.activeFilter ? 'head_filter__content filter--active' : 'head_filter__content' }>
                 <div className="row aside">

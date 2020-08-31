@@ -29,7 +29,7 @@ const ProductOverview = ({ ...props }) =>  {
           <div className="col-sm-offset-1 col-sm-7">
             { content.product_description && <div dangerouslySetInnerHTML={{ __html: content.product_description }} /> }
             { (content.product_expand_description && readMoreActive) && <div className="extra__content" dangerouslySetInnerHTML={{ __html: content.product_expand_description }} /> }
-            {content.product_expand_description && <span className="button" onClick={ () => expandContent() }>{!readMoreActive ? 'Read more' : 'Read less' }</span> }
+            {content.product_expand_description && <span className="button" tabIndex={0} role="button" OnKeyDown={ () => expandContent() } onClick={ () => expandContent() }>{!readMoreActive ? 'Read more' : 'Read less' }</span> }
           </div>
         </div>
       </div>

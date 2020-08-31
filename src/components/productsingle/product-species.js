@@ -35,7 +35,7 @@ const ProductSpecies = ({ ...props }) =>  {
               <div className="species-box">
                 <div className="image">
                   { timber.timber_small_thumbnail ? <Img fluid={timber.timber_small_thumbnail.localFile.childImageSharp.fluid} alt={timber.timber_small_thumbnail.alt_text || ''} /> : null }
-                  <span className="button whiteoutline" onClick={ () => setFinishIndex(index, timber.timber_title) }>View finishes</span>
+                  <span role="button" tabIndex={0} className="button whiteoutline" onKeyDown={ () => setFinishIndex(index, timber.timber_title) } onClick={ () => setFinishIndex(index, timber.timber_title) }>View finishes</span>
                 </div>
                 <span className="title">{timber.timber_title}</span>
               </div>
@@ -43,7 +43,7 @@ const ProductSpecies = ({ ...props }) =>  {
           )) : null }
         </div>
       </div>
-      { (popupIndex !== undefined && setpopupActive) ? <ProductFinishes title={popupTitle} data={content.species[popupIndex].timber_finishes} link={content.timber_finishes_download_link} /> : null }
+      { (popupIndex !== undefined && popupActive) ? <ProductFinishes title={popupTitle} data={content.species[popupIndex].timber_finishes} link={content.timber_finishes_download_link} /> : null }
     </div>
   )
 }

@@ -176,41 +176,34 @@ class PricingForm extends Component {
         </div>
         
         <div className="form_group">
-          <span className="label">select the brochure(s) you need</span>
+          <span className="label">Select product of Interesh</span>
           <ul className="check__list">
             <li>
+              <label className="custom_check" htmlFor="timberceilings">
+                <input aria-label="Timber Ceilings" type="checkbox" id="timberceilings" />
+                <span className="custom-box"></span>
+                <span className="custom-text">Timber Ceilings</span>
+              </label>
+            </li>
+            <li>
+              <label className="custom_check" htmlFor="timberwalls">
+                <input aria-label="Timber walls" type="checkbox" id="timberwalls" />
+                <span className="custom-box"></span>
+                <span className="custom-text">Timber Walls</span>
+              </label>
+            </li>
+            <li>
               <label className="custom_check" htmlFor="timberdecking">
-                <input aria-label="Proplank" type="checkbox" id="timberdecking" />
+                <input aria-label="Timber Decking" type="checkbox" id="timberdecking" />
                 <span className="custom-box"></span>
                 <span className="custom-text">Timber Decking</span>
               </label>
             </li>
             <li>
-              <label className="custom_check" htmlFor="timbercladding">
-                <input aria-label="Trendplank" type="checkbox" id="timbercladding" />
-                <span className="custom-box"></span>
-                <span className="custom-text">Timber Cladding</span>
-              </label>
-            </li>
-            <li>
               <label className="custom_check" htmlFor="shousugiban">
-                <input aria-label="Satinplank" type="checkbox" id="shousugiban" />
+                <input aria-label="Shou Sugi Ban" type="checkbox" id="shousugiban" />
                 <span className="custom-box"></span>
                 <span className="custom-text">Shou Sugi Ban</span>
-              </label>
-            </li>
-            <li>
-              <label className="custom_check" htmlFor="timberscreening">
-                <input aria-label="Marineplank" type="checkbox" id="timberscreening" />
-                <span className="custom-box"></span>
-                <span className="custom-text">Timber Screening</span>
-              </label>
-            </li>
-            <li>
-              <label className="custom_check" htmlFor="timberceilings">
-                <input aria-label="Metroplank" type="checkbox" id="timberceilings" />
-                <span className="custom-box"></span>
-                <span className="custom-text">Timber Ceilings</span>
               </label>
             </li>
           </ul>

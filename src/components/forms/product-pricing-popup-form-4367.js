@@ -42,8 +42,7 @@ class ProductPricingPopupForm extends Component {
       submitActive: false,
       mainFormMsg: '',
       mainFormState: null,
-      popupActive: false,
-      popupFormActive: false
+      popupActive: false
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.pricingPopup = this.pricingPopup.bind(this);

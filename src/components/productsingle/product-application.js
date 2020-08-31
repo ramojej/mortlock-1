@@ -45,7 +45,7 @@ const ProductApplication = ({ ...props }) =>  {
               <div className="application__iconbox">
                 <div className="app__list">
                   {content.application_gallery_image.map((list, index) => (
-                    <div className="app_list" key={index} onClick={() => slideToGo(index)}>
+                    <div className="app_list" key={index} role="button" tabIndex={0} onKeyDown={() => slideToGo(index)} onClick={() => slideToGo(index)}>
                       {(() => {
                         if(list.image_application_tag === "exterior") { 
                           return (

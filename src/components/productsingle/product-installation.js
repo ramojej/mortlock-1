@@ -1,6 +1,5 @@
 import React from 'react';
 import Img from 'gatsby-image';
-import { Link } from "gatsby";
 
 const ProductInstallation = ({ ...props }) =>  {
   const content = props.data;
