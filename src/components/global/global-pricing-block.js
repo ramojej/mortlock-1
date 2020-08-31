@@ -15,7 +15,7 @@ const PricingBlock = ({ ...props }) =>  {
             <div className="pricing__text" >
               <h2 dangerouslySetInnerHTML={{ __html: content.pricing_title }} />
               <p dangerouslySetInnerHTML={{ __html: content.pricing_description }} />
-              <ProductPricingForm data={content} />
+              <ProductPricingForm data={content} pageID={props.pageID} />
             </div>
           </div>
           <div className="col-sm-offset-1 col-sm-5">

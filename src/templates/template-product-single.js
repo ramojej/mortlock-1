@@ -95,6 +95,8 @@ class Page extends Component {
       request_sample_heading: this.props.data.wordpressPage.acf.product_single_banner_heading
     }
 
+    const postID = this.props.data.wordpressPage.wordpress_id
+
     const submenus = ['product-overview', 'technical', 'pricing'];
 
     return (
@@ -108,9 +110,7 @@ class Page extends Component {
             { bannerContent.banner_image ? <BackgroundImage fluid={bannerContent.banner_image.localFile.childImageSharp.fluid} /> : null }
           </div>
           <div className="container">
-            <div className="inner__bannerbox" data-sal="slide-up" 
-      data-sal-easing="ease"
-      data-sal-delay="5">
+            <div className="inner__bannerbox" data-sal="slide-up" data-sal-easing="ease" data-sal-delay="5">
               <div className="box">
                 <h1 className={ !bannerContent.banner_description ? "text-center" : null } dangerouslySetInnerHTML={{ __html: bannerContent.banner_heading }} />
                 { bannerContent.banner_description ? <span className="inner__bannertext" dangerouslySetInnerHTML={{ __html: bannerContent.banner_description }} /> : null }
@@ -161,7 +161,7 @@ class Page extends Component {
             <ProductFaq data={productFAQ} />
           </div>
         </div>
-        <PricingBlock id={submenus[2]} data={productPricing} />
+        <PricingBlock pageID={postID} id={submenus[2]} data={productPricing} />
         <RequestSample data={requestSample} />
       </Layout>
     )
@@ -173,6 +173,7 @@ export default Page
 export const pageQuery = graphql`
   query($id: String!) {
     wordpressPage(id: { eq: $id }) {
+      wordpress_id
       yoast {
         title
         metadesc
@@ -294,7 +295,9 @@ export const pageQuery = graphql`
         installation_title
         installation_description
         installation_button_text
-        installation_button_link
+        installation_button_link {
+          link
+        }
         installation_button_style
         useful_info {
           useful_icon

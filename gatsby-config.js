@@ -4,9 +4,9 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Architectural Timber | Hardwood Suppliers | Mortlock Timber`,
+    description: `Mortlock Timber is Australia's leading designer, manufacturer and hardwood supplier of architectural timber products, with over 80 years of combined experience.`,
+    author: `@bipubajgai`,
   },
   plugins: [
     {
@@ -21,6 +21,7 @@ module.exports = {
         ],
       }
     },
+    `gatsby-plugin-sitemap`,
     `gatsby-plugin-smoothscroll`,
     `gatsby-plugin-scroll-reveal`,
     `gatsby-background-image`,
