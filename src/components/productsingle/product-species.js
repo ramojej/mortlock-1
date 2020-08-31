@@ -11,11 +11,13 @@ const ProductSpecies = ({ ...props }) =>  {
   const content = props.data;
   const [popupIndex, setPopupIndex] = useState();
   const [popupTitle, setPopupTitle] = useState();
+  const [popupActive, setpopupActive] = useState();
 
   const setFinishIndex = (num, title) => {
     togglePopupOverlay();
     setPopupIndex(num);
     setPopupTitle(title);
+    setpopupActive(true);
   }
   
   return (
@@ -41,7 +43,7 @@ const ProductSpecies = ({ ...props }) =>  {
           )) : null }
         </div>
       </div>
-      { popupIndex !== undefined ? <ProductFinishes title={popupTitle} data={content.species[popupIndex].timber_finishes} /> : null }
+      { (popupIndex !== undefined && setpopupActive) ? <ProductFinishes title={popupTitle} data={content.species[popupIndex].timber_finishes} link={content.timber_finishes_download_link} /> : null }
     </div>
   )
 }

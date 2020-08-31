@@ -4,9 +4,6 @@ import qs from 'qs';
 
 import Helpers from '../helpers/helpers';
 import Loader from '../helpers/loader';
-
-
-
 class ContactForm extends Component {
   constructor(props) {
     super(props);

@@ -16,7 +16,6 @@ const toggleMenuDropdown = () => {
 }
 
 const removeActiveClass = () => {
-  console.log('click');
   document.body.classList.remove('nav__active');
 }
 

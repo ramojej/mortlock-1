@@ -7,8 +7,6 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Button from "../components/global/button";
 
-import markerIcon from '../../static/map-icon.svg';
-
 import ContactForm from '../components/forms/contact-form-137';
 
 const exampleMapStyles = [
@@ -318,11 +316,6 @@ const markers = [
     }
   }
 ]
-
-const onLoad = polygon => {
-  
-}
-
 class Page extends Component {
 
   constructor(props) {

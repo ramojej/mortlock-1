@@ -3455,16 +3455,24 @@ form {
   }
 }
 
+.form_group select {
+  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTAwcHQiIGhlaWdodD0iMTAwcHQiIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiA8cGF0aCBkPSJtNzEuNTU1IDQxYzAgMC4zMzIwMy0wLjEwOTM4IDAuNjY3OTctMC40NDUzMSAxbC0yMC4xMDkgMjAuMTA5Yy0wLjMzMjAzIDAuMzMyMDMtMC42Njc5NyAwLjQ0NTMxLTEgMC40NDUzMXMtMC42Njc5Ny0wLjEwOTM4LTEtMC40NDUzMWwtMjAuMTA5LTIwLjEwOWMtMC4zMzIwMy0wLjMzMjAzLTAuNDQ1MzEtMC42Njc5Ny0wLjQ0NTMxLTFzMC4xMDkzOC0wLjY2Nzk3IDAuNDQ1MzEtMWwyLjEwOTQtMi4xMDk0YzAuMzMyMDMtMC4zMzIwMyAwLjY2Nzk3LTAuNDQ1MzEgMS0wLjQ0NTMxczAuNjY3OTcgMC4xMDkzOCAxIDAuNDQ1MzFsMTcgMTcgMTctMTdjMC4zMzIwMy0wLjMzMjAzIDAuNjY3OTctMC40NDUzMSAxLTAuNDQ1MzFzMC42Njc5NyAwLjEwOTM4IDEgMC40NDUzMWwyLjEwOTQgMi4xMDk0YzAuMjIyNjYgMC4zMzIwMyAwLjQ0NTMxIDAuNjY3OTcgMC40NDUzMSAxeiIvPgo8L3N2Zz4K");
+  background-position: 98.5% 50%;
+  background-repeat: no-repeat;
+  background-size: 29px auto;
+}
+
 span.error {
   font-size: 13px;
   display: block;
   padding-top: 4px;
   letter-spacing: 1px;
   color: #fd2929;
-  margin-bottom: -9px;
 }
 
-.contact__form {
+.contact__form,
+.sample__form,
+.pricing__popupform {
   position: relative;
 
   .button {
@@ -3603,13 +3611,41 @@ ul.check__list {
       padding-bottom: 0;
     }
   }
+
+  &.custom {
+    li {
+      @include breakpoint('small') {
+        width: 50%;
+      }
+    }
+
+    .custom_check {
+      &:hover {
+        .custom-text {
+          background: $primary-color;
+          color: #fff;
+          border-color: $primary-color;
+        }
+      }
+
+      .custom-text {
+        padding: 5px 15px;
+        justify-content: center;
+      }
+
+      .custom-box {
+        opacity: 0;
+      }
+    }
+  }
 }
 
 .custom_check {
   display: block;
   position: relative;
 
-  input[type="checkbox"] {
+  input[type="checkbox"],
+  input[type="radio"] {
     position: absolute;
     left: 0;
     top: 0;
@@ -4425,7 +4461,8 @@ ul.check__list {
   margin-bottom: 5px;
   cursor: pointer;
 
-  input[type="checkbox"] {
+  input[type="checkbox"],
+  input[type="radio"] {
     position: absolute;
     left: 0;
     top: 0;
@@ -5023,7 +5060,7 @@ ul.block-icons {
   }
 
   .block-iconwrap {
-    width: 50px;
+    width: 95px;
     height: 80px;
     display: flex;
     flex-wrap: wrap;
@@ -5034,7 +5071,7 @@ ul.block-icons {
 
   .icon {
     margin: 0 auto;
-    width: 90%;
+    width: 100%;
     height: auto;
   }
 
@@ -5235,6 +5272,11 @@ ul.block-icons {
 }
 
 .pricing__text {
+  padding-bottom: 30px;
+
+  @include breakpoint('medium') {
+    padding-bottom: 0;
+  }
   h2 {
     position: relative;
     padding-bottom: 14px;
@@ -5257,6 +5299,23 @@ ul.block-icons {
       right: -400px;
       background: $primary-color;
       height: 2px;
+    }
+  }
+
+  .popup__heading {
+    justify-content: center;
+
+    &:before {
+      left: -9999px;
+    }
+
+    h2 {
+      margin: 0;
+      padding: 0;
+
+      &:before {
+        display: none;
+      }
     }
   }
 }
@@ -5689,6 +5748,40 @@ form {
     padding: 0 24px;
     transition: color 0.3s, background 0.3s;
   }
+}
+
+.formsub__popup {
+  background: $primary-color;
+  padding: 30px 25px;
+  color: #fff;
+
+  h3 {
+    color: #fff;
+  }
+
+  .link {
+    font-weight: 700;
+    border-bottom: 2px solid #fff;
+    display: inline-block;
+    color: #fff;
+  }
+}
+
+.pricing__popupform {
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.small-input {
+  input[type="text"] {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+.sub-title {
+  display: block;
+  font-size: 15px;
 }
 
 .loader {

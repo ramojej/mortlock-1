@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import BackgroundImage from 'gatsby-background-image';
+import scrollTo from 'gatsby-plugin-smoothscroll';
 
 import Layout from '../components/layout';
 import SEO from "../components/seo";
@@ -54,7 +55,8 @@ class Page extends Component {
     const timber_species = {
       species: this.props.data.wordpressPage.acf.timber_species,
       timber_finishes_download_text: this.props.data.wordpressPage.acf.timber_finishes_download_text,
-      timber_finishes_button_style: this.props.data.wordpressPage.acf.timber_finishes_button_style
+      timber_finishes_button_style: this.props.data.wordpressPage.acf.timber_finishes_button_style,
+      timber_finishes_download_link: this.props.data.wordpressPage.acf.timber_finishes_download_link
     }
 
     const productInstallation = {
@@ -81,13 +83,16 @@ class Page extends Component {
     const productPricing = {
       pricing_title: this.props.data.wordpressPage.acf.pricing_title,
       pricing_description: this.props.data.wordpressPage.acf.pricing_description,
-      pricing_image: this.props.data.wordpressPage.acf.pricing_image
+      pricing_image: this.props.data.wordpressPage.acf.pricing_image,
+      pricing_guide_download_link: this.props.data.wordpressPage.acf.pricing_guide_download_link
     }
 
     const requestSample = {
       request_sample_image: this.props.data.wordpressPage.acf.request_sample_image,
       request_block_heading: this.props.data.wordpressPage.acf.request_block_heading,
-      request_sample_description: this.props.data.wordpressPage.acf.request_sample_description
+      request_sample_brochure: this.props.data.wordpressPage.acf.request_sample_brochure,
+      request_sample_description: this.props.data.wordpressPage.acf.request_sample_description,
+      request_sample_heading: this.props.data.wordpressPage.acf.product_single_banner_heading
     }
 
     const submenus = ['product-overview', 'technical', 'pricing'];
@@ -114,7 +119,7 @@ class Page extends Component {
                     {bannerContent.banner_buttons.map((button, index) => (
                       (index === 1) ? 
                       <Button type="external" link={button.product_single_button_link} text={button.product_single_button_text} style={button.product_single_button_style} key={index} /> : 
-                      <Button link={button.product_single_button_link} text={button.product_single_button_text} style={button.product_single_button_style} key={index} /> 
+                      <button className="button primary" key={index} data-id={button.product_single_button_link} onClick={() => scrollTo(`${button.product_single_button_link}`)}>{button.product_single_button_text}</button>
                     ))}
                   </div> : null }
               </div>
@@ -147,7 +152,7 @@ class Page extends Component {
                       </div>
                       <h4>{link.userful_info_heading}</h4>
                       <p dangerouslySetInnerHTML={{ __html: link.useful_info_text }} />
-                      <Link className="link" to={link.useful_info_link}>{link.useful_info_link_text}</Link>
+                      <a className="link" href={link.useful_info_link.link} target="_blank" rel="noreferrer">{link.useful_info_link_text}</a>
                     </div>
                   </div>
                 )) : null }
@@ -240,6 +245,9 @@ export const pageQuery = graphql`
         }
         timber_finishes_download_text
         timber_finishes_button_style
+        timber_finishes_download_link {
+          link
+        }
         timber_species {
           timber_small_thumbnail {
             alt_text
@@ -293,6 +301,9 @@ export const pageQuery = graphql`
           userful_info_heading
           useful_info_text
           useful_info_link_text
+          useful_info_link {
+            link
+          }
         }
         faq_title
         faqs {
@@ -310,6 +321,9 @@ export const pageQuery = graphql`
           }
         }
         pricing_description
+        pricing_guide_download_link {
+          link
+        }
         request_block_heading
         request_sample_image {
           localFile {
@@ -321,6 +335,9 @@ export const pageQuery = graphql`
           }
         }
         request_sample_description
+        request_sample_brochure {
+          link
+        }
       }
     }
   }

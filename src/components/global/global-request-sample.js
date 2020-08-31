@@ -7,7 +7,7 @@ const RequestSample = ({ ...props }) =>  {
   const content = props.data;
 
   return (
-    <div className="request__block">
+    <div className="request__block" id="request-a-sample">
       <div className="container">
         <div className="row">
           <div className="col-sm-4">
@@ -24,7 +24,7 @@ const RequestSample = ({ ...props }) =>  {
             </div>
           </div>
           <div className="col-sm-offset-1 col-sm-7">
-            <SampleRequest />
+            <SampleRequest data={content} />
           </div>
         </div>
       </div>
