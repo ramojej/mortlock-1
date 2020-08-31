@@ -49,7 +49,7 @@ const GlobalTestimonialSlider = ({ ...props }) =>  {
             <div className="slide" key={index}>
               <blockquote className="quote">
                 <q>{testimonial.client_quote}</q>
-                <cite>- {testimonial.client_name}, {testimonial.client_titleposition}</cite>
+                <cite>- {testimonial.client_name} {testimonial.client_titleposition ? `, ${testimonial.client_titleposition}` : null }</cite>
               </blockquote>
             </div>
           ))}

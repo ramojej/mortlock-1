@@ -180,45 +180,38 @@ class PricingForm extends Component {
           <span className="label">select the brochure(s) you need</span>
           <ul className="check__list">
             <li>
-              <label className="custom_check" htmlFor="proplank1">
-                <input aria-label="Proplank" type="checkbox" id="proplank1" />
+              <label className="custom_check" htmlFor="timberdecking">
+                <input aria-label="Proplank" type="checkbox" id="timberdecking" />
                 <span className="custom-box"></span>
-                <span className="custom-text">proplank</span>
+                <span className="custom-text">Timber Decking</span>
               </label>
             </li>
             <li>
-              <label className="custom_check" htmlFor="trendplank1">
-                <input aria-label="Trendplank" type="checkbox" id="trendplank1" />
+              <label className="custom_check" htmlFor="timbercladding">
+                <input aria-label="Trendplank" type="checkbox" id="timbercladding" />
                 <span className="custom-box"></span>
-                <span className="custom-text">TRENDplank</span>
+                <span className="custom-text">Timber Cladding</span>
               </label>
             </li>
             <li>
-              <label className="custom_check" htmlFor="satinplank1">
-                <input aria-label="Satinplank" type="checkbox" id="satinplank1" />
+              <label className="custom_check" htmlFor="shousugiban">
+                <input aria-label="Satinplank" type="checkbox" id="shousugiban" />
                 <span className="custom-box"></span>
-                <span className="custom-text">SATINPLANK</span>
+                <span className="custom-text">Shou Sugi Ban</span>
               </label>
             </li>
             <li>
-              <label className="custom_check" htmlFor="marineplank1">
-                <input aria-label="Marineplank" type="checkbox" id="marineplank1" />
+              <label className="custom_check" htmlFor="timberscreening">
+                <input aria-label="Marineplank" type="checkbox" id="timberscreening" />
                 <span className="custom-box"></span>
-                <span className="custom-text">MARINEplank</span>
+                <span className="custom-text">Timber Screening</span>
               </label>
             </li>
             <li>
-              <label className="custom_check" htmlFor="metroplank1">
-                <input aria-label="Metroplank" type="checkbox" id="metroplank1" />
+              <label className="custom_check" htmlFor="timberceilings">
+                <input aria-label="Metroplank" type="checkbox" id="timberceilings" />
                 <span className="custom-box"></span>
-                <span className="custom-text">METROplank</span>
-              </label>
-            </li>
-            <li>
-              <label className="custom_check" htmlFor="classicplank1">
-                <input aria-label="Classicplank" type="checkbox" id="classicplank1" />
-                <span className="custom-box"></span>
-                <span className="custom-text">CLASSICPLANK</span>
+                <span className="custom-text">Timber Ceilings</span>
               </label>
             </li>
           </ul>

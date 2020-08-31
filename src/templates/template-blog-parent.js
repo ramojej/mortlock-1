@@ -217,11 +217,13 @@ class Page extends Component {
                         <h3>
                           <Link to={(!this.state.searching && !this.state.filtering) ? `${data.pageContext.actualPath}${post.node.slug}` : `${post.node.path}` } dangerouslySetInnerHTML={{ __html: post.node.title }} />
                         </h3>
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html: post.node.excerpt,
-                          }}
-                        />
+                        {(() => {
+                          const regex = /(<([^>]+)>)/ig;
+                          var removeHTMLtags = post.node.excerpt.replace(regex, '').substring(0, 150) + "...";
+                          return (
+                            <p dangerouslySetInnerHTML={{ __html: removeHTMLtags }} />
+                          )
+                        })()}
                         <Link className="link" to={(!this.state.searching && !this.state.filtering) ? `${data.pageContext.actualPath}${post.node.slug}` : `${post.node.path}` }>Read more</Link>
                       </div>
                     </div>

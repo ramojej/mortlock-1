@@ -60,7 +60,13 @@ class Post extends Component {
                       </div>
                       <div className="blog_text">
                         <h3 dangerouslySetInnerHTML={{ __html: relatedpost.node.title }} />
-                        <div dangerouslySetInnerHTML={{ __html: relatedpost.node.excerpt }}  />
+                        {(() => {
+                          const regex = /(<([^>]+)>)/ig;
+                          var removeHTMLtags = relatedpost.node.excerpt.replace(regex, '').substring(0, 150) + "...";
+                          return (
+                            <p dangerouslySetInnerHTML={{ __html: removeHTMLtags }} />
+                          )
+                        })()}
                         <Link className="link" to={relatedpost.node.path}>Read more</Link>
                       </div>
                     </div>

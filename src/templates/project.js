@@ -97,6 +97,7 @@ const Project = ({...props}) =>  {
               </div>
             </div>
           </div>
+          { pageData.acf.this_project_has_video &&
           <div className={ (playVideo) ? "video__wrapper video--playing" : "video__wrapper" }>
             { (playVideo && pageData.acf.project_video_iframe_code) ? <div className="video__content" dangerouslySetInnerHTML={{ __html: pageData.acf.project_video_iframe_code }} /> : null }
             <div className="video__play">
@@ -106,7 +107,7 @@ const Project = ({...props}) =>  {
               </div>
             </div>
             <BackgroundImage className="bg__image" fluid={pageData.acf.project_video_image.localFile.childImageSharp.fluid} />
-          </div>
+          </div>}
           <div className="spec__wrapper">
             <div className="row">
               <div className="col-sm-5">
@@ -149,7 +150,7 @@ const Project = ({...props}) =>  {
                 pageData.acf.gallery_images ? 
                 pageData.acf.gallery_images.map((image, index) => (
                     <div className="image" key={index}>
-                      <Img fluid={image.gallery_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
+                      <img src={image.gallery_image.link} alt="Alternative Text" />
                     </div>
                 )) : null 
               }
@@ -200,6 +201,7 @@ export const pageQuery = graphql`
           button_style
         }
         about_heading
+        this_project_has_video
         about_description
         gallery_images {
           gallery_image {

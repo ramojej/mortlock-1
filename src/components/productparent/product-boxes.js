@@ -14,10 +14,12 @@ const ProductBoxes = ({ ...props }) =>  {
               <div className="product__box">
                 <h2 dangerouslySetInnerHTML={{ __html: product.product_title }} />
                 <div className="product__box-image">
-                  {product.product_image ? <Img fluid={product.product_image.localFile.childImageSharp.fluid} alt="Alternative Text" /> : null }
-                  <div className="image__text">
-                    <div dangerouslySetInnerHTML={{ __html: product.popup_text }} />
-                  </div>
+                  <Link to={ product.button_link }>
+                    {product.product_image ? <Img fluid={product.product_image.localFile.childImageSharp.fluid} alt="Alternative Text" /> : null }
+                    <div className="image__text">
+                      <div dangerouslySetInnerHTML={{ __html: product.popup_text }} />
+                    </div>
+                  </Link>
                 </div>
                 <div className="product__desc">
                   {product.product_description ? <div dangerouslySetInnerHTML={{ __html: product.product_description }} /> : null }

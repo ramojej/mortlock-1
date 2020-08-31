@@ -1,32 +1,93 @@
 import React, { Component } from "react";
 import { graphql, Link } from "gatsby";
 
-import BackgroundImage from 'gatsby-background-image';
-
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 
 class Page extends Component {
   constructor(props) {
-    super(props);
+    super(props)
+
+    //initiating the arrays
+    let projectCategories = props.data.allWordpressWpProjectCategory.edges
+    let products = []
+    let productTypes = []
+    let projectTypes = []
+    projectCategories.forEach(category => {
+      if (category.node.slug.includes("product-type"))
+        productTypes.push(category.node)
+      else if (category.node.slug.includes("project-type"))
+        projectTypes.push(category.node)
+      else products.push(category.node)
+    })
 
     this.state = {
       activeFilter: false,
       content: props,
-      page: props.data.allWordpressPage
+      page: props.data.allWordpressPage,
+      filterCategories: [], // contains categories ids that needs to be filtered
+      products, //contains product categories objects
+      productTypes,
+      projectTypes,
+      filteredProjects: [],
+      filtering: false,
     }
 
-    this.toggleVisibility = this.toggleVisibility.bind(this);
+    this.toggleVisibility = this.toggleVisibility.bind(this)
   }
 
   toggleVisibility() {
     this.setState({
-      activeFilter: !this.state.activeFilter
+      activeFilter: !this.state.activeFilter,
+    })
+  }
+
+  handleCheck = e => {
+    let newfilterCategories = this.state.filterCategories
+    let id = e.target.id
+    let filtering = true
+
+    //---Update the category Array (filterCategories)
+    if (e.target.checked) {
+      //checking the box
+      newfilterCategories.push(parseInt(id))
+      filtering = true
+    } else {
+      //unchecking the box
+      newfilterCategories = newfilterCategories.filter(
+        categoryId => categoryId !== parseInt(id)
+      )
+      if (newfilterCategories.length === 0) filtering = false
+    }
+
+    //---Update the projects Array (filtered)
+    let filterd = [] //reset
+    let allProjects = this.state.content.pageContext.projects
+    allProjects.forEach(project => {
+      //filter the projects according to the filterCategories array
+      if (
+        project.node.project_category.some(id => {
+          return newfilterCategories.indexOf(id) === -1 ? false : true
+        })
+      )
+        if (filterd.indexOf(project.node) === -1) filterd.push(project.node) //add the project to filterd array //no duplicates are allowed
+    })
+
+    this.setState({
+      filterCategories: newfilterCategories,
+      filteredProjects: filterd,
+      filtering,
     })
   }
 
 
   render() {
+    const paginationStyle = {
+      display: "none",
+    }
+
+    console.log(this.state);
+
     return (
       <Layout>
         <SEO 
@@ -38,73 +99,142 @@ class Page extends Component {
             <div className="blog__heading">
               <h1>Portfolio</h1>
               <div className="article__metas">
-                { !this.state.activeFilter && <span className="filter__button" onClick={ this.toggleVisibility }>Show Filters <i>+</i></span> }
+                <span className="filter__button" onClick={ this.toggleVisibility }>{!this.state.activeFilter ? <span>Show Filters <i>+</i></span> : <span>Hide Filters <i>-</i></span> } </span>
+              </div>
+              <div className={ this.state.activeFilter ? 'head_filter__content filter--active' : 'head_filter__content' }>
+                <div className="row aside">
+                  <div className="col-sm-4">
+                    <span className="title">Product</span>
+                    <ul className="list">
+                      {this.state.products.map(product => (
+                        <li key={product.id}>
+                          <label
+                            className="custom-check"
+                            htmlFor={product.wordpress_id}
+                          >
+                            <input
+                              role="button"
+                              type="checkbox"
+                              aria-label={product.name}
+                              id={product.wordpress_id}
+                              name={product.id}
+                              onChange={this.handleCheck}
+                            />
+                            <span className="custom-text">{product.name}</span>
+                            <span className="custom-box"></span>
+                          </label>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="col-sm-4">
+                    <span className="title">Product Type</span>
+                    <ul className="list">
+                      {this.state.productTypes.map(product => (
+                        <li key={product.id}>
+                          <label
+                            className="custom-check"
+                            htmlFor={product.wordpress_id}
+                          >
+                            <input
+                              type="checkbox"
+                              id={product.wordpress_id}
+                              aria-label={product.name}
+                              name={product.name}
+                              onChange={this.handleCheck}
+                            />
+                            <span className="custom-text">{product.name}</span>
+                            <span className="custom-box"></span>
+                          </label>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="col-sm-4">
+                    <span className="title">Project Type</span>
+                    <ul className="list">
+                      {this.state.projectTypes.map(product => (
+                        <li key={product.name}>
+                          <label
+                            className="custom-check"
+                            htmlFor={product.wordpress_id}
+                          >
+                            <input
+                              type="checkbox"
+                              id={product.wordpress_id}
+                              aria-label={product.name}
+                              name={product.name}
+                              onChange={this.handleCheck}
+                            />
+                            <span className="custom-text">{product.name}</span>
+                            <span className="custom-box"></span>
+                          </label>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="project__wrapper">
-              <div className={ this.state.activeFilter ? 'filter__wrapper filter--active' : 'filter__wrapper' }>
-                <span className="filter__button" onClick={ this.toggleVisibility }>Hide Filters <i>-</i></span>
-                <div className="aside">
-                  <span className="title">Product</span>
-                  <ul className="list">
-                    <li>
-                      <label className="custom-check" htmlFor="timber">
-                        <input role="button" type="checkbox" aria-label="Timber" id="timber" name="timber"/>
-                        <span className="custom-text">Timber Decking</span>
-                        <span className="custom-box"></span>
-                      </label>
-                    </li>
-                    <li>
-                      <label className="custom-check" htmlFor="timber1">
-                        <input type="checkbox" id="timber1" aria-label="Timber" name="timber1"/>
-                        <span className="custom-text">Timber Decking</span>
-                        <span className="custom-box"></span>
-                      </label>
-                    </li>
-                  </ul>
-                </div>
-                <div className="aside">
-                  <span className="title">Project Type</span>
-                  <ul className="list">
-                    <li>
-                      <label className="custom-check" htmlFor="residential">
-                        <input type="checkbox" id="residential" aria-label="Timber" name="residential" />
-                        <span className="custom-text">Residential</span>
-                        <span className="custom-box"></span>
-                      </label>
-                    </li>
-                    <li>
-                      <label className="custom-check" htmlFor="residential1">
-                        <input type="checkbox" id="residential1" aria-label="Timber" name="residential1" />
-                        <span className="custom-text">Residential</span>
-                        <span className="custom-box"></span>
-                      </label>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="project__content filter--active">
-                <div className="row">
-                  {this.state.content.data.allWordpressWpProject.edges.map(post => (
-                    <div className="col-sm-6" key={post.node.wordpress_id}>
-                      <div className="project_article">
-                        <div className="blog_image">
-                          { post.node.featured_media ? <BackgroundImage fluid={post.node.featured_media.localFile.childImageSharp.fluid} alt="Alternative Text" /> : 'image' }
-                          <div className="image_overlay">
-                            <Link className="button primary" to={post.node.path}>View Project</Link>
+              <div className="project__content">
+              <div className="row">
+                  {/* do not apply filter if this.state.filtering is false */}
+                  {!this.state.filtering
+                    ? this.state.content.data.allWordpressWpProject.edges.map(
+                        post => (
+                          <div
+                            className="col-sm-6"
+                            key={post.node.wordpress_id}
+                          >
+                            <div className="project_article">
+                              <div className="blog_image">
+                                { post.node.featured_media && <div className="bg_image" style={{ backgroundImage: `url(${post.node.featured_media.link})` }}></div> }
+                                <div className="image_overlay">
+                                  <Link
+                                    className="button primary"
+                                    to={post.node.path}
+                                  >
+                                    View Project
+                                  </Link>
+                                </div>
+                              </div>
+                              <div className="project_desc">
+                                <h3><Link to={post.node.path} dangerouslySetInnerHTML={{ __html: post.node.title }} />
+                                </h3>
+                                <span className="location" dangerouslySetInnerHTML={{ __html: post.node.acf.project_banner_description }} />
+                              </div>
+                            </div>
+                          </div>
+                        )
+                      )
+                    : //DO apply filter if this.state.filtering is true
+                      this.state.filteredProjects.map(post => (
+                        <div className="col-sm-6" key={post.id}>
+                          <div className="project_article">
+                            <div className="blog_image">
+                              { post.featured_media && <div className="bg_image" style={{ backgroundImage: `url(${post.featured_media.link})` }}></div> }
+                              <div className="image_overlay">
+                                <Link className="button primary" to={post.path}>
+                                  View Project
+                                </Link>
+                              </div>
+                            </div>
+                            <div className="project_desc">
+                              <h3>
+                                <Link to={post.path}>{post.title}</Link>
+                              </h3>
+                              {/* <span className="location">
+                                  {post.node.acf.project_banner_description}
+                                </span> */}
+                            </div>
                           </div>
                         </div>
-                        <div className="project_desc">
-                        <h3><Link to={post.node.path}>{post.node.title}</Link></h3>
-                        <span className="location">{post.node.acf.project_banner_description}</span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                      ))}
                 </div>
               </div>
             </div>
-            <div className="pagination">
+            <div className="pagination" style={this.state.filtering ? paginationStyle : {}}>
               <span className="title">Pages</span>
               <ul className="pages">
                 {Array.from({ length: this.state.content.pageContext.numberOfProjects }).map((page, index) =>  (
@@ -131,6 +261,8 @@ export const pageQuery = graphql`
           id
           title
           featured_media {
+            alt_text
+            link
             localFile {
               childImageSharp {
                 fluid(maxWidth: 1200) {
@@ -161,6 +293,17 @@ export const pageQuery = graphql`
             title
             metadesc
           }
+        }
+      }
+    }
+
+    allWordpressWpProjectCategory {
+      edges {
+        node {
+          id
+          name
+          wordpress_id
+          slug
         }
       }
     }

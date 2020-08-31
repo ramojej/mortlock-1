@@ -64,6 +64,11 @@ exports.createPages = async ({ graphql, actions }) => {
             status
             template
             title
+            project_category
+            featured_media {
+              alt_text
+              link
+            }
           }
         }
       }

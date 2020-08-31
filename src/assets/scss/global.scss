@@ -3607,7 +3607,6 @@ ul.check__list {
     width: 50%;
 
     @include breakpoint('small') {
-      width: 33.33%;
       padding-bottom: 0;
     }
   }
@@ -4422,6 +4421,16 @@ ul.check__list {
   &.filter--active {
     width: 390px;
     padding-right: 50px;
+  }
+}
+
+.head_filter__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s;
+
+  &.filter--active {
+    max-height: 700px;
   }
 }
 
@@ -5562,14 +5571,21 @@ ul.block-icons {
   }
 
   .image {
-    max-width: 800px;
-    margin: 0 auto;
-    display: block !important;
-  }
-
-  .gatsby-image-wrapper {
-    width: 100%;
+    width: 800px;
     height: 100%;
+    margin: 0 auto;
+    text-align: center;
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      max-height: 100%;
+      width: auto;
+      max-width: 100%;
+      margin: 0 auto;
+    }
   }
 
   .slick-arrow {
@@ -5782,6 +5798,11 @@ form {
 .sub-title {
   display: block;
   font-size: 15px;
+}
+
+.head_filter__content {
+  width: 100%;
+  clear: both;
 }
 
 .loader {
