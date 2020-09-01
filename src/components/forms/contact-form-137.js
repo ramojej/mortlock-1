@@ -68,7 +68,7 @@ class ContactForm extends Component {
   handleSubmit = async (event) => {
     event.preventDefault();
     this.setState({ submitActive: true });
-    const formLink = 'https://mortlock.dilatedigital.com.au/wp-json/contact-form-7/v1/contact-forms/137/feedback';
+    const formLink = 'https://site.mortlock.com.au/wp-json/contact-form-7/v1/contact-forms/137/feedback';
     let isFormValid = false;
     let elements = document.querySelectorAll('.contact__form .noEmpty');
 

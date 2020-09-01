@@ -89,7 +89,7 @@ class PricingForm extends Component {
     event.preventDefault();
     let checkedBoxes = [];
     this.setState({ submitActive: true });
-    const formLink = 'https://mortlock.dilatedigital.com.au/wp-json/contact-form-7/v1/contact-forms/3502/feedback';
+    const formLink = 'https://site.mortlock.com.au/wp-json/contact-form-7/v1/contact-forms/3502/feedback';
     let isFormValid = false;
     let elements = document.querySelectorAll('.contact__form .noEmpty');
 

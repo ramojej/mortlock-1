@@ -428,7 +428,7 @@ class Page extends Component {
                     position={marker.position} 
                     key={index} 
                     icon={{
-                      url: 'https://mortlock.dilatedigital.com.au/wp-content/uploads/2020/08/location-pin.png'
+                      url: 'https://site.mortlock.com.au/wp-content/uploads/2020/08/location-pin.png'
                     }}
                     onClick={() => this.hangleTogglePopup(index)}>
                     {(this.state.openInfoWindowMarkerId === index) && 

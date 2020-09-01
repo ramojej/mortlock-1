@@ -5460,14 +5460,14 @@ ul.block-icons {
   z-index: 100;
   overflow-y: auto;
   overflow-x: hidden;
-  background: #fff;
+  background: rgba(#000, 0.6);
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s, visibility 0.3s;
-  padding: 50px 0;
+  padding: 60px 15px;
 
   @include breakpoint('medium') {
-    padding: 100px 0;
+    padding: 80px;
   }
 
   .popup__active & {
@@ -5476,13 +5476,20 @@ ul.block-icons {
   }
 }
 
+.popup__hold {
+  background: #fff;
+  height: 100%;
+  padding: 40px 0;
+  overflow: hidden;
+}
+
 .popup__close {
   position: absolute;
   right: 12px;
   top: 21px;
   border: none;
   background: transparent;
-  color: #9f9f9f;
+  color: #fff;
   z-index: 999;
   transition: color 0.3s;
   cursor: pointer;

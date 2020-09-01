@@ -142,7 +142,7 @@ const Header = ({ data, ...props }) => (
                                                       return (
                                                         <div className="col-md-4" key={index}>
                                                           <div className="menubox">
-                                                            <Link tabIndex={0} onKeyDown={ () => removeActiveClass() } onClick={() => removeActiveClass() } to={dropmenu.menu_link.replace('https://mortlock.dilatedigital.com.au','')}>
+                                                            <Link tabIndex={0} onKeyDown={ () => removeActiveClass() } onClick={() => removeActiveClass() } to={dropmenu.menu_link.replace('https://site.mortlock.com.au','')}>
                                                               <span className="menuTitle">{dropmenu.menu_title}</span>
                                                               <p>{dropmenu.menu_description}</p>
                                                               <div className="imagebox">
@@ -173,7 +173,7 @@ const Header = ({ data, ...props }) => (
                                                       return (
                                                         <div className="col-md-4" key={index}>
                                                           <div className="menubox">
-                                                          <Link tabIndex={0} onKeyDown={ () => removeActiveClass() } onClick={() => removeActiveClass() } to={dropmenu.menu_link.replace('https://mortlock.dilatedigital.com.au','')}>
+                                                          <Link tabIndex={0} onKeyDown={ () => removeActiveClass() } onClick={() => removeActiveClass() } to={dropmenu.menu_link.replace('https://site.mortlock.com.au','')}>
                                                               <span className="menuTitle">{dropmenu.menu_title}</span>
                                                               <p>{dropmenu.menu_description}</p>
                                                               <div className="imagebox">
@@ -204,7 +204,7 @@ const Header = ({ data, ...props }) => (
                                                       return (
                                                         <div className="col-md-4" key={index}>
                                                           <div className="menubox">
-                                                          <Link tabIndex={0} onKeyDown={ () => removeActiveClass() } onClick={() => removeActiveClass() } to={dropmenu.menu_link.replace('https://mortlock.dilatedigital.com.au','')}>
+                                                          <Link tabIndex={0} onKeyDown={ () => removeActiveClass() } onClick={() => removeActiveClass() } to={dropmenu.menu_link.replace('https://site.mortlock.com.au','')}>
                                                               <span className="menuTitle">{dropmenu.menu_title}</span>
                                                               <p>{dropmenu.menu_description}</p>
                                                               <div className="imagebox">
