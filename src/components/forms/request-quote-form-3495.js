@@ -82,14 +82,20 @@ class RequestAQuote extends Component {
   handleFileInput(event) {
     const file = event.target.files[0];
     this.setState({
-      fileName: event.target.files[0].name
+      fileName: event.target.files[0].name,
+      errors: {
+        ...this.state.errors,
+        file: ''
+      }
     });
 
-    if (file.size > 1024) {
+    console.log(file);
+
+    if (file.size > 10485760) {
       this.setState({
         errors: {
           ...this.state.errors,
-          file: 'File size cannot exceed more than 1MB'
+          file: 'File size cannot exceed more than 10MB'
         }
       })
     } else {
@@ -129,7 +135,24 @@ class RequestAQuote extends Component {
     }
 
     if(isFormValid) {
-      axios.post(formLink, qs.stringify(this.state.fields), Helpers.config).then((res) => {
+      var bodyFormData = new FormData();
+      bodyFormData.append('firstname', this.state.fields.firstname)
+      bodyFormData.append('lastname', this.state.fields.lastname)
+      bodyFormData.append('company', this.state.fields.company)
+      bodyFormData.append('address', this.state.fields.address)
+      bodyFormData.append('suburb', this.state.fields.suburb)
+      bodyFormData.append('state', this.state.fields.state)
+      bodyFormData.append('postcode', this.state.fields.postcode)
+      bodyFormData.append('email', this.state.fields.email)
+      bodyFormData.append('phone', this.state.fields.phone)
+      bodyFormData.append('whoareyou', this.state.fields.whoareyou)
+      bodyFormData.append('quantity', this.state.fields.quantity)
+      bodyFormData.append('message', this.state.fields.message)
+      bodyFormData.append('file', this.state.fields.file)
+
+      console.log(bodyFormData);
+
+      axios.post(formLink, bodyFormData, Helpers.fileConfig).then((res) => {
         if(res.data.status === 'mail_sent') {
           setTimeout(() => {
             this.setState({
@@ -143,14 +166,20 @@ class RequestAQuote extends Component {
                 phone: '',
                 company: '',
                 whoareyou: '',
-                message: ''
+                message: '',
+                address: '',
+                suburb: '',
+                state: '',
+                postcode: '',
+                quantity: '',
+                file: ''
               }
             })
           }, 800); 
 
-          setTimeout(() => {
-            this.setState({ mainFormMsg: '', mainFormState: '' });
-          }, 4000);
+          // setTimeout(() => {
+          //   this.setState({ mainFormMsg: '', mainFormState: '' });
+          // }, 4000);
         } else if(res.data.status === 'validation_failed') {
           setTimeout(() => {
             this.setState({
@@ -243,7 +272,7 @@ class RequestAQuote extends Component {
             <div className="form_group">
               <label htmlFor="email">Email</label>
               <div className="form_input">
-                <input aria-label="email" type="text" name="email" id="email" placeholder="Enter your email name" className="" value={this.state.fields.email || ''} onChange={ this.handleInputChange } />
+                <input aria-label="email" type="email" name="email" id="email" placeholder="Enter your email name" className="" value={this.state.fields.email || ''} onChange={ this.handleInputChange } />
                 {this.state.errors.email !== '' && <span className='error'>{this.state.errors.email}</span>}
               </div>
             </div>
@@ -252,7 +281,7 @@ class RequestAQuote extends Component {
             <div className="form_group">
               <label htmlFor="phone">Phone</label>
               <div className="form_input">
-                <input aria-label="phone" type="text" name="phone" id="phone" placeholder="Enter your phone name" className="" value={this.state.fields.phone || ''} onChange={ this.handleInputChange } />
+                <input aria-label="phone" type="email" name="phone" id="phone" placeholder="Enter your phone name" className="" value={this.state.fields.phone || ''} onChange={ this.handleInputChange } />
                 {this.state.errors.phone !== '' && <span className='error'>{this.state.errors.phone}</span>}
               </div>
             </div>
@@ -292,10 +321,11 @@ class RequestAQuote extends Component {
         <div className="form_group">
           <div className="file__wrapper">
             <label htmlFor="file">Attach File <br /><span className="info">(If you have architectural drawings or an image of what you're trying to achieve, please attach here.)</span></label>
-            <div className={(this.state.fields.file.length > 1) ? 'file__holder active' : 'file__holder'}>
+            <div className={(this.state.fields.file !== '') ? 'file__holder active' : 'file__holder'}>
               <input type="file" name="file" id="file" onChange={ this.handleFileInput } />
               <label className="custom-file-label" htmlFor="file">{ this.state.fileName}</label>
             </div>
+            {this.state.errors.file !== '' && <span className='error'>{this.state.errors.file}</span>}
           </div>
         </div>
         <div className="btn_wrap">

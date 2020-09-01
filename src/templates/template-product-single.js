@@ -269,6 +269,7 @@ export const pageQuery = graphql`
               }
             }
             finishes_title
+            finishes_use
           }
         }
         shape_and_size_title

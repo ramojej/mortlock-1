@@ -16,7 +16,8 @@ class ContactForm extends Component {
         phone: '',
         company: '',
         whoareyou: '',
-        message: ''
+        message: '',
+        interest: 'Unsure'
       },
       errors: {
         firstname: '',
@@ -110,9 +111,9 @@ class ContactForm extends Component {
             })
           }, 800); 
 
-          setTimeout(() => {
-            this.setState({ mainFormMsg: '', mainFormState: '' });
-          }, 4000);
+          // setTimeout(() => {
+          //   this.setState({ mainFormMsg: '', mainFormState: '' });
+          // }, 4000);
         } else if(res.data.status === 'validation_failed') {
           setTimeout(() => {
             this.setState({

@@ -27,6 +27,7 @@ const ProductFinishes = ({ ...props }) =>  {
                         {finish.finishes_image_thumbnail ? <Img fluid={finish.finishes_image_thumbnail.localFile.childImageSharp.fluid} alt={finish.alt_text} /> : null}
                       </div>
                       <span className="finish__title" dangerouslySetInnerHTML={{ __html: finish.finishes_title }} />
+                      <span className="finish__subtitle" dangerouslySetInnerHTML={{ __html: finish.finishes_use }} />
                     </div>
                   </div>
                 ))

@@ -41,6 +41,12 @@ const Helpers = {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
+    },
+
+    fileConfig: {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
     }
 }
 
