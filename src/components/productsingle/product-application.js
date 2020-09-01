@@ -50,7 +50,6 @@ class ProductApplication extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div className="application__wrapper">
         <div className="container">

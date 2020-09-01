@@ -41,7 +41,6 @@ class PricingForm extends Component {
   }
 
   handleInputCheck(event) {
-    console.log(event.target.checked)
     let interests = this.state.fields.productinterest
 
     interests.forEach(interest => {
