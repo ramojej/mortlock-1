@@ -173,7 +173,7 @@ class ProductPricingPopupForm extends Component {
               <div className="form_group">
                 <label htmlFor="firstname1">first name</label>
                 <div className="form_input">
-                  <input aria-label="Firstname" type="text" name="firstname" id="firstname1" placeholder="Enter your first name" className="noEmpty" value={this.state.fields.firstname || ''} onChange={ this.handleInputChange } />
+                  <input aria-label="Firstname" className="noEmpty" type="text" name="firstname" id="firstname1" placeholder="Enter your first name" className="noEmpty" value={this.state.fields.firstname || ''} onChange={ this.handleInputChange } />
                   {this.state.errors.firstname !== '' && <span className='error'>{this.state.errors.firstname}</span>}
                 </div>
               </div>
@@ -227,7 +227,7 @@ class ProductPricingPopupForm extends Component {
                           <span className="sub-title">Width</span>
                         </div>
                         <div className="col-xs-7">
-                          <input aria-label="Width" type="text" name="width" id="width" placeholder="0" value={this.state.fields.width || ''} onChange={ this.handleInputChange } />
+                          <input aria-label="Width" className="noEmpty" type="text" name="width" id="width" placeholder="0" value={this.state.fields.width || ''} onChange={ this.handleInputChange } />
                         </div>
                       </div>    
                     </div>
@@ -237,7 +237,7 @@ class ProductPricingPopupForm extends Component {
                           <span className="sub-title">Depth</span>
                         </div>
                         <div className="col-xs-7">
-                          <input aria-label="Depth" type="text" name="depth" id="depth" placeholder="0" value={this.state.fields.depth || ''} onChange={ this.handleInputChange } />
+                          <input aria-label="Depth" className="noEmpty" type="text" name="depth" id="depth" placeholder="0" value={this.state.fields.depth || ''} onChange={ this.handleInputChange } />
                         </div>
                       </div>    
                     </div>
@@ -281,11 +281,12 @@ class ProductPricingPopupForm extends Component {
                 <div className="form_input">
                   <select name="battenspacing" id="battenspacing" value={this.state.fields.battenspacing || ''} onChange={ this.handleInputChange }>
                     <option value="default">- Select -</option>
-                    <option value="Architect/Specifier">0-10</option>
-                    <option value="Builder">10-50</option>
-                    <option value="Contractor/Carpenter">50-100</option>
-                    <option value="Individual/Owner Builder">100-150</option>
-                    <option value="Individual/Owner Builder">150-300</option>
+                    <option value="Architect/Specifier">5mm</option>
+                    <option value="Builder">10mm</option>
+                    <option value="Contractor/Carpenter">15mm</option>
+                    <option value="Individual/Owner Builder">20mm</option>
+                    <option value="Individual/Owner Builder">30mm</option>
+                    <option value="Individual/Owner Builder">Custom</option>
                   </select>
                 </div>
               </div>

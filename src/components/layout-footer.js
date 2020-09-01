@@ -39,6 +39,7 @@ const Footer = ({ data }) => (
                   social_media_title
                   social_media_platform
                 }
+                footer_logo_svg_code
                 footer_logo {
                   localFile {
                     childImageSharp {
@@ -64,12 +65,11 @@ const Footer = ({ data }) => (
             <div className="row">
               <div className="col-sm-7 col-md-4 col-lg-3">
                 <div className="footer_logo">
-                  <Link to="/">
-                    <Img 
+                  <Link to="/" dangerouslySetInnerHTML={{ __html: data.allWordpressAcfOptions.edges[0].node.options.footer_logo_svg_code }} />
+                    {/* <Img 
                       fluid={data.allWordpressAcfOptions.edges[0].node.options.footer_logo.localFile.childImageSharp.fluid} 
                       alt={ data.allWordpressAcfOptions.edges[0].node.options.footer_logo.alt_text ? data.allWordpressAcfOptions.edges[0].node.options.footer_logo.alt_text : 'Mortlock Timber' }
-                    />
-                  </Link>
+                    /> */}
                 </div>
                 <div className="socials">
                   <span className="title">Follow us on social media</span>

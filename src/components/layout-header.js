@@ -53,6 +53,7 @@ const Header = ({ data, ...props }) => (
                     }
                   }
                 }
+                main_header_logo_svg
                 header_phone_number
                 header_button_text
                 header_button_link
@@ -102,12 +103,11 @@ const Header = ({ data, ...props }) => (
           <div className="container container__big">
             <div className="header__bottomwrap">
               <div className="header__logo">
-                <Link to="/">
-                  <Img 
+                <Link to="/" dangerouslySetInnerHTML={{ __html: data.allWordpressAcfOptions.edges[0].node.options.main_header_logo_svg }} />
+                  {/* <Img 
                     fluid={data.allWordpressAcfOptions.edges[0].node.options.main_header_logo.localFile.childImageSharp.fluid} 
                     alt={ data.allWordpressAcfOptions.edges[0].node.options.main_header_logo.alt_text ? data.allWordpressAcfOptions.edges[0].node.options.main_header_logo.alt_text : 'Mortlock Timber' }
-                  />
-                </Link>
+                  /> */}
               </div>
               <nav className="header__nav">
                 <span className="nav__hamburger" role="button" tabIndex={0} onKeyDown={ () => toggleMenuDropdown() } onClick={() => toggleMenuDropdown() }><span>Opener</span></span>

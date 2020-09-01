@@ -610,6 +610,11 @@ ul.headertop__nav {
     width: 240px;
     margin: 4px 0 0;
   }
+
+  svg {
+    width: 100%;
+    height: auto;
+  }
 }
 
 .header__nav {
@@ -1078,6 +1083,15 @@ ul.main__nav {
       transform: rotate(-45deg);
     }
   }
+
+  .header__phone {
+    position: relative;
+    z-index: 9999;
+
+    a {
+      color: #fff;
+    }
+  }
 }
 
 .header__phone,
@@ -1120,6 +1134,8 @@ ul.main__nav {
     @media only screen and (max-width: 1023px) {
       background: $primary-color;
       color: #fff;
+      font-size: 16px;
+      padding: 12px 30px;
     }
   }
 }
@@ -1678,6 +1694,25 @@ ul.main__nav {
   }
 }
 
+.footer_logo {
+  width: 200px;
+  margin: 0 auto 50px;
+
+  @include breakpoint('small') {
+    margin: 0 0 50px;
+  }
+
+  @include breakpoint('medium') {
+    width: 259px;
+    margin: 0 0 105px;
+  }
+
+  svg {
+    width: 100%;
+    height: auto;
+  }
+}
+
 .footer {
   background: #312f30;
   color: #fff;
@@ -1704,20 +1739,6 @@ ul.main__nav {
     }
 
     
-  }
-
-  .footer_logo {
-    width: 200px;
-    margin: 0 auto 50px;
-
-    @include breakpoint('small') {
-      margin: 0 0 50px;
-    }
-
-    @include breakpoint('medium') {
-      width: 259px;
-      margin: 0 0 105px;
-    }
   }
 
   h4 {
