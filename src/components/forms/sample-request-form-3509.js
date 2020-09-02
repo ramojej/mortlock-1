@@ -154,7 +154,7 @@ class SampleRequest extends Component {
           <div className="row">
             <div className="col-sm-6">
               <div className="form_group">
-                <label htmlFor="firstname">first name</label>
+                <label htmlFor="firstname">first name *</label>
                 <div className="form_input">
                   <input aria-label="Firstname" type="text" name="firstname" id="firstname" placeholder="Enter your first name" className="noEmpty" value={this.state.fields.firstname || ''} onChange={ this.handleInputChange } />
                   {this.state.errors.firstname !== '' && <span className='error'>{this.state.errors.firstname}</span>}
@@ -163,7 +163,7 @@ class SampleRequest extends Component {
             </div>
             <div className="col-sm-6">
               <div className="form_group">
-                <label htmlFor="lastname">last name</label>
+                <label htmlFor="lastname">last name *</label>
                 <div className="form_input">
                   <input aria-label="Lastname" className="noEmpty" type="text" name="lastname" id="lastname" placeholder="Enter your last name" value={this.state.fields.lastname || ''} onChange={ this.handleInputChange } />
                   {this.state.errors.lastname !== '' && <span className='error'>{this.state.errors.lastname}</span>}
@@ -181,7 +181,7 @@ class SampleRequest extends Component {
           <div className="row">
             <div className="col-sm-6">
               <div className="form_group">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">Email *</label>
                 <div className="form_input">
                   <input aria-label="Email" className="noEmpty" type="email" name="email" id="email" placeholder="Enter your email address" value={this.state.fields.email || ''} onChange={ this.handleInputChange } />
                   {this.state.errors.email !== '' && <span className='error'>{this.state.errors.email}</span>}
@@ -190,7 +190,7 @@ class SampleRequest extends Component {
             </div>
             <div className="col-sm-6">
               <div className="form_group">
-                <label htmlFor="phone">Phone</label>
+                <label htmlFor="phone">Phone *</label>
                 <div className="form_input">
                   <input aria-label="Company name" className="noEmpty" type="text" name="phone" id="phone" placeholder="Enter your phone number" value={this.state.fields.phone || ''} onChange={ this.handleInputChange } />
                   {this.state.errors.phone !== '' && <span className='error'>{this.state.errors.phone}</span>}
@@ -227,14 +227,14 @@ class SampleRequest extends Component {
           <ul className="check__list custom">
             <li>
               <label className="custom_check" htmlFor="proplank1">
-                <input aria-label="Proplank" type="checkbox" id="proplank1" />
+                <input aria-label="Proplank" type="radio" name="sample" id="proplank1" />
                 <span className="custom-box"></span>
                 <span className="custom-text"><span dangerouslySetInnerHTML={{ __html: this.props.data.request_sample_heading }}/> &nbsp;Sample kit</span>
               </label>
             </li>
             <li>
               <label className="custom_check" htmlFor="trendplank1">
-                <input aria-label="Trendplank" type="checkbox" id="trendplank1" />
+                <input aria-label="Trendplank" type="radio" name="sample" id="trendplank1" />
                 <span className="custom-box"></span>
                 <span className="custom-text">Custom Sample</span>
               </label>

@@ -177,9 +177,9 @@ class RequestAQuote extends Component {
             })
           }, 800); 
 
-          // setTimeout(() => {
-          //   this.setState({ mainFormMsg: '', mainFormState: '' });
-          // }, 4000);
+          setTimeout(() => {
+            this.setState({ mainFormMsg: '', mainFormState: '' });
+          }, 10000);
         } else if(res.data.status === 'validation_failed') {
           setTimeout(() => {
             this.setState({
@@ -203,7 +203,7 @@ class RequestAQuote extends Component {
         <div className="row">
           <div className="col-sm-6">
             <div className="form_group">
-              <label htmlFor="firstname">first name</label>
+              <label htmlFor="firstname">first name *</label>
               <div className="form_input">
                 <input aria-label="Firstname" type="text" name="firstname" id="firstname" placeholder="Enter your first name" className="noEmpty" value={this.state.fields.firstname || ''} onChange={ this.handleInputChange } />
                 {this.state.errors.firstname !== '' && <span className='error'>{this.state.errors.firstname}</span>}
@@ -212,7 +212,7 @@ class RequestAQuote extends Component {
           </div>
           <div className="col-sm-6">
             <div className="form_group">
-              <label htmlFor="lastname">last name</label>
+              <label htmlFor="lastname">last name *</label>
               <div className="form_input">
                 <input aria-label="Lastname" type="text" name="lastname" id="lastname" placeholder="Enter your last name" className="noEmpty" value={this.state.fields.lastname || ''} onChange={ this.handleInputChange } />
                 {this.state.errors.lastname !== '' && <span className='error'>{this.state.errors.lastname}</span>}
@@ -221,7 +221,7 @@ class RequestAQuote extends Component {
           </div>
         </div>
         <div className="form_group">
-          <label htmlFor="company">Company</label>
+          <label htmlFor="company">Company *</label>
           <div className="form_input">
             <input aria-label="company" type="text" name="company" id="company" placeholder="Enter your company name" className="noEmpty" value={this.state.fields.company || ''} onChange={ this.handleInputChange } />
             {this.state.errors.company !== '' && <span className='error'>{this.state.errors.company}</span>}
@@ -232,7 +232,7 @@ class RequestAQuote extends Component {
             <div className="form_group">
               <label htmlFor="address">address</label>
               <div className="form_input">
-                <input aria-label="address" type="text" name="address" id="address" placeholder="Enter your address name" className="" value={this.state.fields.address || ''} onChange={ this.handleInputChange } />
+                <input aria-label="address" type="text" name="address" id="address" placeholder="Enter your address" className="" value={this.state.fields.address || ''} onChange={ this.handleInputChange } />
                 {this.state.errors.address !== '' && <span className='error'>{this.state.errors.address}</span>}
               </div>
             </div>
@@ -241,7 +241,7 @@ class RequestAQuote extends Component {
             <div className="form_group">
               <label htmlFor="suburb">suburb</label>
               <div className="form_input">
-                <input aria-label="suburb" type="text" name="suburb" id="suburb" placeholder="Enter your suburb name" className="" value={this.state.fields.suburb || ''} onChange={ this.handleInputChange } />
+                <input aria-label="suburb" type="text" name="suburb" id="suburb" placeholder="Enter your suburb" className="" value={this.state.fields.suburb || ''} onChange={ this.handleInputChange } />
                 {this.state.errors.suburb !== '' && <span className='error'>{this.state.errors.suburb}</span>}
               </div>
             </div>
@@ -252,7 +252,7 @@ class RequestAQuote extends Component {
             <div className="form_group">
               <label htmlFor="state">state</label>
               <div className="form_input">
-                <input aria-label="state" type="text" name="state" id="state" placeholder="Enter your state name" className="" value={this.state.fields.state || ''} onChange={ this.handleInputChange } />
+                <input aria-label="state" type="text" name="state" id="state" placeholder="Enter your state" className="" value={this.state.fields.state || ''} onChange={ this.handleInputChange } />
                 {this.state.errors.state !== '' && <span className='error'>{this.state.errors.state}</span>}
               </div>
             </div>
@@ -261,7 +261,7 @@ class RequestAQuote extends Component {
             <div className="form_group">
               <label htmlFor="postcode">postcode</label>
               <div className="form_input">
-                <input aria-label="postcode" type="text" name="postcode" id="postcode" placeholder="Enter your postcode name" className="" value={this.state.fields.postcode || ''} onChange={ this.handleInputChange } />
+                <input aria-label="postcode" type="text" name="postcode" id="postcode" placeholder="Enter postcode" className="" value={this.state.fields.postcode || ''} onChange={ this.handleInputChange } />
                 {this.state.errors.postcode !== '' && <span className='error'>{this.state.errors.postcode}</span>}
               </div>
             </div>
@@ -270,18 +270,18 @@ class RequestAQuote extends Component {
         <div className="row">
           <div className="col-sm-6">
             <div className="form_group">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">Email *</label>
               <div className="form_input">
-                <input aria-label="email" type="email" name="email" id="email" placeholder="Enter your email name" className="" value={this.state.fields.email || ''} onChange={ this.handleInputChange } />
+                <input aria-label="email" className="noEmpty" type="email" name="email" id="email" placeholder="Enter your email" value={this.state.fields.email || ''} onChange={ this.handleInputChange } />
                 {this.state.errors.email !== '' && <span className='error'>{this.state.errors.email}</span>}
               </div>
             </div>
           </div>
           <div className="col-sm-6">
             <div className="form_group">
-              <label htmlFor="phone">Phone</label>
+              <label htmlFor="phone">Phone *</label>
               <div className="form_input">
-                <input aria-label="phone" type="email" name="phone" id="phone" placeholder="Enter your phone name" className="" value={this.state.fields.phone || ''} onChange={ this.handleInputChange } />
+                <input aria-label="phone" className="noEmpty" type="text" name="phone" id="phone" placeholder="Enter your phone number" value={this.state.fields.phone || ''} onChange={ this.handleInputChange } />
                 {this.state.errors.phone !== '' && <span className='error'>{this.state.errors.phone}</span>}
               </div>
             </div>

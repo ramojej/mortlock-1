@@ -161,7 +161,7 @@ class ProductPricingForm extends Component {
             <div className="row">
               <div className="col-sm-6">
                 <div className="form_group">
-                  <label htmlFor="firstname1">first name</label>
+                  <label htmlFor="firstname1">first name *</label>
                   <div className="form_input">
                     <input aria-label="Firstname" type="text" name="firstname" id="firstname1" placeholder="Enter your first name" className="noEmpty" value={this.state.fields.firstname || ''} onChange={ this.handleInputChange } />
                     {this.state.errors.firstname !== '' && <span className='error'>{this.state.errors.firstname}</span>}
@@ -170,7 +170,7 @@ class ProductPricingForm extends Component {
               </div>
               <div className="col-sm-6">
                 <div className="form_group">
-                  <label htmlFor="lastname1">last name</label>
+                  <label htmlFor="lastname1">last name *</label>
                   <div className="form_input">
                     <input aria-label="Lastname" className="noEmpty" type="text" name="lastname" id="lastname1" placeholder="Enter your last name" value={this.state.fields.lastname || ''} onChange={ this.handleInputChange } />
                     {this.state.errors.lastname !== '' && <span className='error'>{this.state.errors.lastname}</span>}
@@ -188,7 +188,7 @@ class ProductPricingForm extends Component {
             <div className="row">
               <div className="col-sm-6">
                 <div className="form_group">
-                  <label htmlFor="email1">Email</label>
+                  <label htmlFor="email1">Email *</label>
                   <div className="form_input">
                     <input aria-label="Email" className="noEmpty" type="email" name="email" id="email1" placeholder="Enter your email address" value={this.state.fields.email || ''} onChange={ this.handleInputChange } />
                     {this.state.errors.email !== '' && <span className='error'>{this.state.errors.email}</span>}
@@ -197,7 +197,7 @@ class ProductPricingForm extends Component {
               </div>
               <div className="col-sm-6">
                 <div className="form_group">
-                  <label htmlFor="phone1">Phone</label>
+                  <label htmlFor="phone1">Phone *</label>
                   <div className="form_input">
                     <input aria-label="Company name" className="noEmpty" type="text" name="phone" id="phone1" placeholder="Enter your phone number" value={this.state.fields.phone || ''} onChange={ this.handleInputChange } />
                     {this.state.errors.phone !== '' && <span className='error'>{this.state.errors.phone}</span>}

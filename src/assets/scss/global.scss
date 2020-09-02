@@ -1085,8 +1085,10 @@ ul.main__nav {
   }
 
   .header__phone {
-    position: relative;
+    position: fixed;
     z-index: 9999;
+    left: 25px;
+    top: 18px;
 
     a {
       color: #fff;
@@ -1149,8 +1151,14 @@ ul.main__nav {
   }
 
   a {
-    font-size: 16px;
+    font-size: 20px;
+    font-weight: 700;
     color: #121212;
+
+    @include breakpoint('small') {
+      font-size: 16px;
+      font-weight: normal;
+    }
 
     @include breakpoint('xxlarge') {
       font-size: 18px;
@@ -3284,7 +3292,7 @@ ul.footer_menu {
 
   .main-heading {
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
     position: relative;
     padding-bottom: 20px;
     margin-bottom: 30px;
@@ -5480,7 +5488,8 @@ ul.block-icons {
   background: #fff;
   height: 100%;
   padding: 40px 0;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .popup__close {
