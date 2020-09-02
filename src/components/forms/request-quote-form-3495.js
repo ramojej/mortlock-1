@@ -89,8 +89,6 @@ class RequestAQuote extends Component {
       }
     });
 
-    console.log(file);
-
     if (file.size > 10485760) {
       this.setState({
         errors: {
@@ -149,8 +147,6 @@ class RequestAQuote extends Component {
       bodyFormData.append('quantity', this.state.fields.quantity)
       bodyFormData.append('message', this.state.fields.message)
       bodyFormData.append('file', this.state.fields.file)
-
-      console.log(bodyFormData);
 
       axios.post(formLink, bodyFormData, Helpers.fileConfig).then((res) => {
         if(res.data.status === 'mail_sent') {
