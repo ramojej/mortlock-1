@@ -16,8 +16,7 @@ class ProductPricingPopupForm extends Component {
         email: '',
         phone: '',
         company: '',
-        width: '',
-        depth: '',
+        timberspecies: '',
         timberfinishes: '',
         battensize: '',
         battenspacing: '',
@@ -30,8 +29,7 @@ class ProductPricingPopupForm extends Component {
         email: '',
         phone: '',
         company: '',
-        width: '',
-        depth: '',
+        timberspecies: '',
         timberfinishes: '',
         battensize: '',
         battenspacing: '',
@@ -42,7 +40,8 @@ class ProductPricingPopupForm extends Component {
       submitActive: false,
       mainFormMsg: '',
       mainFormState: null,
-      popupActive: false
+      popupActive: false,
+      selectedSpecies: null
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.pricingPopup = this.pricingPopup.bind(this);
@@ -55,6 +54,12 @@ class ProductPricingPopupForm extends Component {
       mainFormMsg: '',
       mainFormState: ''
     });
+
+    if(name === 'timberspecies') {
+      this.setState({
+        selectedSpecies: value
+      })
+    }
 
     if(event.target.classList.contains('noEmpty')) {
       this.setState({
@@ -118,8 +123,7 @@ class ProductPricingPopupForm extends Component {
                 email: '',
                 phone: '',
                 company: '',
-                width: '',
-                depth: '',
+                timberspecies: '',
                 timberfinishes: '',
                 battensize: '',
                 battenspacing: '',
@@ -158,6 +162,8 @@ class ProductPricingPopupForm extends Component {
   render() {
     const { submitActive, popupActive, popupFormActive } = this.state;
 
+    console.log(this.state);
+
     if(popupActive) {
       return (
         <div className="formsub__popup">
@@ -171,7 +177,7 @@ class ProductPricingPopupForm extends Component {
           <div className="row">
             <div className="col-sm-6">
               <div className="form_group">
-                <label htmlFor="firstname1">first name</label>
+                <label htmlFor="firstname1">first name *</label>
                 <div className="form_input">
                   <input aria-label="Firstname" className="noEmpty" type="text" name="firstname" id="firstname1" placeholder="Enter your first name" className="noEmpty" value={this.state.fields.firstname || ''} onChange={ this.handleInputChange } />
                   {this.state.errors.firstname !== '' && <span className='error'>{this.state.errors.firstname}</span>}
@@ -180,7 +186,7 @@ class ProductPricingPopupForm extends Component {
             </div>
             <div className="col-sm-6">
               <div className="form_group">
-                <label htmlFor="lastname1">last name</label>
+                <label htmlFor="lastname1">last name *</label>
                 <div className="form_input">
                   <input aria-label="Lastname" className="noEmpty" type="text" name="lastname" id="lastname1" placeholder="Enter your last name" value={this.state.fields.lastname || ''} onChange={ this.handleInputChange } />
                   {this.state.errors.lastname !== '' && <span className='error'>{this.state.errors.lastname}</span>}
@@ -189,7 +195,7 @@ class ProductPricingPopupForm extends Component {
             </div>
           </div>
           <div className="form_group">
-            <label htmlFor="company1">Company</label>
+            <label htmlFor="company1">Company *</label>
             <div className="form_input">
               <input aria-label="Company name" type="text" name="company" id="company1" placeholder="Enter company name" value={this.state.fields.company || ''} onChange={ this.handleInputChange } />
               {this.state.errors.company !== '' && <span className='error'>{this.state.errors.company}</span>}
@@ -198,7 +204,7 @@ class ProductPricingPopupForm extends Component {
           <div className="row">
             <div className="col-sm-6">
               <div className="form_group">
-                <label htmlFor="email1">Email</label>
+                <label htmlFor="email1">Email *</label>
                 <div className="form_input">
                   <input aria-label="Email" className="noEmpty" type="email" name="email" id="email1" placeholder="Enter your email address" value={this.state.fields.email || ''} onChange={ this.handleInputChange } />
                   {this.state.errors.email !== '' && <span className='error'>{this.state.errors.email}</span>}
@@ -207,7 +213,7 @@ class ProductPricingPopupForm extends Component {
             </div>
             <div className="col-sm-6">
               <div className="form_group">
-                <label htmlFor="phone1">Phone</label>
+                <label htmlFor="phone1">Phone *</label>
                 <div className="form_input">
                   <input aria-label="Company name" className="noEmpty" type="text" name="phone" id="phone1" placeholder="Enter your phone number" value={this.state.fields.phone || ''} onChange={ this.handleInputChange } />
                   {this.state.errors.phone !== '' && <span className='error'>{this.state.errors.phone}</span>}
@@ -218,43 +224,36 @@ class ProductPricingPopupForm extends Component {
           <div className="row">
             <div className="col-sm-6">
               <div className="form_group">
-                <label htmlFor="species">Timber species</label>
+                <label htmlFor="timberspecies">Timber species *</label>
                 <div className="form_input">
-                  <div className="row small-input">
-                    <div className="col-sm-6">
-                      <div className="row middle-xs">
-                        <div className="col-xs-5">
-                          <span className="sub-title">Width</span>
-                        </div>
-                        <div className="col-xs-7">
-                          <input aria-label="Width" className="noEmpty" type="text" name="width" id="width" placeholder="0" value={this.state.fields.width || ''} onChange={ this.handleInputChange } />
-                        </div>
-                      </div>    
-                    </div>
-                    <div className="col-sm-6">
-                      <div className="row middle-xs">
-                        <div className="col-xs-5">
-                          <span className="sub-title">Depth</span>
-                        </div>
-                        <div className="col-xs-7">
-                          <input aria-label="Depth" className="noEmpty" type="text" name="depth" id="depth" placeholder="0" value={this.state.fields.depth || ''} onChange={ this.handleInputChange } />
-                        </div>
-                      </div>    
-                    </div>
-                  </div>
+                  <select name="timberspecies" id="timberspecies" value={this.state.fields.timberspecies || ''} onChange={ this.handleInputChange }>
+                    {this.props.finishes.species.map((product, index) => (
+                      <option value={product.timber_title} key={index}>{product.timber_title}</option>
+                    ))}
+                  </select>
                 </div>
               </div>
             </div>
             <div className="col-sm-6">
               <div className="form_group">
-                <label htmlFor="timberfinishes">Timber Finish</label>
+                <label htmlFor="timberfinishes">Finish *</label>
                 <div className="form_input">
-                  <select name="timberfinishes" id="timberfinishes" value={this.state.fields.timberfinishes || ''} onChange={ this.handleInputChange }>
-                    <option value="default">- Select -</option>
-                    <option value="Architect/Specifier">Timber Decking</option>
-                    <option value="Builder">Timber Cladding</option>
-                    <option value="Contractor/Carpenter">Timber Walls</option>
-                  </select>
+                    <select name="timberfinishes" id="timberfinishes" value={this.state.fields.timberfinishes || ''} onChange={ this.handleInputChange }>
+                      <option>- Select -</option>
+                      {this.props.finishes.species.map((product, index) => {
+                        if(this.state.selectedSpecies === product.timber_title) {
+                          return (
+                            <>
+                              {product.timber_finishes.map((finish, key) => {
+                                return (
+                                  <option value={finish.finishes_title} key={key}>{finish.finishes_title}</option>
+                                )
+                              })}
+                            </>
+                          )
+                        }
+                      })}
+                    </select>
                 </div>
               </div>
             </div>
@@ -262,22 +261,25 @@ class ProductPricingPopupForm extends Component {
           <div className="row">
             <div className="col-sm-6">
               <div className="form_group">
-                <label htmlFor="battensize">Timber Batten Size</label>
+                <label htmlFor="battensize">Timber Batten Size *</label>
                 <div className="form_input">
                   <select name="battensize" id="battensize" value={this.state.fields.battensize || ''} onChange={ this.handleInputChange }>
-                    <option value="default">- Select -</option>
-                    <option value="Architect/Specifier">0-10</option>
-                    <option value="Builder">10-50</option>
-                    <option value="Contractor/Carpenter">50-100</option>
-                    <option value="Individual/Owner Builder">100-150</option>
-                    <option value="Individual/Owner Builder">150-300</option>
+                    {this.props.battensize.batten_shapes.map((size, index) => {
+                      return (
+                        <optgroup label={size.shape_and_size_title} key={index}>
+                          {size.shape_icons.map((text, key) => (
+                            <option value={text.shape_title} key={key}>{text.shape_title}</option>
+                          ))}
+                        </optgroup>
+                      )
+                    })}
                   </select>
                 </div>
               </div>
             </div>
             <div className="col-sm-6">
               <div className="form_group">
-                <label htmlFor="battenspacing">Spacing between battens</label>
+                <label htmlFor="battenspacing">Spacing between battens *</label>
                 <div className="form_input">
                   <select name="battenspacing" id="battenspacing" value={this.state.fields.battenspacing || ''} onChange={ this.handleInputChange }>
                     <option value="default">- Select -</option>
@@ -295,18 +297,18 @@ class ProductPricingPopupForm extends Component {
           <div className="row">
             <div className="col-sm-6">
               <div className="form_group">
-                <label htmlFor="backing">Acoustic Backing</label>
+                <label htmlFor="backing">Acoustic Backing *</label>
                 <ul className="check__list custom">
                   <li>
                     <label className="custom_check" htmlFor="yes">
-                      <input aria-label="yes" type="radio" name="backing" id="yes" />
+                      <input aria-label="yes" type="radio" name="backing" value="yes" id="yes" onChange={ this.handleInputChange } />
                       <span className="custom-box"></span>
                       <span className="custom-text">YES</span>
                     </label>
                   </li>
                   <li>
                     <label className="custom_check" htmlFor="no">
-                      <input aria-label="no" type="radio" name="backing" id="no" />
+                      <input aria-label="no" type="radio" name="backing" value="no" id="no" onChange={ this.handleInputChange } />
                       <span className="custom-box"></span>
                       <span className="custom-text">NO</span>
                     </label>
@@ -316,7 +318,7 @@ class ProductPricingPopupForm extends Component {
             </div>
             <div className="col-sm-6">
               <div className="form_group">
-                <label htmlFor="projectsize">Project Size M2</label>
+                <label htmlFor="projectsize">Project Size M2 *</label>
                 <div className="form_input">
                   <input aria-label="Project Size" type="text" name="projectsize" id="projectsize" placeholder="Enter details" value={this.state.fields.projectsize || ''} onChange={ this.handleInputChange } />
                   <label><span className="info">(Proplank not recommended for projects under 30m<sup>2</sup>)</span></label>

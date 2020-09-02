@@ -221,7 +221,7 @@ class ProductPricingForm extends Component {
                   </div>
                   <div className="popup__content">
                     <div className="pricing__popupform">
-                      <ProductPricingPopupForm data={this.props.data} />
+                      <ProductPricingPopupForm finishes={this.props.finishes} battensize={this.props.battensize} data={this.props.data} />
                     </div>
                   </div>
                 </div>

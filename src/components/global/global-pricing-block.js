@@ -6,7 +6,7 @@ import ProductPricingForm from "../forms/product-pricing-form-4360";
 const PricingBlock = ({ ...props }) =>  {
   const content = props.data;
   const id = props.id;
-
+  
   return (
     <div className="pricing__block" id={ id ? id : null }>
       <div className="container">
@@ -15,7 +15,7 @@ const PricingBlock = ({ ...props }) =>  {
             <div className="pricing__text" >
               <h2 dangerouslySetInnerHTML={{ __html: content.pricing_title }} />
               <p dangerouslySetInnerHTML={{ __html: content.pricing_description }} />
-              <ProductPricingForm data={content} pageID={props.pageID} />
+              <ProductPricingForm finishes={props.finishes} battensize={props.battensize} data={content} pageID={props.pageID} />
             </div>
           </div>
           <div className="col-sm-offset-1 col-sm-5">
