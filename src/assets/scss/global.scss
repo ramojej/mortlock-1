@@ -364,10 +364,6 @@ label,
   }
 }
 
-.visually-hidden {
-  // display: none;
-}
-
 .button {
   display: inline-block;
   vertical-align: middle;
@@ -1912,6 +1908,10 @@ ul.footer_menu {
     width: 15px;
     color: $primary-color;
     margin: 0 4px;
+  }
+
+  a {
+    text-decoration: none;
   }
 }
 
