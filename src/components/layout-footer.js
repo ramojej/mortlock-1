@@ -107,10 +107,10 @@ const Footer = ({ data }) => (
           <div className="footer__bottom">
             <div className="row">
               <div className="col-md-6">
-                <strong className="copyright">&copy; 2020 Mortlock Timber  |  <Link to="/terms-and-conditions">Terms & Conditions</Link></strong>
+                <strong className="copyright" dangerouslySetInnerHTML={{ __html: data.allWordpressAcfOptions.edges[0].node.options.copyright_text }} />
               </div>
               <div className="col-md-6">
-                <strong className="websiteby">Website designed & built with <svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m72.746 6.9453c-17.012 0-22.746 15.102-22.746 15.102s-5.7305-15.102-22.746-15.102c-17.008 0-27.254 16.215-27.254 29.578 0 22.395 50 56.531 50 56.531s50-34.125 50-56.527c0-13.367-10.238-29.582-27.254-29.582z"/></svg> by <a target="_blank" rel="noreferrer" href="https://www.dilate.com.au">Dilate Digital</a></strong>
+                <strong className="websiteby" dangerouslySetInnerHTML={{ __html: data.allWordpressAcfOptions.edges[0].node.options.website_by }} />
               </div>
             </div>
           </div>

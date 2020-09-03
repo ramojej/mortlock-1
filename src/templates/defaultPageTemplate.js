@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { graphql } from "gatsby"
 
+import SEO from "../components/seo";
 import Layout from '../components/layout'
 
 class Page extends Component {
@@ -9,6 +10,9 @@ class Page extends Component {
 
     return (
       <Layout>
+        <SEO 
+          title="Terms & Conditions - Mortlock Timber"
+        />
         <div className="general__wrappper">
           <div className="container">
             <h1 dangerouslySetInnerHTML={{ __html: StaticPage.title }} />
