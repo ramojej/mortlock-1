@@ -112,7 +112,7 @@ const Project = ({...props}) =>  {
             <div className="row">
               <div className="col-sm-5">
                 <div className="spec__image">
-                  { pageData.acf.specification_image ? <Img fluid={pageData.acf.specification_image.localFile.childImageSharp.fluid} alt="Alternative Text" /> : null }
+                  { pageData.acf.specification_image ? <Img fluid={pageData.acf.specification_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" /> : null }
                 </div>
               </div>
               <div className="col-sm-7">
@@ -150,7 +150,7 @@ const Project = ({...props}) =>  {
                 pageData.acf.gallery_images ? 
                 pageData.acf.gallery_images.map((image, index) => (
                     <div className="image" key={index}>
-                      <img src={image.gallery_image.link} alt="Alternative Text" />
+                      <img src={image.gallery_image.link} alt="Mortlock Timber" />
                     </div>
                 )) : null 
               }

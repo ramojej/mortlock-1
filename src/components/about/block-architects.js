@@ -14,7 +14,7 @@ const AboutArchitects = ({ ...props }) =>  {
         <div className="architect__image" data-sal="slide-up" 
       data-sal-easing="ease"
       data-sal-delay="5">
-          <Img fluid={content.architect_main_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
+          <Img fluid={content.architect_main_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" />
         </div>
         <div className="architect__contentbox" data-sal="slide-up" 
       data-sal-easing="ease"

@@ -188,7 +188,7 @@ class Page extends Component {
                                   post.node.featured_media.localFile
                                     .childImageSharp.fluid
                                 }
-                                alt="Alternative Text"
+                                alt="Mortlock Timber"
                               />
                             ) : (
                               "image"

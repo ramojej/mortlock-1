@@ -316,6 +316,9 @@ label,
   height: 100%;
   z-index: -1;
   overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 
   &.has-overlay {
     position: absolute;
@@ -328,6 +331,18 @@ label,
   >div {
     height: 100%;
     width: 100%;
+  }
+}
+
+.project__slider {
+  .bg__image {
+    position: relative;
+    z-index: 3;
+
+    img {
+      opacity: 0;
+      visibility: hidden;
+    }
   }
 }
 

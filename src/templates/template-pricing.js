@@ -73,7 +73,7 @@ class Page extends Component {
                 <div className="pricing__image" data-sal="slide-up" 
       data-sal-easing="ease"
       data-sal-delay="5">
-                  {pricingImage ? <Img fluid={pricingImage.localFile.childImageSharp.fluid} alt="Alternative Text" /> : null}
+                  {pricingImage ? <Img fluid={pricingImage.localFile.childImageSharp.fluid} alt="Mortlock Timber" /> : null}
                 </div>
               </div>
             </div>

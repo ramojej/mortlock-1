@@ -29,7 +29,7 @@ const GeneralText = ({ ...props }) =>  {
                 data-sal="slide-up" 
                 data-sal-easing="ease"
                 data-sal-delay="85">
-              <Img fluid={content.image.localFile.childImageSharp.fluid} alt="Alternative Text" />
+              <Img fluid={content.image.localFile.childImageSharp.fluid} alt="Mortlock Timber" />
             </div>
           </div>
         </div>

@@ -41,7 +41,7 @@ class Post extends Component {
               </div>
             </div>
             <div className="featured__image">
-              { pageData.featured_media ? <Img fluid={pageData.featured_media.localFile.childImageSharp.fluid} alt="Alternative Text" /> : null }
+              { pageData.featured_media ? <Img fluid={pageData.featured_media.localFile.childImageSharp.fluid} alt="Mortlock Timber" /> : null }
             </div>
           </div>
           <div className="container container__small">
@@ -56,7 +56,7 @@ class Post extends Component {
                     <div className="blog_article">
                       <div className="blog_image">
                         <Link to={relatedpost.node.path}>
-                          { relatedpost.node.featured_media ? <BackgroundImage fluid={relatedpost.node.featured_media.localFile.childImageSharp.fluid} alt="Alternative Text" /> : 'image' }
+                          { relatedpost.node.featured_media && <BackgroundImage fluid={relatedpost.node.featured_media.localFile.childImageSharp.fluid} alt="Mortlock Timber" /> }
                         </Link>
                       </div>
                       <div className="blog_meta">

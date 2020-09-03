@@ -15,7 +15,7 @@ const ProductBoxes = ({ ...props }) =>  {
                 <h2 dangerouslySetInnerHTML={{ __html: product.product_title }} />
                 <div className="product__box-image">
                   <Link to={ product.button_link }>
-                    {product.product_image ? <Img fluid={product.product_image.localFile.childImageSharp.fluid} alt="Alternative Text" /> : null }
+                    {product.product_image ? <Img fluid={product.product_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" /> : null }
                     <div className="image__text">
                       <div dangerouslySetInnerHTML={{ __html: product.popup_text }} />
                     </div>

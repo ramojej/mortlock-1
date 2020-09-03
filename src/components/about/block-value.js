@@ -19,7 +19,7 @@ const AboutMission = ({ ...props }) =>  {
             </div>
             <div className="col-sm-6">
               <div className="mission__image">
-                <Img fluid={content.our_mission_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
+                <Img fluid={content.our_mission_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" />
               </div>
             </div>
           </div>
@@ -30,7 +30,7 @@ const AboutMission = ({ ...props }) =>  {
               <div className="vision__image" data-sal="slide-up" 
       data-sal-easing="ease"
       data-sal-delay="5">
-                <Img fluid={content.our_vision_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
+                <Img fluid={content.our_vision_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" />
               </div>
             </div>
             <div className="col-sm-5">

@@ -23,6 +23,8 @@ const GlobalProjectSlider = ({ ...props }) =>  {
     customSlider.current.slickPrev()
   }
 
+  console.log(props)
+
   return (
     <div className="project__block">
       <div className="container" 
@@ -36,9 +38,9 @@ const GlobalProjectSlider = ({ ...props }) =>  {
               <div className="project__box">
                 <div className="project_image">
                 <Link to={project.node.path}>
-                  {project.node.featured_media ? 
-                    <Img fluid={project.node.featured_media.localFile.childImageSharp.fluid} alt="Alternative Text" /> 
-                  : null }
+                  {project.node.featured_media && 
+                    <div className="bg__image" style={{ backgroundImage: `url(${project.node.featured_media.link})` }}><Img fluid={project.node.featured_media.localFile.childImageSharp.fluid} alt="Mortlock Timber" /></div>
+                  }
                 </Link>
                 </div>
                 <div className="project_text">

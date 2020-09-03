@@ -17,7 +17,7 @@ const RequestSample = ({ ...props }) =>  {
                 <div className="request__image" data-sal="slide-up" 
                 data-sal-easing="ease"
                 data-sal-delay="5">
-                  <Img fluid={content.request_sample_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
+                  <Img fluid={content.request_sample_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" />
                 </div>
                 : null }
             </div>

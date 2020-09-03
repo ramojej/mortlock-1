@@ -50,7 +50,7 @@ const Banner = ({ ...props }) =>  {
           { bannerContent ? bannerContent.map((slide, index) => (
             <div className="slide" key={index}>
               <div className="bg__image has-overlay">
-              { slide.slider_banner_image ? <BackgroundImage  fluid={slide.slider_banner_image.localFile.childImageSharp.fluid} alt="Alternative Text" /> : null }
+              { slide.slider_banner_image ? <BackgroundImage  fluid={slide.slider_banner_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" /> : null }
               </div>
               <div className="container container__big">
                 <div className="banner__text" 

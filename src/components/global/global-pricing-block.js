@@ -22,7 +22,7 @@ const PricingBlock = ({ ...props }) =>  {
             <div className="price__image" data-sal="slide-up" 
       data-sal-easing="ease"
       data-sal-delay="5">
-              {content.pricing_image ? <Img fluid={content.pricing_image.localFile.childImageSharp.fluid} alt="Alternative Text" /> : null}
+              {content.pricing_image ? <Img fluid={content.pricing_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" /> : null}
             </div>
           </div>
         </div>

@@ -146,7 +146,7 @@ const Header = ({ data, ...props }) => (
                                                               <span className="menuTitle">{dropmenu.menu_title}</span>
                                                               <p>{dropmenu.menu_description}</p>
                                                               <div className="imagebox">
-                                                                <Img fluid={dropmenu.menu_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
+                                                                <Img fluid={dropmenu.menu_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" />
                                                               </div>
                                                               <div className="more">
                                                                 <span>Learn more</span>
@@ -177,7 +177,7 @@ const Header = ({ data, ...props }) => (
                                                               <span className="menuTitle">{dropmenu.menu_title}</span>
                                                               <p>{dropmenu.menu_description}</p>
                                                               <div className="imagebox">
-                                                                <Img fluid={dropmenu.menu_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
+                                                                <Img fluid={dropmenu.menu_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" />
                                                               </div>
                                                               <div className="more">
                                                                 <span>Learn more</span>
@@ -208,7 +208,7 @@ const Header = ({ data, ...props }) => (
                                                               <span className="menuTitle">{dropmenu.menu_title}</span>
                                                               <p>{dropmenu.menu_description}</p>
                                                               <div className="imagebox">
-                                                                <Img fluid={dropmenu.menu_image.localFile.childImageSharp.fluid} alt="Alternative Text" />
+                                                                <Img fluid={dropmenu.menu_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" />
                                                               </div>
                                                               <div className="more">
                                                                 <span>Learn more</span>

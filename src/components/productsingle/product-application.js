@@ -96,7 +96,7 @@ class ProductApplication extends Component {
                 {this.props.data.application_gallery_image.map((slide, index) => (
                   <div className="slide" key={index}>
                     <div className="gallery__image">
-                      {slide.gallery_image && <Img fluid={slide.gallery_image.localFile.childImageSharp.fluid} alt="Alternative Text" />}
+                      {slide.gallery_image && <Img fluid={slide.gallery_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" />}
                     </div>
                     <span className="gallery__text">{ slide.image_title }</span>
                   </div>
