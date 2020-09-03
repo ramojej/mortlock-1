@@ -17,6 +17,7 @@ class ContactForm extends Component {
         company: '',
         state: '',
         whoareyou: '',
+        leadsource: 'Website',
         message: '',
         pageURL: this.props.location.href,
         interest: 'Unsure'
@@ -112,6 +113,7 @@ class ContactForm extends Component {
                 company: '',
                 state: '',
                 whoareyou: '',
+                leadsource: 'Website',
                 message: '',
                 pageURL: this.props.location.href,
                 interest: 'Unsure'

@@ -168,7 +168,7 @@ class ProductPricingPopupForm extends Component {
       return (
         <div className="formsub__popup">
           <h3>Thank you!</h3>
-          <p>Thank you! for downloading our pricing guide. Please click the link below to download the guide.</p>
+          <p>Please click the link below to download the guide.</p>
         </div>
       )
     } else {

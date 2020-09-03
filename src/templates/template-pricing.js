@@ -21,6 +21,13 @@ class Page extends Component {
     }
 
     const pricingImage = this.props.data.allWordpressPage.edges[0].node.acf.pricing_image
+
+    const zip = {
+      download_zip_file_timber_decking: this.props.data.allWordpressPage.edges[0].node.acf.download_zip_file_timber_decking,
+      download_zip_file_timber_ceilings: this.props.data.allWordpressPage.edges[0].node.acf.download_zip_file_timber_ceilings,
+      download_zip_file_timber_walls: this.props.data.allWordpressPage.edges[0].node.acf.download_zip_file_timber_walls,
+      download_zip_shou_sugi_ban: this.props.data.allWordpressPage.edges[0].node.acf.download_zip_shou_sugi_ban
+    }
     return (
       <Layout>
         <SEO 
@@ -59,7 +66,7 @@ class Page extends Component {
               <div className="col-sm-6">
                 <div className="pricing_formwrap">
                   <div dangerouslySetInnerHTML={{ __html: this.props.data.allWordpressPage.edges[0].node.acf.pricing_page_description }} />
-                  <PricingForm />
+                  <PricingForm zip={zip} {...this.props} />
                 </div>
               </div>
               <div className="col-sm-6">
@@ -123,6 +130,18 @@ export const pageQuery = graphql`
             pricing_heading
             pricing_page_description
             pricing_description_bottom
+            download_zip_file_timber_decking {
+              link
+            }
+            download_zip_file_timber_ceilings {
+              link
+            }
+            download_zip_file_timber_walls {
+              link
+            }
+            download_zip_shou_sugi_ban {
+              link
+            }
           }
         }
       }

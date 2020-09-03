@@ -20,7 +20,9 @@ class SampleRequest extends Component {
         postcode: '',
         projectsize: '',
         sampleoptions: '',
-        message: ''
+        message: '',
+        leadsource: 'Website',
+        pageURL: this.props.location.href
       },
       errors: {
         firstname: '',
@@ -114,7 +116,9 @@ class SampleRequest extends Component {
                 phone: '',
                 company: '',
                 whoareyou: '',
-                message: ''
+                message: '',
+                leadsource: 'Website',
+                pageURL: this.props.location.href
               }
             })
           }, 800); 
@@ -144,7 +148,7 @@ class SampleRequest extends Component {
       return (
         <div className="formsub__popup">
           <h3>Thank you!</h3>
-          <p>Thank you! for downloading our product sample. Please click the link below to download the sample.</p>
+          <p>Please click the link below to download the sample.</p>
           <a class="link" target="_blank" rel="noreferrer" href={this.props.data.request_sample_brochure.link}>Click here to download sample</a>
         </div>
       )

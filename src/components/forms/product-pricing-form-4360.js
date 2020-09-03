@@ -150,7 +150,7 @@ class ProductPricingForm extends Component {
       return (
         <div className="formsub__popup">
           <h3>Thank you!</h3>
-          <p>Thank you! for downloading our pricing guide. Please click the link below to download the guide.</p>
+          <p>Please click the link below to download the guide.</p>
           <a class="link" target="_blank" rel="noreferrer" href={this.props.data.pricing_guide_download_link.link}>Click here to download pricing guide</a>
         </div>
       )

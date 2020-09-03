@@ -15,6 +15,11 @@ class PricingForm extends Component {
         lastname: '',
         email: '',
         phone: '',
+        state: '',
+        company: '',
+        interest: 'Unsure',
+        leadsource: 'Website',
+        pageURL: this.props.location.href,
         productinterest: [
           {id: 1, name: "Timber Ceilings", value: "timberceilings", isChecked: false},
           {id: 2, name: "Timber Walls", value: "timberwalls", isChecked: false},
@@ -27,13 +32,16 @@ class PricingForm extends Component {
         firstname: '',
         lastname: '',
         email: '',
-        phone: ''
+        phone: '',
+        state: '',
+        company: ''
 
       },
       passedValidation: false,
       submitActive: false,
       mainFormMsg: '',
-      mainFormState: null
+      mainFormState: null,
+      popupActive: false
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleInputCheck = this.handleInputCheck.bind(this);
@@ -116,6 +124,7 @@ class PricingForm extends Component {
       this.state.fields.productinterest.map(interest => {
         if(interest.isChecked) {
           checkedBoxes.push(interest.value);
+          this.state.fields.products.push(interest.value);
         }
       });
 
@@ -124,7 +133,12 @@ class PricingForm extends Component {
         lastname: this.state.fields.lastname,
         email: this.state.fields.email,
         phone: this.state.fields.phone,
-        products: checkedBoxes
+        products: checkedBoxes,
+        company: this.state.fields.company,
+        state: this.state.fields.state,
+        interest: 'Unsure',
+        leadsource: 'Website',
+        pageURL: this.props.location.href
       }
 
       axios.post(formLink, qs.stringify(formData), Helpers.config).then((res) => {
@@ -134,18 +148,24 @@ class PricingForm extends Component {
               submitActive: false,
               mainFormMsg: res.data.message,
               mainFormState: res.data.status,
+              popupActive: true,
               fields: {
                 firstname: '',
                 lastname: '',
                 email: '',
                 phone: '',
+                state: '',
+                interest: 'Unsure',
+                leadsource: 'Website',
+                pageURL: this.props.location.href,
+                company: '',
                 productinterest: [
                   {id: 1, name: "Timber Ceilings", value: "timberceilings", isChecked: false},
                   {id: 2, name: "Timber Walls", value: "timberwalls", isChecked: false},
                   {id: 3, name: "Timber Decking", value: "timberdecking", isChecked: false},
                   {id: 4, name: "Shou Sugi Ban", value: "shousugiban", isChecked: false}
                 ],
-                products: []
+                products: this.state.fields.products
               }
             })
           }, 800); 
@@ -170,71 +190,136 @@ class PricingForm extends Component {
   }
 
   render() {
-    const { submitActive } = this.state;
-    return (
-      <form className={submitActive ? 'contact__form loading' : 'contact__form'} id="pricing-guide-form" type="POST" onSubmit={ this.handleSubmit } noValidate>
-        <div className="row">
-          <div className="col-sm-6">
-            <div className="form_group">
-              <label htmlFor="firstname1">first name *</label>
-              <div className="form_input">
-                <input aria-label="Firstname" type="text" name="firstname" id="firstname" placeholder="Enter your first name" className="noEmpty" value={this.state.fields.firstname || ''} onChange={ this.handleInputChange } />
-                {this.state.errors.firstname !== '' && <span className='error'>{this.state.errors.firstname}</span>}
+    const { submitActive, popupActive } = this.state;
+    console.log(this.state.fields.products)
+
+    if(popupActive) {
+      return (
+        <div className="formsub__popup">
+          <h3>Thank you!</h3>
+          <p>Please click the link below to download the guide.</p>
+          {this.state.fields.products && this.state.fields.products.map((product, index) => (
+            <div className="link__hold" key={index}>
+              {(() => {
+                console.log(this.props.zip);
+              if(product === 'timberceilings') {
+                return (
+                  <a className="link" target="_blank" rel="noreferrer" href={this.props.zip.download_zip_file_timber_ceilings.link}>Download Timber Ceilings Pricing Guide</a>
+                )
+              } else if(product === 'timberwalls') {
+                return (
+                  <a className="link" target="_blank" rel="noreferrer" href={this.props.zip.download_zip_file_timber_walls.link}>Download Timber Walls Pricing Guide</a>
+                )
+              } else if(product === 'timberdecking') {
+                return (
+                  <a className="link" target="_blank" rel="noreferrer" href={this.props.zip.download_zip_file_timber_decking.link}>Download Timber Decking Pricing Guide</a>
+                )
+              } else if(product === 'shousugiban') {
+                return (
+                  <a className="link" target="_blank" rel="noreferrer" href={this.props.zip.download_zip_shou_sugi_ban.link}>Download Shou Sugi Ban Pricing Guide</a>
+                )
+              }
+              })()}
+            </div>
+          ))}
+        </div>
+      )
+    } else {
+      return (
+        <form className={submitActive ? 'contact__form loading' : 'contact__form'} id="pricing-guide-form" type="POST" onSubmit={ this.handleSubmit } noValidate>
+          <div className="row">
+            <div className="col-sm-6">
+              <div className="form_group">
+                <label htmlFor="firstname1">first name *</label>
+                <div className="form_input">
+                  <input aria-label="Firstname" type="text" name="firstname" id="firstname" placeholder="Enter your first name" className="noEmpty" value={this.state.fields.firstname || ''} onChange={ this.handleInputChange } />
+                  {this.state.errors.firstname !== '' && <span className='error'>{this.state.errors.firstname}</span>}
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-6">
+              <div className="form_group">
+                <label htmlFor="lastname1">last name *</label>
+                <div className="form_input">
+                  <input aria-label="Lastname" className="noEmpty" type="text" name="lastname" id="lastname" placeholder="Enter your last name" value={this.state.fields.lastname || ''} onChange={ this.handleInputChange } />
+                  {this.state.errors.lastname !== '' && <span className='error'>{this.state.errors.lastname}</span>}
+                </div>
               </div>
             </div>
           </div>
-          <div className="col-sm-6">
-            <div className="form_group">
-              <label htmlFor="lastname1">last name *</label>
-              <div className="form_input">
-                <input aria-label="Lastname" className="noEmpty" type="text" name="lastname" id="lastname" placeholder="Enter your last name" value={this.state.fields.lastname || ''} onChange={ this.handleInputChange } />
-                {this.state.errors.lastname !== '' && <span className='error'>{this.state.errors.lastname}</span>}
+          <div className="row">
+            <div className="col-sm-6">
+              <div className="form_group">
+                <label htmlFor="email1">Email *</label>
+                <div className="form_input">
+                  <input aria-label="Email" className="noEmpty" type="email" name="email" id="email" placeholder="Enter your email address" value={this.state.fields.email || ''} onChange={ this.handleInputChange } />
+                  {this.state.errors.email !== '' && <span className='error'>{this.state.errors.email}</span>}
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-6">
+              <div className="form_group">
+                <label htmlFor="phone1">Phone *</label>
+                <div className="form_input">
+                  <input aria-label="Phone Number" className="noEmpty" type="text" name="phone" id="phone" placeholder="Enter your phone number" value={this.state.fields.phone || ''} onChange={ this.handleInputChange } />
+                  {this.state.errors.phone !== '' && <span className='error'>{this.state.errors.phone}</span>}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="row">
-          <div className="col-sm-6">
-            <div className="form_group">
-              <label htmlFor="email1">Email *</label>
-              <div className="form_input">
-                <input aria-label="Email" className="noEmpty" type="email" name="email" id="email" placeholder="Enter your email address" value={this.state.fields.email || ''} onChange={ this.handleInputChange } />
-                {this.state.errors.email !== '' && <span className='error'>{this.state.errors.email}</span>}
+          <div className="row">
+            <div className="col-sm-6">
+              <div className="form_group">
+                <label htmlFor="state">State *</label>
+                <div className="form_input">
+                  <select name="state" id="state" value={this.state.fields.state || ''} onChange={ this.handleInputChange }>
+                    <option value="default">- Select -</option>
+                    <option value="ACT">ACT</option>
+                    <option value="NSW">NSW</option>
+                    <option value="NT">NT</option>
+                    <option value="QLD">QLD</option>
+                    <option value="SA">SA</option>
+                    <option value="TAS">TAS</option>
+                    <option value="VIC">VIC</option>
+                    <option value="WA">WA</option>
+                    <option value="International">International</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-6">
+              <div className="form_group">
+                <label htmlFor="company">Company name *</label>
+                <div className="form_input">
+                  <input aria-label="Company name" className="noEmpty" type="text" name="company" id="company" placeholder="Enter company name" value={this.state.fields.company || ''} onChange={ this.handleInputChange } />
+                  {this.state.errors.company !== '' && <span className='error'>{this.state.errors.company}</span>}
+                </div>
               </div>
             </div>
           </div>
-          <div className="col-sm-6">
-            <div className="form_group">
-              <label htmlFor="phone1">Phone *</label>
-              <div className="form_input">
-                <input aria-label="Company name" className="noEmpty" type="text" name="phone" id="phone" placeholder="Enter your phone number" value={this.state.fields.phone || ''} onChange={ this.handleInputChange } />
-                {this.state.errors.phone !== '' && <span className='error'>{this.state.errors.phone}</span>}
-              </div>
-            </div>
+          <div className="form_group">
+            <span className="label">Select product of Interest</span>
+            <ul className="check__list">
+              {
+                this.state.fields.productinterest.map((interest, index) => (
+                  <li key={index}>
+                    <label className="custom_check" htmlFor={interest.value}>
+                      <input aria-label={interest.name} name="productinterest" checked={interest.isChecked} value={interest.value} type="checkbox" id={interest.value} onChange={this.handleInputCheck} />
+                      <span className="custom-box"></span>
+                      <span className="custom-text">{interest.name}</span>
+                    </label>
+                  </li>
+                ))
+              }
+            </ul>
           </div>
-        </div>
-        <div className="form_group">
-          <span className="label">Select product of Interest</span>
-          <ul className="check__list">
-            {
-              this.state.fields.productinterest.map((interest, index) => (
-                <li key={index}>
-                  <label className="custom_check" htmlFor={interest.value}>
-                    <input aria-label={interest.name} name="productinterest" checked={interest.isChecked} value={interest.value} type="checkbox" id={interest.value} onChange={this.handleInputCheck} />
-                    <span className="custom-box"></span>
-                    <span className="custom-text">{interest.name}</span>
-                  </label>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-        <div className="btn_wrap">
-          <button className="button" type="submit"><span className="text">Submit</span><Loader /></button>
-          {this.state.mainFormMsg && <span className={`form-msg ${this.state.mainFormState}`}>{ this.state.mainFormMsg }</span>}
-        </div>
-      </form>
-    )
+          <div className="btn_wrap">
+            <button className="button" type="submit"><span className="text">Submit</span><Loader /></button>
+            {this.state.mainFormMsg && <span className={`form-msg ${this.state.mainFormState}`}>{ this.state.mainFormMsg }</span>}
+          </div>
+        </form>
+      )
+    }
   }
 }
 

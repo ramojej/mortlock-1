@@ -142,7 +142,6 @@ RedirectMatch 301 /project/shire-leonora-offices/?$ https://www.mortlock.com.au/
 RedirectMatch 301 /wp-content/uploads/2020/06/Mortlock-Timber-SHOU-SUGI-BAN-Timber-Cladding-Guide.-email-version.pdf/?$ https://www.mortlock.com.au/
 RedirectMatch 301 /testimonial/allan-shaw-owner-builder/?$ https://www.mortlock.com.au/
 RedirectMatch 301 /wp-content/uploads/2019/09/Mortlock-Timber-Group-Product-Pricing-Guide.pdf/?$ https://www.mortlock.com.au/
-
 RedirectMatch 301 /testimonial/greg-vincent-master-plan-sa-pty-ltd/?$ https://www.mortlock.com.au/
 RedirectMatch 301 /testimonial/anthony-waugh-builder/?$ https://www.mortlock.com.au/
 RedirectMatch 301 /doc-1624-pollinate-health-report-february-2018-1/?$ https://www.mortlock.com.au/
@@ -170,7 +169,6 @@ RedirectMatch 301 /download-files/?post_id=73&amp/?$ https://www.mortlock.com.au
 RedirectMatch 301 /products-category/classicplank-timber-decking/?$ https://www.mortlock.com.au/timber-decking/classicplank-timber-decking/
 RedirectMatch 301 /testimonial/gaetan-dalle-owner-builder/?$ https://www.mortlock.com.au/
 RedirectMatch 301 /products-category/proplank-batten-lining/?$ https://www.mortlock.com.au/timber-decking/proplank-timber-battens/
-
 RedirectMatch 301 /download-files-trendplank/?post_id=90&amp/?$ https://www.mortlock.com.au/timber-decking/proplank-timber-battens/
 RedirectMatch 301 /products-category/miscellaneous/?$ https://www.mortlock.com.au/
 RedirectMatch 301 /testimonial/guy-boudville-builder/?$ https://www.mortlock.com.au/
@@ -214,6 +212,11 @@ RedirectMatch 301 /testimonial/nic-crowe-landscape-architect-blarch/?$ https://w
 RedirectMatch 301 /testimonial/elton-fawkes-adage-furniture/?$ https://www.mortlock.com.au/
 RedirectMatch 301 /wp-content/uploads/2014/05/Species-Data-Sheet-Pacific-Teak.pdf/?$ https://www.mortlock.com.au/
 RedirectMatch 301 /testimonial/elena-bibian-owner-builder/?$ https://www.mortlock.com.au/
+RedirectMatch 301 /download-files/?post_id=73&amp/?$ https://www.mortlock.com.au/
+RedirectMatch 301 /wp-content/uploads/2015/11/Wood_Human_Health_final-single.pdf?utm_medium=email&amp/?$ https://www.mortlock.com.au/
+RedirectMatch 301 /download-files-trendplank/?post_id=90&amp/?$ https://www.mortlock.com.au/
+RedirectMatch 301 /testimonial/jordan-miller-builder/?$ https://www.mortlock.com.au/
+RedirectMatch 301 /download-files/?post_id=1293&amp/?$ https://www.mortlock.com.au/
 RedirectMatch 301 /download-files/?post_id=73&amp/?$ https://www.mortlock.com.au/
 
 
