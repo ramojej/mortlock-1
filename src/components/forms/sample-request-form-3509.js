@@ -19,8 +19,9 @@ class SampleRequest extends Component {
         state: '',
         postcode: '',
         projectsize: '',
-        sampleoptions: '',
+        sample: '',
         message: '',
+        interest: 'Unsure',
         leadsource: 'Website',
         pageURL: this.props.location
       },
@@ -115,8 +116,12 @@ class SampleRequest extends Component {
                 email: '',
                 phone: '',
                 company: '',
-                whoareyou: '',
+                state: '',
+                postcode: '',
+                projectsize: '',
+                sample: '',
                 message: '',
+                interest: 'Unsure',
                 leadsource: 'Website',
                 pageURL: this.props.location
               }
@@ -205,9 +210,20 @@ class SampleRequest extends Component {
           <div className="row">
             <div className="col-sm-6">
               <div className="form_group">
-                <label htmlFor="state">State</label>
+                <label htmlFor="state">State *</label>
                 <div className="form_input">
-                  <input aria-label="State" type="text" name="state" id="state" placeholder="Enter your state" value={this.state.state} onChange={this.handleInputChange} />
+                  <select name="state" id="state" value={this.state.fields.state || ''} onChange={ this.handleInputChange }>
+                    <option value="default">- Select -</option>
+                    <option value="ACT">ACT</option>
+                    <option value="NSW">NSW</option>
+                    <option value="NT">NT</option>
+                    <option value="QLD">QLD</option>
+                    <option value="SA">SA</option>
+                    <option value="TAS">TAS</option>
+                    <option value="VIC">VIC</option>
+                    <option value="WA">WA</option>
+                    <option value="International">International</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -230,15 +246,15 @@ class SampleRequest extends Component {
           <span className="label"><span dangerouslySetInnerHTML={{ __html: this.props.data.request_sample_heading }}/> Sample options <span className="info">(Select from the option below)</span></span>
           <ul className="check__list custom">
             <li>
-              <label className="custom_check" htmlFor="proplank1">
-                <input aria-label="Proplank" type="radio" name="sample" id="proplank1" />
+              <label className="custom_check" htmlFor="sample">
+                <input aria-label="Proplank" type="radio" name="sample" value="samplekit" id="sample" onChange={ this.handleInputChange } />
                 <span className="custom-box"></span>
                 <span className="custom-text"><span dangerouslySetInnerHTML={{ __html: this.props.data.request_sample_heading }}/> &nbsp;Sample kit</span>
               </label>
             </li>
             <li>
               <label className="custom_check" htmlFor="trendplank1">
-                <input aria-label="Trendplank" type="radio" name="sample" id="trendplank1" />
+                <input aria-label="Trendplank" type="radio" name="sample" value="customsample" id="customsample" onChange={ this.handleInputChange } />
                 <span className="custom-box"></span>
                 <span className="custom-text">Custom Sample</span>
               </label>
