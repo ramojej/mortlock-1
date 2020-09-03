@@ -66,7 +66,7 @@ class Page extends Component {
               <div className="col-sm-6">
                 <div className="pricing_formwrap">
                   <div dangerouslySetInnerHTML={{ __html: this.props.data.allWordpressPage.edges[0].node.acf.pricing_page_description }} />
-                  <PricingForm zip={zip} {...this.props} />
+                  <PricingForm zip={zip} location={this.props.location.href} />
                 </div>
               </div>
               <div className="col-sm-6">

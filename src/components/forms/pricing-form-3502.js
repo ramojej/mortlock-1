@@ -19,7 +19,7 @@ class PricingForm extends Component {
         company: '',
         interest: 'Unsure',
         leadsource: 'Website',
-        pageURL: this.props.location.href,
+        pageURL: this.props.location,
         productinterest: [
           {id: 1, name: "Timber Ceilings", value: "timberceilings", isChecked: false},
           {id: 2, name: "Timber Walls", value: "timberwalls", isChecked: false},
@@ -138,7 +138,7 @@ class PricingForm extends Component {
         state: this.state.fields.state,
         interest: 'Unsure',
         leadsource: 'Website',
-        pageURL: this.props.location.href
+        pageURL: this.props.location
       }
 
       axios.post(formLink, qs.stringify(formData), Helpers.config).then((res) => {
@@ -157,7 +157,7 @@ class PricingForm extends Component {
                 state: '',
                 interest: 'Unsure',
                 leadsource: 'Website',
-                pageURL: this.props.location.href,
+                pageURL: this.props.location,
                 company: '',
                 productinterest: [
                   {id: 1, name: "Timber Ceilings", value: "timberceilings", isChecked: false},
@@ -191,8 +191,6 @@ class PricingForm extends Component {
 
   render() {
     const { submitActive, popupActive } = this.state;
-    console.log(this.state.fields.products)
-
     if(popupActive) {
       return (
         <div className="formsub__popup">
@@ -201,7 +199,6 @@ class PricingForm extends Component {
           {this.state.fields.products && this.state.fields.products.map((product, index) => (
             <div className="link__hold" key={index}>
               {(() => {
-                console.log(this.props.zip);
               if(product === 'timberceilings') {
                 return (
                   <a className="link" target="_blank" rel="noreferrer" href={this.props.zip.download_zip_file_timber_ceilings.link}>Download Timber Ceilings Pricing Guide</a>

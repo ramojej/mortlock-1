@@ -20,7 +20,12 @@ class ProductPricingForm extends Component {
         lastname: '',
         email: '',
         phone: '',
-        company: ''
+        company: '',
+        state: '',
+        leadsource: 'Website',
+        pageURL: this.props.location,
+        interest: 'Unsure',
+        leadinfo: 'Product Pricing'
       },
       errors: {
         firstname: '',
@@ -110,8 +115,11 @@ class ProductPricingForm extends Component {
                 email: '',
                 phone: '',
                 company: '',
-                whoareyou: '',
-                message: ''
+                state: '',
+                leadsource: 'Website',
+                pageURL: this.props.location,
+                interest: 'Unsure',
+                leadinfo: 'Product Pricing'
               }
             })
           }, 800); 
@@ -178,11 +186,34 @@ class ProductPricingForm extends Component {
                 </div>
               </div>
             </div>
-            <div className="form_group">
-              <label htmlFor="company1">Company</label>
-              <div className="form_input">
-                <input aria-label="Company name" type="text" name="company" id="company1" placeholder="Enter company name" value={this.state.fields.company || ''} onChange={ this.handleInputChange } />
-                {this.state.errors.company !== '' && <span className='error'>{this.state.errors.company}</span>}
+            <div className="row">
+              <div className="col-sm-6">
+                <div className="form_group">
+                  <label htmlFor="state">State *</label>
+                  <div className="form_input">
+                    <select name="state" id="state" value={this.state.fields.state || ''} onChange={ this.handleInputChange }>
+                      <option value="default">- Select -</option>
+                      <option value="ACT">ACT</option>
+                      <option value="NSW">NSW</option>
+                      <option value="NT">NT</option>
+                      <option value="QLD">QLD</option>
+                      <option value="SA">SA</option>
+                      <option value="TAS">TAS</option>
+                      <option value="VIC">VIC</option>
+                      <option value="WA">WA</option>
+                      <option value="International">International</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div className="col-sm-6">
+                <div className="form_group">
+                  <label htmlFor="company1">Company *</label>
+                  <div className="form_input">
+                    <input aria-label="Company name" className="noEmpty" type="text" name="company" id="company1" placeholder="Enter company name" value={this.state.fields.company || ''} onChange={ this.handleInputChange } />
+                    {this.state.errors.company !== '' && <span className='error'>{this.state.errors.company}</span>}
+                  </div>
+                </div>
               </div>
             </div>
             <div className="row">

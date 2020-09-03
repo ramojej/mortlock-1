@@ -403,7 +403,7 @@ class Page extends Component {
                 </div>
               </div>
               <div className="col-sm-offset-1 col-sm-7">
-                <ContactForm {...this.props} />
+                <ContactForm location={this.props.location.href} />
                 <div className="map_heading">
                   <h2 dangerouslySetInnerHTML={{ __html: this.props.data.allWordpressPage.edges[0].node.acf.location_heading }} />
                 </div>

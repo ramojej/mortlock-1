@@ -22,7 +22,7 @@ class SampleRequest extends Component {
         sampleoptions: '',
         message: '',
         leadsource: 'Website',
-        pageURL: this.props.location.href
+        pageURL: this.props.location
       },
       errors: {
         firstname: '',

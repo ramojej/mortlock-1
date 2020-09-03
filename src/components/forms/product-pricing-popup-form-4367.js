@@ -162,8 +162,6 @@ class ProductPricingPopupForm extends Component {
   render() {
     const { submitActive, popupActive, popupFormActive } = this.state;
 
-    console.log(this.state);
-
     if(popupActive) {
       return (
         <div className="formsub__popup">

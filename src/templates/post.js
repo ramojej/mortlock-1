@@ -19,8 +19,6 @@ class Post extends Component {
       return false;
     }
 
-    console.log(postURL)
-
     return (
       <Layout headerColor="dark">
         <SEO 

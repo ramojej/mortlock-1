@@ -158,8 +158,8 @@ class Page extends Component {
             <ProductFaq data={productFAQ} />
           </div>
         </div>
-        <PricingBlock pageID={postID} id={submenus[2]} data={productPricing} finishes={timber_species} battensize={batten_size} {...this.props} />
-        <RequestSample wpPageId={postID} data={requestSample} {...this.props} />
+        <PricingBlock pageID={postID} id={submenus[2]} data={productPricing} finishes={timber_species} battensize={batten_size} location={this.props.location.href} />
+        <RequestSample wpPageId={postID} data={requestSample} location={this.props.location.href} />
       </Layout>
     )
   }

@@ -19,7 +19,7 @@ class ContactForm extends Component {
         whoareyou: '',
         leadsource: 'Website',
         message: '',
-        pageURL: this.props.location.href,
+        pageURL: this.props.location,
         interest: 'Unsure'
       },
       errors: {
@@ -115,7 +115,7 @@ class ContactForm extends Component {
                 whoareyou: '',
                 leadsource: 'Website',
                 message: '',
-                pageURL: this.props.location.href,
+                pageURL: this.props.location,
                 interest: 'Unsure'
               }
             })
@@ -142,6 +142,7 @@ class ContactForm extends Component {
 
   render() {
     const { submitActive } = this.state;
+    console.log(this.state.fields)
 
     return (
       <form className={submitActive ? 'contact__form loading' : 'contact__form'} id="contact__form" type="POST" onSubmit={ this.handleSubmit } noValidate>
