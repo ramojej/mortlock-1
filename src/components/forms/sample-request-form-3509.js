@@ -118,7 +118,7 @@ class SampleRequest extends Component {
                 whoareyou: '',
                 message: '',
                 leadsource: 'Website',
-                pageURL: this.props.location.href
+                pageURL: this.props.location
               }
             })
           }, 800); 

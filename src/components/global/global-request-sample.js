@@ -23,7 +23,7 @@ const RequestSample = ({ ...props }) =>  {
             </div>
           </div>
           <div className="col-sm-offset-1 col-sm-7">
-            <SampleRequest pageID={props.wpPageId} data={content} location={props.location.href} />
+            <SampleRequest pageID={props.wpPageId} data={content} location={props.location} />
           </div>
         </div>
       </div>
