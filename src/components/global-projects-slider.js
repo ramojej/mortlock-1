@@ -23,8 +23,6 @@ const GlobalProjectSlider = ({ ...props }) =>  {
     customSlider.current.slickPrev()
   }
 
-  console.log(props)
-
   return (
     <div className="project__block">
       <div className="container" 

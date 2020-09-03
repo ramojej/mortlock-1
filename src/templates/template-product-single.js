@@ -95,7 +95,6 @@ class Page extends Component {
     const postID = this.props.data.wordpressPage.wordpress_id
 
     const submenus = ['product-overview', 'technical', 'pricing'];
-    console.log(this.props.location.href)
     return (
       <Layout>
         <SEO 
