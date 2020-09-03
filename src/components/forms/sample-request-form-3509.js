@@ -247,14 +247,14 @@ class SampleRequest extends Component {
           <ul className="check__list custom">
             <li>
               <label className="custom_check" htmlFor="sample">
-                <input aria-label="Proplank" type="radio" name="sample" value="samplekit" id="sample" onChange={ this.handleInputChange } />
+                <input aria-label="Sample Kit" type="radio" name="sample" value="samplekit" id="sample" onChange={ this.handleInputChange } />
                 <span className="custom-box"></span>
                 <span className="custom-text"><span dangerouslySetInnerHTML={{ __html: this.props.data.request_sample_heading }}/> &nbsp;Sample kit</span>
               </label>
             </li>
             <li>
-              <label className="custom_check" htmlFor="trendplank1">
-                <input aria-label="Trendplank" type="radio" name="sample" value="customsample" id="customsample" onChange={ this.handleInputChange } />
+              <label className="custom_check" htmlFor="customsample">
+                <input aria-label="Custom Sample" type="radio" name="sample" value="customsample" id="customsample" onChange={ this.handleInputChange } />
                 <span className="custom-box"></span>
                 <span className="custom-text">Custom Sample</span>
               </label>
