@@ -30,7 +30,7 @@ class Page extends Component {
       data-sal-easing="ease"
       data-sal-delay="5" dangerouslySetInnerHTML={{ __html: this.props.data.allWordpressPage.edges[0].node.acf.request_a_quote_content }} />
             <div className="quote__formwrap">
-              <RequestAQuote />
+              <RequestAQuote location={this.props.location.href} />
             </div>
           </div>
         </div>

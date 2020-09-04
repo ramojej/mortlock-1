@@ -968,15 +968,13 @@ ul.main__nav {
     }
 
     p {
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
       margin-bottom: 5px;
       display: none;
 
       @include breakpoint('medium') {
         display: block;
         margin-bottom: 20px;
+        font-size: 15px;
       }
 
       @include breakpoint('xxlarge') {
@@ -989,7 +987,7 @@ ul.main__nav {
 
       @include breakpoint('medium') {
         display: block;
-        margin-bottom: 26px;
+        margin: 5px 0 15px;
       }
     }
 
@@ -1052,6 +1050,20 @@ ul.main__nav {
       }
     }
   }
+}
+
+.content__clear {
+  clear: both;
+  display: block;
+
+  @include breakpoint('small') {
+    max-width: 60%;
+  }
+}
+
+.small__info {
+  display: block;
+  font-size: 14px;
 }
 
 .popup__active {
@@ -4982,13 +4994,13 @@ ul.check__list {
     text-align: center;
 
     @include breakpoint('medium') {
-      padding: 50px;
+      padding: 50px 50px 50px 0;
       font-size: 25px;
       text-align: left;
     }
 
     @include breakpoint('xxlarge') {
-      padding: 50px 90px;
+      padding: 50px 90px 50px 0;
       font-size: 30px;
       text-align: left;
     }
@@ -5268,9 +5280,17 @@ ul.block-icons {
     font-weight: 700;
     letter-spacing: 1px;
     cursor: pointer;
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline-width: 0;
 
     @include breakpoint('medium') {
       font-size: 22px;
+    }
+
+    &:focus {
+      outline: none !important;
     }
   }
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import qs from 'qs';
+// import ReactGA from 'react-ga';
 
 import Helpers from '../helpers/helpers';
 import Loader from '../helpers/loader';
@@ -100,6 +101,11 @@ class ContactForm extends Component {
     if(isFormValid) {
       axios.post(formLink, qs.stringify(this.state.fields), Helpers.config).then((res) => {
         if(res.data.status === 'mail_sent') {
+          // ReactGA.event({
+          //   category: 'Weblead',
+          //   action: 'ContactUs Form'
+          // })
+
           setTimeout(() => {
             this.setState({
               submitActive: false,
@@ -142,7 +148,6 @@ class ContactForm extends Component {
 
   render() {
     const { submitActive } = this.state;
-
     return (
       <form className={submitActive ? 'contact__form loading' : 'contact__form'} id="contact__form" type="POST" onSubmit={ this.handleSubmit } noValidate>
         <div className="row">

@@ -343,6 +343,10 @@ class Page extends Component {
 
     return (
       <Layout>
+        <SEO 
+          description={this.props.data.allWordpressPage.edges[0].node.yoast.metadesc} 
+          title={this.props.data.allWordpressPage.edges[0].node.yoast.title} 
+        />
         <div className={bannerContent.banner_type ? `inner__banner ${bannerContent.banner_type}` : 'inner__banner'}>
           <div className="bg__image has-overlay">
             { bannerContent.banner_image ? <BackgroundImage fluid={bannerContent.banner_image.localFile.childImageSharp.fluid} /> : null }
@@ -364,10 +368,6 @@ class Page extends Component {
             </div>
           </div>
         </div>
-        <SEO 
-          description={this.props.data.allWordpressPage.edges[0].node.yoast.metadesc} 
-          title={this.props.data.allWordpressPage.edges[0].node.yoast.title} 
-        />
         <div className="contact__wrapper">
           <div className="container">
             <div className="row">

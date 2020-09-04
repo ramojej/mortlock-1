@@ -17,10 +17,10 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-google-tagmanager`,
       options: {
-        // replace "UA-XXXXXXXXX-X" with your own Tracking ID
-        trackingId: "UA-36152241-1",
+        // trackingId: "UA-36152241-1",
+        id: "GTM-MR25ZVL"
       },
     },
     {

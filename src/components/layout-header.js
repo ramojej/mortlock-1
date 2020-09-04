@@ -144,10 +144,10 @@ const Header = ({ data, ...props }) => (
                                                           <div className="menubox">
                                                             <Link tabIndex={0} onKeyDown={ () => removeActiveClass() } onClick={() => removeActiveClass() } to={dropmenu.menu_link.replace('https://site.mortlock.com.au','')}>
                                                               <span className="menuTitle">{dropmenu.menu_title}</span>
-                                                              <p>{dropmenu.menu_description}</p>
                                                               <div className="imagebox">
                                                                 <Img fluid={dropmenu.menu_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" />
                                                               </div>
+                                                              <p>{dropmenu.menu_description}</p>
                                                               <div className="more">
                                                                 <span>Learn more</span>
                                                               </div>
@@ -175,10 +175,10 @@ const Header = ({ data, ...props }) => (
                                                           <div className="menubox">
                                                           <Link tabIndex={0} onKeyDown={ () => removeActiveClass() } onClick={() => removeActiveClass() } to={dropmenu.menu_link.replace('https://site.mortlock.com.au','')}>
                                                               <span className="menuTitle">{dropmenu.menu_title}</span>
-                                                              <p>{dropmenu.menu_description}</p>
                                                               <div className="imagebox">
                                                                 <Img fluid={dropmenu.menu_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" />
                                                               </div>
+                                                              <p>{dropmenu.menu_description}</p>
                                                               <div className="more">
                                                                 <span>Learn more</span>
                                                               </div>
@@ -206,10 +206,10 @@ const Header = ({ data, ...props }) => (
                                                           <div className="menubox">
                                                           <Link tabIndex={0} onKeyDown={ () => removeActiveClass() } onClick={() => removeActiveClass() } to={dropmenu.menu_link.replace('https://site.mortlock.com.au','')}>
                                                               <span className="menuTitle">{dropmenu.menu_title}</span>
-                                                              <p>{dropmenu.menu_description}</p>
                                                               <div className="imagebox">
                                                                 <Img fluid={dropmenu.menu_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" />
                                                               </div>
+                                                              <p>{dropmenu.menu_description}</p>
                                                               <div className="more">
                                                                 <span>Learn more</span>
                                                               </div>

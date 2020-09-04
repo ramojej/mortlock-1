@@ -17,13 +17,16 @@ class RequestAQuote extends Component {
         phone: '',
         company: '',
         whoareyou: '',
-        message: '',
         address: '',
         suburb: '',
         state: '',
         postcode: '',
         quantity: '',
-        file: ''
+        file: '',
+        message: '',
+        leadsource: 'Website',
+        pageURL: this.props.location,
+        interest: 'Unsure'
       },
       errors: {
         firstname: '',
@@ -146,6 +149,9 @@ class RequestAQuote extends Component {
       bodyFormData.append('whoareyou', this.state.fields.whoareyou)
       bodyFormData.append('quantity', this.state.fields.quantity)
       bodyFormData.append('message', this.state.fields.message)
+      bodyFormData.append('leadsource', this.state.fields.leadsource)
+      bodyFormData.append('pageURL', this.state.fields.pageURL)
+      bodyFormData.append('interest', this.state.fields.interest)
       bodyFormData.append('file', this.state.fields.file)
 
       axios.post(formLink, bodyFormData, Helpers.fileConfig).then((res) => {
@@ -168,14 +174,13 @@ class RequestAQuote extends Component {
                 state: '',
                 postcode: '',
                 quantity: '',
-                file: ''
+                file: '',
+                leadsource: 'Website',
+                pageURL: this.props.location,
+                interest: 'Unsure'
               }
             })
-          }, 800); 
-
-          setTimeout(() => {
-            this.setState({ mainFormMsg: '', mainFormState: '' });
-          }, 10000);
+          }, 800);
         } else if(res.data.status === 'validation_failed') {
           setTimeout(() => {
             this.setState({
@@ -228,7 +233,7 @@ class RequestAQuote extends Component {
             <div className="form_group">
               <label htmlFor="address">address</label>
               <div className="form_input">
-                <input aria-label="address" type="text" name="address" id="address" placeholder="Enter your address" className="" value={this.state.fields.address || ''} onChange={ this.handleInputChange } />
+                <input aria-label="address" type="text" name="address" id="address" placeholder="Enter your address" value={this.state.fields.address || ''} onChange={ this.handleInputChange } />
                 {this.state.errors.address !== '' && <span className='error'>{this.state.errors.address}</span>}
               </div>
             </div>
@@ -237,7 +242,7 @@ class RequestAQuote extends Component {
             <div className="form_group">
               <label htmlFor="suburb">suburb</label>
               <div className="form_input">
-                <input aria-label="suburb" type="text" name="suburb" id="suburb" placeholder="Enter your suburb" className="" value={this.state.fields.suburb || ''} onChange={ this.handleInputChange } />
+                <input aria-label="suburb" type="text" name="suburb" id="suburb" placeholder="Enter your suburb" value={this.state.fields.suburb || ''} onChange={ this.handleInputChange } />
                 {this.state.errors.suburb !== '' && <span className='error'>{this.state.errors.suburb}</span>}
               </div>
             </div>
@@ -246,10 +251,20 @@ class RequestAQuote extends Component {
         <div className="row">
           <div className="col-sm-6">
             <div className="form_group">
-              <label htmlFor="state">state</label>
+              <label htmlFor="state">State *</label>
               <div className="form_input">
-                <input aria-label="state" type="text" name="state" id="state" placeholder="Enter your state" className="" value={this.state.fields.state || ''} onChange={ this.handleInputChange } />
-                {this.state.errors.state !== '' && <span className='error'>{this.state.errors.state}</span>}
+                <select name="state" id="state" value={this.state.fields.state || ''} onChange={ this.handleInputChange }>
+                  <option value="default">- Select -</option>
+                  <option value="ACT">ACT</option>
+                  <option value="NSW">NSW</option>
+                  <option value="NT">NT</option>
+                  <option value="QLD">QLD</option>
+                  <option value="SA">SA</option>
+                  <option value="TAS">TAS</option>
+                  <option value="VIC">VIC</option>
+                  <option value="WA">WA</option>
+                  <option value="International">International</option>
+                </select>
               </div>
             </div>
           </div>
@@ -257,7 +272,7 @@ class RequestAQuote extends Component {
             <div className="form_group">
               <label htmlFor="postcode">postcode</label>
               <div className="form_input">
-                <input aria-label="postcode" type="text" name="postcode" id="postcode" placeholder="Enter postcode" className="" value={this.state.fields.postcode || ''} onChange={ this.handleInputChange } />
+                <input aria-label="postcode" type="text" name="postcode" id="postcode" placeholder="Enter postcode" value={this.state.fields.postcode || ''} onChange={ this.handleInputChange } />
                 {this.state.errors.postcode !== '' && <span className='error'>{this.state.errors.postcode}</span>}
               </div>
             </div>
@@ -302,7 +317,7 @@ class RequestAQuote extends Component {
             <div className="form_group">
               <label htmlFor="quantity">Approx. Quantity of material in m2 or lm?</label>
               <div className="form_input">
-                <input aria-label="quantity" type="text" name="quantity" id="quantity" placeholder="Enter your quantity name" className="" value={this.state.fields.quantity || ''} onChange={ this.handleInputChange } />
+                <input aria-label="quantity" type="text" name="quantity" id="quantity" placeholder="Enter your quantity name" value={this.state.fields.quantity || ''} onChange={ this.handleInputChange } />
                 {this.state.errors.quantity !== '' && <span className='error'>{this.state.errors.quantity}</span>}
               </div>
             </div>

@@ -3,6 +3,7 @@ import { graphql, Link } from "gatsby"
 
 import BackgroundImage from "gatsby-background-image"
 
+import SEO from "../components/seo";
 import Layout from "../components/layout"
 
 class Page extends Component {
@@ -118,6 +119,9 @@ class Page extends Component {
 
     return (
       <Layout>
+        <SEO 
+          title="Mortlock News | Mortlock Timber"
+        />
         <div className="blog__wrapper">
           <div className="container">
             <div className="blog__heading">
