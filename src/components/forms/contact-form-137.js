@@ -1,16 +1,10 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import qs from 'qs';
+import ReactGA from 'react-ga';
 
 import Helpers from '../helpers/helpers';
 import Loader from '../helpers/loader';
-
-let dataLayer = window.dataLayer = window.dataLayer || [];
-
-function fireGtmTrigger(event) {
-  dataLayer.push({event: 'contactusform'})
-}
-
 class ContactForm extends Component {
   constructor(props) {
     super(props);
@@ -107,7 +101,11 @@ class ContactForm extends Component {
     if(isFormValid) {
       axios.post(formLink, qs.stringify(this.state.fields), Helpers.config).then((res) => {
         if(res.data.status === 'mail_sent') {
-          fireGtmTrigger ();
+          
+          ReactGA.event({
+            category: 'Weblead',
+            action: 'ContactUs'
+          })
 
           setTimeout(() => {
             this.setState({
