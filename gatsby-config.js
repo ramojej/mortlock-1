@@ -17,11 +17,14 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-tagmanager`,
+      resolve: `gatsby-plugin-google-gtag`,
       options: {
         // trackingId: "UA-36152241-1",
-        id: "GTM-MR25ZVL"
-      },
+        // id: "GTM-MR25ZVL"
+        trackingIds: [
+          "UA-36152241-1"
+        ]
+      }
     },
     {
       resolve: `gatsby-plugin-alias-imports`,
