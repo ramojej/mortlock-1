@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import qs from 'qs';
-// import ReactGA from 'react-ga';
+import ReactGA from 'react-ga';
 
 import Helpers from '../helpers/helpers';
 import Loader from '../helpers/loader';
@@ -101,11 +101,10 @@ class ContactForm extends Component {
     if(isFormValid) {
       axios.post(formLink, qs.stringify(this.state.fields), Helpers.config).then((res) => {
         if(res.data.status === 'mail_sent') {
-          // ReactGA.event({
-          //   category: 'Weblead',
-          //   action: 'ContactUs Form'
-          // })
-
+          ReactGA.event({
+            category: 'Weblead',
+            action: 'ContactUs'
+          })
           setTimeout(() => {
             this.setState({
               submitActive: false,
