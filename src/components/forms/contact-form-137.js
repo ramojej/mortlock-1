@@ -101,7 +101,7 @@ class ContactForm extends Component {
     if(isFormValid) {
       axios.post(formLink, qs.stringify(this.state.fields), Helpers.config).then((res) => {
         if(res.data.status === 'mail_sent') {
-          
+
           ReactGA.event({
             category: 'Weblead',
             action: 'ContactUs'
@@ -149,8 +149,6 @@ class ContactForm extends Component {
 
   render() {
     const { submitActive } = this.state;
-
-    console.log(window);
 
     return (
       <form className={submitActive ? 'contact__form loading' : 'contact__form'} id="contact__form" type="POST" onSubmit={ this.handleSubmit } noValidate>
