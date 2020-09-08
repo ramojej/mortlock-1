@@ -332,6 +332,10 @@ class Page extends Component {
     });
   }
 
+  handleGTag = () => {
+    console.log('element');
+  }
+
   render() {
     const bannerContent = {
       banner_image: this.props.data.allWordpressPage.edges[0].node.acf.contact_banner_image,
@@ -372,7 +376,7 @@ class Page extends Component {
           <div className="container">
             <div className="row">
               <div className="col-sm-4">
-                <div className="contact__desc">
+                <div className="contact__desc" onClick={() => this.handleGTag()}>
                   <h2 dangerouslySetInnerHTML={{ __html: this.props.data.allWordpressPage.edges[0].node.acf.contact_heading }} />
                   <div dangerouslySetInnerHTML={{ __html: this.props.data.allWordpressPage.edges[0].node.acf.contact_general_description }} />
                   <ul className="info__list">

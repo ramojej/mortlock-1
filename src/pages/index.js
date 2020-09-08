@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { graphql } from "gatsby";
-import { Helmet } from "react-helmet";
 
 import SEO from "../components/seo";
 
@@ -89,9 +88,6 @@ class IndexPage extends Component {
 
     return (
       <Layout>
-        <Helmet>
-          <meta name="google-site-verification" content="uq4BT0wioWTKh3iydY6Hth4riwR84fRko8CCUaqdn-0" />
-        </Helmet>
         <SEO 
           description={this.props.data.allWordpressPage.edges[0].node.yoast.metadesc} 
           title={this.props.data.allWordpressPage.edges[0].node.yoast.title} 

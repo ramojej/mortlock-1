@@ -169,7 +169,7 @@ RedirectMatch 301 /download-files/?post_id=73&amp/?$ https://www.mortlock.com.au
 RedirectMatch 301 /products-category/classicplank-timber-decking/?$ https://www.mortlock.com.au/timber-decking/classicplank-timber-decking/
 RedirectMatch 301 /testimonial/gaetan-dalle-owner-builder/?$ https://www.mortlock.com.au/
 RedirectMatch 301 /products-category/proplank-batten-lining/?$ https://www.mortlock.com.au/timber-decking/proplank-timber-battens/
-RedirectMatch 301 /download-files-trendplank/?post_id=90&amp/?$ https://www.mortlock.com.au/timber-decking/proplank-timber-battens/
+Redirect 301 /download-files-trendplank/?post_id=90&amp?$ https://www.mortlock.com.au/timber-decking/proplank-timber-battens/
 RedirectMatch 301 /products-category/miscellaneous/?$ https://www.mortlock.com.au/
 RedirectMatch 301 /testimonial/guy-boudville-builder/?$ https://www.mortlock.com.au/
 RedirectMatch 301 /wp-content/uploads/2015/11/Wood_Human_Health_final-single.pdf?utm_medium=email&amp/?$ https://www.mortlock.com.au/
@@ -190,7 +190,6 @@ RedirectMatch 301 /products-category/screenplank-timber-screening/?$ https://www
 RedirectMatch 301 /wp-content/uploads/2014/05/Species-Data-Sheet-Ironbark.pdf?$ https://www.mortlock.com.au/
 RedirectMatch 301 /faq/what-is-class-1-timber-durability/?$ https://www.mortlock.com.au/
 RedirectMatch 301 /testimonial/dervla-mccarey-architect/?$ https://www.mortlock.com.au/
-RedirectMatch 301 /download-files-trendplank/?post_id=90&amp/?$ https://www.mortlock.com.au/
 RedirectMatch 301 /faq/how-long-will-cutek-last-how-often-do-i-need-to-reapply/?$ https://www.mortlock.com.au/
 RedirectMatch 301 /testimonial/ascher-smith-landscape-architect/?$ https://www.mortlock.com.au/
 RedirectMatch 301 /products-category/metroplank-timber-decking/?$ https://www.mortlock.com.au/timber-decking/metro-plank/
@@ -213,12 +212,18 @@ RedirectMatch 301 /testimonial/elton-fawkes-adage-furniture/?$ https://www.mortl
 RedirectMatch 301 /wp-content/uploads/2014/05/Species-Data-Sheet-Pacific-Teak.pdf/?$ https://www.mortlock.com.au/
 RedirectMatch 301 /testimonial/elena-bibian-owner-builder/?$ https://www.mortlock.com.au/
 RedirectMatch 301 /download-files/?post_id=73&amp/?$ https://www.mortlock.com.au/
-RedirectMatch 301 /wp-content/uploads/2015/11/Wood_Human_Health_final-single.pdf?utm_medium=email&amp/?$ https://www.mortlock.com.au/
-RedirectMatch 301 /download-files-trendplank/?post_id=90&amp/?$ https://www.mortlock.com.au/
+Redirect 301 /wp-content/uploads/2015/11/Wood_Human_Health_final-single.pdf?utm_medium=email&amp https://www.mortlock.com.au/
 RedirectMatch 301 /testimonial/jordan-miller-builder/?$ https://www.mortlock.com.au/
 RedirectMatch 301 /download-files/?post_id=1293&amp/?$ https://www.mortlock.com.au/
 RedirectMatch 301 /download-files/?post_id=73&amp/?$ https://www.mortlock.com.au/
 
+
+# Canonical HTTPS/non-WWW
+<IfModule mod_rewrite.c>
+	RewriteCond %{HTTPS} off [OR]
+	RewriteCond %{HTTP_HOST} ^www\.mortlock\.com.au[NC]
+	RewriteRule (.*) https://www.mortlock.com.au//$1 [L,R=301]
+</IfModule>
 
 #<IfModule mod_expires.c>
 # Add correct content-type for fonts
