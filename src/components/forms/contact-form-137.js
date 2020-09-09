@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import qs from 'qs';
-import ReactGA from 'react-ga';
 
 import Helpers from '../helpers/helpers';
 import Loader from '../helpers/loader';
@@ -42,6 +41,12 @@ class ContactForm extends Component {
       mainFormState: null
     }
     this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleGTag() {
+    console.log('event');
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'event': 'WebLead', 'eventAction': 'ContactUs'});
   }
 
   handleInputChange(event) {
@@ -102,12 +107,7 @@ class ContactForm extends Component {
     if(isFormValid) {
       axios.post(formLink, qs.stringify(this.state.fields), Helpers.config).then((res) => {
         if(res.data.status === 'mail_sent') {
-
-          ReactGA.event({
-            category: 'Weblead',
-            action: 'ContactUs'
-          })
-
+          this.handleGTag();
           setTimeout(() => {
             this.setState({
               submitActive: false,

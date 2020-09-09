@@ -16,7 +16,7 @@ class Page extends Component {
     projectCategories.forEach(category => {
       if (category.node.slug.includes("product-type"))
         productTypes.push(category.node)
-      else if (category.node.slug.includes("project-type"))
+      else if (category.node.slug.includes("timber"))
         projectTypes.push(category.node)
       else products.push(category.node)
     })
@@ -126,7 +126,7 @@ class Page extends Component {
                     </ul>
                   </div>
                   <div className="col-sm-4">
-                    <span className="title">Product Type</span>
+                    <span className="title">Application</span>
                     <ul className="list">
                       {this.state.productTypes.map(product => (
                         <li key={product.id}>
@@ -149,7 +149,7 @@ class Page extends Component {
                     </ul>
                   </div>
                   <div className="col-sm-4">
-                    <span className="title">Project Type</span>
+                    <span className="title">Timber Species</span>
                     <ul className="list">
                       {this.state.projectTypes.map(product => (
                         <li key={product.name}>
