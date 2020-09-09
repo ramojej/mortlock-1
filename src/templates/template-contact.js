@@ -333,7 +333,8 @@ class Page extends Component {
   }
 
   handleGTag = () => {
-    console.log('element');
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'event': 'WebLead', 'eventAction': 'ContactUs'});
   }
 
   render() {

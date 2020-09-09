@@ -11,19 +11,11 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: `gatsby-plugin-facebook-pixel`,
+      resolve: "gatsby-plugin-google-tagmanager",
       options: {
-        pixelId: '2405409289757762',
-      },
-    },
-    {
-      resolve: `gatsby-plugin-google-gtag`,
-      options: {
-        // trackingId: "UA-36152241-1",
-        // id: "GTM-MR25ZVL"
-        trackingIds: [
-          "UA-36152241-1"
-        ]
+        id: "GTM-MR25ZVL",
+        includeInDevelopment: true,
+        defaultDataLayer: { platform: "gatsby" }
       }
     },
     {
