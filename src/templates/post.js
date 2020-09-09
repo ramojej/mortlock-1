@@ -30,7 +30,7 @@ class Post extends Component {
             <div className="post__heading">
               <div className="post_category">{pageData.categories.map((category, index) => ( <span key={index}>{category.name} </span> ))}</div>
               <h1 dangerouslySetInnerHTML={{ __html: pageData.title }} />
-              <span className="post__meta">by <span className="author">{pageData.author.name}</span> &emsp; | &emsp; {pageData.date}</span>
+              <span className="post__meta">by <span className="author">Mortlock Timber</span> &emsp; | &emsp; {pageData.date}</span>
               <div className="share__block">
                 <span className="title">share this article</span>
                 <ul className="social-networks">
@@ -93,9 +93,6 @@ export const pageQuery = graphql`
     wordpressPost(id: { eq: $id }) {
       title
       content
-      author {
-        name
-      }
       date(formatString: "DD MMMM YYYY")
       categories {
         name
