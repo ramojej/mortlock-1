@@ -102,7 +102,7 @@ class Page extends Component {
               <div className={ this.state.activeFilter ? 'head_filter__content filter--active' : 'head_filter__content' }>
                 <div className="row aside">
                   <div className="col-sm-4">
-                    <span className="title">Product</span>
+                    <span className="title">Application</span>
                     <ul className="list">
                       {this.state.products.map(product => (
                         <li key={product.id}>
@@ -126,7 +126,7 @@ class Page extends Component {
                     </ul>
                   </div>
                   <div className="col-sm-4">
-                    <span className="title">Application</span>
+                    <span className="title">Product</span>
                     <ul className="list">
                       {this.state.productTypes.map(product => (
                         <li key={product.id}>
