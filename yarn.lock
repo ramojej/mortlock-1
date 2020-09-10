@@ -6360,10 +6360,10 @@ gatsby-cli@^2.12.87:
     yargs "^15.3.1"
     yurnalist "^1.1.2"
 
-gatsby-cli@^2.12.93:
-  version "2.12.93"
-  resolved "https://registry.yarnpkg.com/gatsby-cli/-/gatsby-cli-2.12.93.tgz#2461fa3b4f7312c1a39062f7cc7d5fe192971565"
-  integrity sha512-l4dAX8BFXzZdQU+RUQHdW289usNJnWf6rrmQG3aL+gZYc9Fo14LtP3KGcAGNmNgLjJX9XanJu+yWaBf8H2hrCA==
+gatsby-cli@^2.12.94:
+  version "2.12.94"
+  resolved "https://registry.yarnpkg.com/gatsby-cli/-/gatsby-cli-2.12.94.tgz#988849b8ee8966c83a643f7c70f0cdf7d7701b1d"
+  integrity sha512-yDT3iSL0yCBI4T5BOde6iw60NSHPzN7WxUZ5k+4viDXRY6CR98WVNAUNuXDKiQyecXq2voBRn00i+EKV/S3FYw==
   dependencies:
     "@babel/code-frame" "^7.10.3"
     "@hapi/joi" "^15.1.1"
@@ -6379,7 +6379,7 @@ gatsby-cli@^2.12.93:
     fs-exists-cached "^1.0.0"
     fs-extra "^8.1.0"
     gatsby-core-utils "^1.3.19"
-    gatsby-recipes "^0.2.22"
+    gatsby-recipes "^0.2.23"
     gatsby-telemetry "^1.3.32"
     hosted-git-info "^3.0.4"
     ink "^2.7.1"
@@ -6510,18 +6510,12 @@ gatsby-plugin-alias-imports@^1.0.5:
   dependencies:
     "@babel/runtime" "^7.2.0"
 
-gatsby-plugin-facebook-pixel@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-facebook-pixel/-/gatsby-plugin-facebook-pixel-1.0.3.tgz#d3cab36fa61803e9d412f36847775d383325dfdf"
-  integrity sha512-IM4e+5FkpLUCV/69tU+GFXVAs0EJXBfM/BARO/6SaMqalLfj1fj4ZXUyC8kHy3RiTMuw+y8g2mdkBMZqj7RyWQ==
-
-gatsby-plugin-google-gtag@^2.1.10:
-  version "2.1.10"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-gtag/-/gatsby-plugin-google-gtag-2.1.10.tgz#0aee201d54da81af1d2566d4c0b393a8387bd625"
-  integrity sha512-VS49tyfB3NPu4S26ftBa/lMw09dN9dsLsNm0LTAuwVXZwtmiCm6UP47ZWBm3u//b+YLkw44Pnl2kLe5iXIyF8Q==
+gatsby-plugin-google-tagmanager@^2.3.11:
+  version "2.3.11"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-tagmanager/-/gatsby-plugin-google-tagmanager-2.3.11.tgz#6192d5095ff8aa7634c66052aaab9d24ab4ff46e"
+  integrity sha512-i3tUFxuTp7CKU1cM4V7uuEcJdI/7lQRB5d02blm08dFv1GDg/nZpuBM03OTXjWec3Y6GEw7N8aiYSJuA0/OrlQ==
   dependencies:
     "@babel/runtime" "^7.10.3"
-    minimatch "^3.0.4"
 
 gatsby-plugin-manifest@^2.4.22:
   version "2.4.23"
@@ -6732,10 +6726,10 @@ gatsby-recipes@^0.2.16:
     yoga-layout-prebuilt "^1.9.6"
     yup "^0.27.0"
 
-gatsby-recipes@^0.2.22:
-  version "0.2.22"
-  resolved "https://registry.yarnpkg.com/gatsby-recipes/-/gatsby-recipes-0.2.22.tgz#9b69e14f7c15959faaf9eee766373ae58892de47"
-  integrity sha512-I8YHg52FiMGrRuJIb7eOvHRUcEB3hnOVLoDbzF8bQomSekd/+XApDBbNvNYaL8Y8Zp2Hef/wyoP2IgUOrszAiQ==
+gatsby-recipes@^0.2.23:
+  version "0.2.23"
+  resolved "https://registry.yarnpkg.com/gatsby-recipes/-/gatsby-recipes-0.2.23.tgz#fc1d1786b23f03e77f87c86cad5a6b11b967a949"
+  integrity sha512-mvP50MA7QKz3hbbXXnELMmqvW+9J4/y8UYDl/4jOpQw6rGYJ0cjs6yHCl5PlEr5yTH4qO4KKT8//qUa7/x1Mog==
   dependencies:
     "@babel/core" "^7.9.6"
     "@babel/generator" "^7.9.6"

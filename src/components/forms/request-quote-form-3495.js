@@ -53,6 +53,11 @@ class RequestAQuote extends Component {
     this.handleFileInput = this.handleFileInput.bind(this);
   }
 
+  handleGTag() {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({'event': 'WebLead', 'eventAction': 'RequestaQuote'});
+  }
+
   handleInputChange(event) {
     const { name, value, type } = event.target;
     this.setState({
@@ -156,6 +161,7 @@ class RequestAQuote extends Component {
 
       axios.post(formLink, bodyFormData, Helpers.fileConfig).then((res) => {
         if(res.data.status === 'mail_sent') {
+          this.handleGTag();
           setTimeout(() => {
             this.setState({
               submitActive: false,

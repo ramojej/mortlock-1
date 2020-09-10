@@ -44,7 +44,6 @@ class ContactForm extends Component {
   }
 
   handleGTag() {
-    console.log('event');
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({'event': 'WebLead', 'eventAction': 'ContactUs'});
   }
