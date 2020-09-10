@@ -15,13 +15,11 @@ const PricingBlock = ({ ...props }) =>  {
             <div className="pricing__text" >
               <h2 dangerouslySetInnerHTML={{ __html: content.pricing_title }} />
               <p dangerouslySetInnerHTML={{ __html: content.pricing_description }} />
-              <ProductPricingForm finishes={props.finishes} battensize={props.battensize} data={content} pageID={props.pageID} location={props.location} />
+              <ProductPricingForm gtag={props.gtag} finishes={props.finishes} battensize={props.battensize} data={content} pageID={props.pageID} location={props.location} />
             </div>
           </div>
           <div className="col-sm-offset-1 col-sm-5">
-            <div className="price__image" data-sal="slide-up" 
-      data-sal-easing="ease"
-      data-sal-delay="5">
+            <div className="price__image" data-sal="slide-up" data-sal-easing="ease" data-sal-delay="5">
               {content.pricing_image ? <Img fluid={content.pricing_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" /> : null}
             </div>
           </div>

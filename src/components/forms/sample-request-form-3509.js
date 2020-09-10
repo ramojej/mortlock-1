@@ -75,6 +75,11 @@ class SampleRequest extends Component {
     }
   }
 
+  handleGTag() {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(this.props.gtag);
+  }
+
   handleSubmit = async (event) => {
     event.preventDefault();
     this.setState({ submitActive: true });
@@ -104,6 +109,7 @@ class SampleRequest extends Component {
     if(isFormValid) {
       axios.post(formLink, qs.stringify(this.state.fields), Helpers.config).then((res) => {
         if(res.data.status === 'mail_sent') {
+          this.handleGTag();
           setTimeout(() => {
             this.setState({
               popupActive: true,

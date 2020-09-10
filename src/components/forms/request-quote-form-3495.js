@@ -55,7 +55,8 @@ class RequestAQuote extends Component {
 
   handleGTag() {
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({'event': 'WebLead', 'eventAction': 'RequestaQuote'});
+    window.dataLayer.push(this.props.gtag);
+    console.log(this.props);
   }
 
   handleInputChange(event) {

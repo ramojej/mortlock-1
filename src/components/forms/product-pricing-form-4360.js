@@ -43,6 +43,7 @@ class ProductPricingForm extends Component {
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.pricingPopup = this.pricingPopup.bind(this);
+    this.handleGTag = this.handleGTag.bind(this);
   }
 
   handleInputChange(event) {
@@ -74,6 +75,12 @@ class ProductPricingForm extends Component {
     }
   }
 
+  handleGTag() {
+    console.log(this.props.gtag);
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(this.props.gtag);
+  }
+
   handleSubmit = async (event) => {
     event.preventDefault();
     this.setState({ submitActive: true });
@@ -103,6 +110,7 @@ class ProductPricingForm extends Component {
     if(isFormValid) {
       axios.post(formLink, qs.stringify(this.state.fields), Helpers.config).then((res) => {
         if(res.data.status === 'mail_sent') {
+          this.handleGTag();
           setTimeout(() => {
             this.setState({
               popupActive: true,
@@ -165,7 +173,7 @@ class ProductPricingForm extends Component {
     } else {
       return (
         <>
-          <form className={submitActive ? 'pricing__form loading' : 'pricing__form'} id="pricing__form" type="POST" onSubmit={ this.handleSubmit } noValidate>
+          <form className={submitActive ? 'pricing__form loading' : 'pricing__form'} id="pricing__form" type="POST" onClick={this.handleGTag } onSubmit={ this.handleSubmit } noValidate>
             <div className="row">
               <div className="col-sm-6">
                 <div className="form_group">

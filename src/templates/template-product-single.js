@@ -95,13 +95,37 @@ class Page extends Component {
     const postID = this.props.data.wordpressPage.wordpress_id
 
     const submenus = ['product-overview', 'technical', 'pricing'];
+
+    let requestSampleTag = {};
+    let requestPricingTag = {};
+
+    if(postID === 573) {
+      requestSampleTag = {'event': 'WebLead', 'eventAction': 'RequestSample', 'eventLabel': 'ClassicTimberDecking'};
+      requestPricingTag = {'event': 'WebLead', 'eventAction': 'RequestPricing', 'eventLabel': 'ClassicTimberDecking'};
+    } else if(postID === 561) {
+      requestSampleTag = {'event': 'WebLead', 'eventAction': 'RequestSample', 'eventLabel': 'MarineTimberDecking'};
+      requestPricingTag = {'event': 'WebLead', 'eventAction': 'RequestPricing', 'eventLabel': 'MarineTimberDecking'};
+    } else if(postID === 567) {
+      requestSampleTag = {'event': 'WebLead', 'eventAction': 'RequestSample', 'eventLabel': 'MetroPlankTimberDecking'};
+      requestPricingTag = {'event': 'WebLead', 'eventAction': 'RequestPricing', 'eventLabel': 'MetroPlankTimberDecking'};      
+    } else if(postID === 339) {
+      requestSampleTag = {'event': 'WebLead', 'eventAction': 'RequestSample', 'eventLabel': 'ProPlankTimberCladding'};
+      requestPricingTag = {'event': 'WebLead', 'eventAction': 'RequestPricing', 'eventLabel': 'ProPlankTimberCladding'};
+    } else if(postID === 4205) {
+      requestSampleTag = {'event': 'WebLead', 'eventAction': 'RequestSample', 'eventLabel': 'ShouSugiTimberCladding'};
+      requestPricingTag = {'event': 'WebLead', 'eventAction': 'RequestPricing', 'eventLabel': 'ShouSugiTimberCladding'};
+    } else if(postID === 4209) {
+      requestSampleTag = {'event': 'WebLead', 'eventAction': 'RequestSample', 'eventLabel': 'TrendPlankTimberCladding'};
+      requestPricingTag = {'event': 'WebLead', 'eventAction': 'RequestPricing', 'eventLabel': 'TrendPlankTimberCladding'};
+    }
+
     return (
       <Layout>
         <SEO 
           description={this.props.data.wordpressPage.yoast.metadesc ? this.props.data.wordpressPage.yoast.metadesc : null} 
           title={this.props.data.wordpressPage.yoast.title ? this.props.data.wordpressPage.yoast.title : null} 
         />
-        <div className='inner__banner'>
+        <div className='inner__banner' data-sample={requestSampleTag} data-price={requestPricingTag}>
           <div className="bg__image has-overlay">
             { bannerContent.banner_image ? <BackgroundImage fluid={bannerContent.banner_image.localFile.childImageSharp.fluid} /> : null }
           </div>
@@ -157,8 +181,8 @@ class Page extends Component {
             <ProductFaq data={productFAQ} />
           </div>
         </div>
-        <PricingBlock pageID={postID} id={submenus[2]} data={productPricing} finishes={timber_species} battensize={batten_size} location={this.props.location.href} />
-        <RequestSample wpPageId={postID} data={requestSample} location={this.props.location.href} />
+        <PricingBlock pageID={postID} id={submenus[2]} data={productPricing} finishes={timber_species} battensize={batten_size} location={this.props.location.href} gtag={requestPricingTag} />
+        <RequestSample wpPageId={postID} data={requestSample} location={this.props.location.href} gtag={requestSampleTag} />
       </Layout>
     )
   }
