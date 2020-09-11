@@ -76,7 +76,6 @@ class ProductPricingForm extends Component {
   }
 
   handleGTag() {
-    console.log(this.props.gtag);
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push(this.props.gtag);
   }
@@ -173,7 +172,7 @@ class ProductPricingForm extends Component {
     } else {
       return (
         <>
-          <form className={submitActive ? 'pricing__form loading' : 'pricing__form'} id="pricing__form" type="POST" onClick={this.handleGTag } onSubmit={ this.handleSubmit } noValidate>
+          <form className={submitActive ? 'pricing__form loading' : 'pricing__form'} id="pricing__form" type="POST" onSubmit={ this.handleSubmit } noValidate>
             <div className="row">
               <div className="col-sm-6">
                 <div className="form_group">
