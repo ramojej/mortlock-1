@@ -7,12 +7,12 @@ import Footer from './layout-footer';
 import "../assets/scss/global.scss";
 
 
-const Layout = ({ children, ...props }) => (
-  <div id="wrapper">
+const LayoutLanding = ({ children, ...props }) => (
+  <div id="wrapper" className="landingPage">
     <Header color={props.headerColor} />
     <main id="main">{children}</main>
     <Footer />
   </div>
 )
 
-export default Layout
+export default LayoutLanding

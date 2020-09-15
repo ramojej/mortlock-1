@@ -1375,6 +1375,7 @@ ul.main__nav {
 
 .generaltext {
   padding: 40px 0 20px;
+  position: relative;
 
   @include breakpoint('medium') {
     padding: 50px 0 40px;
@@ -1526,6 +1527,13 @@ ul.main__nav {
         left: -400px;
         height: 2px;
         background: $primary-color;
+      }
+    }
+
+    &.add {
+      @include breakpoint('medium') {
+        padding-top: 100px;
+        padding-bottom: 100px;
       }
     }
   }
@@ -2678,6 +2686,18 @@ ul.footer_menu {
 
     @include breakpoint('medium') {
       height: 380px;
+    }
+  }
+
+  .large & {
+    height: auto;
+
+    @include breakpoint('medium') {
+      height: auto;
+    }
+
+    @include breakpoint('xxlarge') {
+      height: auto;
     }
   }
 
@@ -5923,6 +5943,176 @@ form {
     opacity: 0.8;
   }
 }
+
+.landingPage {
+  .nav__hamburger,
+  .menu__wrapper {
+    display: none !important;
+  }
+
+  .header__meta {
+    margin-right: 0;
+
+    @include breakpoint('medium') {
+      display: block;
+    }
+  }
+
+  .header__bottomwrap {
+    @include breakpoint('medium') {
+      padding: 17px 0;
+    }
+  }
+
+  .header__nav {
+    @include breakpoint('medium') {
+      display: none;
+    }
+  }
+
+  .header__button {
+    @include breakpoint('small') {
+      position: static;
+      left: 0;
+      transform: none;
+      margin: 0 0 0 26px;
+      display: inline-block;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .button {
+      @include breakpoint('small') {
+        background: #312f30;
+        color: $primary-color;
+        font-size: 14px;
+        padding: 10px 25px;
+
+        &:hover {
+          background: darken(#312f30, 5%);
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .header {
+    @include breakpoint('medium') {
+      height: 77px;
+    }
+    @include breakpoint('xxlarge') {
+      height: 88px;
+    }
+  }
+
+  #main {
+    @include breakpoint('medium') {
+      padding-top: 77px;
+    }
+
+    @include breakpoint('xxlarge') {
+      padding-top: 88px;
+    }
+  }
+
+  .header__top {
+    display: none !important;
+  }
+
+  .inner__banner {
+    h1 {
+      padding-bottom: 40px;
+      margin-bottom: 40px;
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: -9999px;
+        right: -9999px;
+        bottom: 0;
+        height: 2px;
+        background: $primary-color;
+      }
+    }
+  }
+}
+
+.use__block {
+  background: #312f30;
+  color: #7e7e7e;
+  padding: 20px 0;
+
+  @include breakpoint('small') {
+    padding: 40px 0;
+  }
+
+  @include breakpoint('medium') {
+    padding: 55px 0;
+  }
+
+  h3 {
+    color: $primary-color;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+
+  .icon {
+    color: $primary-color;
+    width: 45px;
+    height: 45px;
+  }
+
+  .ico_wrap {
+    margin-bottom: 22px;
+  }
+
+  .icon__box {
+    padding-bottom: 20px;
+  }
+}
+
+.subtainability__block {
+  padding: 40px 0;
+
+  @include breakpoint('medium') {
+    padding: 90px 0;
+  }
+
+  h2 {
+    position: relative;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+
+    @include breakpoint('large') {
+      padding-bottom: 32px;
+      margin-bottom: 44px;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      right: -300px;
+      bottom: 0;
+      left: -9999px;
+      height: 2px;
+      background: $primary-color;
+    }
+  }
+
+  .button_wrap {
+    .button-learn {
+      margin-right: 15px;
+    }
+  }
+
+  .sustainability_image {
+    margin: 0 -350px 0 -80px;
+  }
+}
+
 
 .loader {
   display: inline-block;
