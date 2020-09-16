@@ -106,7 +106,8 @@ const Project = ({...props}) =>  {
                 <span className="text">Play Video</span>
               </div>
             </div>
-            <BackgroundImage className="bg__image" fluid={pageData.acf.project_video_image.link} />
+            { pageData.acf.project_video_image ? <BackgroundImage className="bg__image" fluid={pageData.acf.project_video_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" /> : null }
+            
           </div>}
           <div className="spec__wrapper">
             <div className="row">
@@ -221,6 +222,13 @@ export const pageQuery = graphql`
         }
         project_video_image {
           link
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 1500) {
+                ...GatsbyImageSharpFluid_withWebp
+              }
+            }
+          }
         }
         project_video_iframe_code
         specification_heading

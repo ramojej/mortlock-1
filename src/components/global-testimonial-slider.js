@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "gatsby";
 import Slider from "react-slick";
 
 const GlobalTestimonialSlider = ({ ...props }) =>  {
@@ -32,11 +33,12 @@ const GlobalTestimonialSlider = ({ ...props }) =>  {
   }
 
   return (
-    <div className="testimonial__block">
+    <div className="testimonial__block" id="testimonial">
       <div className="container" 
       data-sal="slide-up" 
       data-sal-easing="ease"
       data-sal-delay="5">
+        {(props.button === "true") && <div className="aside__text">Testimonial</div> }
         <header className="general__heading">
           <h2>{content.testimonialHeading}</h2>
           <div className="control_wrapper">
@@ -54,6 +56,7 @@ const GlobalTestimonialSlider = ({ ...props }) =>  {
             </div>
           ))}
         </Slider>
+        {(props.button === "true") && <div className="button_wrapper"><Link to='/request-a-quote/' className="button-learn">Request a quote <span className="btnArrow"><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></span></Link></div> }
       </div>
     </div>
   )

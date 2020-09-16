@@ -384,7 +384,7 @@ class Page extends Component {
                       </span>
                       <div className="text_wrap">
                         <span className="title">phone</span>
-                        <span className="text"><a href="tel:1800870452">1800 870 452</a></span>
+                        <span className="text"><a href="tel:1800894400">1800 894 400</a></span>
                       </div>
                     </li>
                     <li data-sal="slide-up" 

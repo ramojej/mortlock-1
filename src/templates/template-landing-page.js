@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { graphql, Link } from "gatsby";
 import Img from 'gatsby-image';
 import BackgroundImage from 'gatsby-background-image';
+import scrollTo from 'gatsby-plugin-smoothscroll';
 
 import LayoutLanding from "../components/layout-landing";
 import SEO from "../components/seo";
 import Button from "../components/global/button";
 
+import LandingPageForm from '../components/forms/landing-page-form-5153';
 import GlobalTestimonialSlider from "../components/global-testimonial-slider";
 
 class Page extends Component {
@@ -116,15 +118,20 @@ class Page extends Component {
                 </div>
               </div>
               <div className="col-sm-7">
-                <h2>sustainability</h2>
-                <p>New Jarrah is a sustainable, renewable resource, exclusively harvested from regrowth forests in WA.</p>
-                <p>Sustainable forest management in WA is governed by a comprehensive legislative framework and management procedures. Sustainable forest management balances ecological, economic and socio-cultural values of the forest.</p>
-                <p>WA adheres to strict guidelines and policies for timber harvesting, namely the Forest Management Plan and the WA Regional Forest Agreement. Both are legally binding documents prepared through scientific research and consultation, and are regularly formally reviewed to ensure compliance and that the standards within maintain their world class status.</p>
-                <p>In WA the Forest Products Commission conducts commercial forest operations through sustainable practices and operates under the Forest Products Act 2000. The Forest Products Commission is certified to the Australian Forestry Standard (AS4708:2013) and the international standard for Environmental Management Systems (ISO 14001:2015).</p>
-                <p>All native forests harvested in WA are regenerated or replanted each year.</p>
-                <div className="button_wrap">
-                  button
-                  button
+                <div className="general__heading">
+                  <h2 dangerouslySetInnerHTML={{ __html: this.props.data.wordpressPage.acf.why_this_product_main_heading  }} />
+                  <span className="info"><button data-id="#testimonial" onClick={() => scrollTo("#testimonial")}><span className="underline">{this.props.data.wordpressPage.acf.what_client_say_text}</span> <svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></button></span>
+                </div>
+                <div className="row">
+                  <div className="col-sm-6">
+                  <div dangerouslySetInnerHTML={{ __html: this.props.data.wordpressPage.acf.description_column_one  }} />
+                  </div>
+                  <div className="col-sm-6">
+                    <div dangerouslySetInnerHTML={{ __html: this.props.data.wordpressPage.acf.description_column_two  }} />
+                  </div>
+                </div>
+                <div className="button_center">
+                  <Link to={ this.props.data.wordpressPage.acf.why_product_button_link } className="button-learn">{ this.props.data.wordpressPage.acf.why_product_button_text } <span className="btnArrow"><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></span></Link>
                 </div>
               </div>
             </div>
@@ -132,14 +139,77 @@ class Page extends Component {
         </div>
         <div className="article__where">
           <div className="container">
-            <h2>Where it can be used</h2>
+            <h2 dangerouslySetInnerHTML={{ __html: this.props.data.wordpressPage.acf.sections_main_heading  }} />
             <div className="row">
-              
+              {this.props.data.wordpressPage.acf.where_can_it_be_used.map((product, index) => (
+                <div className="col-sm-4" key={index}>
+                  <div className="articletext__box">
+                    <div className="img__wrap">
+                      <Img fluid={product.using_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" />
+                    </div>
+                    <h3 dangerouslySetInnerHTML={{ __html:product.using_product_title }} />
+                    <div dangerouslySetInnerHTML={{ __html:product.using_product_description }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div class="button_center">
+              <Link to={ this.props.data.wordpressPage.acf.where_to_use_button_link } className="button-learn white">{ this.props.data.wordpressPage.acf.where_to_use_button_text } <span className="btnArrow"><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></span></Link>
+              <div>
+                <button className="normal_link" data-id="#testimonial" onClick={() => scrollTo("#testimonial")}><span className="underline">{this.props.data.wordpressPage.acf.what_client_say_text}</span> <svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></button>
+              </div>
             </div>
           </div>
         </div>
-        Landing Page
-        <GlobalTestimonialSlider contentData={latestTestomonial}  />
+        <div className="decking_options">
+          <div className="aside__text" dangerouslySetInnerHTML={{ __html: this.props.data.wordpressPage.acf.decking_options_aside_title }} />
+          <div className="container">
+            <div className="main_heading">
+              <h2 dangerouslySetInnerHTML={{ __html: this.props.data.wordpressPage.acf.decking_option_main_heading  }} />
+              <div dangerouslySetInnerHTML={{ __html: this.props.data.wordpressPage.acf.decking_option_description }} />
+            </div>
+            <div className="row">
+              {this.props.data.wordpressPage.acf.decking_options_text_description.map((post, index) => (
+                <div className="col-sm-6" key={index}>
+                  <div className="option__box">
+                    <div className="option_image">
+                      <Img fluid={post.decking_options_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" />
+                    </div>
+                    <div dangerouslySetInnerHTML={{ __html: post.description_option_description }} />
+                    <div className="button_center">
+                      <Link to={ post.decking_option_button_link } className="button-learn">{ post.decking_option_button_text } <span className="btnArrow"><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></span></Link>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="pricingform__block">
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-6">
+                <div className="pricing__image">
+                  <div className="bg_image">
+                    <BackgroundImage  fluid={this.props.data.wordpressPage.acf.product_pricing_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" />
+                  </div>
+                </div>
+              </div>
+              <div className="col-sm-6">
+                <div className="pricing__formwrap">
+                  <div className="main_heading">
+                    <h2 dangerouslySetInnerHTML={{ __html: this.props.data.wordpressPage.acf.product_pricing_heading  }} />
+                    <div dangerouslySetInnerHTML={{ __html: this.props.data.wordpressPage.acf.product_pricing_description }} />
+                  </div>
+                  <div className="form__wrapper">
+                    <LandingPageForm location={this.props.location.href} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <GlobalTestimonialSlider contentData={latestTestomonial} button="true"  />
       </LayoutLanding>
     )
   }
@@ -212,7 +282,6 @@ export const pageQuery = graphql`
         }
         why_this_product_main_heading
         what_client_say_text
-        what_client_say_link
         what_client_say_image {
           alt_text
           localFile {
@@ -228,6 +297,7 @@ export const pageQuery = graphql`
         why_product_button_text
         why_product_button_link
         why_product_button_style
+        sections_main_heading
         where_can_it_be_used {
           using_image {
             alt_text
