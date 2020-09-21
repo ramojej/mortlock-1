@@ -42,7 +42,7 @@ const GlobalProjectSlider = ({ ...props }) =>  {
                 </Link>
                 </div>
                 <div className="project_text">
-                  <span className="project_title"><Link to={project.node.path}>{project.node.title}</Link></span>
+                  <span className="project_title"><Link to={project.node.path} dangerouslySetInnerHTML={{ __html: project.node.title }} /></span>
                 </div>
                 <div className="control_wrapper">
                   <button className="slick-arrow slick-prev" onClick={()=>gotoPrev()}><span className="text">Prev</span><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100"><path d="m87.5 45.832h-58.75l17.918-17.914-5.8359-5.8359-27.914 27.918 27.914 27.918 5.8359-5.8359-17.918-17.914h58.75z"/></svg></button>
