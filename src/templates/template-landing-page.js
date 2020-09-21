@@ -98,7 +98,9 @@ class Page extends Component {
                 <div dangerouslySetInnerHTML={{ __html: this.props.data.wordpressPage.acf.product_text_description }} />
                 <div className="button_wrap">
                   {this.props.data.wordpressPage.acf.product_description_buttons.map((button,index) => (
-                    <Link to={ button.description_button_link } className="button-learn" key={index}>{ button.description_button_text } <span className="btnArrow"><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></span></Link>
+                    (button.description_button_link) ?
+                    <a rel="noreferrer" target="_blank" href={button.description_button_link.link} className="button-learn" key={index}>{ button.description_button_text } <span className="btnArrow"><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></span></a> :
+                    <Link to='/request-a-quote/' className="button-learn" key={index}>{ button.description_button_text } <span className="btnArrow"><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></span></Link>
                   ))}
                 </div>
               </div>
@@ -149,7 +151,7 @@ class Page extends Component {
                       <Img fluid={product.using_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" />
                     </div>
                     <h3 dangerouslySetInnerHTML={{ __html:product.using_product_title }} />
-                    <div dangerouslySetInnerHTML={{ __html:product.using_product_description }} />
+                    { this.props.data.wordpressPage.acf.show_description_underneath && <div dangerouslySetInnerHTML={{ __html:product.using_product_description }} /> }
                   </div>
                 </div>
               ))}
@@ -178,7 +180,7 @@ class Page extends Component {
                     </div>
                     <div dangerouslySetInnerHTML={{ __html: post.description_option_description }} />
                     <div className="button_center">
-                      <Link to={ post.decking_option_button_link } className="button-learn">{ post.decking_option_button_text } <span className="btnArrow"><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></span></Link>
+                      <a target="_blank" rel="noreferrer" href={ post.decking_option_button_link.link } className="button-learn">{ post.decking_option_button_text } <span className="btnArrow"><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></span></a>
                     </div>
                   </div>
                 </div>
@@ -268,7 +270,9 @@ export const pageQuery = graphql`
         product_text_description
         product_description_buttons {
           description_button_text
-          description_button_link
+          description_button_link {
+            link
+          }
           description_button_style
         }
         product_description_image {
@@ -299,6 +303,7 @@ export const pageQuery = graphql`
         why_product_button_link
         why_product_button_style
         sections_main_heading
+        show_description_underneath
         where_can_it_be_used {
           using_image {
             alt_text
@@ -334,7 +339,9 @@ export const pageQuery = graphql`
           }
           description_option_description
           decking_option_button_text
-          decking_option_button_link
+          decking_option_button_link {
+            link
+          }
         }
         product_pricing_image {
           alt_text

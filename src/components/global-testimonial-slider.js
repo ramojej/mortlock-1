@@ -14,13 +14,13 @@ const GlobalTestimonialSlider = ({ ...props }) =>  {
     arrows: false,
     autoplay: true,
     autoplaySpeed: 4000,
-    adaptiveHeight: true,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          adaptiveHeight: true,
         }
       }
     ]
