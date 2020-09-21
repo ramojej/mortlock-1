@@ -104,7 +104,24 @@ class ContactForm extends Component {
     }
 
     if(isFormValid) {
-      axios.post(formLink, qs.stringify(this.state.fields), Helpers.config).then((res) => {
+      var bodyFormData = new FormData();
+      bodyFormData.append('firstname', this.state.fields.firstname)
+      bodyFormData.append('lastname', this.state.fields.lastname)
+      if(this.state.fields.company === '') {
+        bodyFormData.append('company', 'N/A')
+      } else {
+        bodyFormData.append('company', this.state.fields.company)
+      }
+      bodyFormData.append('state', this.state.fields.state)
+      bodyFormData.append('email', this.state.fields.email)
+      bodyFormData.append('phone', this.state.fields.phone)
+      bodyFormData.append('whoareyou', this.state.fields.whoareyou)
+      bodyFormData.append('message', this.state.fields.message)
+      bodyFormData.append('leadsource', this.state.fields.leadsource)
+      bodyFormData.append('pageURL', this.state.fields.pageURL)
+      bodyFormData.append('interest', this.state.fields.interest)
+
+      axios.post(formLink, bodyFormData, Helpers.config).then((res) => {
         if(res.data.status === 'mail_sent') {
           this.handleGTag();
           setTimeout(() => {

@@ -141,10 +141,15 @@ class RequestAQuote extends Component {
     }
 
     if(isFormValid) {
+      var leadInfo = '1) Message :-   ' + this.state.fields.message + '     2) Quantity of material?:-   ' + this.state.fields.quantity;
       var bodyFormData = new FormData();
       bodyFormData.append('firstname', this.state.fields.firstname)
       bodyFormData.append('lastname', this.state.fields.lastname)
-      bodyFormData.append('company', this.state.fields.company)
+      if(this.state.fields.company === '') {
+        bodyFormData.append('company', 'N/A')
+      } else {
+        bodyFormData.append('company', this.state.fields.company)
+      }
       bodyFormData.append('address', this.state.fields.address)
       bodyFormData.append('suburb', this.state.fields.suburb)
       bodyFormData.append('state', this.state.fields.state)
@@ -152,8 +157,7 @@ class RequestAQuote extends Component {
       bodyFormData.append('email', this.state.fields.email)
       bodyFormData.append('phone', this.state.fields.phone)
       bodyFormData.append('whoareyou', this.state.fields.whoareyou)
-      bodyFormData.append('quantity', this.state.fields.quantity)
-      bodyFormData.append('message', this.state.fields.message)
+      bodyFormData.append('message', leadInfo)
       bodyFormData.append('leadsource', this.state.fields.leadsource)
       bodyFormData.append('pageURL', this.state.fields.pageURL)
       bodyFormData.append('interest', this.state.fields.interest)
@@ -228,10 +232,9 @@ class RequestAQuote extends Component {
           </div>
         </div>
         <div className="form_group">
-          <label htmlFor="company">Company *</label>
+          <label htmlFor="company">Company</label>
           <div className="form_input">
-            <input aria-label="company" type="text" name="company" id="company" placeholder="Enter your company name" className="noEmpty" value={this.state.fields.company || ''} onChange={ this.handleInputChange } />
-            {this.state.errors.company !== '' && <span className='error'>{this.state.errors.company}</span>}
+            <input aria-label="company" type="text" name="company" id="company" placeholder="Enter your company name" value={this.state.fields.company || ''} onChange={ this.handleInputChange } />
           </div>
         </div>
         <div className="row">

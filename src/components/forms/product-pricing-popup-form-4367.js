@@ -15,18 +15,23 @@ class ProductPricingPopupForm extends Component {
         lastname: '',
         email: '',
         phone: '',
+        state: '',
         company: '',
         timberspecies: '',
         timberfinishes: '',
         battensize: '',
         battenspacing: '',
         backing: '',
-        projectsize: ''
+        projectsize: '',
+        leadsource: 'Website',
+        pageURL: this.props.location,
+        interest: 'Proplank'
       },
       errors: {
         firstname: '',
         lastname: '',
         email: '',
+        state: '',
         phone: '',
         company: '',
         timberspecies: '',
@@ -109,7 +114,26 @@ class ProductPricingPopupForm extends Component {
     }
 
     if(isFormValid) {
-      axios.post(formLink, qs.stringify(this.state.fields), Helpers.config).then((res) => {
+      var leadInfo = '1) TIMBER SPECIES :-   ' + this.state.fields.timberspecies +  '     2) FINISH :-   ' + this.state.fields.timberfinishes + '     3) TIMBER BATTEN SIZE :-   ' + this.state.fields.battensize + '     4) SPACING BETWEEN BATTENS :-   ' + this.state.fields.battenspacing + '     5) ACOUSTIC BACKING :-   ' + this.state.fields.backing + '     6) PROJECT SIZE M2 :-   ' + this.state.fields.projectsize;
+
+      var bodyFormData = new FormData();
+
+      bodyFormData.append('firstname', this.state.fields.firstname)
+      bodyFormData.append('lastname', this.state.fields.lastname)
+      if(this.state.fields.company === '') {
+        bodyFormData.append('company', 'N/A')
+      } else {
+        bodyFormData.append('company', this.state.fields.company)
+      }
+      bodyFormData.append('state', this.state.fields.state)
+      bodyFormData.append('email', this.state.fields.email)
+      bodyFormData.append('phone', this.state.fields.phone)
+      bodyFormData.append('message', leadInfo)
+      bodyFormData.append('leadsource', this.state.fields.leadsource)
+      bodyFormData.append('pageURL', this.state.fields.pageURL)
+      bodyFormData.append('interest', this.state.fields.interest)
+
+      axios.post(formLink, bodyFormData, Helpers.config).then((res) => {
         if(res.data.status === 'mail_sent') {
           setTimeout(() => {
             this.setState({
@@ -167,6 +191,7 @@ class ProductPricingPopupForm extends Component {
         <div className="formsub__popup">
           <h3>Thank you!</h3>
           <p>Please click the link below to download the guide.</p>
+          <a class="link" target="_blank" rel="noreferrer" href={this.props.data.pricing_guide_download_link.link}>Click here to download pricing guide</a>
         </div>
       )
     } else {
@@ -192,11 +217,33 @@ class ProductPricingPopupForm extends Component {
               </div>
             </div>
           </div>
-          <div className="form_group">
-            <label htmlFor="company1">Company *</label>
-            <div className="form_input">
-              <input aria-label="Company name" type="text" name="company" id="company1" placeholder="Enter company name" value={this.state.fields.company || ''} onChange={ this.handleInputChange } />
-              {this.state.errors.company !== '' && <span className='error'>{this.state.errors.company}</span>}
+          <div className="row">
+            <div className="col-sm-6">
+              <div className="form_group">
+                <label htmlFor="state">State *</label>
+                <div className="form_input">
+                  <select name="state" id="state" value={this.state.fields.state || ''} onChange={ this.handleInputChange }>
+                    <option value="default">- Select -</option>
+                    <option value="ACT">ACT</option>
+                    <option value="NSW">NSW</option>
+                    <option value="NT">NT</option>
+                    <option value="QLD">QLD</option>
+                    <option value="SA">SA</option>
+                    <option value="TAS">TAS</option>
+                    <option value="VIC">VIC</option>
+                    <option value="WA">WA</option>
+                    <option value="International">International</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-6">
+              <div className="form_group">
+                <label htmlFor="company1">Company</label>
+                <div className="form_input">
+                  <input aria-label="Company name" type="text" name="company" id="company1" placeholder="Enter company name" value={this.state.fields.company || ''} onChange={ this.handleInputChange } />
+                </div>
+              </div>
             </div>
           </div>
           <div className="row">

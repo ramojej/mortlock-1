@@ -5546,7 +5546,7 @@ ul.block-icons {
   padding: 60px 15px;
 
   @include breakpoint('medium') {
-    padding: 80px;
+    padding: 60px 80px;
   }
 
   .popup__active & {
@@ -5599,8 +5599,8 @@ ul.block-icons {
   margin-bottom: 15px;
 
   @include breakpoint('medium') {
-    padding: 0 0 40px;
-    margin-bottom: 80px;
+    padding: 0 0 30px;
+    margin-bottom: 50px;
   }
 
   h2 {

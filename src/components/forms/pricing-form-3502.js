@@ -127,21 +127,25 @@ class PricingForm extends Component {
           this.state.fields.products.push(interest.value);
         }
       });
+      
+      var bodyFormData = new FormData();
 
-      const formData = {
-        firstname: this.state.fields.firstname,
-        lastname: this.state.fields.lastname,
-        email: this.state.fields.email,
-        phone: this.state.fields.phone,
-        products: checkedBoxes,
-        company: this.state.fields.company,
-        state: this.state.fields.state,
-        interest: 'Unsure',
-        leadsource: 'Website',
-        pageURL: this.props.location
+      bodyFormData.append('firstname', this.state.fields.firstname)
+      bodyFormData.append('lastname', this.state.fields.lastname)
+      if(this.state.fields.company === '') {
+        bodyFormData.append('company', 'N/A')
+      } else {
+        bodyFormData.append('company', this.state.fields.company)
       }
+      bodyFormData.append('state', this.state.fields.state)
+      bodyFormData.append('email', this.state.fields.email)
+      bodyFormData.append('phone', this.state.fields.phone)
+      bodyFormData.append('products', checkedBoxes)
+      bodyFormData.append('leadsource', this.state.fields.leadsource)
+      bodyFormData.append('pageURL', this.state.fields.pageURL)
+      bodyFormData.append('interest', this.state.fields.interest)
 
-      axios.post(formLink, qs.stringify(formData), Helpers.config).then((res) => {
+      axios.post(formLink, bodyFormData, Helpers.config).then((res) => {
         if(res.data.status === 'mail_sent') {
           setTimeout(() => {
             this.setState({
@@ -286,10 +290,9 @@ class PricingForm extends Component {
             </div>
             <div className="col-sm-6">
               <div className="form_group">
-                <label htmlFor="company">Company name *</label>
+                <label htmlFor="company">Company name</label>
                 <div className="form_input">
-                  <input aria-label="Company name" className="noEmpty" type="text" name="company" id="company" placeholder="Enter company name" value={this.state.fields.company || ''} onChange={ this.handleInputChange } />
-                  {this.state.errors.company !== '' && <span className='error'>{this.state.errors.company}</span>}
+                  <input aria-label="Company name" type="text" name="company" id="company" placeholder="Enter company name" value={this.state.fields.company || ''} onChange={ this.handleInputChange } />
                 </div>
               </div>
             </div>
