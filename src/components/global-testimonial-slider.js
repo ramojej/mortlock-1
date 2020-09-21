@@ -12,13 +12,15 @@ const GlobalTestimonialSlider = ({ ...props }) =>  {
     slidesToShow: 2,
     slidesToScroll: 1,
     arrows: false,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    adaptiveHeight: true,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
-          adaptiveHeight: true
+          slidesToScroll: 1
         }
       }
     ]
@@ -34,11 +36,8 @@ const GlobalTestimonialSlider = ({ ...props }) =>  {
 
   return (
     <div className="testimonial__block" id="testimonial">
-      <div className="container" 
-      data-sal="slide-up" 
-      data-sal-easing="ease"
-      data-sal-delay="5">
-        {(props.button === "true") && <div className="aside__text">Testimonial</div> }
+      <div className="container" data-sal="slide-up" data-sal-easing="ease" data-sal-delay="5">
+        {(props.button === "true") && <div className="aside__text">Testimonials</div> }
         <header className="general__heading">
           <h2>{content.testimonialHeading}</h2>
           <div className="control_wrapper">

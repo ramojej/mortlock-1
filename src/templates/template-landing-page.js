@@ -46,7 +46,7 @@ class Page extends Component {
                   <div className="inner__bannerbuttons">
                     {bannerContent.banner_buttons.map((button, index) => (
                       (index === 1) ? 
-                      <Button type="external" link={button.landing_page_banner_button_link} text={button.landing_page_banner_button_text} style={button.landing_page_banner_button_style} key={index} /> : 
+                      <Button key={index} type="external" link={button.landing_page_banner_button_link} text={button.landing_page_banner_button_text} style={button.landing_page_banner_button_style} key={index} /> : 
                       <Button link={button.landing_page_banner_button_link} text={button.landing_page_banner_button_text} style={button.landing_page_banner_button_style} key={index} /> 
                     ))}
                   </div> : null }
@@ -58,7 +58,7 @@ class Page extends Component {
           <div className="aside__text" dangerouslySetInnerHTML={{ __html: this.props.data.wordpressPage.acf.introduction_aside_heading }} />
           <div className="container">
             <div className="row middle-md reverse">
-              <div className="col-sm-6 col-xlg-7">
+              <div className="col-md-6">
                 <div className="textBox" data-sal="slide-up" data-sal-easing="ease" data-sal-delay="5">
                   <div dangerouslySetInnerHTML={{ __html: this.props.data.wordpressPage.acf.introduction_description }} />
                   <div className="btnWrap">
@@ -66,7 +66,7 @@ class Page extends Component {
                   </div>
                 </div>
               </div>
-              <div className="col-sm-6 col-xlg-5">
+              <div className="col-md-6">
                 <div className="image__wrap">
                   <Img fluid={this.props.data.wordpressPage.acf.introduction_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" />
                 </div>
@@ -78,7 +78,7 @@ class Page extends Component {
           <div className="container">
             <div className="row">
               { product_features.map((product, index) => (
-                <div className="col-sm-3" key={index}>
+                <div className="col-sm-6 col-md-3" key={index}>
                   <div className="icon__box">
                     <div className="ico_wrap" dangerouslySetInnerHTML={{ __html: product.product_icon_svg_code }} />
                     <h3 dangerouslySetInnerHTML={{ __html:product.feature_title }} />
@@ -90,18 +90,19 @@ class Page extends Component {
           </div>
         </div>
         <div className="subtainability__block">
+          <div className="aside__text">Sustainable Jarrah</div>
           <div className="container">
             <div className="row">
-              <div className="col-sm-6">
+              <div className="col-md-6">
                 <h2 dangerouslySetInnerHTML={{ __html: this.props.data.wordpressPage.acf.product_description_heading }} />
                 <div dangerouslySetInnerHTML={{ __html: this.props.data.wordpressPage.acf.product_text_description }} />
                 <div className="button_wrap">
                   {this.props.data.wordpressPage.acf.product_description_buttons.map((button,index) => (
-                    <Link to={ button.description_button_link } className="button-learn">{ button.description_button_text } <span className="btnArrow"><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></span></Link>
+                    <Link to={ button.description_button_link } className="button-learn" key={index}>{ button.description_button_text } <span className="btnArrow"><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></span></Link>
                   ))}
                 </div>
               </div>
-              <div className="col-sm-offset-1 col-sm-5">
+              <div className="col-md-6 col-lg-offset-1 col-lg-5">
                 <div className="sustainability_image">
                   <Img fluid={this.props.data.wordpressPage.acf.product_description_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" />
                 </div>
@@ -112,21 +113,21 @@ class Page extends Component {
         <div className="why__product">
           <div className="container">
             <div className="row">
-              <div className="col-sm-5">
+              <div className="col-md-5">
                 <div className="sustainability_image">
                   <Img fluid={this.props.data.wordpressPage.acf.what_client_say_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" />
                 </div>
               </div>
-              <div className="col-sm-7">
+              <div className="col-md-7">
                 <div className="general__heading">
                   <h2 dangerouslySetInnerHTML={{ __html: this.props.data.wordpressPage.acf.why_this_product_main_heading  }} />
                   <span className="info"><button data-id="#testimonial" onClick={() => scrollTo("#testimonial")}><span className="underline">{this.props.data.wordpressPage.acf.what_client_say_text}</span> <svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></button></span>
                 </div>
                 <div className="row">
-                  <div className="col-sm-6">
+                  <div className="col-md-6">
                   <div dangerouslySetInnerHTML={{ __html: this.props.data.wordpressPage.acf.description_column_one  }} />
                   </div>
-                  <div className="col-sm-6">
+                  <div className="col-md-6">
                     <div dangerouslySetInnerHTML={{ __html: this.props.data.wordpressPage.acf.description_column_two  }} />
                   </div>
                 </div>
@@ -142,7 +143,7 @@ class Page extends Component {
             <h2 dangerouslySetInnerHTML={{ __html: this.props.data.wordpressPage.acf.sections_main_heading  }} />
             <div className="row">
               {this.props.data.wordpressPage.acf.where_can_it_be_used.map((product, index) => (
-                <div className="col-sm-4" key={index}>
+                <div className="col-sm-6 col-md-4" key={index}>
                   <div className="articletext__box">
                     <div className="img__wrap">
                       <Img fluid={product.using_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" />
@@ -153,7 +154,7 @@ class Page extends Component {
                 </div>
               ))}
             </div>
-            <div class="button_center">
+            <div className="button_center">
               <Link to={ this.props.data.wordpressPage.acf.where_to_use_button_link } className="button-learn white">{ this.props.data.wordpressPage.acf.where_to_use_button_text } <span className="btnArrow"><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></span></Link>
               <div>
                 <button className="normal_link" data-id="#testimonial" onClick={() => scrollTo("#testimonial")}><span className="underline">{this.props.data.wordpressPage.acf.what_client_say_text}</span> <svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></button>
@@ -188,14 +189,14 @@ class Page extends Component {
         <div className="pricingform__block">
           <div className="container">
             <div className="row">
-              <div className="col-sm-6">
-                <div className="pricing__image">
+              <div className="col-md-6">
+                <div className="pricingff__image">
                   <div className="bg_image">
                     <BackgroundImage  fluid={this.props.data.wordpressPage.acf.product_pricing_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" />
                   </div>
                 </div>
               </div>
-              <div className="col-sm-6">
+              <div className="col-md-6">
                 <div className="pricing__formwrap">
                   <div className="main_heading">
                     <h2 dangerouslySetInnerHTML={{ __html: this.props.data.wordpressPage.acf.product_pricing_heading  }} />
