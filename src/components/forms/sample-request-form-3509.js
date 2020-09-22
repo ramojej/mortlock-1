@@ -16,6 +16,7 @@ class SampleRequest extends Component {
         email: '',
         phone: '',
         company: '',
+        address: '',
         state: '',
         postcode: '',
         projectsize: '',
@@ -31,6 +32,7 @@ class SampleRequest extends Component {
         email: '',
         phone: '',
         company: '',
+        address: '',
         state: '',
         postcode: '',
         projectsize: '',
@@ -116,6 +118,7 @@ class SampleRequest extends Component {
       } else {
         bodyFormData.append('company', this.state.fields.company)
       }
+      bodyFormData.append('address', this.state.fields.address)
       bodyFormData.append('state', this.state.fields.state)
       bodyFormData.append('email', this.state.fields.email)
       bodyFormData.append('phone', this.state.fields.phone)
@@ -204,13 +207,6 @@ class SampleRequest extends Component {
               </div>
             </div>
           </div>
-          <div className="form_group">
-            <label htmlFor="company">Company</label>
-            <div className="form_input">
-              <input aria-label="Company name" type="text" name="company" id="company" placeholder="Enter company name" value={this.state.fields.company || ''} onChange={ this.handleInputChange } />
-              {this.state.errors.company !== '' && <span className='error'>{this.state.errors.company}</span>}
-            </div>
-          </div>
           <div className="row">
             <div className="col-sm-6">
               <div className="form_group">
@@ -227,6 +223,25 @@ class SampleRequest extends Component {
                 <div className="form_input">
                   <input aria-label="Company name" className="noEmpty" type="text" name="phone" id="phone" placeholder="Enter your phone number" value={this.state.fields.phone || ''} onChange={ this.handleInputChange } />
                   {this.state.errors.phone !== '' && <span className='error'>{this.state.errors.phone}</span>}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-sm-6">
+              <div className="form_group">
+                <label htmlFor="company">Company</label>
+                <div className="form_input">
+                  <input aria-label="Company name" type="text" name="company" id="company" placeholder="Enter company name" value={this.state.fields.company || ''} onChange={ this.handleInputChange } />
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-6">
+              <div className="form_group">
+                <label htmlFor="address">Street Address *</label>
+                <div className="form_input">
+                  <input className="noEmpty" aria-label="address name" type="text" name="address" id="address" placeholder="Enter street address" value={this.state.fields.address || ''} onChange={ this.handleInputChange } />
+                  {this.state.errors.address !== '' && <span className='error'>{this.state.errors.address}</span>}
                 </div>
               </div>
             </div>
@@ -253,9 +268,10 @@ class SampleRequest extends Component {
             </div>
             <div className="col-sm-6">
               <div className="form_group">
-                <label htmlFor="postcode">Postcode</label>
+                <label htmlFor="postcode">Postcode *</label>
                 <div className="form_input">
-                  <input aria-label="postcode" type="text" name="postcode" id="postcode" placeholder="Enter your postcode" value={this.state.postcode} onChange={this.handleInputChange} />
+                  <input className="noEmpty" aria-label="postcode" type="text" name="postcode" id="postcode" placeholder="Enter your postcode" value={this.state.postcode} onChange={this.handleInputChange} />
+                  {this.state.errors.postcode !== '' && <span className='error'>{this.state.errors.postcode}</span>}
                 </div>
               </div>
             </div>
