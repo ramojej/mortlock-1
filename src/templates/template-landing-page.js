@@ -42,14 +42,10 @@ class Page extends Component {
               <div className="box" data-sal="slide-up" data-sal-easing="ease" data-sal-delay="5">
                 <h1 className={ !bannerContent.banner_description ? "text-center" : null } dangerouslySetInnerHTML={{ __html: bannerContent.banner_heading }} />
                 { bannerContent.banner_description ? <span className="inner__bannertext" dangerouslySetInnerHTML={{ __html: bannerContent.banner_description }} /> : null }
-                { bannerContent.banner_buttons ?
-                  <div className="inner__bannerbuttons">
-                    {bannerContent.banner_buttons.map((button, index) => (
-                      (index === 1) ? 
-                      <Button key={index} type="external" link={button.landing_page_banner_button_link} text={button.landing_page_banner_button_text} style={button.landing_page_banner_button_style} key={index} /> : 
-                      <Button link={button.landing_page_banner_button_link} text={button.landing_page_banner_button_text} style={button.landing_page_banner_button_style} key={index} /> 
-                    ))}
-                  </div> : null }
+                <div className="inner__bannerbuttons">
+                  <button className="button primary" data-id='#request-a-quote-block' onClick={() => scrollTo('#request-a-quote-block')}>Request a quote</button>
+                  <a className="button whiteoutline" href="tel:1800894400">Call us now</a>
+                </div>
               </div>
             </div>
           </div>
@@ -62,7 +58,7 @@ class Page extends Component {
                 <div className="textBox" data-sal="slide-up" data-sal-easing="ease" data-sal-delay="5">
                   <div dangerouslySetInnerHTML={{ __html: this.props.data.wordpressPage.acf.introduction_description }} />
                   <div className="btnWrap">
-                    <Link to={ this.props.data.wordpressPage.acf.introduction_button_link } className="button-learn">{ this.props.data.wordpressPage.acf.introduction_button_text } <span className="btnArrow"><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></span></Link>
+                    <button data-id='#request-a-quote-block' onClick={() => scrollTo('#request-a-quote-block')}  className="button-learn">{ this.props.data.wordpressPage.acf.introduction_button_text } <span className="btnArrow"><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></span></button>
                   </div>
                 </div>
               </div>
@@ -100,7 +96,7 @@ class Page extends Component {
                   {this.props.data.wordpressPage.acf.product_description_buttons.map((button,index) => (
                     (button.description_button_link) ?
                     <a rel="noreferrer" target="_blank" href={button.description_button_link.link} className="button-learn" key={index}>{ button.description_button_text } <span className="btnArrow"><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></span></a> :
-                    <Link to='/request-a-quote/' className="button-learn" key={index}>{ button.description_button_text } <span className="btnArrow"><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></span></Link>
+                    <button key={index} data-id='#request-a-quote-block' onClick={() => scrollTo('#request-a-quote-block')}  className="button-learn">{ button.description_button_text } <span className="btnArrow"><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></span></button>
                   ))}
                 </div>
               </div>
@@ -115,15 +111,14 @@ class Page extends Component {
         <div className="why__product">
           <div className="container">
             <div className="row">
-              <div className="col-md-5">
-                <div className="sustainability_image">
+              <div className="col-md-4">
+                <div className="why_image">
                   <Img fluid={this.props.data.wordpressPage.acf.what_client_say_image.localFile.childImageSharp.fluid} alt="Mortlock Timber" />
                 </div>
               </div>
-              <div className="col-md-7">
+              <div className="col-md-8">
                 <div className="general__heading">
                   <h2 dangerouslySetInnerHTML={{ __html: this.props.data.wordpressPage.acf.why_this_product_main_heading  }} />
-                  <span className="info"><button data-id="#testimonial" onClick={() => scrollTo("#testimonial")}><span className="underline">{this.props.data.wordpressPage.acf.what_client_say_text}</span> <svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></button></span>
                 </div>
                 <div className="row">
                   <div className="col-md-6">
@@ -131,10 +126,11 @@ class Page extends Component {
                   </div>
                   <div className="col-md-6">
                     <div dangerouslySetInnerHTML={{ __html: this.props.data.wordpressPage.acf.description_column_two  }} />
+                    <div className="btn-holdd">
+                      <Link to={ this.props.data.wordpressPage.acf.why_product_button_link } className="button-learn">{ this.props.data.wordpressPage.acf.why_product_button_text } <span className="btnArrow"><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></span></Link>
+                      <span className="info"><button data-id="#testimonial" onClick={() => scrollTo("#testimonial")}><span className="underline">{this.props.data.wordpressPage.acf.what_client_say_text}</span> <svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></button></span>
+                    </div>
                   </div>
-                </div>
-                <div className="button_center">
-                  <Link to={ this.props.data.wordpressPage.acf.why_product_button_link } className="button-learn">{ this.props.data.wordpressPage.acf.why_product_button_text } <span className="btnArrow"><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></span></Link>
                 </div>
               </div>
             </div>
@@ -157,7 +153,7 @@ class Page extends Component {
               ))}
             </div>
             <div className="button_center">
-              <Link to={ this.props.data.wordpressPage.acf.where_to_use_button_link } className="button-learn white">{ this.props.data.wordpressPage.acf.where_to_use_button_text } <span className="btnArrow"><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></span></Link>
+              <button data-id='#request-a-quote-block' onClick={() => scrollTo('#request-a-quote-block')}  className="button-learn white">{ this.props.data.wordpressPage.acf.where_to_use_button_text } <span className="btnArrow"><svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></span></button>
               <div>
                 <button className="normal_link" data-id="#testimonial" onClick={() => scrollTo("#testimonial")}><span className="underline">{this.props.data.wordpressPage.acf.what_client_say_text}</span> <svg className="icon" width="100pt" height="100pt" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="m32.812 0l-15.625 15.625 34.375 34.375-34.375 34.375 15.625 15.625 50-50z"/></svg></button>
               </div>
@@ -188,7 +184,7 @@ class Page extends Component {
             </div>
           </div>
         </div>
-        <div className="pricingform__block">
+        <div className="pricingform__block" id="request-a-quote-block">
           <div className="container">
             <div className="row">
               <div className="col-md-6">
@@ -212,7 +208,7 @@ class Page extends Component {
             </div>
           </div>
         </div>
-        <GlobalTestimonialSlider contentData={latestTestomonial} button="true"  />
+        <GlobalTestimonialSlider contentData={latestTestomonial} button="mortlock timber testimonials"  />
       </LayoutLanding>
     )
   }

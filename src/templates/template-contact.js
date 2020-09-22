@@ -260,8 +260,8 @@ const markers = [
     }
   },
   {
-    name: 'Warehouse & Freight Distribution NSW',
-    location: 'Belfield, Sydney, 2191',
+    name: 'Level 6/10 Herb Elliott Ave, Sydney Olympic Park NSW',
+    location: 'By appointment only.',
     position: {
       lat: -33.904586,
       lng: 151.081818
@@ -292,27 +292,11 @@ const markers = [
     }
   },
   {
-    name: 'Warehouse & Freight Distribution WA South West',
-    location: 'Davenport, Bunbury, 6230',
+    name: '5 Martin Pl, Canning Vale WA',
+    location: 'By appointment only',
     position: {
-      lat: -33.3788281,
-      lng: 115.6471673
-    }
-  },
-  {
-    name: 'Warehouse & Freight Distribution WA Metro',
-    location: 'Welshpool, Perth, 6105',
-    position: {
-      lat: -31.992784,
-      lng: 115.9293821
-    }
-  },
-  {
-    name: 'Head office & Manufacturing',
-    location: 'Welshpool, Perth, 6105',
-    position: {
-      lat: -31.6364806,
-      lng: 117.1320352
+      lat: -32.059741,
+      lng: 115.9144133
     }
   }
 ]

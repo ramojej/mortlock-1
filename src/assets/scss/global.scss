@@ -1677,6 +1677,7 @@ ul.main__nav {
   text-align: center;
   letter-spacing: 2px;
   min-width: 250px;
+  cursor: pointer;
   transition: all 0.3s;
 
   @include breakpoint('xxlarge') {
@@ -1721,6 +1722,7 @@ ul.main__nav {
   &.white {
     border-color: #a2764f;
     color: #fff;
+    background: transparent;
 
     .btnArrow {
       background: $primary-color;
@@ -6119,7 +6121,50 @@ form {
 
   .sustainability_image {
     @include breakpoint('medium') {
-      margin: 0 -300px 0 -30px;
+      margin: 0 -400px 0 -30px;
+    }
+  }
+}
+
+.why_image {
+  position: relative;
+  z-index: 3;
+
+  @include breakpoint('large') {
+    margin: 0 -20px 0 -100px;
+  }
+}
+
+.btn-holdd {
+  padding-top: 30px;
+  .button-learn {
+    margin-bottom: 10px;
+  }
+
+  .info {
+    button {
+      border: none;
+      padding: 0;
+      margin: 20px 0 0;
+      outline: none !important;
+      text-transform: uppercase;
+      font-size: 15px;
+      transition: color 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        color: $primary-color;
+
+        .underline {
+          text-decoration: none;
+        }
+      }
+
+      .icon {
+        width: 10px;
+        height: 10px;
+        margin: -3px 0 0 8px;
+      }
     }
   }
 }
@@ -6349,6 +6394,10 @@ form {
     padding-bottom: 30px;
     margin-bottom: 50px;
 
+    @include breakpoint('medium') {
+      text-align: left;
+    }
+
     &:before {
       content: '';
       position: absolute;
@@ -6387,7 +6436,7 @@ form {
   padding: 40px 0;
 
   @include breakpoint('medium') {
-    padding: 60px 0 70px;
+    padding: 100px 0 70px;
   }
 }
 
