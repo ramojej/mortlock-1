@@ -81,7 +81,7 @@ const Page = props => {
     //---Update the projects Array (filtered)
     let filterd = [] //reset
     let allProjects = projects.allWordpressWpProject.edges
-    //console.log(allProjects)
+    console.log('All projects', allProjects)
 
     allProjects.forEach(project => {
       //filter the projects according to the filterCategories array
