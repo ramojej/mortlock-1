@@ -216,6 +216,7 @@ Redirect 301 /wp-content/uploads/2015/11/Wood_Human_Health_final-single.pdf?utm_
 RedirectMatch 301 /testimonial/jordan-miller-builder/?$ https://www.mortlock.com.au/
 RedirectMatch 301 /download-files/?post_id=1293&amp/?$ https://www.mortlock.com.au/
 RedirectMatch 301 /download-files/?post_id=73&amp/?$ https://www.mortlock.com.au/
+RedirectMatch 301 /project/seascape-rise-yallingup/?$ https://www.mortlock.com.au/project/yallingup/
 
 
 # Canonical HTTPS/non-WWW
