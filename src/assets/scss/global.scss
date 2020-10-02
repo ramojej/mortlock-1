@@ -6547,7 +6547,10 @@ form {
   bottom: 20px;
   background: $primary-color;
   color: #fff;
-  padding: 0.5rem;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  letter-spacing: 1px;
+
   @include breakpoint("large") {
     display: none;
   }
