@@ -93,7 +93,7 @@ class SampleRequest extends Component {
       if (element.value === "") {
         isFormValid = false;
         setTimeout(() => {
-          this.setState({ 
+          this.setState({
             submitActive: false,
             mainFormMsg: 'Please fill in the required fields.',
             mainFormState: 'error',
@@ -127,6 +127,7 @@ class SampleRequest extends Component {
       bodyFormData.append('leadsource', this.state.fields.leadsource)
       bodyFormData.append('pageURL', this.state.fields.pageURL)
       bodyFormData.append('interest', this.state.fields.interest)
+      bodyFormData.append("downloadpdf", this.props.data.request_sample_brochure.link)
 
       axios.post(formLink, bodyFormData, Helpers.config).then((res) => {
         if(res.data.status === 'mail_sent') {
@@ -153,7 +154,7 @@ class SampleRequest extends Component {
                 pageURL: this.props.location
               }
             })
-          }, 800); 
+          }, 800);
 
           setTimeout(() => {
             this.setState({ mainFormMsg: '', mainFormState: '' });

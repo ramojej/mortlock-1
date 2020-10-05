@@ -33,6 +33,7 @@ class ProductPricingForm extends Component {
         email: "",
         phone: "",
         company: "",
+        state: ''
       },
       passedValidation: false,
       submitActive: false,
@@ -83,6 +84,7 @@ class ProductPricingForm extends Component {
   handleSubmit = async event => {
     event.preventDefault()
     this.setState({ submitActive: true })
+
     const formLink =
       "https://site.mortlock.com.au/wp-json/contact-form-7/v1/contact-forms/4360/feedback"
     let isFormValid = false
@@ -125,6 +127,7 @@ class ProductPricingForm extends Component {
       bodyFormData.append("leadsource", this.state.fields.leadsource)
       bodyFormData.append("pageURL", this.state.fields.pageURL)
       bodyFormData.append("interest", this.state.fields.interest)
+      bodyFormData.append("downloadpdf", this.props.data.pricing_guide_download_link.link)
 
       axios
         .post(formLink, bodyFormData, Helpers.config)
@@ -264,7 +267,7 @@ class ProductPricingForm extends Component {
                       value={this.state.fields.state || ""}
                       onChange={this.handleInputChange}
                     >
-                      <option value="default">- Select -</option>
+                      <option value="">- Select -</option>
                       <option value="ACT">ACT</option>
                       <option value="NSW">NSW</option>
                       <option value="NT">NT</option>
@@ -275,6 +278,9 @@ class ProductPricingForm extends Component {
                       <option value="WA">WA</option>
                       <option value="International">International</option>
                     </select>
+                    {this.state.errors.state !== "" && (
+                      <span className="error">{this.state.errors.state}</span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -339,7 +345,7 @@ class ProductPricingForm extends Component {
             </div>
             <div className="btn_wrap">
               <button className="button" type="submit">
-                <span className="text">Download</span>
+                <span className="text">Submit</span>
                 <Loader />
               </button>
               {this.props.pageID === 339 && (

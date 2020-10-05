@@ -55,7 +55,7 @@ class PricingForm extends Component {
       if (interest.value === event.target.value)
       interest.isChecked =  event.target.checked
     })
-    
+
     this.setState({
       fields: {
         ...this.state.fields,
@@ -95,6 +95,10 @@ class PricingForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+
+    console.log(this.state);
+
+
     let checkedBoxes = [];
     this.setState({ submitActive: true });
     const formLink = 'https://site.mortlock.com.au/wp-json/contact-form-7/v1/contact-forms/3502/feedback';
@@ -105,7 +109,7 @@ class PricingForm extends Component {
       if (element.value === "") {
         isFormValid = false;
         setTimeout(() => {
-          this.setState({ 
+          this.setState({
             submitActive: false,
             mainFormMsg: 'Please fill in the required fields.',
             mainFormState: 'error',
@@ -127,7 +131,7 @@ class PricingForm extends Component {
           this.state.fields.products.push(interest.value);
         }
       });
-      
+
       var bodyFormData = new FormData();
 
       bodyFormData.append('firstname', this.state.fields.firstname)
@@ -172,7 +176,7 @@ class PricingForm extends Component {
                 products: this.state.fields.products
               }
             })
-          }, 800); 
+          }, 800);
 
           setTimeout(() => {
             this.setState({ mainFormMsg: '', mainFormState: '' });
@@ -273,8 +277,8 @@ class PricingForm extends Component {
               <div className="form_group">
                 <label htmlFor="state">State *</label>
                 <div className="form_input">
-                  <select name="state" id="state" value={this.state.fields.state || ''} onChange={ this.handleInputChange }>
-                    <option value="default">- Select -</option>
+                  <select name="state" id="state" className="noEmpty" value={this.state.fields.state || ''} onChange={ this.handleInputChange }>
+                    <option value="">- Select -</option>
                     <option value="ACT">ACT</option>
                     <option value="NSW">NSW</option>
                     <option value="NT">NT</option>
@@ -285,6 +289,9 @@ class PricingForm extends Component {
                     <option value="WA">WA</option>
                     <option value="International">International</option>
                   </select>
+                  {this.state.errors.state !== "" && (
+                    <span className="error">{this.state.errors.state}</span>
+                  )}
                 </div>
               </div>
             </div>
