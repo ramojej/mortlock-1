@@ -68,3 +68,7 @@ yarn.lock
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
+
+#VS Code config file
+
+*.code-workspace
