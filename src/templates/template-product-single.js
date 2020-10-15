@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { graphql } from "gatsby"
-import { GatsbyImage } from "@wardpeet/gatsby-image-nextgen/compat"
+import GatsbyImage from "gatsby-image"
 import scrollTo from "gatsby-plugin-smoothscroll"
 
 import Layout from "../components/layout"
@@ -220,7 +220,6 @@ class Page extends Component {
                 fluid={
                   bannerContent.banner_image.localFile.childImageSharp.fluid
                 }
-                layout="responsive"
                 alt="banner"
               />
             ) : null}
