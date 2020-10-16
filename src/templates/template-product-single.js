@@ -536,7 +536,9 @@ export const pageQuery = graphql`
           }
         }
         request_sample_description
-        request_sample_brochure 
+        request_sample_brochure {
+          link
+        } 
       }
     }
   }

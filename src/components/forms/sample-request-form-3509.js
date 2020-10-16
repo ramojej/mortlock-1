@@ -201,7 +201,7 @@ class SampleRequest extends Component {
             class="link"
             target="_blank"
             rel="noreferrer"
-            href={this.props.data.request_sample_brochure}
+            href={this.props.data.request_sample_brochure.link}
           >
             Click here to download sample
           </a>
