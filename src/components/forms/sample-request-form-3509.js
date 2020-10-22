@@ -56,7 +56,6 @@ class SampleRequest extends Component {
   getLeadSource() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString)
-    //console.log(urlParams.has('gclid'))
 
     if (urlParams.has('gclid')) {
       this.setState({leadInfoSource: 'Google Ads'})
@@ -65,8 +64,6 @@ class SampleRequest extends Component {
     } else {
       this.setState({leadInfoSource: 'Organic'})
     }
-
-    //console.log(this.state.leadInfoSource)
   }
 
   componentDidMount() {

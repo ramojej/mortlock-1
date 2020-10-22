@@ -66,7 +66,6 @@ const Project = ({ ...props }) => {
   }
 
   const pageData = props.data.wordpressWpProject
-  console.log(pageData)
 
   const bannerContent = {
     banner_image: pageData.acf.project_banner_image,

@@ -9,10 +9,8 @@ import { ProjectContext } from "../context/ProjectsContext"
 const Page = props => {
   //initiating the arrays
   let projectCategories = props.data.allWordpressWpProjectCategory.edges
-  //console.log(projectCategories)
 
   const { projects } = useContext(ProjectContext)
-  //console.log(projects)
 
   const content = props
   const page = props.data.allWordpressPage

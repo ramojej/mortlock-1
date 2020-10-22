@@ -96,9 +96,6 @@ class PricingForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log(this.state);
-
-
     let checkedBoxes = [];
     this.setState({ submitActive: true });
     const formLink = 'https://site.mortlock.com.au/wp-json/contact-form-7/v1/contact-forms/3502/feedback';
