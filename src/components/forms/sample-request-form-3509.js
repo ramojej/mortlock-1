@@ -46,8 +46,31 @@ class SampleRequest extends Component {
       mainFormMsg: "",
       mainFormState: null,
       popupActive: false,
+      leadInfoSource: null
     }
     this.handleInputChange = this.handleInputChange.bind(this)
+
+    
+  }
+
+  getLeadSource() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString)
+    //console.log(urlParams.has('gclid'))
+
+    if (urlParams.has('gclid')) {
+      this.setState({leadInfoSource: 'Google Ads'})
+    } else if (urlParams.has('utm_source')) {
+      this.setState({leadInfoSource: 'Facebook'})
+    } else {
+      this.setState({leadInfoSource: 'Organic'})
+    }
+
+    //console.log(this.state.leadInfoSource)
+  }
+
+  componentDidMount() {
+    this.getLeadSource()
   }
 
   handleInputChange(event) {
@@ -137,6 +160,7 @@ class SampleRequest extends Component {
       bodyFormData.append("phone", this.state.fields.phone)
       bodyFormData.append("postcode", this.state.fields.postcode)
       bodyFormData.append("message", leadInfo)
+      bodyFormData.append("leadInfoSource", this.state.leadInfoSource)
       bodyFormData.append("leadsource", this.state.fields.leadsource)
       bodyFormData.append("pageURL", this.state.fields.pageURL)
       bodyFormData.append("interest", this.state.fields.interest)
